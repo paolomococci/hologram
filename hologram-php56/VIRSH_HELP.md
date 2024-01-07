@@ -16,3 +16,35 @@ virsh domblklist hologram-php
 ls -al /var/lib/libvirt/images/
 cp /var/lib/libvirt/images/hologram-php.qcow2 ./hologram-php.qcow2
 ```
+
+### prepare hologram-php56
+
+Now I will generate a new UUID and the last three digits of a dummy MAC address, the first three will be taken from the cloned virtual machine.
+
+```bash
+cd ~
+uuidgen
+tools/latest_three_mac_gen.py
+```
+
+Having written down the generated values somewhere, proceed with the following commands:
+
+```bash
+cp vmdumps/hologram-php/hologram-php.qcow2 /var/lib/libvirt/images/hologram-php56.qcow2
+cp vmdumps/hologram-php/hologram-php.xml hologram-php56.xml
+nano vmdumps/hologram-php/hologram-php56.xml
+```
+
+And edit the following lines:
+
+```text
+...
+<name>hologram-php56</name>
+  <uuid>XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</uuid>
+  <title>hologram-php56 (Ubuntu server 22.04.3 LTS JAMMY JELLYFISH - 192.168.1.56)</title>
+...
+<source file='/var/lib/libvirt/images/hologram-php56.qcow2'/>
+...
+<mac address='XX:XX:XX:XX:XX:XX'/>
+...
+```
