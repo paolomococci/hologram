@@ -65,3 +65,20 @@ Edit:
 </dhcp>
 ...
 ```
+
+From bash shell with root credentials:
+
+```bash
+virsh define vmdumps/hologram-php/hologram-php56.xml
+```
+
+And from virsh cli:
+
+```shell
+list --all --title
+net-start default
+start hologram-php56
+list --all --title
+dominfo hologram-php56
+domifaddr hologram-php56
+```
