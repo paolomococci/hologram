@@ -82,3 +82,49 @@ list --all --title
 dominfo hologram-php56
 domifaddr hologram-php56
 ```
+
+## open GUI of `Virtual Machine Manager`
+
+From the list of virtual machines I select hologram-php56, open it and login from the terminal.
+
+### into hologram-php56 edit setting files linked to the hostname
+
+basically I'm going to add the number `56`to the string `hologram-php`
+
+```bash
+sudo nano /etc/hostname
+sudo nano /etc/hosts
+sudo reboot
+```
+
+Or:
+
+```bash
+sudo hostnamectl set-hostname hologram-php56
+sudo nano /etc/hosts
+sudo reboot
+```
+
+### regenerate OpenSSH Host Keys
+
+I login again:
+
+```bash
+sudo grep -ir "hologram-php" /etc
+sudo rm /etc/ssh/ssh_host_*
+sudo dpkg-reconfigure openssh-server
+sudo reboot
+```
+
+Here's a quick look at what you can do from the `virsh` command line.
+
+```shell
+start hologram-php56
+list --all --title
+suspend hologram-php56
+resume hologram-php56
+save hologram-php56 hologram-php56_dump
+restore hologram-php56_dump
+shutdown hologram-php56
+reboot hologram-php56
+```
