@@ -10,7 +10,7 @@ Otherwise, an intervention will be necessary later to increase the disk space.
 ## remove the predisposition to cloud
 
 ```bash
-ssh paolo@192.168.1.XXX
+ssh developer_username@192.168.1.XXX
 sudo touch /etc/cloud/cloud-init.disabled
 sudo dpkg-reconfigure cloud-init
 ```
@@ -19,12 +19,12 @@ Deselect all entries except `None`.
 
 ```bash
 sudo reboot
-ssh paolo@192.168.1.XXX
+ssh developer_username@192.168.1.XXX
 sudo apt-get purge cloud-init
 sudo rm -rf /etc/cloud/
 sudo rm -rf /var/lib/cloud/
 sudo reboot
-ssh paolo@192.168.1.XXX
+ssh developer_username@192.168.1.XXX
 lsb_release -a
 sudo apt update
 apt list --upgradable
@@ -50,11 +50,11 @@ sudo ufw allow from 192.168.1.0/24 proto tcp to any port 3306
 sudo ufw reload
 sudo ufw status numbered
 groups
-sudo usermod -a -G www-data paolo
+sudo usermod -a -G www-data developer_username
 sudo reboot
 groups
 cd /var/www/
-sudo chown --recursive --verbose paolo:www-data html
+sudo chown --recursive --verbose developer_username:www-data html
 sudo systemctl status apache2 -l --no-pager
 sudo systemctl list-units
 ```
