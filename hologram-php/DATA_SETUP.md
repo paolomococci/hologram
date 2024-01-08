@@ -18,6 +18,8 @@ with this other one:
 bind-address            = 0.0.0.0
 ```
 
+Otherwise it will not be possible to connect with a SQL IDE.
+
 ## finally setup of MariaDB
 
 ```bash
