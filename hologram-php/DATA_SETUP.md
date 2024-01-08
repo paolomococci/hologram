@@ -39,12 +39,12 @@ SELECT PASSWORD('database_developer_password');
 This last command returns a hash to use later:
 
 ```sql
-CREATE USER IF NOT EXISTS 'paolo'@'localhost' IDENTIFIED BY PASSWORD 'database_developer_password_hash';
+CREATE USER IF NOT EXISTS 'developer_username'@'localhost' IDENTIFIED BY PASSWORD 'database_developer_password_hash';
 CREATE DATABASE IF NOT EXISTS `landing_db`;
-GRANT ALL ON `landing_db`.* TO 'paolo'@'localhost';
+GRANT ALL ON `landing_db`.* TO 'developer_username'@'localhost';
 FLUSH PRIVILEGES;
-CREATE USER IF NOT EXISTS 'paolo'@'%' IDENTIFIED BY PASSWORD 'database_developer_password_hash';
-GRANT ALL ON `landing_db`.* TO 'paolo'@'%';
+CREATE USER IF NOT EXISTS 'developer_username'@'%' IDENTIFIED BY PASSWORD 'database_developer_password_hash';
+GRANT ALL ON `landing_db`.* TO 'developer_username'@'%';
 FLUSH PRIVILEGES;
 SELECT `user`, `host` FROM `mysql`.`user`;
 quit
