@@ -1,0 +1,1 @@
+# database setup of MariaDB
