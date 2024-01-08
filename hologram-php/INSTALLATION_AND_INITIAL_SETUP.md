@@ -58,3 +58,12 @@ sudo chown --recursive --verbose paolo:www-data html
 sudo systemctl status apache2 -l --no-pager
 sudo systemctl list-units
 ```
+
+## install and upgrade nodejs and npm
+
+```bash
+sudo apt install nodejs npm
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+```
