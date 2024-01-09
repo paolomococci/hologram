@@ -15,6 +15,14 @@ hologram-php56.local
 []
 ```
 
+To generate a good passphrase I could use the following command:
+
+```bash
+tr -dc 'A-Za-z0-9~!@#$%^&*_=+;:,.? ' </dev/urandom | head -c 128; echo
+```
+
+Therefore I can proceed with the generation of the self-signed certificate:
+
 ```bash
 mkdir -p /etc/ssl/self_signed_certs
 openssl req -new -x509 -days 365 -out /etc/ssl/self_signed_certs/hologram-php56.pem -keyout /etc/ssl/self_signed_certs/hologram-php56.key
