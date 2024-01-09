@@ -133,7 +133,9 @@ SSLPassPhraseDialog exec:/etc/ssl/self_signed_certs/echo_passphrase.sh
 ...
 ```
 
-Activate all necessary modules and restart the web server:
+This will avoid having to manually enter the passphrase.
+
+Finally, activate all necessary modules and restart the web server:
 
 ```bash
 a2enmod ssl
