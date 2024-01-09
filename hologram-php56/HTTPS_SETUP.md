@@ -12,7 +12,7 @@ Here is just an example of the parameters to keep on hand:
 hologram-php56.local
 hologram-php56.local
 hologram-php56.local
-[]
+[webmaster@localhost]
 ```
 
 To generate a good passphrase I could use the following command:
