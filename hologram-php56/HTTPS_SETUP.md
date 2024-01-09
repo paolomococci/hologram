@@ -119,6 +119,20 @@ nano /etc/apache2/sites-available/000-default.conf
 </VirtualHost>
 ```
 
+Now you need to edit the `/etc/apache2/apache2.conf` file to suppress strange error messages and run the `/etc/ssl/self_signed_certs/echo_passphrase.sh` script every time you start the Apache web server:
+
+```bash
+sudo nano /etc/apache2/apache2.conf
+```
+
+```text
+...
+IncludeOptional sites-enabled/*.conf
+ServerName 127.0.0.1
+SSLPassPhraseDialog exec:/etc/ssl/self_signed_certs/echo_passphrase.sh
+...
+```
+
 Activate all necessary modules and restart the web server:
 
 ```bash
