@@ -113,8 +113,6 @@ nano /etc/apache2/sites-available/000-default.conf
 
 Activate all necessary modules and restart the web server:
 
-and type:
-
 ```bash
 a2enmod ssl
 a2enmod rewrite
