@@ -160,3 +160,15 @@ openssl rand -hex 48
 openssl rand -base64 48
 pwgen -s 48 1
 ```
+
+## `The web server does not start`
+
+Attention, sometimes it may happen that the Apache server does not start correctly and the following warning is found in the error.log file:
+
+```text
+...
+AH02580: Init: Pass phrase incorrect for key
+...
+```
+
+First of all, check that the `/etc/ssl/self_signed_certs/echo_passphrase.sh` file contains the correct passphrase and as a last resort you can try to regenerate the self-signed certificates with a new passphrase, perhaps obtained in a different way from the previous one.
