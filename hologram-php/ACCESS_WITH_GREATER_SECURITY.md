@@ -71,3 +71,5 @@ Edit sftp.json like this:
     ]
 }
 ```
+
+Finally, it is important to remember that vscode can allow access and modification of the code not only with SFTP, thanks to a password or a certificate, but also in SSH. Perhaps, even more interestingly, there is also the possibility of using a bare repository by installing git on the virtual server dedicated first to the development and then to the production of the desired service.
