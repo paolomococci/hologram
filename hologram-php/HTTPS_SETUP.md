@@ -24,6 +24,7 @@ tr -dc 'A-Za-z0-9~!@#$%^&*_=+;:,.? ' </dev/urandom | head -c 48; echo
 Therefore I can proceed with the generation of the self-signed certificate:
 
 ```bash
+ls -al /etc/ssl/
 sudo mkdir -p /etc/ssl/self_signed_certs
 sudo openssl req -new -x509 -days 365 -out /etc/ssl/self_signed_certs/hologram-php.pem -keyout /etc/ssl/self_signed_certs/hologram-php.key
 ls -al /etc/ssl/self_signed_certs/
@@ -139,10 +140,16 @@ Finally, activate all necessary modules and restart the web server:
 
 ```bash
 sudo a2enmod ssl
+a2query -m ssl
 sudo a2enmod rewrite
+a2query -m rewrite
 sudo a2enmod headers
+a2query -m headers
 sudo a2ensite default-ssl
 sudo apache2ctl configtest
+sudo ufw allow from 192.168.122.0/24 proto tcp to any port 443
+sudo ufw reload
+sudo ufw status numbered
 sudo systemctl reload apache2
 ```
 
