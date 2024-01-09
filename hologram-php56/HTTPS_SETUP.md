@@ -31,3 +31,15 @@ echo "long passphrase"
 ```bash
 sudo chmod +x /etc/ssl/self_signed_certs/echo_passphrase.sh
 ```
+
+Change the precedence given to index file types:
+
+```bash
+sudo nano /etc/apache2/mods-available/dir.conf
+```
+
+```text
+<IfModule mod_dir.c>
+        DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+```
