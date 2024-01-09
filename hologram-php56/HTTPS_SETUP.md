@@ -110,3 +110,16 @@ nano /etc/apache2/sites-available/000-default.conf
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
+
+Activate all necessary modules and restart the web server:
+
+and type:
+
+```bash
+a2enmod ssl
+a2enmod rewrite
+a2enmod headers
+a2ensite default-ssl
+apache2ctl configtest
+systemctl reload apache2
+```
