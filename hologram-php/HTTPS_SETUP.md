@@ -24,11 +24,11 @@ tr -dc 'A-Za-z0-9~!@#$%^&*_=+;:,.? ' </dev/urandom | head -c 48; echo
 Therefore I can proceed with the generation of the self-signed certificate:
 
 ```bash
-mkdir -p /etc/ssl/self_signed_certs
-openssl req -new -x509 -days 365 -out /etc/ssl/self_signed_certs/hologram-php.pem -keyout /etc/ssl/self_signed_certs/hologram-php.key
+sudo mkdir -p /etc/ssl/self_signed_certs
+sudo openssl req -new -x509 -days 365 -out /etc/ssl/self_signed_certs/hologram-php.pem -keyout /etc/ssl/self_signed_certs/hologram-php.key
 ls -al /etc/ssl/self_signed_certs/
-chmod 600 /etc/ssl/self_signed_certs/hologram-php*
-sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
+sudo chmod 600 /etc/ssl/self_signed_certs/hologram-php*
+sudo sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
 ```
 
 ```text
@@ -55,7 +55,7 @@ sudo nano /etc/apache2/mods-available/dir.conf
 Modify the configuration files so that the web server always responds with the https protocol:
 
 ```bash
-nano /etc/apache2/sites-available/default-ssl.conf
+sudo nano /etc/apache2/sites-available/default-ssl.conf
 ```
 
 ```text
@@ -95,7 +95,7 @@ nano /etc/apache2/sites-available/default-ssl.conf
 ```
 
 ```bash
-nano /etc/apache2/sites-available/000-default.conf
+sudo nano /etc/apache2/sites-available/000-default.conf
 ```
 
 ```text
@@ -138,18 +138,18 @@ This will avoid having to manually enter the passphrase.
 Finally, activate all necessary modules and restart the web server:
 
 ```bash
-a2enmod ssl
-a2enmod rewrite
-a2enmod headers
-a2ensite default-ssl
-apache2ctl configtest
-systemctl reload apache2
+sudo a2enmod ssl
+sudo a2enmod rewrite
+sudo a2enmod headers
+sudo a2ensite default-ssl
+sudo apache2ctl configtest
+sudo systemctl reload apache2
 ```
 
 Of course there are many other commands that can be used to generate strong passphrases, such as:
 
 ```bash
-openssl rand -hex 128
-openssl rand -base64 128
-pwgen -s 128 1
+openssl rand -hex 48
+openssl rand -base64 48
+pwgen -s 48 1
 ```
