@@ -145,3 +145,11 @@ a2ensite default-ssl
 apache2ctl configtest
 systemctl reload apache2
 ```
+
+Of course there are many other commands that can be used to generate strong passphrases, such as:
+
+```bash
+openssl rand -hex 128
+openssl rand -base64 128
+pwgen -s 128 1
+```
