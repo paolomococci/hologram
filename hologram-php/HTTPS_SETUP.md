@@ -18,7 +18,7 @@ hologram-php.local
 To generate a good passphrase I could use the following command:
 
 ```bash
-tr -dc 'A-Za-z0-9~!@#$%^&*_=+;:,.? ' </dev/urandom | head -c 128; echo
+tr -dc 'A-Za-z0-9~!@#$%^&*_=+;:,.? ' </dev/urandom | head -c 48; echo
 ```
 
 Therefore I can proceed with the generation of the self-signed certificate:
