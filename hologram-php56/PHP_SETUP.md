@@ -26,3 +26,19 @@ cp /var/lib/libvirt/images/hologram-php56.qcow2 ./hologram-php56.qcow2
 ```
 
 ---
+
+## how to add ppa following the documentation found online
+
+Here's how to proceed for installing specific versions of PHP as defined by the documentation found online.
+From here on I will list the steps that seem to be necessary, limiting myself only to listing them:
+
+```bash
+apt-cache search software-properties-common
+dpkg -l software-properties-common
+```
+
+If `software-properties-common` is not installed:
+
+```bash
+sudo apt install software-properties-common
+```
