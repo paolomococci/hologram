@@ -67,3 +67,24 @@ sudo npm cache clean -f
 sudo npm install -g n
 sudo n stable
 ```
+
+Additionally, it would be helpful to install some system tools:
+
+```bash
+sudo apt install plocate btop nmap ncat traceroute net-tools
+```
+
+And if you want to compile PHP from source, if not previously installed, you will need the following packages:
+
+* build-essential
+* autoconf
+* libtool
+* bison
+* re2c
+* pkg-config
+
+With the following command you can check if the package is already installed:
+
+```bash
+dpkg -l build-essential
+```
