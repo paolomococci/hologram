@@ -151,3 +151,25 @@ sudo ufw status numbered
 sudo systemctl restart apache2
 sudo systemctl status apache2
 ```
+
+## the web server does not start?
+
+Attention, sometimes it may happen that the Apache server does not start correctly and the following warning is found in the error.log file:
+
+```text
+...
+AH02580: Init: Pass phrase incorrect for key
+...
+```
+
+First of all, check that the `/etc/ssl/self_signed_certs/echo_passphrase.sh` file contains the correct passphrase and as a last resort you can try to regenerate the self-signed certificates with a new passphrase, perhaps obtained in a different way from the previous one.
+
+## alternatives to generate strong passphrases
+
+Of course there are many other commands that can be used to generate strong passphrases, such as:
+
+```bash
+openssl rand -hex 48
+openssl rand -base64 48
+tr -dc 'A-Za-z0-9~!@#$%^&*_=+;:,.? ' </dev/urandom | head -c 48; echo
+```
