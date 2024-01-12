@@ -88,3 +88,19 @@ Enable Zend OPcache:
 grep -i "zend_extension" /opt/php/8.3.1/lib/php.ini
 sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.3.1/lib/php.ini
 ```
+
+## now I try to start the newly created service:
+
+```bash
+sudo systemctl status php-fpm.service
+sudo systemctl enable php-fpm.service
+sudo systemctl daemon-reload
+sudo systemctl start php-fpm.service
+sudo systemctl status php-fpm.service
+```
+
+If there are problems, investigate with:
+
+```bash
+journalctl -b -u php-fpm
+```
