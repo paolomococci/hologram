@@ -130,3 +130,33 @@ listen.owner = www-data
 listen.group = www-data
 ...
 ```
+
+## match FPM with Apache
+
+```bash
+sudo nano /etc/apache2/conf-available/php-fpm.conf
+```
+
+Edit:
+
+```xml
+<FilesMatch ".+\.php$">
+    SetHandler "proxy:unix:/run/php-fpm.sock|fcgi://localhost"
+</FilesMatch>
+
+<IfModule mod_dir.c>
+    DirectoryIndex index.php index.html
+</IfModule>
+
+<FilesMatch "^.ph(?:ar|p|ps|tml)$">
+    Require all denied
+</FilesMatch>
+```
+
+And finally:
+
+```bash
+apachectl configtest
+sudo a2enconf php-fpm
+sudo systemctl reload apache2
+```
