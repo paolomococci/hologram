@@ -60,3 +60,24 @@ Now copy `www.conf`:
 sudo cp /opt/php/8.3.1/etc/php-fpm.d/www.conf.default /opt/php/8.3.1/etc/php-fpm.d/www.conf
 ls -al /usr/lib/systemd/system/
 ```
+
+I create the configuration file `php-fpm.service`:
+
+```bash
+nano /usr/lib/systemd/system/php-fpm.service
+```
+
+```text
+[Unit]
+Description=PHP 8.3.1 FastCGI Process Manager
+After=network.target
+
+[Service]
+Type=simple
+PIDFile=/opt/php/8.3.1/var/run/php-fpm.pid
+ExecStart=/opt/php/8.3.1/sbin/php-fpm --nodaemonize --fpm-config /opt/php/8.3.1/etc/php-fpm.conf
+ExecReload=/bin/kill -USR2 $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+```
