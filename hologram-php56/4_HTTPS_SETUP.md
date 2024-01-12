@@ -1,4 +1,4 @@
-# https setup with a self-signed certificate
+# HTTPS setup with a self-signed certificate
 
 ## parameter for generate keys:
 
