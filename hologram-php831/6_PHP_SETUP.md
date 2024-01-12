@@ -104,3 +104,29 @@ If there are problems, investigate with:
 ```bash
 journalctl -b -u php-fpm
 ```
+
+## make Apache work together with PHP-FPM
+
+```bash
+sudo nano /opt/php/8.3.1/etc/php-fpm.d/www.conf
+```
+
+I change the module's listening mode from socket TCP to socket UNIX:
+
+```text
+...
+;user = nobody
+;group = nobody
+;user = www-data
+;group = www-data
+
+; TCP socket
+;listen = 127.0.0.1:9000
+;listen.allowed_clients = 127.0.0.1
+
+; UNIX socket
+listen = /run/php-fpm.sock
+listen.owner = www-data
+listen.group = www-data
+...
+```
