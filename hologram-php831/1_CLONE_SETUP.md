@@ -62,3 +62,21 @@ start hologram-php831
 dominfo hologram-php831
 domifaddr hologram-php831
 ```
+
+### open GUI
+
+#### into hologram-php831 edit setting files linked to the hostname
+
+```bash
+sudo nano /etc/hostname
+sudo nano /etc/hosts
+sudo reboot
+```
+
+or
+
+```bash
+sudo hostnamectl set-hostname hologram-php831
+sudo nano /etc/hosts
+sudo reboot
+```
