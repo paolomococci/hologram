@@ -53,3 +53,10 @@ add the following lines:
 user = www-data
 group = www-data
 ```
+
+Now copy `www.conf`:
+
+```bash
+sudo cp /opt/php/8.3.1/etc/php-fpm.d/www.conf.default /opt/php/8.3.1/etc/php-fpm.d/www.conf
+ls -al /usr/lib/systemd/system/
+```
