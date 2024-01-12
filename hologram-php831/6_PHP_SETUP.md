@@ -81,3 +81,10 @@ ExecReload=/bin/kill -USR2 $MAINPID
 [Install]
 WantedBy=multi-user.target
 ```
+
+Enable Zend OPcache:
+
+```bash
+grep -i "zend_extension" /opt/php/8.3.1/lib/php.ini
+sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.3.1/lib/php.ini
+```
