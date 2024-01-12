@@ -2,7 +2,7 @@
 
 ## installing some development tools that I think are almost indispensable
 
-Therefore, if you had not previously done so, proceed with the installation and update as follows:
+Therefore, if I had not previously done so, proceed with the installation and update as follows:
 
 ```bash
 sudo apt install libapache2-mod-fcgid plocate btop nodejs npm
