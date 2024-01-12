@@ -39,3 +39,17 @@ sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/g' /opt/php/8.3
 sudo cp /opt/php/8.3.1/etc/php-fpm.conf.default /opt/php/8.3.1/etc/php-fpm.conf
 sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.3.1/etc/php-fpm.conf
 ```
+
+At the end of the `/opt/php/8.3.1/etc/php-fpm.conf` file 
+
+```bash
+sudo nano /opt/php/8.3.1/etc/php-fpm.conf
+```
+
+add the following lines:
+
+```text
+...
+user = www-data
+group = www-data
+```
