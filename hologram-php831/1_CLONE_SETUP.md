@@ -30,13 +30,13 @@ edit hologram-php.xml
 ...
 ```
 
-From virsh cli
+From virsh cli:
 
 ```shell
 net-edit default
 ```
 
-Edit:
+edit:
 
 ```text
 ...
@@ -45,4 +45,20 @@ Edit:
     <host mac='XX:XX:XX:XX:XX:XX' name='hologram-php831' ip='192.168.1.12'/>
 </dhcp>
 ...
+```
+
+From bash shell type:
+
+```bash
+virsh define hologram-php831.xml
+```
+
+and from virsh cli:
+
+```shell
+list --all --title
+net-start default
+start hologram-php831
+dominfo hologram-php831
+domifaddr hologram-php831
 ```
