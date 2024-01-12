@@ -80,3 +80,25 @@ sudo hostnamectl set-hostname hologram-php831
 sudo nano /etc/hosts
 sudo reboot
 ```
+
+#### regenerate OpenSSH Host Keys
+
+```bash
+sudo grep -ir "hologram-php" /etc
+sudo rm /etc/ssh/ssh_host_*
+sudo dpkg-reconfigure openssh-server
+sudo reboot
+```
+
+and I can
+
+```shell
+list --all --title
+start hologram-php831
+suspend hologram-php831
+resume hologram-php831
+save hologram-php831 hologram-php831_dump
+restore hologram-php831_dump
+shutdown hologram-php831
+reboot hologram-php831
+```
