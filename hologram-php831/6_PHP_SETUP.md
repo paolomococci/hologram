@@ -160,3 +160,12 @@ apachectl configtest
 sudo a2enconf php-fpm
 sudo systemctl reload apache2
 ```
+
+If problems arise, it will be necessary to issue the following commands: 
+
+```bash
+sudo a2disconf php-fpm
+sudo systemctl reload apache2
+```
+
+and consult the log files.
