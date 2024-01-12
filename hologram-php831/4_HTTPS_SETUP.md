@@ -36,3 +36,7 @@ sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
 #!/bin/sh
 echo "long passphrase"
 ```
+
+```bash
+sudo chmod +x /etc/ssl/self_signed_certs/echo_passphrase.sh
+```
