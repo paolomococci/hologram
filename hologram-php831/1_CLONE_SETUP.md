@@ -29,3 +29,20 @@ edit hologram-php.xml
 <mac address='XX:XX:XX:XX:XX:XX'/>
 ...
 ```
+
+From virsh cli
+
+```shell
+net-edit default
+```
+
+Edit:
+
+```text
+...
+<dhcp>
+    <range start='192.168.1.2' end='192.168.1.254'/>
+    <host mac='XX:XX:XX:XX:XX:XX' name='hologram-php831' ip='192.168.1.12'/>
+</dhcp>
+...
+```
