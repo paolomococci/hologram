@@ -119,3 +119,35 @@ sudo nano /etc/apache2/sites-available/000-default.conf
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
+
+Now you need to edit the `/etc/apache2/apache2.conf` file to suppress strange error messages and run the `/etc/ssl/self_signed_certs/echo_passphrase.sh` script every time you start the Apache web server:
+
+```bash
+sudo nano /etc/apache2/apache2.conf
+```
+
+```text
+...
+IncludeOptional sites-enabled/*.conf
+ServerName 127.0.0.1
+SSLPassPhraseDialog exec:/etc/ssl/self_signed_certs/echo_passphrase.sh
+...
+```
+
+This will avoid having to manually enter the passphrase.
+
+Finally, activate all necessary modules and restart the web server:
+
+```bash
+sudo a2enmod ssl
+sudo a2enmod rewrite
+sudo a2enmod headers
+apachectl -M
+sudo a2ensite default-ssl
+apache2ctl configtest
+sudo ufw allow from 192.168.122.0/24 proto tcp to any port 443
+sudo ufw reload
+sudo ufw status numbered
+sudo systemctl restart apache2
+sudo systemctl status apache2
+```
