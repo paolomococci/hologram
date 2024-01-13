@@ -69,3 +69,41 @@ list --all --title
 dominfo hologram-php831xdb
 domifaddr hologram-php831xdb
 ```
+
+### open GUI
+
+#### into hologram-php831xdb edit setting files linked to the hostname
+
+```bash
+sudo nano /etc/hostname
+sudo nano /etc/hosts
+sudo reboot
+```
+
+Or, preferably:
+
+```bash
+sudo hostnamectl set-hostname hologram-php831xdb
+sudo nano /etc/hosts
+sudo reboot
+```
+
+#### regenerate OpenSSH Host Keys
+
+```bash
+sudo grep -ir "hologram-php831" /etc
+sudo rm /etc/ssh/ssh_host_*
+sudo dpkg-reconfigure openssh-server
+sudo reboot
+```
+
+From the virsh cli I can, among other things:
+
+```shell
+suspend hologram-php831xdb
+resume hologram-php831xdb
+save hologram-php831xdb hologram-php831_dump
+restore hologram-php831_dump
+shutdown hologram-php831xdb
+reboot hologram-php831xdb
+```
