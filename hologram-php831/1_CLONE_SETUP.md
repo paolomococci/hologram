@@ -38,7 +38,7 @@ net-edit default
 
 Edit:
 
-```text
+```xml
 ...
 <dhcp>
     <range start='192.168.1.2' end='192.168.1.254'/>
