@@ -26,11 +26,11 @@ And type:
 ```xml
 ...
 <name>hologram-php831xdb</name>
-  <uuid></uuid>
+  <uuid>XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</uuid>
   <title>hologram-php831xdb (Ubuntu server 22.04.3 LTS JAMMY JELLYFISH - 192.168.122.138)</title>
 ...
 <source file='/var/lib/libvirt/images/hologram-php831xdb.qcow2'/>
 ...
-<mac address=''/>
+<mac address='XX:XX:XX:XX:XX:XX'/>
 ...
 ```
