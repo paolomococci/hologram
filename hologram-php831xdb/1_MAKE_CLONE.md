@@ -27,7 +27,7 @@ And type:
 ...
 <name>hologram-php831xdb</name>
   <uuid>XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</uuid>
-  <title>hologram-php831xdb (Ubuntu server 22.04.3 LTS JAMMY JELLYFISH - 192.168.122.138)</title>
+  <title>hologram-php831xdb (Ubuntu server 22.04.3 LTS JAMMY JELLYFISH - 192.168.1.138)</title>
 ...
 <source file='/var/lib/libvirt/images/hologram-php831xdb.qcow2'/>
 ...
@@ -50,7 +50,7 @@ net-edit default
 Edit:
 
 ```xml
-<host mac='XX:XX:XX:XX:XX:XX' name='hologram-php831xdb' ip='192.168.122.138'/>
+<host mac='XX:XX:XX:XX:XX:XX' name='hologram-php831xdb' ip='192.168.1.138'/>
 ```
 
 From bash shell:
