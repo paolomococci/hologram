@@ -20,3 +20,15 @@ hologram-php831xdb.local
 hologram-php831xdb.local
 [webmaster@localhost]
 ```
+
+Therefore I can proceed with the re-generation of the self-signed certificate:
+
+```bash
+ssh developer@192.168.1.138
+ls -al /etc/ssl/self_signed_certs/
+sudo rm /etc/ssl/self_signed_certs/hologram-php*
+sudo openssl req -new -x509 -days 365 -out /etc/ssl/self_signed_certs/hologram-php831xdb.pem -keyout /etc/ssl/self_signed_certs/hologram-php831xdb.key
+ls -al /etc/ssl/self_signed_certs/
+sudo chmod 600 /etc/ssl/self_signed_certs/hologram-php831xdb*
+sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
+```
