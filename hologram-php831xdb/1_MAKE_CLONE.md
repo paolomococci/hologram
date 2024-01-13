@@ -34,3 +34,38 @@ And type:
 <mac address='XX:XX:XX:XX:XX:XX'/>
 ...
 ```
+
+### import hologram-php831
+
+```bash
+mv hologram-php831xdb.qcow2 /var/lib/libvirt/images/hologram-php831xdb.qcow2
+```
+
+Open a shell for the virsh cli:
+
+```shell
+net-edit default
+```
+
+Edit:
+
+```xml
+<host mac='XX:XX:XX:XX:XX:XX' name='hologram-php831xdb' ip='192.168.122.138'/>
+```
+
+From bash shell:
+
+```bash
+virsh define hologram-php831xdb.xml
+```
+
+Now from virsh cli:
+
+```shell
+list --all --title
+net-start default
+start hologram-php831xdb
+list --all --title
+dominfo hologram-php831xdb
+domifaddr hologram-php831xdb
+```
