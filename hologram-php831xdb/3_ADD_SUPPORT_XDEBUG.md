@@ -1,1 +1,1 @@
-
+# add support of Xdebug
