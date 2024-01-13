@@ -37,7 +37,7 @@ nano vmdumps/hologram-php/hologram-php56.xml
 
 And edit the following lines:
 
-```text
+```xml
 ...
 <name>hologram-php56</name>
   <uuid>XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</uuid>
