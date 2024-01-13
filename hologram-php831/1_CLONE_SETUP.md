@@ -16,9 +16,9 @@ uuidgen
 nano hologram-php831.xml
 ```
 
-edit hologram-php.xml
+Edit `hologram-php831.xml`:
 
-```text
+```xml
 ...
 <name>hologram-php831</name>
   <uuid>XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</uuid>
@@ -36,7 +36,7 @@ From virsh cli:
 net-edit default
 ```
 
-edit:
+Edit:
 
 ```text
 ...
@@ -53,7 +53,7 @@ From bash shell type:
 virsh define hologram-php831.xml
 ```
 
-and from virsh cli:
+Now from virsh cli:
 
 ```shell
 list --all --title
@@ -73,7 +73,7 @@ sudo nano /etc/hosts
 sudo reboot
 ```
 
-or
+or:
 
 ```bash
 sudo hostnamectl set-hostname hologram-php831
@@ -90,11 +90,9 @@ sudo dpkg-reconfigure openssh-server
 sudo reboot
 ```
 
-and I can
+From the virsh cli I can, among other things:
 
 ```shell
-list --all --title
-start hologram-php831
 suspend hologram-php831
 resume hologram-php831
 save hologram-php831 hologram-php831_dump
