@@ -40,3 +40,53 @@ mkdir build_session && cd build_session
 make
 sudo make install
 ```
+
+## setup of Xdebug
+
+```bash
+php --ini
+sudo updatedb
+locate xdebug.ini
+rnano /opt/php/8.3.1/lib/php.ini
+```
+
+First it is a good idea to view the contents of the file without risking causing damage.
+And now I edit `/opt/php/8.3.1/lib/php.ini` configuration file
+
+```bash
+sudo nano /opt/php/8.3.1/lib/php.ini
+```
+
+I add this section:
+
+```text
+...
+;;;;;;;;;;;;;;;;;;
+; Xdebug         ;
+;;;;;;;;;;;;;;;;;;
+
+zend_extension=xdebug
+
+; xdebug.mode=[off,develop,coverage,debug,gcstats,profile,trace]
+xdebug.mode=debug,trace
+xdebug.start_with_request=yes
+xdebug.discover_client_host=1
+xdebug.remote_enable=1
+xdebug.client_host=192.168.X.X
+xdebug.client_port=9003
+xdebug.connect_timeout_ms=2000
+xdebug.idekey=VSCODE
+...
+```
+
+`192.168.X.X` represents the client from which to debug.
+
+As can be seen from the last setting I considered using vscode.
+
+Then I have to restart the `PHP-FPM` service
+
+```bash
+sudo systemctl reload php-fpm
+sudo systemctl status php-fpm --no-pager
+php -v
+```
