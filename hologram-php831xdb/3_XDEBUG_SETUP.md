@@ -15,3 +15,9 @@ Update `locate` cache:
 sudo updatedb
 locate php.ini
 ```
+
+Side note, if you don't want to continually repeat the `sudo` command and need to issue numerous commands from root, it might be useful to mimic it with the following command:
+
+```bash
+sudo -s
+```
