@@ -2,6 +2,6 @@
 
 Cloned virtual machine based on hologram-php.
 
-This virtual machine is equipped with a complete LAMP system, but does not have Composer installed.
+If you follow the suggested steps you will get a virtual machine equipped with a complete LAMP stack,, but does not have Composer installed.
 
 To install Composer, dependency manager for PHP, you can follow the instructions in step seven.
