@@ -34,3 +34,11 @@ GRANT ALL ON *.* TO 'developer_username'@'192.168.1.1';
 FLUSH PRIVILEGES;
 SELECT `user`, `host`, `Grant_priv`, `Super_priv` FROM `mysql`.`user` ORDER BY `user` DESC;
 ```
+
+To then revoke the permits which were considerably too extensive:
+
+```sql
+REVOKE SUPER ON *.* FROM 'developer_username'@'192.168.1.0/24';
+FLUSH PRIVILEGES;
+SELECT `user`, `host`, `password`, `Grant_priv`, `Super_priv` FROM `mysql`.`user` ORDER BY `user` DESC;
+```
