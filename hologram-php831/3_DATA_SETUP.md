@@ -2,7 +2,7 @@
 
 Since it is a clone of hologram-php this size is already set. Therefore, the improvement of data processing will be dealt with later, during the development phase of the application that the virtual machine will serve the user.
 
-If the developer user needs permissions to create databases remotely it will be necessary to issue the following commands:
+However, if the developer user needs permissions to create databases remotely it will be necessary to issue the following commands:
 
 ```bash
 mariadb -u root -p
