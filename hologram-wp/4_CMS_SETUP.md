@@ -69,3 +69,20 @@ I delete the definition of a user that is superfluous:
 ```sql
 DROP USER 'admin_wp'@'%';
 ```
+
+3. I download the compressed archive of `CMS` and start the setup:
+
+```bash
+mkdir ~/wordpress && cd ~/wordpress
+wget https://wordpress.org/latest.zip
+unzip latest.zip
+mv wordpress/ /var/www/html/
+cd /var/www/html/
+chown --recursive developer_username:www-data .
+```
+
+Now I need to point the browser to the following address:
+
+<https://192.168.1.XXX/wordpress/readme.html>
+
+and I follow the instructions.
