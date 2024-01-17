@@ -57,7 +57,7 @@ Modify the configuration files so that the web server always responds with the h
 sudo nano /etc/apache2/sites-available/default-ssl.conf
 ```
 
-```text
+```xml
 <IfModule mod_ssl.c>
         <VirtualHost _default_:443>
                 ServerAdmin webmaster@localhost
@@ -95,7 +95,7 @@ sudo nano /etc/apache2/sites-available/default-ssl.conf
 sudo nano /etc/apache2/sites-available/000-default.conf
 ```
 
-```text
+```xml
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/html
