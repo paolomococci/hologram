@@ -41,7 +41,7 @@ SHOW DATABASES;
 SELECT PASSWORD('any_password');
 CREATE USER IF NOT EXISTS 'admin_wp'@'localhost' IDENTIFIED BY PASSWORD 'any_hashed_password';
 CREATE DATABASE IF NOT EXISTS `data_wp`;
-GRANT ALL ON 'data_wp'.* TO 'admin_wp'@'localhost';
+GRANT ALL ON `data_wp`.* TO 'admin_wp'@'localhost';
 FLUSH PRIVILEGES;
 SELECT `user`, `password`, `host`, `Super_priv` FROM `mysql`.`user`;
 ```
@@ -50,7 +50,7 @@ User `admin_wp` on `192.168.1.1`
 
 ```sql
 CREATE USER IF NOT EXISTS 'admin_wp'@'192.168.1.1' IDENTIFIED BY PASSWORD 'any_hashed_password';
-GRANT ALL ON 'data_wp'.* TO 'admin_wp'@'192.168.1.1';
+GRANT ALL ON `data_wp`.* TO 'admin_wp'@'192.168.1.1';
 FLUSH PRIVILEGES;
 SELECT `user`, `password`, `host`, `Super_priv` FROM `mysql`.`user`;
 ```
@@ -59,7 +59,7 @@ User `admin_wp` on `%`
 
 ```sql
 CREATE USER IF NOT EXISTS 'admin_wp'@'%' IDENTIFIED BY PASSWORD 'any_hashed_password';
-GRANT ALL ON 'data_wp'.* TO 'admin_wp'@'%';
+GRANT ALL ON `data_wp`.* TO 'admin_wp'@'%';
 FLUSH PRIVILEGES;
 SELECT `user`, `password`, `host`, `Super_priv` FROM `mysql`.`user`;
 ```
