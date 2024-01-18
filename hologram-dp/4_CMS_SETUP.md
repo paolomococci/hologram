@@ -135,7 +135,6 @@ sudo nano /etc/apache2/sites-available/default-ssl.conf
                 ServerAdmin webmaster@localhost
 
                 DocumentRoot /var/www/html/drupal
-                #DirectoryIndex
 
                 <Directory /var/www/html/drupal>
                     Options Indexes FollowSymLinks MultiViews
@@ -172,7 +171,6 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
         DocumentRoot /var/www/html/drupal
-        #DirectoryIndex
         Redirect "/" "https://192.168.1.XXX/"
 
         <Directory /var/www/html/drupal>
