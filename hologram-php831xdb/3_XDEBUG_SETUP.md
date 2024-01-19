@@ -91,6 +91,12 @@ sudo systemctl status php-fpm --no-pager
 php -v
 ```
 
+Side note, if you want to avoid receiving excessively verbose messages from `Xdebug` while using Composer's commands it will be useful to modify the line regarding `xdebug.start_with_request` as follows:
+
+```text
+xdebug.start_with_request=trigger
+```
+
 ### setup of vscode
 
 Now you need to add file `launch.json` to folder `.vscode`.
