@@ -54,7 +54,7 @@ User `admin_dp` on `localhost`
 SHOW DATABASES;
 SELECT PASSWORD('any_password');
 CREATE USER IF NOT EXISTS 'admin_dp'@'localhost' IDENTIFIED BY PASSWORD 'any_hashed_password';
-CREATE DATABASE IF NOT EXISTS 'data_dp';
+CREATE DATABASE IF NOT EXISTS `data_dp`;
 GRANT ALL ON `data_dp`.* TO 'admin_dp'@'localhost';
 FLUSH PRIVILEGES;
 SELECT `user`, `password`, `host`, `Super_priv` FROM `mysql`.`user`;
