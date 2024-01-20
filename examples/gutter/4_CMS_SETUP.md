@@ -9,11 +9,10 @@ php -v
 php -m | grep "mysqli"
 ```
 
-I increase `memory_limit` on `php.ini` file:
+To check `memory_limit` on `php.ini` file:
 
 ```bash
 grep -i "memory_limit"  /opt/php/8.3.1/lib/php.ini
-sudo sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /opt/php/8.3.1/lib/php.ini
 ```
 
 I check and reload the `php-fpm` service:
