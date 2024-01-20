@@ -19,7 +19,7 @@ cd php-8.3.1/
 
 ```bash
 mkdir build_session && cd build_session
-../configure --prefix=/opt/php/8.3.1 --enable-fpm --enable-bcmath --enable-opcache --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug
+../configure --prefix=/opt/php/8.3.1 --enable-fpm --enable-bcmath --enable-opcache --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug
 make
 make test
 sudo make install
@@ -32,6 +32,7 @@ find ~/php/php-8.3.1 -iname 'php.ini*'
 sudo cp ~/php/php-8.3.1/php.ini-development /opt/php/8.3.1/lib/php.ini
 sudo sed -i 's/;date.timezone =/date.timezone = "Europe\/Rome"/g' /opt/php/8.3.1/lib/php.ini
 sudo sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /opt/php/8.3.1/lib/php.ini
+sudo sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /opt/php/8.3.1/lib/php.ini
 grep -i "max_execution_time"  /opt/php/8.3.1/lib/php.ini
 sudo sed -i 's/max_execution_time = 30/max_execution_time = 100/g' /opt/php/8.3.1/lib/php.ini
 grep -i "upload_max_filesize"  /opt/php/8.3.1/lib/php.ini
