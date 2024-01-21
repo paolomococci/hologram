@@ -7,10 +7,11 @@ Below we will explain the steps necessary to ensure that the Apache 2 web server
 ```bash
 cd ~
 mkdir php && cd php
-wget https://www.php.net/distributions/php-8.3.2.tar.bz2
+wget https://www.php.net/distributions/php-8.3.2.tar.xz
 ls -al
-sha256sum php-8.3.2.tar.bz2
-tar -xvjf php-8.3.2.tar.bz2
+sha256sum php-8.3.2.tar.xz
+unxz php-8.3.2.tar.xz
+tar -xvf php-8.3.2.tar
 ls -al
 cd php-8.3.2/
 ```
