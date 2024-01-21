@@ -30,6 +30,15 @@ Edit `hologram-php83.xml`:
 ...
 ```
 
+If you prefer, `sed` can be used, for example:
+
+```bash
+sed -i 's/hologram-php/hologram-php83/g' hologram-php83.xml
+sed -i 's/192.168.1.150/192.168.1.83/g' hologram-php83.xml
+```
+
+and so on, also for the other values to be modified.
+
 From virsh cli:
 
 ```shell
