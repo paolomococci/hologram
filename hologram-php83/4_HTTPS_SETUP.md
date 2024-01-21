@@ -64,17 +64,15 @@ sudo nano /etc/apache2/sites-available/default-ssl.conf
         <VirtualHost _default_:443>
                 ServerAdmin webmaster@localhost
 
-                DocumentRoot /var/www/html/landing/public
+                DocumentRoot /var/www/html
 
-                <Directory /var/www/html/landing/public>
+                <Directory /var/www/html>
                     Options Indexes FollowSymLinks MultiViews
                     AllowOverride All
                     Require all granted
-                    #Order allow,deny
-                    #allow from all
                 </Directory>
 
-                #LogLevel info ssl:warn
+                LogLevel warn
 
                 ErrorLog ${APACHE_LOG_DIR}/error.log
                 CustomLog ${APACHE_LOG_DIR}/access.log combined
@@ -102,18 +100,16 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 ```text
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/html/landing/public
-        Redirect "/" "https://192.168.1.12/"
+        DocumentRoot /var/www/html
+        Redirect "/" "https://192.168.1.83/"
 
-        <Directory /var/www/html/landing/public>
+        <Directory /var/www/html>
             Options Indexes FollowSymLinks MultiViews
             AllowOverride All
             Require all granted
-            #Order allow,deny
-            #allow from all
         </Directory>
 
-        #LogLevel info ssl:warn
+        LogLevel warn
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
@@ -148,21 +144,9 @@ apache2ctl configtest
 sudo ufw allow from 192.168.122.0/24 proto tcp to any port 443
 sudo ufw reload
 sudo ufw status numbered
-sudo systemctl restart apache2
-sudo systemctl status apache2
+sudo systemctl reload apache2
+sudo systemctl status apache2 --no-pager
 ```
-
-## the web server does not start?
-
-Attention, sometimes it may happen that the Apache server does not start correctly and the following warning is found in the error.log file:
-
-```text
-...
-AH02580: Init: Pass phrase incorrect for key
-...
-```
-
-First of all, check that the `/etc/ssl/self_signed_certs/echo_passphrase.sh` file contains the correct passphrase and as a last resort you can try to regenerate the self-signed certificates with a new passphrase, perhaps obtained in a different way from the previous one.
 
 ## alternatives to generate strong passphrases
 
