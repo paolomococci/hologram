@@ -2,11 +2,16 @@
 
 ## clone a virtual machine hologram-php
 
-with root credentials:
+With root credentials, if directory `domains` does not exist:
 
 ```bash
-ls -al ~/vmdumps/backup/
-mkdir ~/vmdumps/backup/hologram-php/ && cd ~/vmdumps/backup/hologram-php/
+mkdir domains
+```
+
+otherwise we proceed with cloning the virtual machine:
+
+```bash
+cd ~/domains/
 virsh dumpxml hologram-php > ./hologram-php83.xml
 virsh domblklist hologram-php
 ls -al /var/lib/libvirt/images/
