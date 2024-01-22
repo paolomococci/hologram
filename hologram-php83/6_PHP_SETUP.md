@@ -66,7 +66,7 @@ ls -al /usr/lib/systemd/system/
 I create the configuration file `php-fpm.service`:
 
 ```bash
-nano /usr/lib/systemd/system/php-fpm.service
+sudo nano /usr/lib/systemd/system/php-fpm.service
 ```
 
 ```text
@@ -98,7 +98,7 @@ sudo systemctl status php-fpm.service
 sudo systemctl enable php-fpm.service
 sudo systemctl daemon-reload
 sudo systemctl start php-fpm.service
-sudo systemctl status php-fpm.service
+sudo systemctl status php-fpm.service --no-pager
 ```
 
 If there are problems, investigate with:
@@ -161,6 +161,7 @@ And finally:
 apachectl configtest
 sudo a2enconf php-fpm
 sudo systemctl reload apache2
+sudo systemctl status apache2 --no-pager
 ```
 
 If problems arise, it will be necessary to issue the following commands: 
