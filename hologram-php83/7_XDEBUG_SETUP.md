@@ -143,3 +143,20 @@ Adding the following:
     ]
 }
 ```
+
+## a simple debugging test
+
+Add file `sample.php` to the project, in directory `/var/www/html`, by typing the following content:
+
+```php
+<?php
+
+for ($i = 0; $i < 10; $i++) {
+    $show = $i . "<br>";
+    echo $show;
+    xdebug_break();
+}
+```
+
+Start debugging from `vscode` and, at the same time, point to address <https://192.168.1.83/sample.php> from the browser.
+Have a good analysis and debugging session.
