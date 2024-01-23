@@ -23,3 +23,22 @@ Side note, if you don't want to continuously repeat the `sudo` command and like 
 ```bash
 sudo -s
 ```
+
+## install Xdebug from source
+
+Be sure to replace the real link of the version you prefer.
+
+```bash
+cd ~
+mkdir xdebug && cd xdebug
+wget https://xdebug.org/files/xdebug-X.X.X.tgz
+sha256sum xdebug-X.X.X.tgz
+tar -xvzf xdebug-X.X.X.tgz
+cd xdebug-X.X.X/
+phpize
+mkdir build_session && cd build_session
+../configure --help
+../configure --prefix=/opt/php/xdebug --enable-xdebug
+make
+make install
+```
