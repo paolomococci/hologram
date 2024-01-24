@@ -162,10 +162,14 @@ First I checked that some modules are enabled:
 ```bash
 apachectl -M | grep "proxy_fcgi"
 apachectl -M | grep "setenvif"
-sudo a2enmod proxy_fcgi
 ```
 
-Naturally, if they are not, they must be enabled, as happened to me for example with the module `proxy_fcgi`.
+and if necessary:
+
+```bash
+sudo a2enmod proxy_fcgi
+sudo a2enmod setenvif
+```
 
 Finally, I can do one last check and enable module `php-fpm`:
 
