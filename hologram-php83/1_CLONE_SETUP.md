@@ -15,7 +15,7 @@ cd ~/domains/
 virsh dumpxml hologram-php > ./hologram-php83.xml
 virsh domblklist hologram-php
 ls -al /var/lib/libvirt/images/
-cp /var/lib/libvirt/images/hologram-php.qcow2  /var/lib/libvirt/images/hologram-php83.qcow2
+cp /var/lib/libvirt/images/hologram-php.qcow2 /var/lib/libvirt/images/hologram-php83.qcow2
 uuidgen
 ~/tools/latest_three_mac_gen.py
 nano hologram-php83.xml

@@ -10,7 +10,7 @@ mkdir ~/vmdumps/backup/hologram-php/ && cd ~/vmdumps/backup/hologram-php/
 virsh dumpxml hologram-php > ./hologram-php831.xml
 virsh domblklist hologram-php
 ls -al /var/lib/libvirt/images/
-cp /var/lib/libvirt/images/hologram-php.qcow2  /var/lib/libvirt/images/hologram-php831.qcow2
+cp /var/lib/libvirt/images/hologram-php.qcow2 /var/lib/libvirt/images/hologram-php831.qcow2
 uuidgen
 ~/tools/latest_three_mac_gen.py
 nano hologram-php831.xml
