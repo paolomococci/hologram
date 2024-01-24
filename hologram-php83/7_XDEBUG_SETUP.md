@@ -81,6 +81,12 @@ xdebug.idekey=VSCODE
 ...
 ```
 
+After this line:
+
+```text
+zend_extension=opcache.so
+```
+
 As can be seen from the last setting I considered using vscode.
 
 Then I have to restart the `PHP-FPM` service
