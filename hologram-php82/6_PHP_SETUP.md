@@ -42,18 +42,20 @@ sudo cp /opt/php/8.2.15/etc/php-fpm.conf.default /opt/php/8.2.15/etc/php-fpm.con
 sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.2.15/etc/php-fpm.conf
 ```
 
-At the end of the `/opt/php/8.2.15/etc/php-fpm.conf` file 
-
-```bash
-sudo nano /opt/php/8.2.15/etc/php-fpm.conf
-```
-
-add the following lines:
+At the end of the `/opt/php/8.2.15/etc/php-fpm.conf` file add the following lines:
 
 ```text
 ...
 user = www-data
 group = www-data
+```
+
+with the following commands, then verifying the outcome:
+
+```bash
+sudo sed -i '$auser = www-data' /opt/php/8.2.15/etc/php-fpm.conf
+sudo sed -i '$agroup = www-data' /opt/php/8.2.15/etc/php-fpm.conf
+tail /opt/php/8.2.15/etc/php-fpm.conf
 ```
 
 Now copy `www.conf`:
