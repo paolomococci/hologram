@@ -132,6 +132,14 @@ SSLPassPhraseDialog exec:/etc/ssl/self_signed_certs/echo_passphrase.sh
 
 This will avoid having to manually enter the passphrase.
 
+First I checked that some modules are enabled:
+
+```bash
+apachectl -M | grep "ssl"
+apachectl -M | grep "rewrite"
+apachectl -M | grep "headers"
+```
+
 Finally, activate all necessary modules and restart the web server:
 
 ```bash
