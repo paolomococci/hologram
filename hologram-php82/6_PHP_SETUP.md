@@ -42,6 +42,8 @@ sudo cp /opt/php/8.2.15/etc/php-fpm.conf.default /opt/php/8.2.15/etc/php-fpm.con
 sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.2.15/etc/php-fpm.conf
 ```
 
+Obviously the `timezone` must be set in the most appropriate way because it depends on where the server is located.
+
 At the end of the `/opt/php/8.2.15/etc/php-fpm.conf` file add the following lines:
 
 ```text
