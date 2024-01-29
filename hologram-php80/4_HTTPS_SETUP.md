@@ -59,51 +59,15 @@ Modify the configuration files so that the web server always responds with the h
 sudo nano /etc/apache2/sites-available/default-ssl.conf
 ```
 
-```text
+```xml
 <IfModule mod_ssl.c>
-        <VirtualHost _default_:443>
-                ServerAdmin webmaster@localhost
-
-                DocumentRoot /var/www/html
-
-                <Directory /var/www/html>
-                    Options Indexes FollowSymLinks MultiViews
-                    AllowOverride All
-                    Require all granted
-                </Directory>
-
-                LogLevel warn
-
-                ErrorLog ${APACHE_LOG_DIR}/error.log
-                CustomLog ${APACHE_LOG_DIR}/access.log combined
-
-                SSLEngine on
-
-                SSLCertificateFile /etc/ssl/self_signed_certs/hologram-php80.pem
-                SSLCertificateKeyFile /etc/ssl/self_signed_certs/hologram-php80.key
-
-                <FilesMatch "\.(cgi|shtml|phtml|php)$">
-                    SSLOptions +StdEnvVars
-                </FilesMatch>
-
-                <Directory /usr/lib/cgi-bin>
-                    SSLOptions +StdEnvVars
-                </Directory>
-        </VirtualHost>
-</IfModule>
-```
-
-```bash
-sudo nano /etc/apache2/sites-available/000-default.conf
-```
-
-```text
-<VirtualHost *:80>
+    <VirtualHost _default_:443>
         ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/html
-        Redirect "/" "https://192.168.1.80/"
+        ServerName www.hologram-php80.local
+        ServerAlias hologram-php80.local
+        DocumentRoot /var/www/html/vh80
 
-        <Directory /var/www/html>
+        <Directory /var/www/html/vh80>
             Options Indexes FollowSymLinks MultiViews
             AllowOverride All
             Require all granted
@@ -111,8 +75,48 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 
         LogLevel warn
 
-        ErrorLog ${APACHE_LOG_DIR}/error.log
-        CustomLog ${APACHE_LOG_DIR}/access.log combined
+        ErrorLog ${APACHE_LOG_DIR}/vh80_error.log
+        CustomLog ${APACHE_LOG_DIR}/vh80_access.log combined
+
+        SSLEngine on
+
+        SSLCertificateFile /etc/ssl/self_signed_certs/hologram-php80.pem
+        SSLCertificateKeyFile /etc/ssl/self_signed_certs/hologram-php80.key
+
+        <FilesMatch "\.(cgi|shtml|phtml|php)$">
+            SSLOptions +StdEnvVars
+        </FilesMatch>
+
+        <Directory /usr/lib/cgi-bin>
+            SSLOptions +StdEnvVars
+        </Directory>
+
+    </VirtualHost>
+</IfModule>
+```
+
+```bash
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+
+```xml
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName www.hologram-php80.local
+    ServerAlias hologram-php80.local
+    DocumentRoot /var/www/html/vh80
+    Redirect "/" "https://192.168.1.80/"
+
+    <Directory /var/www/html/vh80>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    LogLevel warn
+
+    ErrorLog ${APACHE_LOG_DIR}/vh80_error.log
+    CustomLog ${APACHE_LOG_DIR}/vh80_access.log combined
 </VirtualHost>
 ```
 
@@ -147,6 +151,6 @@ sudo a2enmod ssl
 sudo a2enmod rewrite
 sudo a2enmod headers
 apache2ctl configtest
-sudo systemctl reload apache2
+sudo systemctl restart apache2
 sudo systemctl status apache2 --no-pager
 ```

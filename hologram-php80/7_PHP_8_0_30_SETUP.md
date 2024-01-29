@@ -10,8 +10,7 @@ mkdir php && cd php
 wget https://www.php.net/distributions/php-8.0.30.tar.xz
 ls -al
 sha256sum php-8.0.30.tar.xz
-unxz php-8.0.30.tar.xz
-tar -xvf php-8.0.30.tar
+tar -xJf php-8.0.30.tar.xz
 ls -al
 cd php-8.0.30/
 ```
@@ -20,13 +19,12 @@ cd php-8.0.30/
 
 ```bash
 mkdir build_session && cd build_session
-../configure --prefix=/opt/php/8.0.30 --enable-fpm --enable-bcmath --enable-opcache --enable-ftp --with-openssl-dir=/opt/openssl/1.1.1w --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug
-make
-make test
+../configure --prefix=/opt/php/8.0.30 --enable-fpm --enable-bcmath --enable-opcache --enable-ftp --with-openssl=/opt/openssl/1.1.1w --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-gcov --enable-debug
+make && make test
 sudo make install
 ```
 
-## setup of php-fpm
+## setup of php-fpm80
 
 ```bash
 find ~/php/php-8.0.30 -iname 'php.ini*'
@@ -38,11 +36,14 @@ grep -i "max_execution_time"  /opt/php/8.0.30/lib/php.ini
 sudo sed -i 's/max_execution_time = 30/max_execution_time = 100/g' /opt/php/8.0.30/lib/php.ini
 grep -i "upload_max_filesize"  /opt/php/8.0.30/lib/php.ini
 sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/g' /opt/php/8.0.30/lib/php.ini
-sudo cp /opt/php/8.0.30/etc/php-fpm.conf.default /opt/php/8.0.30/etc/php-fpm.conf
-sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.0.30/etc/php-fpm.conf
+sudo sed -i 's/;openssl.capath=/openssl.capath=\/usr\/lib\/ssl\/certs\//g' /opt/php/8.0.30/lib/php.ini
+sudo cp /opt/php/8.0.30/etc/php-fpm.conf.default /opt/php/8.0.30/etc/php-fpm80.conf
+sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm80.pid/g' /opt/php/8.0.30/etc/php-fpm80.conf
 ```
 
-At the end of the `/opt/php/8.0.30/etc/php-fpm.conf` file add the following lines:
+Obviously the `timezone` must be set in the most appropriate way because it depends on where the server is located.
+
+At the end of the `/opt/php/8.0.30/etc/php-fpm80.conf` file add the following lines:
 
 ```text
 ...
@@ -53,9 +54,9 @@ group = www-data
 with the following commands, then verifying the outcome:
 
 ```bash
-sudo sed -i '$auser = www-data' /opt/php/8.0.30/etc/php-fpm.conf
-sudo sed -i '$agroup = www-data' /opt/php/8.0.30/etc/php-fpm.conf
-tail /opt/php/8.0.30/etc/php-fpm.conf
+sudo sed -i '$auser = www-data' /opt/php/8.0.30/etc/php-fpm80.conf
+sudo sed -i '$agroup = www-data' /opt/php/8.0.30/etc/php-fpm80.conf
+tail /opt/php/8.0.30/etc/php-fpm80.conf
 ```
 
 Now copy `www.conf`:
@@ -65,10 +66,10 @@ sudo cp /opt/php/8.0.30/etc/php-fpm.d/www.conf.default /opt/php/8.0.30/etc/php-f
 ls -al /usr/lib/systemd/system/
 ```
 
-I create the configuration file `php-fpm.service`:
+I create the configuration file `php-fpm80.service`:
 
 ```bash
-sudo nano /usr/lib/systemd/system/php-fpm.service
+sudo nano /usr/lib/systemd/system/php-fpm80.service
 ```
 
 ```text
@@ -78,8 +79,8 @@ After=network.target
 
 [Service]
 Type=simple
-PIDFile=/opt/php/8.0.30/var/run/php-fpm.pid
-ExecStart=/opt/php/8.0.30/sbin/php-fpm --nodaemonize --fpm-config /opt/php/8.0.30/etc/php-fpm.conf
+PIDFile=/opt/php/8.0.30/var/run/php-fpm80.pid
+ExecStart=/opt/php/8.0.30/sbin/php-fpm --nodaemonize --fpm-config /opt/php/8.0.30/etc/php-fpm80.conf
 ExecReload=/bin/kill -USR2 $MAINPID
 
 [Install]
@@ -96,53 +97,48 @@ sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.0
 ## now I try to start the newly created service:
 
 ```bash
-sudo systemctl status php-fpm.service
-sudo systemctl enable php-fpm.service
+sudo systemctl status php-fpm80
+sudo systemctl enable php-fpm80
 sudo systemctl daemon-reload
-sudo systemctl start php-fpm.service
-sudo systemctl status php-fpm.service --no-pager
+sudo systemctl start php-fpm80
+sudo systemctl status php-fpm80 --no-pager
 ```
 
 If there are problems, investigate with:
 
 ```bash
-journalctl -b -u php-fpm
+journalctl -b -u php-fpm80
 ```
 
 ## make Apache work together with PHP-FPM
 
-```bash
-sudo nano /opt/php/8.0.30/etc/php-fpm.d/www.conf
-```
-
 I change the module's listening mode from socket TCP to socket UNIX:
 
-```text
-...
-;user = nobody
-;group = nobody
-
-; TCP socket
-;listen = 127.0.0.1:9000
-
-; UNIX socket
-listen = /run/php-fpm.sock
-listen.owner = www-data
-listen.group = www-data
-...
+```bash
+sudo sed -i 's/^user = nobody/;user = nobody/g' /opt/php/8.0.30/etc/php-fpm.d/www.conf
+sudo sed -i 's/^group = nobody/;group = nobody/g' /opt/php/8.0.30/etc/php-fpm.d/www.conf
+sudo sed -i 's/^listen = 127.0.0.1:9000/;listen = 127.0.0.1:9000/g' /opt/php/8.0.30/etc/php-fpm.d/www.conf
+sudo sed -i '$a; UNIX socket' /opt/php/8.0.30/etc/php-fpm.d/www.conf
+sudo sed -i '$alisten = /run/php-fpm80.sock' /opt/php/8.0.30/etc/php-fpm.d/www.conf
+sudo sed -i '$alisten.owner = www-data' /opt/php/8.0.30/etc/php-fpm.d/www.conf
+sudo sed -i '$alisten.group = www-data' /opt/php/8.0.30/etc/php-fpm.d/www.conf
+tail /opt/php/8.0.30/etc/php-fpm.d/www.conf
+cat /opt/php/8.0.30/etc/php-fpm.d/www.conf | grep -i "user = nobody"
+cat /opt/php/8.0.30/etc/php-fpm.d/www.conf | grep -i "group = nobody"
+cat /opt/php/8.0.30/etc/php-fpm.d/www.conf | grep -i "listen = 127.0.0.1:9000"
 ```
 
 ## match FPM with Apache
 
 ```bash
-sudo nano /etc/apache2/conf-available/php-fpm.conf
+sudo nano /etc/apache2/conf-available/php-fpm80.conf
 ```
 
 Edit:
 
 ```xml
 <FilesMatch ".+\.php$">
-    SetHandler "proxy:unix:/run/php-fpm.sock|fcgi://localhost"
+    SetHandler "proxy:unix:/run/php-fpm80.sock|fcgi://localhost"
 </FilesMatch>
 
 <IfModule mod_dir.c>
@@ -153,6 +149,8 @@ Edit:
     Require all denied
 </FilesMatch>
 ```
+
+## .htaccess
 
 First I checked that some modules are enabled:
 
@@ -168,24 +166,39 @@ sudo a2enmod proxy_fcgi
 sudo a2enmod setenvif
 ```
 
-Finally, I can do one last check and enable module `php-fpm`:
+On document root I have create a file `.htaccess` with following content:
+
+```xml
+<FilesMatch ".+\.php$">
+    SetHandler "proxy:unix:/run/php-fpm80.sock|fcgi://localhost"
+</FilesMatch>
+```
+
+```bash
+sudo service php-fpm80 restart
+```
+
+and I check existence of this file:
+
+```bash
+ls -al /run/php-fpm80.sock
+```
+
+Remembering that in an unix like system everything is a file.
+
+However, if necessary you can use the following commands to investigate and remedy some configuration errors:
 
 ```bash
 apachectl configtest
-sudo a2enconf php-fpm
 sudo systemctl reload apache2
 sudo systemctl status apache2 --no-pager
+journalctl -b -u php-fpm80 --no-pager
+sudo systemctl restart php-fpm80
+sudo systemctl status php-fpm80 --no-pager
 ```
 
-If problems arise, it will be necessary to issue the following commands: 
+and I can consult the log files:
 
 ```bash
-sudo a2disconf php-fpm
-sudo systemctl reload apache2
-```
-
-and consult the log files:
-
-```bash
-tail --lines=10 --verbose --follow --retry /var/log/apache2/error.log
+tail --lines=10 --verbose --follow --retry /var/log/apache2/vh80_error.log
 ```

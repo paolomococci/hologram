@@ -20,6 +20,8 @@ sed -i '$aexport PKG_CONFIG_PATH=/opt/openssl/1.1.1w/lib/pkgconfig' ~/.bashrc
 sed -i '$aexport OPENSSL_CONF=/usr/lib/ssl/openssl.cnf' ~/.bashrc
 tail ~/.bashrc
 . ~/.bashrc
+printenv | grep "PKG_CONFIG_PATH"
+printenv | grep "OPENSSL_CONF"
 ```
 
-This last command is used to reload the `.bashrc` file.
+The last three commands are used to reload the `.bashrc` file and verify the effective addition of the variables.
