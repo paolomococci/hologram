@@ -8,8 +8,18 @@ sha256sum openssl-1.1.1w.tar.gz
 tar -xf openssl-1.1.1w.tar.gz
 cd openssl-1.1.1w/
 mkdir build_session && cd build_session
-../config --prefix=/opt/openssl/1.1.1w --openssldir=/opt/openssl/1.1.1w/ssl
-make
-make test
+../Configure --prefix=/opt/openssl/1.1.1w --openssldir=/opt/openssl/1.1.1w -fPIC -shared linux-x86_64
+make && make test
 sudo make install
 ```
+
+## setup
+
+```bash
+sed -i '$aexport PKG_CONFIG_PATH=/opt/openssl/1.1.1w/lib/pkgconfig' ~/.bashrc
+sed -i '$aexport OPENSSL_CONF=/usr/lib/ssl/openssl.cnf' ~/.bashrc
+tail ~/.bashrc
+. ~/.bashrc
+```
+
+This last command is used to reload the `.bashrc` file.
