@@ -42,7 +42,7 @@ Edit sftp.json like this:
 ```json
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "name": "hologram-php",
+    "name": "hologram-bare",
     "username": "developer_usernamename",
     "privateKeyPath": "/home/developer_usernamename/.ssh/id_rsa",
     "passphrase": "developer_passphrase",
