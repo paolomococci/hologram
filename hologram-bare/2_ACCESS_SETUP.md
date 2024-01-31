@@ -7,8 +7,8 @@
 ```bash
 chmod 755 ~/.ssh
 ssh-keygen -b 4096
-ssh-copy-id -i ~/.ssh/id_rsa.pub developer_usernamename@192.168.1.XXX
-ssh developer_usernamename@192.168.1.XXX
+ssh-copy-id -i ~/.ssh/id_rsa.pub developer_username@192.168.1.XXX
+ssh developer_username@192.168.1.XXX
 ```
 
 ### on server
@@ -43,8 +43,8 @@ Edit sftp.json like this:
 {
     "$schema": "http://json-schema.org/draft-07/schema",
     "name": "hologram-bare",
-    "username": "developer_usernamename",
-    "privateKeyPath": "/home/developer_usernamename/.ssh/id_rsa",
+    "username": "developer_username",
+    "privateKeyPath": "/home/developer_username/.ssh/id_rsa",
     "passphrase": "developer_passphrase",
     "host": "192.168.1.XXX",
     "remotePath": "/var/www/html",
