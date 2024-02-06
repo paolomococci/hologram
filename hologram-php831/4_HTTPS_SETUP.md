@@ -145,7 +145,7 @@ sudo a2enmod headers
 apachectl -M
 sudo a2ensite default-ssl
 apache2ctl configtest
-sudo ufw allow from 192.168.122.0/24 proto tcp to any port 443
+sudo ufw allow from 192.168.1.0/24 proto tcp to any port 443
 sudo ufw reload
 sudo ufw status numbered
 sudo systemctl restart apache2
