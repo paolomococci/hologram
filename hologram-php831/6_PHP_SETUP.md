@@ -19,6 +19,7 @@ cd php-8.3.1/
 
 ```bash
 mkdir build_session && cd build_session
+../configure --help | grep -i "opcache"
 ../configure --prefix=/opt/php/8.3.1 --enable-fpm --enable-bcmath --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug
 make
 make test
