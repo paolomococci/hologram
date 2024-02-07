@@ -230,6 +230,19 @@ php artisan make:model --all Article
 php artisan make:model --pivot Contributor
 ```
 
+Attention, the following command deletes all data from the databases of this web application!
+
 ```shell
 php artisan migrate:fresh
+```
+
+## inspect models
+
+Here's how to inspect models and their relationships:
+
+```bash
+composer require doctrine/dbal
+php artisan model:show Author
+php artisan model:show Article
+php artisan model:show Contributor
 ```
