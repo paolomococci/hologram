@@ -7,6 +7,7 @@ With developer account:
 ```bash
 cd /var/www/html/
 composer create-project laravel/laravel landing
+composer require doctrine/dbal
 chown --recursive --verbose developer_username:www-data .
 cd landing
 chmod -R 777 bootstrap/cache
@@ -228,6 +229,8 @@ Now it's time to add the specific models of this application example:
 php artisan make:model --all Author
 php artisan make:model --all Article
 php artisan make:model --pivot Contributor
+php artisan make:migration create_contributor_table --create=contributors
+php artisan make:model --pivot --migration Reviewer
 ```
 
 Attention, the following command deletes all data from the databases of this web application!
@@ -241,8 +244,8 @@ php artisan migrate:fresh
 Here's how to inspect models and their relationships:
 
 ```bash
-composer require doctrine/dbal
 php artisan model:show Author
 php artisan model:show Article
 php artisan model:show Contributor
+php artisan model:show Reviewer
 ```
