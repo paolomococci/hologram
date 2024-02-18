@@ -13,3 +13,9 @@ whereis php
 sudo cp composer.phar /usr/bin/composer
 composer list
 ```
+
+When there are updates, you can use the following program to update the dependency manager Composer:
+
+```bash
+sudo composer self-update
+```
