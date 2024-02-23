@@ -53,6 +53,7 @@ From virsh cli:
 
 ```shell
 net-list
+net-info default
 net-destroy default
 net-edit default
 net-start default
