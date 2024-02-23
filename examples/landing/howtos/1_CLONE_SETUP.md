@@ -52,6 +52,7 @@ and so on, also for the other values to be modified.
 From virsh cli:
 
 ```shell
+net-list
 net-destroy default
 net-edit default
 net-start default
