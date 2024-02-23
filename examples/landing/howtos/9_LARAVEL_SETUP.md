@@ -7,6 +7,7 @@ With developer account:
 ```bash
 cd /var/www/html/
 composer create-project laravel/laravel landing
+cd landing
 composer require doctrine/dbal
 chown --recursive --verbose developer_username:www-data .
 cd landing
