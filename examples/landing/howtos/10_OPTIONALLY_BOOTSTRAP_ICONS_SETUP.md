@@ -52,9 +52,9 @@ npm run build
 
 First of the last two methods that can be used. In the following files:
 
-* `resource/views/welcome.blade.php`
-* `resource/views/layouts/app.blade.php`
-* `resource/views/layouts/guest.blade.php`
+* `resources/views/welcome.blade.php`
+* `resources/views/layouts/app.blade.php`
+* `resources/views/layouts/guest.blade.php`
 
 In theory, you should ensure that the following line of code is present:
 
@@ -167,9 +167,9 @@ At this point, in theory, the following lines should be added:
 
 to the files:
 
-* `resource/views/welcome.blade.php`
-* `resource/views/layouts/app.blade.php`
-* `resource/views/layouts/guest.blade.php`
+* `resources/views/welcome.blade.php`
+* `resources/views/layouts/app.blade.php`
+* `resources/views/layouts/guest.blade.php`
 
 Finally, to be able to use icons, you could, perhaps, use the `i` tag in the following way:
 
