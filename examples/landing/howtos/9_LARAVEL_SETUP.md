@@ -249,3 +249,12 @@ php artisan model:show Article
 php artisan model:show Contributor
 php artisan model:show Reviewer
 ```
+
+## inspect tables
+
+```bash
+php artisan db:table --database=landing authors
+php artisan db:table --database=landing articles
+php artisan db:table --database=landing contributors
+php artisan db:table --database=landing reviewers
+```
