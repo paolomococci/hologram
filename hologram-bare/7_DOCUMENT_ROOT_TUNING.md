@@ -8,8 +8,8 @@ sudo nano /etc/apache2/sites-available/default-ssl.conf
 <IfModule mod_ssl.c>
         <VirtualHost _default_:443>
                 ServerAdmin webmaster@localhost
-                ServerName www.hologram-bare.local
-                ServerAlias hologram-bare.local
+                ServerName hologram-bare.local
+                ServerAlias www.hologram-bare.local
                 DocumentRoot /var/www/html/sample/public
 
                 <Directory /var/www/html/sample/public>
@@ -46,8 +46,8 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 ```xml
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
-        ServerName www.hologram-bare.local
-        ServerAlias hologram-bare.local
+        ServerName hologram-bare.local
+        ServerAlias www.hologram-bare.local
         DocumentRoot /var/www/html/sample/public
         Redirect "/" "https://192.168.1.102/"
 

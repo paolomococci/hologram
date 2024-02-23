@@ -61,7 +61,8 @@ sudo nano /etc/apache2/sites-available/default-ssl.conf
 <IfModule mod_ssl.c>
         <VirtualHost _default_:443>
                 ServerAdmin webmaster@localhost
-
+                ServerName hologram-dp.local
+                ServerAlias www.hologram-dp.local
                 DocumentRoot /var/www/html
 
                 <Directory /var/www/html>
@@ -100,6 +101,8 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 ```xml
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
+        ServerName hologram-dp.local
+        ServerAlias www.hologram-dp.local
         DocumentRoot /var/www/html
         Redirect "/" "https://192.168.1.XXX/"
 

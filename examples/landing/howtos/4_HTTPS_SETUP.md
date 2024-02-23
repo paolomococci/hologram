@@ -63,8 +63,8 @@ sudo nano /etc/apache2/sites-available/default-ssl.conf
 <IfModule mod_ssl.c>
         <VirtualHost _default_:443>
                 ServerAdmin webmaster@localhost
-                ServerName www.landing.local
-                ServerAlias landing.local
+                ServerName landing.local
+                ServerAlias www.landing.local
                 DocumentRoot /var/www/html
 
                 <Directory /var/www/html>
@@ -101,8 +101,8 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 ```text
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
-        ServerName www.landing.local
-        ServerAlias landing.local
+        ServerName landing.local
+        ServerAlias www.landing.local
         DocumentRoot /var/www/html
         Redirect "/" "https://192.168.1.105/"
 

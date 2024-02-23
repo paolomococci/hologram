@@ -48,7 +48,8 @@ sudo nano /etc/apache2/sites-available/default-ssl.conf
 <IfModule mod_ssl.c>
         <VirtualHost _default_:443>
                 ServerAdmin webmaster@localhost
-
+                ServerName hologram-php831xdb.local
+                ServerAlias www.hologram-php831xdb.local
                 DocumentRoot /var/www/html/landing/public
 
                 <Directory /var/www/html/landing/public>
@@ -87,6 +88,8 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 ```text
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
+        ServerName hologram-php831xdb.local
+        ServerAlias www.hologram-php831xdb.local
         DocumentRoot /var/www/html/landing/public
         Redirect "/" "https://192.168.1.138/"
 
