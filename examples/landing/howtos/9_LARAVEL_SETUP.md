@@ -10,7 +10,6 @@ composer create-project laravel/laravel landing
 cd landing
 composer require doctrine/dbal
 chown --recursive --verbose developer_username:www-data .
-cd landing
 chmod -R 777 bootstrap/cache
 chmod -R 777 storage
 ```
