@@ -10,8 +10,7 @@ mkdir php && cd php
 wget https://www.php.net/distributions/php-8.3.2.tar.xz
 ls -al
 sha256sum php-8.3.2.tar.xz
-unxz php-8.3.2.tar.xz
-tar -xvf php-8.3.2.tar
+tar -xvf php-8.3.2.tar.xz
 ls -al
 cd php-8.3.2/
 ```

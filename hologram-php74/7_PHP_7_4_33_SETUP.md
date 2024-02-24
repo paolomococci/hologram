@@ -10,7 +10,7 @@ mkdir php && cd php
 wget https://www.php.net/distributions/php-7.4.33.tar.xz
 ls -al
 sha256sum php-7.4.33.tar.xz
-tar -xJf php-7.4.33.tar.xz
+tar -xvf php-7.4.33.tar.xz
 ls -al
 cd php-7.4.33/
 ```
