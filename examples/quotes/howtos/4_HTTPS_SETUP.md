@@ -1,1 +1,188 @@
-# https setup
+# https setup with a self-signed certificate
+
+## parameter for generate keys:
+
+To generate a good passphrase I could use the following command:
+
+```bash
+pwgen -s 48 1
+```
+
+Here is just an example of the parameters to keep on hand:
+
+```text
+[long passphrase automatically generated]
+[national_acronym]
+[state]
+[city]
+quotes.local
+quotes.local
+quotes.local
+[webmaster@localhost]
+```
+
+Therefore I can proceed with the generation of the self-signed certificate:
+
+```bash
+ssh paolo@192.168.1.XXX
+ls -al /etc/ssl/self_signed_certs/
+sudo rm /etc/ssl/self_signed_certs/landing*
+sudo openssl req -new -x509 -days 365 -out /etc/ssl/self_signed_certs/quotes.pem -keyout /etc/ssl/self_signed_certs/quotes.key
+ls -al /etc/ssl/self_signed_certs/
+sudo chmod 600 /etc/ssl/self_signed_certs/quotes*
+sudo sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
+```
+
+```text
+#!/bin/sh
+echo "long passphrase automatically generated"
+```
+
+```bash
+sudo chmod +x /etc/ssl/self_signed_certs/echo_passphrase.sh
+```
+
+Change the precedence given to index file types:
+
+```bash
+sudo nano /etc/apache2/mods-available/dir.conf
+```
+
+```text
+<IfModule mod_dir.c>
+        DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+```
+
+Modify the configuration files so that the web server always responds with the https protocol:
+
+```bash
+sudo nano /etc/apache2/sites-available/default-ssl.conf
+```
+
+```text
+<IfModule mod_ssl.c>
+        <VirtualHost _default_:443>
+                ServerAdmin webmaster@localhost
+                ServerName quotes.local
+                ServerAlias www.quotes.local
+                DocumentRoot /var/www/html/landing/public
+
+                <Directory /var/www/html/landing/public>
+                    Options Indexes FollowSymLinks MultiViews
+                    AllowOverride All
+                    Require all granted
+                    #Order allow,deny
+                    #allow from all
+                </Directory>
+
+                #LogLevel info ssl:warn
+
+                ErrorLog ${APACHE_LOG_DIR}/error.log
+                CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+                SSLEngine on
+
+                SSLCertificateFile /etc/ssl/self_signed_certs/quotes.pem
+                SSLCertificateKeyFile /etc/ssl/self_signed_certs/quotes.key
+
+                <FilesMatch "\.(cgi|shtml|phtml|php)$">
+                    SSLOptions +StdEnvVars
+                </FilesMatch>
+
+                <Directory /usr/lib/cgi-bin>
+                    SSLOptions +StdEnvVars
+                </Directory>
+        </VirtualHost>
+</IfModule>
+```
+
+```bash
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+
+```text
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        ServerName quotes.local
+        ServerAlias www.quotes.local
+        DocumentRoot /var/www/html/landing/public
+        Redirect "/" "https://192.168.1.XXX/"
+
+        <Directory /var/www/html/landing/public>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride All
+            Require all granted
+            #Order allow,deny
+            #allow from all
+        </Directory>
+
+        #LogLevel info ssl:warn
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+Now you need to edit the `/etc/apache2/apache2.conf` file to suppress strange error messages and run the `/etc/ssl/self_signed_certs/echo_passphrase.sh` script every time you start the Apache web server:
+
+```bash
+sudo nano /etc/apache2/apache2.conf
+```
+
+```text
+...
+IncludeOptional sites-enabled/*.conf
+ServerName 127.0.0.1
+SSLPassPhraseDialog exec:/etc/ssl/self_signed_certs/echo_passphrase.sh
+...
+```
+
+This will avoid having to manually enter the passphrase.
+
+Finally, activate all necessary modules and restart the web server:
+
+```bash
+sudo a2enmod ssl
+a2query -m ssl
+sudo a2enmod rewrite
+a2query -m rewrite
+sudo a2enmod headers
+a2query -m headers
+sudo a2ensite default-ssl
+sudo apache2ctl configtest
+sudo ufw allow from 192.168.1.0/24 proto tcp to any port 443
+sudo ufw reload
+sudo ufw status numbered
+apache2ctl configtest
+sudo systemctl restart apache2
+sudo systemctl status apache2 --no-pager
+sudo systemctl status php-fpm --no-pager
+```
+
+## `The web server does not start`
+
+Attention, sometimes it may happen that the Apache server does not start correctly and the following warning is found in the error.log file:
+
+```text
+...
+AH02580: Init: Pass phrase incorrect for key
+...
+```
+
+First of all, check that the `/etc/ssl/self_signed_certs/echo_passphrase.sh` file contains the correct passphrase and as a last resort you can try to regenerate the self-signed certificates with a new passphrase, perhaps obtained in a different way from the previous one.
+
+Of course there are many other commands that can be used to generate strong passphrases, such as:
+
+```bash
+openssl rand -hex 48
+openssl rand -base64 48
+```
+
+## monitoring Apache web server through continuous reading of quotes_error.log
+
+```bash
+tail -f /var/log/apache2/quotes_error.log
+```
+
+At this point I happened to still find some errors reported in the log file, one of these simply indicates that a self-signed certificate is being used.
