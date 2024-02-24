@@ -149,3 +149,6 @@ sudo systemctl status php-fpm --no-pager
 ```bash
 tail -f /var/log/apache2/landing_error.log
 ```
+
+At this point I happened to still find some errors reported in the log file, one of these simply indicates that a self-signed certificate is being used.
+
