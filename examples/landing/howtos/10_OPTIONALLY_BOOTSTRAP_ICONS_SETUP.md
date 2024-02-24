@@ -22,9 +22,9 @@ Then add the referral link wherever it needs to be used:
 
 Here is a list of the files to which to add the aforementioned tag:
 
-* `resource/views/welcome.blade.php`
-* `resource/views/layouts/app.blade.php`
-* `resource/views/layouts/guest.blade.php`
+* `resources/views/welcome.blade.php`
+* `resources/views/layouts/app.blade.php`
+* `resources/views/layouts/guest.blade.php`
 
 To then be able to use the icons, for example, in the following way:
 
