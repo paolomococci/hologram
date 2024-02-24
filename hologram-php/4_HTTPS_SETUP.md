@@ -82,8 +82,8 @@ sudo nano /etc/apache2/sites-available/default-ssl.conf
 
                 SSLEngine on
 
-                SSLCertificateFile /etc/ssl/self_signed_certs/hologram-php56.pem
-                SSLCertificateKeyFile /etc/ssl/self_signed_certs/hologram-php56.key
+                SSLCertificateFile /etc/ssl/self_signed_certs/hologram-php.pem
+                SSLCertificateKeyFile /etc/ssl/self_signed_certs/hologram-php.key
 
                 <FilesMatch "\.(cgi|shtml|phtml|php)$">
                     SSLOptions +StdEnvVars
