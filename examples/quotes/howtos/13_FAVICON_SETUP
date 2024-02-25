@@ -25,3 +25,21 @@ In the end I copied it from my working directory, present on my machine from whi
 ```bash
 scp favicon.ico developer_username@192.168.1.XXX:/var/www/html/quotes/public
 ```
+
+Or, if I wanted to reduce the memory footprint of the icon, I could use another open source tool, just as an example as follows:
+
+```bash
+pngnq -v hologram.png
+```
+
+And, after having appropriately renamed the image which has lightened its memory usage, again by way of example, I could copy it into directory `public` with the following commands:
+
+```bash
+scp hologram.png developer_username@192.168.1.XXX:/var/www/html/quotes/public
+```
+
+By modifying the aforementioned link in the three files involved as follows:
+
+```php
+    <link rel="shortcut icon" href="https://192.168.1.XXX/hologram.png" type="image/png">
+```
