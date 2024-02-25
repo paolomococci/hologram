@@ -66,9 +66,9 @@ sudo nano /etc/apache2/sites-available/default-ssl.conf
                 ServerAdmin webmaster@localhost
                 ServerName quotes.local
                 ServerAlias www.quotes.local
-                DocumentRoot /var/www/html/landing/public
+                DocumentRoot /var/www/html/quotes/public
 
-                <Directory /var/www/html/landing/public>
+                <Directory /var/www/html/quotes/public>
                     Options Indexes FollowSymLinks MultiViews
                     AllowOverride All
                     Require all granted
@@ -106,10 +106,10 @@ sudo nano /etc/apache2/sites-available/000-default.conf
         ServerAdmin webmaster@localhost
         ServerName quotes.local
         ServerAlias www.quotes.local
-        DocumentRoot /var/www/html/landing/public
+        DocumentRoot /var/www/html/quotes/public
         Redirect "/" "https://192.168.1.XXX/"
 
-        <Directory /var/www/html/landing/public>
+        <Directory /var/www/html/quotes/public>
             Options Indexes FollowSymLinks MultiViews
             AllowOverride All
             Require all granted

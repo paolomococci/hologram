@@ -40,7 +40,7 @@ And type:
 ...
 ```
 
-### import landing
+### import quotes
 
 Open a shell for the virsh cli:
 
@@ -95,7 +95,7 @@ sudo reboot
 #### regenerate OpenSSH Host Keys
 
 ```bash
-sudo grep -ir "landing" /etc
+sudo grep -ir "quotes" /etc
 sudo rm /etc/ssh/ssh_host_*
 sudo dpkg-reconfigure openssh-server
 sudo reboot
@@ -106,8 +106,8 @@ From the virsh cli I can, among other things:
 ```shell
 suspend quotes
 resume quotes
-save quotes landing_dump
-restore landing_dump
+save quotes quotes_dump
+restore quotes_dump
 shutdown quotes
 reboot quotes
 ```
