@@ -215,29 +215,100 @@ php artisan make:model --pivot --migration Contributor
 chown --recursive --verbose developer_username:www-data .
 ```
 
-And, after modifying the classes involved in the migration, I issued the following shell commands:
+## models
 
-```bash
-php artisan migrate --pretend
-php artisan migrate
+### extract of the class `quotes/app/Models/Author`
+
+```php
+class Author extends Model
+{
+    use HasFactory;
+    protected $connection = 'quotes';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name', 'surname', 'nickname', 'email', 'suspended',
+    ];
+
+    /**
+     * contributions
+     *
+     * @return BelongsToMany
+     */
+    public function contributions(): BelongsToMany {
+        return $this->belongsToMany(Contributor::class)->withTimestamps();
+    }
+}
 ```
 
-## inspect models
+### extract of the class `quotes/app/Models/Article`
 
-Here's how to inspect models and their relationships:
+```php
+class Article extends Model
+{
+    use HasFactory;
+    protected $connection = 'quotes';
 
-```bash
-php artisan model:show Author
-php artisan model:show Article
-php artisan model:show Contributor
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title', 'subject', 'summary', 'content', 'deprecated',
+    ];
+
+    /**
+     * contributors
+     *
+     * @return BelongsToMany
+     */
+    public function contributors(): BelongsToMany {
+        return $this->belongsToMany(Contributor::class)->withTimestamps();
+    }
+}
 ```
 
-## inspect tables
+### extract of the class `quotes/app/Models/Contributor`
 
-```bash
-php artisan db:table --database=quotes authors
-php artisan db:table --database=quotes articles
-php artisan db:table --database=quotes contributors
+```php
+class Contributor extends Pivot
+{
+    protected $connection = 'quotes';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'is_interesting',
+    ];
+
+    /**
+     * authors
+     *
+     * @return BelongsToMany
+     */
+    public function authors(): BelongsToMany
+    {
+        return $this->belongsToMany(Author::class);
+    }
+
+    /**
+     * articles
+     *
+     * @return BelongsToMany
+     */
+    public function articles(): BelongsToMany
+    {
+        return $this->belongsToMany(Article::class);
+    }
+}
 ```
 
 ## fields in the migration code
@@ -303,4 +374,28 @@ php artisan db:table --database=quotes contributors
             $table->timestamps();
         });
     }
+```
+
+And, after modifying the classes involved in the migration, I issued the following shell commands:
+
+```bash
+php artisan migrate --pretend
+php artisan migrate
+```
+
+## inspect models
+
+Here's how to inspect models and their relationships:
+
+```bash
+php artisan model:show Author
+php artisan model:show Article
+php artisan model:show Contributor
+```
+
+## inspect tables
+
+```bash
+php artisan db:table --database=quotes authors
+php artisan db:table --database=quotes articles
 ```
