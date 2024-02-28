@@ -26,3 +26,20 @@ php artisan make:livewire author.delete-author
 
 With these commands each time you get two types of files, that is, a Controller and a Blade file.
 At this point it is advisable to carefully consult the documentation to fully understand the existing conventions that allow the components to communicate data between themselves and between themselves and the parent.
+
+## list of Blade files which, in my opinion, need to be modified
+
+1. `quotes/resources/views/welcome.blade.php`
+2. `quotes/resources/views/navigation-menu.blade.php`
+3. `quotes/resources/views/layouts/app.blade.php`
+4. `quotes/resources/views/layouts/guest.blade.php`
+5. `quotes/resources/views/components/authentication-card-logo.blade.php`
+6. `quotes/resources/views/components/welcome.blade.php`
+7. `quotes/resources/views/components/application-mark.blade.php`
+
+## list of Blade components to create
+
+1. `quotes/resources/views/article.blade.php`
+2. `quotes/resources/views/author.blade.php`
+3. `quotes/resources/views/components/article-overview.blade.php`
+4. `quotes/resources/views/components/author-overview.blade.php`
