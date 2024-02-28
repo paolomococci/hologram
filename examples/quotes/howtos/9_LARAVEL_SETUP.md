@@ -239,3 +239,68 @@ php artisan db:table --database=quotes authors
 php artisan db:table --database=quotes articles
 php artisan db:table --database=quotes contributors
 ```
+
+## fields in the migration code
+
+### extract of the anonymous class that references table `authors`
+
+```php
+    protected $connection = 'quotes';
+```
+
+```php
+    public function up(): void
+    {
+        Schema::create('authors', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('surname');
+            $table->string('nickname')->nullable();
+            $table->string('email')->unique();
+            $table->boolean('suspended')->default(0);
+            $table->timestamps();
+        });
+    }
+```
+
+### extract of the anonymous class that references table `articles`
+
+```php
+    protected $connection = 'quotes';
+```
+
+```php
+    public function up(): void
+    {
+        Schema::create('articles', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->unique();
+            $table->string('subject');
+            $table->text('summary')->nullable();
+            $table->text('content');
+            $table->boolean('deprecated')->default(0);
+            $table->timestamps();
+        });
+    }
+```
+
+### extract of the anonymous class that references table `contributors`
+
+```php
+    protected $connection = 'quotes';
+```
+
+```php
+    public function up(): void
+    {
+        Schema::create('contributors', function (Blueprint $table) {
+            $table->id();
+            $table->boolean('is_interesting')->nullable();
+            $table->unsignedBigInteger('article_id');
+            $table->unsignedBigInteger('author_id');
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
+```
