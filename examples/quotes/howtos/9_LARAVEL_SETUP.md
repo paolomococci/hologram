@@ -399,3 +399,10 @@ php artisan model:show Contributor
 php artisan db:table --database=quotes authors
 php artisan db:table --database=quotes articles
 ```
+
+## make controllers
+
+```bash
+php artisan make:controller AuthorController --model=Author
+php artisan make:controller ArticleController --model=Article
+```
