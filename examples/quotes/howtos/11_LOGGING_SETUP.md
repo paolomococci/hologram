@@ -17,3 +17,13 @@ I needed to add one or more channels for recording logs, to achieve this I had t
             'level' => 'info',
         ],
 ```
+
+In this case I preferred to use more granular logging by setting it in the methods of the classes where I think it could be more useful.
+By writing code, for example, similar to the following:
+
+```php
+Log::build([
+    'driver' => 'single',
+    'path' => storage_path('logs/article_error.log'),
+])->error(json_encode($json));
+```
