@@ -15,5 +15,5 @@ I needed to add one or more channels for recording logs, to achieve this I had t
             'driver' => 'single',
             'path' => storage_path('logs/author.log'),
             'level' => 'info',
-        ]
+        ],
 ```
