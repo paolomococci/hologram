@@ -215,6 +215,15 @@ php artisan make:model --pivot --migration Contributor
 php artisan make:controller AuthorController --model=Author
 php artisan make:controller ArticleController --model=Article
 chown --recursive --verbose developer_username:www-data .
+php artisan route:list
+```
+
+If, after having appropriately edited all files Blade and file `routes/web.php`, the routes defined there do not appear or an error indicating an undefined route is returned, the following commands may be useful:
+
+```bash
+php artisan route:clear
+php artisan route:cache
+php artisan route:list
 ```
 
 ## models
