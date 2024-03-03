@@ -212,6 +212,8 @@ php artisan make:model --help
 php artisan make:model --migration Author
 php artisan make:model --migration Article
 php artisan make:model --pivot --migration Contributor
+php artisan make:controller AuthorController --model=Author
+php artisan make:controller ArticleController --model=Article
 chown --recursive --verbose developer_username:www-data .
 ```
 
