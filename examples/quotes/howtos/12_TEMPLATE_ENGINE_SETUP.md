@@ -43,3 +43,15 @@ At this point it is advisable to carefully consult the documentation to fully un
 2. `quotes/resources/views/author.blade.php`
 3. `quotes/resources/views/components/article-overview.blade.php`
 4. `quotes/resources/views/components/author-overview.blade.php`
+
+## UI tools to maintain data consistency
+
+```bash
+php artisan make:livewire contributor.renumber-contrib
+```
+
+## set file owners
+
+```bash
+chown --recursive --verbose developer_username:www-data .
+```
