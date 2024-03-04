@@ -286,6 +286,12 @@ class Article extends Model
 
 ### extract of the class `quotes/app/Models/Contributor`
 
+At a certain point in development I preferred a new name for a field in table `contributor`:
+
+```sql
+ALTER TABLE `quotes_db`.`contributor` CHANGE COLUMN `is_interesting` `is_main_author` TINYINT(1) AFTER `id`;
+```
+
 ```php
 class Contributor extends Pivot
 {
@@ -297,7 +303,7 @@ class Contributor extends Pivot
      * @var array<int, string>
      */
     protected $fillable = [
-        'is_interesting',
+        'is_main_author', 'article_id', 'author_id',
     ];
 
     /**
@@ -377,7 +383,7 @@ class Contributor extends Pivot
     {
         Schema::create('contributors', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_interesting')->nullable();
+            $table->boolean('is_main_author')->nullable();
             $table->unsignedBigInteger('article_id');
             $table->unsignedBigInteger('author_id');
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
