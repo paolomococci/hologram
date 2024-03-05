@@ -1,0 +1,12 @@
+.form-label {
+    margin-top: 0.5rem;
+}
+
+.input-text {
+    margin-left: 0.25rem;
+}
+
+.button-save {
+    margin-top: 0.75rem;
+    display: block;
+}
