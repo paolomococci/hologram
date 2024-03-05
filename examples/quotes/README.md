@@ -11,7 +11,7 @@ Here are the procedures for obtaining a LAMP server stack with PHP version 8.3 f
 
 Landing page on workstation monitor:
 
-![welcome page on workstation monitor](screenshots/welcome_workstation.png)
+![welcome page on workstation monitor](screenshots/welcome.png)
 
 Landing page on mobile display with portrait orientation:
 
@@ -20,3 +20,13 @@ Landing page on mobile display with portrait orientation:
 Landing page on mobile display with landscape orientation:
 
 ![welcome page on mobile display, landscape orientation](screenshots/welcome_mobile_landscape.png)
+
+Below are the screenshots of the tabs of this web application example:
+
+![dashboard](screenshots/dashboard.png)
+
+![author](screenshots/authors.png)
+
+![articles](screenshots/articles.png)
+
+![tools](screenshots/tools.png)

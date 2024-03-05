@@ -29,20 +29,20 @@
         </p>
     </div>
 
-    {{-- <div>
+    <div>
         <div class="flex items-center">
-            <i class="bi bi-list-ul icon-2-logged"></i>
+            <i class="bi bi-recycle icon-2-logged"></i>
             <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                <a href="#">TODO: some title of tool</a>
+                <a href="#">Clean the database</a>
             </h2>
         </div>
 
         <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-            TODO: some explanatory text
+            Tool that cleans the database of all data and restarts the numbering of the respective IDs from one.
         </p>
 
         <p class="mt-4 text-sm">
-            TODO: some injected component
+            <livewire:contributor.clear-data />
         </p>
-    </div> --}}
+    </div>
 </div>
