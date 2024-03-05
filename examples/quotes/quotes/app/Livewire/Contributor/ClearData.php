@@ -26,7 +26,7 @@ class ClearData extends Component
         } catch (\Exception $e) {
             Log::build([
                 'driver' => 'single',
-                'path' => storage_path('logs/reset_all_data_table_table_error.log'),
+                'path' => storage_path('logs/reset_all_data_table_error.log'),
             ])->error($e->getMessage());
             session()->flash('status', $e->getMessage());
             return redirect()->to('/tools')->with('status', $e->getMessage());
