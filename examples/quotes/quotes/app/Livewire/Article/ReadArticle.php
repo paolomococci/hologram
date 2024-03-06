@@ -3,6 +3,7 @@
 namespace App\Livewire\Article;
 
 use App\Models\Article;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class ReadArticle extends Component
@@ -14,19 +15,41 @@ class ReadArticle extends Component
         'referringTo' => 'retrieveArticle',
     ];
 
-    public function retrieveArticle($referringTo)
+    /**
+     * retrieveArticle
+     *
+     * retrieves an article's data starting from the identifier,
+     * then retrieves all the associated authors
+     *
+     * @param  mixed $referringTo
+     * @return void
+     */
+    public function retrieveArticle($referringTo): void
     {
         $this->article = Article::findOrFail($referringTo);
         $this->authors = $this->article->getRelatedAuthors();
     }
 
-    public function editArticle($id)
+    /**
+     * editArticle
+     *
+     * edit a specific article by tracking it by identifier
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function editArticle($id): void
     {
         $this->article = Article::find($id);
         $this->dispatch('toModify', $this->article->id);
     }
 
-    public function render()
+    /**
+     * render
+     *
+     * @return View
+     */
+    public function render(): View
     {
         return view(
             'livewire.article.read-article'

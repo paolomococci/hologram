@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Contributor;
 
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -9,7 +11,15 @@ use Livewire\Component;
 
 class RenumberContrib extends Component
 {
-    public function renumber()
+    /**
+     * renumber
+     *
+     * performs identifier renumbering without destroying data
+     * and log this action
+     *
+     * @return RedirectResponse
+     */
+    public function renumber(): RedirectResponse
     {
         try {
             $operator = ['email' => Auth::user()->email];
@@ -32,7 +42,13 @@ class RenumberContrib extends Component
             return redirect()->to('/tools')->with('status', $e->getMessage());
         }
     }
-    public function render()
+
+    /**
+     * render
+     *
+     * @return View
+     */
+    public function render(): View
     {
         return view('livewire.contributor.renumber-contrib');
     }

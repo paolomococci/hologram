@@ -3,6 +3,7 @@
 namespace App\Livewire\Author;
 
 use App\Models\Author;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class ReadAuthor extends Component
@@ -14,26 +15,40 @@ class ReadAuthor extends Component
         'referringTo' => 'retrieveAuthor',
     ];
 
-    public function retrieveAuthor($referringTo)
+    /**
+     * retrieveAuthor
+     *
+     * retrieves an author's data starting from the identifier,
+     * then retrieves all the associated articles
+     *
+     * @param  int $referringTo
+     * @return void
+     */
+    public function retrieveAuthor($referringTo): void
     {
         // dump($referringTo);
         $this->author = Author::findOrFail($referringTo);
-        // $articles = [];
-        // $articlesOfAuthor = $this->author->articles();
-        // foreach ($articlesOfAuthor as $article) {
-        //     $article[] = $article;
-        // }
-        // dump($articles);
         $this->articles = $this->author->getRelatedArticles();
     }
 
-    public function editAuthor($id)
+    /**
+     * editAuthor
+     *
+     * @param  int $id
+     * @return void
+     */
+    public function editAuthor($id): void
     {
         $this->author = Author::find($id);
         $this->dispatch('toModify', $this->author->id);
     }
 
-    public function render()
+    /**
+     * render
+     *
+     * @return View
+     */
+    public function render(): View
     {
         return view('livewire.author.read-author');
     }

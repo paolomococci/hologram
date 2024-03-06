@@ -5,6 +5,8 @@ namespace App\Livewire\Article;
 use App\Models\Article;
 use App\Models\Author;
 use App\Models\Contributor;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
@@ -38,7 +40,16 @@ class UpdateArticle extends Component
         'toModify' => 'retrieveArticle',
     ];
 
-    public function retrieveArticle($referringTo)
+    /**
+     * retrieveArticle
+     *
+     * retrieves an article's data starting from the identifier,
+     * then retrieves all the associated authors collecting them into an array
+     *
+     * @param  int $referringTo
+     * @return void
+     */
+    public function retrieveArticle($referringTo): void
     {
         $this->article = Article::findOrFail($referringTo);
         $this->relatedAuthors = $this->article->getRelatedAuthors();
@@ -51,7 +62,14 @@ class UpdateArticle extends Component
         $this->deprecated = (boolean) $this->article->deprecated;
     }
 
-    public function update()
+    /**
+     * update
+     *
+     * update article data on database and log this action
+     *
+     * @return RedirectResponse
+     */
+    public function update(): RedirectResponse
     {
         $operator = ['email' => Auth::user()->email];
         try {
@@ -112,7 +130,12 @@ class UpdateArticle extends Component
         }
     }
 
-    public function render()
+    /**
+     * render
+     *
+     * @return View
+     */
+    public function render(): View
     {
         return view('livewire.article.update-article');
     }

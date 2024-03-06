@@ -5,6 +5,8 @@ namespace App\Livewire\Article;
 use App\Models\Article;
 use App\Models\Author;
 use App\Models\Contributor;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
@@ -32,6 +34,11 @@ class CreateArticle extends Component
         $this->authors = Author::all()->toArray();
     }
 
+    /**
+     * resetFields
+     *
+     * @return void
+     */
     public function resetFields(): void
     {
         $this->title = '';
@@ -40,7 +47,14 @@ class CreateArticle extends Component
         $this->content = '';
     }
 
-    public function save()
+    /**
+     * save
+     *
+     * saves article data in the database and log this action
+     *
+     * @return RedirectResponse
+     */
+    public function save(): RedirectResponse
     {
         $operator = ['email' => Auth::user()->email];
         try {
@@ -92,7 +106,12 @@ class CreateArticle extends Component
         }
     }
 
-    public function render()
+    /**
+     * render
+     *
+     * @return View
+     */
+    public function render(): View
     {
         return view('livewire.article.create-article');
     }

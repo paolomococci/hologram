@@ -3,6 +3,8 @@
 namespace App\Livewire\Author;
 
 use App\Models\Author;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
@@ -22,6 +24,11 @@ class CreateAuthor extends Component
     #[Validate('required|max:255')]
     public $email;
 
+    /**
+     * resetFields
+     *
+     * @return void
+     */
     public function resetFields(): void
     {
         $this->name = '';
@@ -30,7 +37,14 @@ class CreateAuthor extends Component
         $this->email = '';
     }
 
-    public function save()
+    /**
+     * save
+     *
+     * saves author data in the database and log this action
+     *
+     * @return RedirectResponse
+     */
+    public function save(): RedirectResponse
     {
         $operator = ['email' => Auth::user()->email];
         try {
@@ -67,7 +81,12 @@ class CreateAuthor extends Component
         }
     }
 
-    public function render()
+    /**
+     * render
+     *
+     * @return View
+     */
+    public function render(): View
     {
         return view('livewire.author.create-author');
     }

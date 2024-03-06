@@ -2,14 +2,25 @@
 
 namespace App\Livewire\Contributor;
 
-use Livewire\Component;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Livewire\Component;
 
 class ClearData extends Component
 {
-    public function resetAllData() {
+    /**
+     * resetAllData
+     *
+     * cleans the contents of the web application database of all dummy data used during development
+     * and log this action
+     *
+     * @return RedirectResponse
+     */
+    public function resetAllData(): RedirectResponse
+    {
         try {
             $operator = ['email' => Auth::user()->email];
             DB::statement("SET FOREIGN_KEY_CHECKS = 0");
@@ -33,7 +44,12 @@ class ClearData extends Component
         }
     }
 
-    public function render()
+    /**
+     * render
+     *
+     * @return View
+     */
+    public function render(): View
     {
         return view('livewire.contributor.clear-data');
     }
