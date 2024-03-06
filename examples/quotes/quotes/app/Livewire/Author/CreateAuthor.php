@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\Features\SupportRedirects\Redirector;
 
 class CreateAuthor extends Component
 {
@@ -44,7 +45,7 @@ class CreateAuthor extends Component
      *
      * @return RedirectResponse
      */
-    public function save(): RedirectResponse
+    public function save(): RedirectResponse | Redirector
     {
         $operator = ['email' => Auth::user()->email];
         try {

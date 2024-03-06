@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use Livewire\Features\SupportRedirects\Redirector;
 
 class ClearData extends Component
 {
@@ -19,7 +20,7 @@ class ClearData extends Component
      *
      * @return RedirectResponse
      */
-    public function resetAllData(): RedirectResponse
+    public function resetAllData(): RedirectResponse | Redirector
     {
         try {
             $operator = ['email' => Auth::user()->email];

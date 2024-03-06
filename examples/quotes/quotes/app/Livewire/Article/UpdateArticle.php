@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\Features\SupportRedirects\Redirector;
 
 class UpdateArticle extends Component
 {
@@ -69,7 +70,7 @@ class UpdateArticle extends Component
      *
      * @return RedirectResponse
      */
-    public function update(): RedirectResponse
+    public function update(): RedirectResponse | Redirector
     {
         $operator = ['email' => Auth::user()->email];
         try {

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use Livewire\Features\SupportRedirects\Redirector;
 
 class RenumberContrib extends Component
 {
@@ -19,7 +20,7 @@ class RenumberContrib extends Component
      *
      * @return RedirectResponse
      */
-    public function renumber(): RedirectResponse
+    public function renumber(): RedirectResponse | Redirector
     {
         try {
             $operator = ['email' => Auth::user()->email];

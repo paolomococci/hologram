@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\Features\SupportRedirects\Redirector;
 
 class UpdateAuthor extends Component
 {
@@ -46,7 +47,7 @@ class UpdateAuthor extends Component
      *
      * @return RedirectResponse
      */
-    public function removeCorrelation(): RedirectResponse
+    public function removeCorrelation(): RedirectResponse | Redirector
     {
         try {
             $operator = ['email' => Auth::user()->email];
@@ -112,7 +113,7 @@ class UpdateAuthor extends Component
      *
      * @return RedirectResponse
      */
-    public function update(): RedirectResponse
+    public function update(): RedirectResponse | Redirector
     {
         $operator = ['email' => Auth::user()->email];
         try {
