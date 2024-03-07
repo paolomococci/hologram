@@ -47,6 +47,13 @@ php artisan make:livewire contributor.renumber-contrib
 php artisan make:livewire contributor.clear-data
 ```
 
+## `Paper` model
+
+```bash
+php artisan make:livewire paper.overview-papers
+php artisan make:livewire paper.upload-paper
+```
+
 ## set file owners
 
 ```bash
