@@ -212,6 +212,7 @@ php artisan make:model --help
 php artisan make:model --migration Author
 php artisan make:model --migration Article
 php artisan make:model --pivot --migration Contributor
+php artisan make:model --migration --controller Paper
 php artisan make:controller AuthorController --model=Author
 php artisan make:controller ArticleController --model=Article
 chown --recursive --verbose developer_username:www-data .
@@ -328,6 +329,31 @@ class Contributor extends Pivot
 }
 ```
 
+### extract of the class `quotes/app/Models/Paper`
+
+Initially, the fields for this model were `title` and `name`
+
+```sql
+ALTER TABLE `quotes_db`.`papers` CHANGE COLUMN `name` `uri` VARCHAR(255) AFTER `title`;
+```
+
+```php
+class Paper extends Model
+{
+    use HasFactory;
+    protected $connection = 'quotes';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title', 'uri',
+    ];
+}
+```
+
 ## fields in the migration code
 
 ### extract of the anonymous class that references table `authors`
@@ -393,6 +419,24 @@ class Contributor extends Pivot
     }
 ```
 
+### extract of the anonymous class that references table `papers`
+
+```php
+    protected $connection = 'quotes';
+```
+
+```php
+    public function up(): void
+    {
+        Schema::create('papers', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->nullable();
+            $table->string('uri');
+            $table->timestamps();
+        });
+    }
+```
+
 And, after modifying the classes involved in the migration, I issued the following shell commands:
 
 ```bash
@@ -407,6 +451,7 @@ Here's how to inspect models and their relationships:
 ```bash
 php artisan model:show Author
 php artisan model:show Article
+php artisan model:show Paper
 php artisan model:show Contributor
 ```
 
@@ -415,6 +460,7 @@ php artisan model:show Contributor
 ```bash
 php artisan db:table --database=quotes authors
 php artisan db:table --database=quotes articles
+php artisan db:table --database=quotes papers
 ```
 
 ## make controllers
