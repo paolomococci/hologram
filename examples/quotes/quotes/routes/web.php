@@ -31,6 +31,9 @@ Route::middleware([
     Route::get('/article', function () {
         return view('article');
     })->name('article');
+    Route::get('/paper', function () {
+        return view('paper');
+    })->name('paper');
     Route::get('/tools', function () {
         return view('tools');
     })->name('tools');

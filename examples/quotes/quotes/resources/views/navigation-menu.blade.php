@@ -21,6 +21,9 @@
                     <x-nav-link href="{{ route('article') }}" :active="request()->routeIs('article')">
                         {{ __('Articles') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('paper') }}" :active="request()->routeIs('paper')">
+                        {{ __('Papers') }}
+                    </x-nav-link>
                     <x-nav-link href="{{ route('tools') }}" :active="request()->routeIs('tools')">
                         {{ __('Tools') }}
                     </x-nav-link>
@@ -157,6 +160,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('article') }}" :active="request()->routeIs('article')">
                 {{ __('Articles') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('paper') }}" :active="request()->routeIs('paper')">
+                {{ __('Papers') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('tools') }}" :active="request()->routeIs('tools')">
                 {{ __('Tools') }}

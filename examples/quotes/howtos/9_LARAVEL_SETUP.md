@@ -331,10 +331,13 @@ class Contributor extends Pivot
 
 ### extract of the class `quotes/app/Models/Paper`
 
-Initially, the fields for this model were `title` and `name`
+Below are some changes I made to the `papers` table
 
 ```sql
-ALTER TABLE `quotes_db`.`papers` CHANGE COLUMN `name` `uri` VARCHAR(255) AFTER `title`;
+DESCRIBE `quotes_db`.`papers`;
+ALTER TABLE `quotes_db`.`papers` CHANGE COLUMN `uri` `name` VARCHAR(255) AFTER `title`;
+ALTER TABLE `quotes_db`.`papers` CHANGE COLUMN `name` `name` VARCHAR(255) NOT NULL DEFAULT '';
+ALTER TABLE `quotes_db`.`papers` ADD COLUMN `size` INT NOT NULL DEFAULT 0 AFTER `name`;
 ```
 
 ```php
@@ -349,7 +352,7 @@ class Paper extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title', 'uri',
+        'title', 'name', 'size',
     ];
 }
 ```
@@ -431,13 +434,45 @@ class Paper extends Model
         Schema::create('papers', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('uri');
+            $table->string('name');
+            $table->int('size');
             $table->timestamps();
         });
     }
 ```
 
-And, after modifying the classes involved in the migration, I issued the following shell commands:
+Or, if you prefer to make changes thanks to the migration, after adding more changes:
+
+```bash
+php artisan tinker
+Schema::drop('quotes_db.papers')
+quit
+```
+
+Edit the migration file appropriately:
+
+```php
+    public function up(): void
+    {
+        Schema::create('papers', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->nullable(false)->default('title');
+            $table->string('name')->nullable(false)->default('name');
+            $table->integer('size')->nullable(false)->unsigned()->default(0);
+            $table->timestamps();
+        });
+    }
+```
+
+Then issue the following command:
+
+```bash
+php artisan migrate --path=database/migrations/2024_03_06_065027_create_papers_table.php
+```
+
+## migration
+
+After modifying the classes involved in the migration, I issued the following shell commands:
 
 ```bash
 php artisan migrate --pretend
