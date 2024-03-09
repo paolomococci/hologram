@@ -16,6 +16,6 @@ class Paper extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title', 'name', 'size',
+        'title', 'name', 'size', 'content',
     ];
 }

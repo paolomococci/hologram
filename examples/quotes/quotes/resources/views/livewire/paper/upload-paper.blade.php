@@ -32,8 +32,8 @@
                     <span style="color: #67f;text-transform: uppercase">
                         click here to select a file to upload
                     </span>
-                    (.jpg,.png,.svg,.pdf):
-                    <input type="file" accept=".jpg,.png,.svg,.pdf" id="documentToUpload" name="documentToUpload"
+                    (.jpg,.png,.svg):
+                    <input type="file" accept=".jpg,.png,.svg" id="documentToUpload" name="documentToUpload"
                         style="margin-top: 0.5rem; display: none" wire:model.blur="documentToUpload" />
                 </x-label>
                 <div>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div x-show="uploadingProgressBar">
-                    <progress max="100" x-bind:value="progress">Prepare the upload...</progress>
+                    <progress max="100" x-bind:value="progress"></progress>
 
                 </div>
                 <div x-show="uploadButtonSave">
