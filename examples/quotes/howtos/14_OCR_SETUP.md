@@ -1,1 +1,1 @@
-# OCR setup
+# OCR (Optical Character Recognition) setup
