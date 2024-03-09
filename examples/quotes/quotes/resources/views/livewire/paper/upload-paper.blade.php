@@ -33,18 +33,6 @@
             </div>
         </div>
 
-        {{-- progress-bar bar --}}
-        {{-- <div x-data="{ uploadingProgressBar: false, progress-bar: 0 }"
-            x-on:livewire-upload-start="uploadingProgressBar = true"
-            x-on:livewire-upload-finish="uploadingProgressBar = false"
-            x-on:livewire-upload-cancel="uploadingProgressBar = false"
-            x-on:livewire-upload-error="uploadingProgressBar = false"
-            x-on:livewire-upload-progress-bar="progress-bar = $event.detail.progress-bar">
-        </div>
-        <div x-show="uploadingProgressBar">
-            <progress-bar max="100" x-bind:value="progress-bar"></progress-bar>
-        </div> --}}
-
         <button id="submitDocumentToUpload" type="submit"
             class="items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
             style="margin-top: 0.75rem">
@@ -77,18 +65,12 @@
                 console.log(nameToUpload.value);
                 console.log(sizeToUpload.value);
                 /*
-                 * workaround: wait five seconds before making the sending button available
+                 * workaround: wait five seconds before making the sending button clickable
                  * I have to wait for all communications with the server to complete
                  */
                 setTimeout(() => {
                     readyToSave()
-                }, 5000)
-                // if multiple file
-                // console.log(submitToUpload.disabled);
-                // for (const file of filesToUpload.files) {
-                //     document.getElementById('nameDocumentToUpload').value = file.name;
-                //     console.log(file);
-                // }
+                }, 5000);
             });
 
             function readyToSave() {
