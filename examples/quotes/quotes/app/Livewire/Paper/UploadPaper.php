@@ -51,7 +51,6 @@ class UploadPaper extends Component
         $timestamp = time();
         $nameDocumentToUpload = self::prepareName($this->nameDocumentToUpload, $timestamp);
         $this->titleDocumentToUpload .= (' ' . $timestamp);
-        dd($this->documentToUpload, $this->documentToUpload->temporaryUrl());
         $performed = 'upload';
         $this->validate();
         $operator = ['email' => Auth::user()->email];
