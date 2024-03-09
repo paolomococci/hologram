@@ -41,7 +41,7 @@
         </div>
 
         <div class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-            Below is a list of files loaded on the system.
+            Below is the list of file titles uploaded to the system, accompanied by the timestamp.
         </div>
 
         <div class="mt-4 text-sm">
@@ -62,7 +62,7 @@
         </div>
 
         <div class="mt-4 text-sm">
-            <livewire:paper.overview-papers />
+            {{-- <livewire:paper.overview-papers /> --}}
         </div>
     </div>
 
@@ -79,7 +79,7 @@
         </div>
 
         <div class="mt-4 text-sm">
-            <livewire:paper.overview-papers />
+            {{-- <livewire:paper.overview-papers /> --}}
         </div>
     </div>
 </div>

@@ -41,24 +41,34 @@ class UploadPaper extends Component
         $this->documentToUpload = '';
     }
 
+    /**
+     * save
+     *
+     * @return RedirectResponse
+     */
     public function save(): RedirectResponse | Redirector
     {
-        dd($this->titleDocumentToUpload, $this->nameDocumentToUpload, $this->sizeDocumentToUpload, $this->documentToUpload);
+        $timestamp = time();
+        $nameDocumentToUpload = self::prepareName($this->nameDocumentToUpload, $timestamp);
+        $this->titleDocumentToUpload .= (' ' . $timestamp);
+        dd($this->documentToUpload, $this->documentToUpload->temporaryUrl());
+        $performed = 'upload';
         $this->validate();
         $operator = ['email' => Auth::user()->email];
         try {
-            $this->documentToUpload->store(path: 'documents');
+            $this->documentToUpload->storeAs(path: 'papers', name: $nameDocumentToUpload);
             if (!empty($this->titleDocumentToUpload)) {
                 $paper = Paper::create([
                     'title' => $this->titleDocumentToUpload,
                     'name' => $this->nameDocumentToUpload,
                     'size' => $this->sizeDocumentToUpload,
                 ]);
+                $performed = 'creation and upload';
             }
             $jsonArrayDataLog = [
                 'operator' => $operator,
                 'paper' => $paper,
-                'performed' => 'creation',
+                'performed' => $performed,
             ];
             Log::build([
                 'driver' => 'single',
@@ -81,8 +91,29 @@ class UploadPaper extends Component
         }
     }
 
+    /**
+     * render
+     *
+     * @return View
+     */
     public function render(): View
     {
         return view('livewire.paper.upload-paper');
+    }
+
+    /**
+     * prepareName
+     *
+     * @param string $tempName
+     * @return string
+     */
+    private function prepareName($tempName, $timestamp): string {
+        $subName = explode('.', $tempName);
+        $indexOfLastElementOfSubName = count($subName) - 1;
+        $name = $subName[0];
+        $name = preg_replace('/\s+/', '_', $name);
+        $name .= ('_' . $timestamp);
+        $name .= ('_.' . $subName[$indexOfLastElementOfSubName]);
+        return $name;
     }
 }
