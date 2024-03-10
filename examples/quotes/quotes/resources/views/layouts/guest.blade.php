@@ -9,18 +9,18 @@
     <title>{{ config('app.name', 'Quotes') }}</title>
 
     <!-- Favicon -->
-    {{-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> --}}
-    {{-- <link rel="shortcut icon" href="hologram.svg" type="image/svg+xml"> --}}
-    <link rel="shortcut icon" href="hologram.png" type="image/png">
+    {{-- <link rel="shortcut icon" href="{{ env('APP_URL') }}favicon.ico" type="image/x-icon"> --}}
+    {{-- <link rel="shortcut icon" href="{{ env('APP_URL') }}hologram.svg" type="image/svg+xml"> --}}
+    <link rel="shortcut icon" href="{{ env('APP_URL') }}hologram.png" type="image/png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Style -->
-    <link rel="stylesheet" href="css/forms-style.css">
-    <link rel="stylesheet" href="css/icons-style.css">
-    <link rel="stylesheet" href="css/icons-logged-style.css">
+    <link rel="stylesheet" href="{{ env('APP_URL') }}css/forms-style.css">
+    <link rel="stylesheet" href="{{ env('APP_URL') }}css/icons-style.css">
+    <link rel="stylesheet" href="{{ env('APP_URL') }}css/icons-logged-style.css">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
