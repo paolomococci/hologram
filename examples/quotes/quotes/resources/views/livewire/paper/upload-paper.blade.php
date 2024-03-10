@@ -3,11 +3,10 @@
     {{-- form with responsive progress bar and save button --}}
     <form name="saveFile" wire:submit="save" enctype="multipart/form-data">
         <div x-data="{
-                uploadingProgressBar: false,
-                progress: 0,
-                uploadButtonSave: false
-            }"
-            x-on:livewire-upload-start="uploadingProgressBar = true"
+            uploadingProgressBar: false,
+            progress: 0,
+            uploadButtonSave: false
+        }" x-on:livewire-upload-start="uploadingProgressBar = true"
             x-on:livewire-upload-finish="uploadingProgressBar = false, uploadButtonSave = true"
             x-on:livewire-upload-error="uploadingProgressBar = false"
             x-on:livewire-upload-progress="progress = $event.detail.progress">
@@ -58,9 +57,8 @@
     </form>
 
     @if (session('status'))
-        <div class="alert alert-success">
-            <h3
-                class="p-1 mt-2 text-base text-center bg-amber-200 rounded-s">
+        <div class="alert">
+            <h3 class="p-1 mt-2 text-base text-center rounded-s" style="border-radius: 0.25rem;background-color: #ff7">
                 {{ session('status') }}
             </h3>
         </div>

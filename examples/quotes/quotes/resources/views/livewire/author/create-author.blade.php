@@ -1,7 +1,7 @@
 <div>
 
     <form wire:submit="save">
-        <x-label for="name" class="ml-1 mt-3">Name:</x-label>
+        <x-label for="name" class="mt-3 ml-1">Name:</x-label>
         <x-input required maxlength="255" type="text" id="name" wire:model.blur="name" />
         <div>
             @error('name')
@@ -9,7 +9,7 @@
             @enderror
         </div>
 
-        <x-label for="surname" class="ml-1 mt-3">Surname:</x-label>
+        <x-label for="surname" class="mt-3 ml-1">Surname:</x-label>
         <x-input required maxlength="255" type="text" id="surname" wire:model.blur="surname" />
         <div>
             @error('surname')
@@ -17,7 +17,7 @@
             @enderror
         </div>
 
-        <x-label for="nickname" class="ml-1 mt-3">Nickname:</x-label>
+        <x-label for="nickname" class="mt-3 ml-1">Nickname:</x-label>
         <x-input required maxlength="255" type="text" id="nickname" wire:model.blur="nickname" />
         <div>
             @error('nickname')
@@ -25,7 +25,7 @@
             @enderror
         </div>
 
-        <x-label for="email" class="ml-1 mt-3">Email:</x-label>
+        <x-label for="email" class="mt-3 ml-1">Email:</x-label>
         <x-email required maxlength="255" id="email" wire:model.blur="email" />
         <div>
             @error('email')
@@ -33,13 +33,12 @@
             @enderror
         </div>
 
-        <x-button type="submit" class="mt-3 block">Save</x-button>
+        <x-button type="submit" class="block mt-3">Save</x-button>
     </form>
 
     @if (session('status'))
-        <div class="alert alert-success">
-            <h3
-                class="mt-2 p-1 text-base bg-amber-200 text-center rounded-s">
+        <div class="alert">
+            <h3 class="p-1 mt-2 text-base text-center rounded-s" style="border-radius: 0.25rem;background-color: #ff7">
                 {{ session('status') }}
             </h3>
         </div>

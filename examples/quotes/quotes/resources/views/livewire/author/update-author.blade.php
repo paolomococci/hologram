@@ -59,8 +59,7 @@
 
                     <div class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
                         @foreach ($relatedArticles as $relatedArticle)
-                            <section
-                                class="p-1 mt-1 ml-1 border border-gray-400 border-solid rounded-lg">
+                            <section class="p-1 mt-1 ml-1 border border-gray-400 border-solid rounded-lg">
                                 <h2 class="inline">
                                     {{ $relatedArticle->title }}
                                 </h2>
@@ -80,11 +79,10 @@
                             the following article:</x-label>
                         <x-input list="articles" maxlength="255" type="text" size="35" id="articleToBeRelated"
                             name="articleToBeRelated" wire:model.blur="articleToBeRelated" />
-                        <datalist name="articles" id="articles"
-                            class="rounded-xl bg-gray-950 text-slate-50"
+                        <datalist name="articles" id="articles" class="rounded-xl bg-gray-950 text-slate-50"
                             placeholder="Pick an article...">
                             @foreach ($articles as $article)
-                                <option value="{{ $article['title'] }}" class="rounded-xl text-center">
+                                <option value="{{ $article['title'] }}" class="text-center rounded-xl">
                                     {{ $article['title'] }}
                                 </option>
                             @endforeach
@@ -97,9 +95,9 @@
         </form>
 
         @if (session('status'))
-            <div class="alert alert-success">
-                <h3
-                    class="p-1 mt-2 text-base text-center bg-amber-200 rounded-s">
+            <div class="alert">
+                <h3 class="p-1 mt-2 text-base text-center rounded-s"
+                    style="border-radius: 0.25rem;background-color: #ff7">
                     {{ session('status') }}
                 </h3>
             </div>
