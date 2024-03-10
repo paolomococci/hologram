@@ -110,6 +110,7 @@ class UploadPaper extends Component
      * prepareName
      *
      * @param string $tempName
+     * @param int $timestamp
      * @return string
      */
     private function prepareName($tempName, $timestamp): string
@@ -123,7 +124,14 @@ class UploadPaper extends Component
         return $name;
     }
 
-    private function opticalCharacterRecognition($operator, $imageName)
+    /**
+     * opticalCharacterRecognition
+     *
+     * @param mixed $tempName
+     * @param mixed $tempName
+     * @return mixed
+     */
+    private function opticalCharacterRecognition($operator, $imageName): mixed
     {
         $tesseractOcr = new TesseractOCR();
         try {
