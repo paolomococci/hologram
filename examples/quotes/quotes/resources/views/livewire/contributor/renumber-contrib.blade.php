@@ -1,7 +1,7 @@
 <div>
 
     <form wire:submit="renumber">
-        <x-button type="submit" style="margin: 0.25rem; display: block-inline">Renumbering</x-button>
+        <x-button type="submit" class="m-1 inline-block">Renumbering</x-button>
     </form>
 
 </div>

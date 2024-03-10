@@ -12,7 +12,7 @@
             x-on:livewire-upload-error="uploadingProgressBar = false"
             x-on:livewire-upload-progress="progress = $event.detail.progress">
 
-            <x-label for="titleDocumentToUpload" style="margin-left: 0.25rem;margin-top: 0.75rem">Title:</x-label>
+            <x-label for="titleDocumentToUpload" class="mt-3 ml-1">Title:</x-label>
             <x-input maxlength="255" type="text" id="titleDocumentToUpload" placeholder="please enter a title"
                 wire:model.blur="titleDocumentToUpload" />
             <div>
@@ -21,20 +21,20 @@
                 @enderror
             </div>
 
-            <x-label for="nameDocumentToUpload" style="margin-left: 0.25rem;margin-top: 0.75rem">Name:</x-label>
+            <x-label for="nameDocumentToUpload" class="mt-3 ml-1">Name:</x-label>
             <x-input readonly type="text" id="nameDocumentToUpload" wire:model="nameDocumentToUpload" />
 
-            <x-label for="sizeDocumentToUpload" style="margin-left: 0.25rem;margin-top: 0.75rem">Size:</x-label>
+            <x-label for="sizeDocumentToUpload" class="mt-3 ml-1">Size:</x-label>
             <x-input readonly type="text" id="sizeDocumentToUpload" wire:model="sizeDocumentToUpload" />
 
-            <div style="margin-top: 0.5rem; margin-bottom: 0.5rem">
-                <x-label for="documentToUpload" style="margin-left: 0.25rem;margin-top: 0.75rem;cursor:pointer">
-                    <span style="color: #67f;text-transform: uppercase">
+            <div class="mx-2">
+                <x-label for="documentToUpload" class="mt-3 ml-1 cursor-pointer">
+                    <span class="text-indigo-600 uppercase">
                         click here to select a file to upload
                     </span>
                     (.jpg,.png,.svg):
                     <input type="file" accept=".jpg,.png,.svg" id="documentToUpload" name="documentToUpload"
-                        style="margin-top: 0.5rem; display: none" wire:model.blur="documentToUpload" />
+                        class="hidden mt-2" wire:model.blur="documentToUpload" />
                 </x-label>
                 <div>
                     @error('documentToUpload')
@@ -48,8 +48,7 @@
                 </div>
                 <div x-show="uploadButtonSave">
                     <button id="submitDocumentToUpload" type="submit"
-                        class="items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-                        style="margin-top: 0.75rem">
+                        class="items-center px-4 py-2 mt-3 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
                         Save
                     </button>
                 </div>
@@ -61,7 +60,7 @@
     @if (session('status'))
         <div class="alert alert-success">
             <h3
-                style="font-size: 1rem;background-color: yellow;text-align: center;margin-top: 0.5rem;padding: 0.25rem;border-radius: 0.25rem">
+                class="p-1 mt-2 text-base text-center bg-amber-200 rounded-s">
                 {{ session('status') }}
             </h3>
         </div>

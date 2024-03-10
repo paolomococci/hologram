@@ -1,7 +1,7 @@
 <div>
 
     <form wire:submit="save">
-        <x-label for="title" style="margin-left: 0.25rem;margin-top: 0.75rem">Title:</x-label>
+        <x-label for="title" class="ml-1 mt-3">Title:</x-label>
         <x-input required maxlength="255" type="text" id="title" wire:model.blur="title" />
         <div>
             @error('title')
@@ -9,7 +9,7 @@
             @enderror
         </div>
 
-        <x-label for="subject" style="margin-left: 0.25rem;margin-top: 0.75rem">Subject:</x-label>
+        <x-label for="subject" class="ml-1 mt-3">Subject:</x-label>
         <x-input required maxlength="255" type="text" id="subject" wire:model.blur="subject" />
         <div>
             @error('subject')
@@ -17,7 +17,7 @@
             @enderror
         </div>
 
-        <x-label for="summary" style="margin-left: 0.25rem;margin-top: 0.75rem">Summary:</x-label>
+        <x-label for="summary" class="ml-1 mt-3">Summary:</x-label>
         <x-input required maxlength="255" type="text" id="summary" wire:model.blur="summary" />
         <div>
             @error('summary')
@@ -25,7 +25,7 @@
             @enderror
         </div>
 
-        <x-label for="content" style="margin-left: 0.25rem;margin-top: 0.75rem">Content:</x-label>
+        <x-label for="content" class="ml-1 mt-3">Content:</x-label>
         <x-textarea id="content" wire:model.blur="content"></x-textarea>
         <div>
             @error('content')
@@ -34,14 +34,14 @@
         </div>
 
         <div>
-            <x-label for="authors" style="margin-left: 0.25rem;margin-top: 0.75rem">add a correlation to the following
+            <x-label for="authors" class="ml-1 mt-3">add a correlation to the following
                 author:</x-label>
             <x-input list="authors" maxlength="255" type="text" size="35" id="authorToAdd" name="authorToAdd"
                 wire:model.blur="authorToAdd" />
-            <datalist name="authors" id="authors" style="border-radius: 5px;background-color:#112;color:#fff"
+            <datalist name="authors" id="authors" class="rounded-xl bg-gray-950 text-slate-50"
                 placeholder="Pick an author...">
                 @foreach ($authors as $author)
-                    <option value="{{ $author['email'] }}" style="border-radius: 5px;text-align: center"
+                    <option value="{{ $author['email'] }}" class="rounded-xl text-center"
                         label="{{ $author['name'] }} {{ $author['surname'] }}">
                         {{ $author['email'] }}
                     </option>
@@ -49,13 +49,13 @@
             </datalist>
         </div>
 
-        <x-button type="submit" style="margin-top: 0.75rem; display: block">Save</x-button>
+        <x-button type="submit" class="mt-3 block">Save</x-button>
     </form>
 
     @if (session('status'))
         <div class="alert alert-success">
             <h3
-                style="font-size: 1rem;background-color: yellow;text-align: center;margin-top: 0.5rem;padding: 0.25rem;border-radius: 0.25rem">
+                class="mt-2 p-1 text-base bg-amber-200 text-center rounded-s">
                 {{ session('status') }}
             </h3>
         </div>

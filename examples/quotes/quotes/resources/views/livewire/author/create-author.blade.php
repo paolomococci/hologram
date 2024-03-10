@@ -1,7 +1,7 @@
 <div>
 
     <form wire:submit="save">
-        <x-label for="name" style="margin-left: 0.25rem;margin-top: 0.75rem">Name:</x-label>
+        <x-label for="name" class="ml-1 mt-3">Name:</x-label>
         <x-input required maxlength="255" type="text" id="name" wire:model.blur="name" />
         <div>
             @error('name')
@@ -9,7 +9,7 @@
             @enderror
         </div>
 
-        <x-label for="surname" style="margin-left: 0.25rem;margin-top: 0.75rem">Surname:</x-label>
+        <x-label for="surname" class="ml-1 mt-3">Surname:</x-label>
         <x-input required maxlength="255" type="text" id="surname" wire:model.blur="surname" />
         <div>
             @error('surname')
@@ -17,7 +17,7 @@
             @enderror
         </div>
 
-        <x-label for="nickname" style="margin-left: 0.25rem;margin-top: 0.75rem">Nickname:</x-label>
+        <x-label for="nickname" class="ml-1 mt-3">Nickname:</x-label>
         <x-input required maxlength="255" type="text" id="nickname" wire:model.blur="nickname" />
         <div>
             @error('nickname')
@@ -25,7 +25,7 @@
             @enderror
         </div>
 
-        <x-label for="email" style="margin-left: 0.25rem;margin-top: 0.75rem">Email:</x-label>
+        <x-label for="email" class="ml-1 mt-3">Email:</x-label>
         <x-email required maxlength="255" id="email" wire:model.blur="email" />
         <div>
             @error('email')
@@ -33,13 +33,13 @@
             @enderror
         </div>
 
-        <x-button type="submit" style="margin-top: 0.75rem; display: block">Save</x-button>
+        <x-button type="submit" class="mt-3 block">Save</x-button>
     </form>
 
     @if (session('status'))
         <div class="alert alert-success">
             <h3
-                style="font-size: 1rem;background-color: yellow;text-align: center;margin-top: 0.5rem;padding: 0.25rem;border-radius: 0.25rem">
+                class="mt-2 p-1 text-base bg-amber-200 text-center rounded-s">
                 {{ session('status') }}
             </h3>
         </div>

@@ -55,6 +55,7 @@ class UploadPaper extends Component
         $timestamp = time();
         $nameDocumentToUpload = self::prepareName($this->nameDocumentToUpload, $timestamp);
         $this->titleDocumentToUpload .= (' ' . $timestamp);
+        // dd($nameDocumentToUpload, $this->documentToUpload, $this->documentToUpload->temporaryUrl());
         $performed = 'upload';
         $this->validate();
         $operator = ['email' => Auth::user()->email];
@@ -62,11 +63,12 @@ class UploadPaper extends Component
             $this->documentToUpload->storeAs(path: 'papers', name: $nameDocumentToUpload);
             if ($this->titleDocumentToUpload != '') {
                 $content = $this->opticalCharacterRecognition($operator, $nameDocumentToUpload);
+                // dd($content);
                 $paper = Paper::create([
                     'title' => $this->titleDocumentToUpload,
                     'name' => $this->nameDocumentToUpload,
                     'size' => $this->sizeDocumentToUpload,
-                    'content' => (string) $content,
+                    'content' => (string)$content,
                 ]);
                 $performed = 'creation and upload';
             }
@@ -129,6 +131,7 @@ class UploadPaper extends Component
         try {
             $tesseractOcr->image(self::IMAGE_PATH_STORE . $imageName);
             $content = $tesseractOcr->run();
+            // dd($content);
         } catch (\Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,

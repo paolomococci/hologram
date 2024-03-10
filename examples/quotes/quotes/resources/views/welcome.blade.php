@@ -893,15 +893,13 @@
                     <a href="{{ url('/dashboard') }}"
                         class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                 @else
-                    <div class="flex items-center justify-center rounded-full login-landscape-view aura-width-1 aura-height-1 bg-red-50 dark:bg-red-800/20 zoom-container"
-                        style="display: inline-flex; margin-right: 1rem">
+                    <div class="inline-flex items-center justify-center mr-4 rounded-full login-landscape-view aura-width-1 aura-height-1 bg-red-50 dark:bg-red-800/20 zoom-container">
                         <a href="{{ route('login') }}" title="Login">
                             <i class="bi bi-door-open icon-red-3"></i>
                         </a>
                     </div>
                     @if (Route::has('register'))
-                        <div class="flex items-center justify-center rounded-full login-landscape-view aura-width-1 aura-height-1 bg-red-50 dark:bg-red-800/20 zoom-container"
-                            style="display: inline-flex; margin-right: 1rem">
+                        <div class="inline-flex items-center justify-center mr-4 rounded-full login-landscape-view aura-width-1 aura-height-1 bg-red-50 dark:bg-red-800/20 zoom-container">
                             <a href="{{ route('register') }}" title="Register">
                                 <i class="bi bi-person-add icon-red-3"></i>
                             </a>
@@ -913,7 +911,7 @@
 
         <div class="p-6 mx-auto max-w-7xl lg:p-8">
             <div id="heading_paragraph" class="flex justify-center landscape-view">
-                <p class="mt-4 leading-relaxed text-gray-600 dark:text-gray-900" style="font-size: 2.5rem">
+                <p class="mt-4 text-4xl leading-relaxed text-gray-600 dark:text-gray-900">
                     QUOTES
                 </p>
             </div>
@@ -991,8 +989,7 @@
 
                             <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                                 <a href="#"
-                                    class="inline-flex underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                    style="text-decoration: none">
+                                    class="inline-flex underline decoration-0 hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                                     relationship
                                     <i class="bi bi-chevron-right icon-red-1"></i>
                                 </a>
@@ -1000,8 +997,7 @@
 
                             <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                                 <a href="#"
-                                    class="inline-flex underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                    style="text-decoration: none">
+                                    class="inline-flex underline decoration-0 hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                                     bot
                                     <i class="bi bi-chevron-right icon-red-1"></i>
                                 </a>
@@ -1009,8 +1005,7 @@
 
                             <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                                 <a href="#"
-                                    class="inline-flex underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                                    style="text-decoration: none">
+                                    class="inline-flex underline decoration-0 hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                                     cognitive
                                     <i class="bi bi-chevron-right icon-red-1"></i>
                                 </a>

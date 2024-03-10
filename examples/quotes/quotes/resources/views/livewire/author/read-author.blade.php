@@ -11,20 +11,20 @@
         <div>
 
             <div>
-                <h1 style="font-size: 1.2rem;color:azure;text-align:center">&#8220;{{ $author->nickname }}&#8221;</h1>
+                <h1 class="text-base text-center text-slate-50">&#8220;{{ $author->nickname }}&#8221;</h1>
             </div>
             <div>
-                <h3 style="font-size: 1.0rem;color:azure;text-align:center">{{ $author->name }}</h3>
+                <h3 class="text-sm text-center text-slate-50">{{ $author->name }}</h3>
             </div>
             <div>
-                <h5 style="font-size: 0.8rem;color:azure;text-align:center">{{ $author->surname }}</h5>
+                <h5 class="text-xs text-center text-slate-200">{{ $author->surname }}</h5>
             </div>
             <div class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                <p style="text-align: center">{{ $author->email }}</p>
+                <p class="text-center">{{ $author->email }}</p>
             </div>
             <div class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                 @foreach ($articles as $article)
-                    <p style="text-align: center"> {{ $article->title }}</p>
+                    <p class="text-center"> {{ $article->title }}</p>
                 @endforeach
             </div>
 
@@ -32,14 +32,12 @@
 
         <p class="mt-4 text-sm">
             <span wire:click="editAuthor( @js($author->id) )"
-                class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300"
-                style="cursor: pointer">
+                class="inline-flex items-center font-semibold text-indigo-700 cursor-pointer dark:text-indigo-300">
                 Update
                 <i class="bi bi-pencil-square icon-1-logged"></i>
             </span>
             {{-- <span wire:click="deprecateAuthor( @js($author->id) )"
-                class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300"
-                style="cursor: pointer">
+                class="inline-flex items-center font-semibold text-indigo-700 cursor-pointer dark:text-indigo-300">
                 Deprecate
                 <i class="bi bi-shield-x icon-1-logged"></i>
             </span> --}}
