@@ -1,25 +1,25 @@
 <div
-    class="p-6 bg-white border-b border-gray-200 lg:p-8 dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent dark:border-gray-700">
+    class="dashboard-head">
 
-    <h1 class="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
+    <h1 class="app-h1-grey">
         Editor of author information
     </h1>
 
-    <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">
+    <p class="app-paragraph-grey">
         Here are some useful tools to maintain data consistency.
     </p>
 </div>
 
-<div class="grid grid-cols-1 gap-6 p-6 bg-gray-200 bg-opacity-25 dark:bg-gray-800 md:grid-cols-2 lg:gap-8 lg:p-8">
+<div class="dashboard-grid">
     <div>
         <div class="flex items-center">
             <i class="bi bi-list-ol icon-2-logged"></i>
-            <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+            <h2 class="app-anchor-grey">
                 <a href="#">Renumber</a>
             </h2>
         </div>
 
-        <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+        <p class="paragraph-grey">
             Tool that regenerates the numerical identifiers of the table that maintains the correlations between the
             author and the article he contributed to writing.
         </p>
@@ -32,12 +32,12 @@
     <div>
         <div class="flex items-center">
             <i class="bi bi-recycle icon-2-logged"></i>
-            <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+            <h2 class="app-anchor-grey">
                 <a href="#">Clean the database</a>
             </h2>
         </div>
 
-        <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+        <p class="paragraph-grey">
             Tool that cleans the database of all data and restarts the numbering of the respective IDs from one.
         </p>
 

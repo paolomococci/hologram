@@ -1,7 +1,38 @@
 @import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .welcome-h2-grey {
+        @apply mt-6 text-xl font-semibold text-gray-900 dark:text-white;
+    }
+    .welcome-anchor-grey {
+        @apply inline-flex underline decoration-0 hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500;
+    }
+    .paragraph-grey {
+        @apply mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400;
+    }
+    .dashboard-head {
+        @apply p-6 bg-white border-b border-gray-200 lg:p-8 dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent dark:border-gray-700;
+    }
+    .dashboard-grid {
+        @apply grid grid-cols-1 gap-6 p-6 bg-gray-200 bg-opacity-25 dark:bg-gray-800 md:grid-cols-2 lg:gap-8 lg:p-8;
+    }
+    .app-h1-grey {
+        @apply mt-8 text-2xl font-medium text-gray-900 dark:text-white;
+    }
+    .app-paragraph-grey {
+        @apply mt-6 leading-relaxed text-gray-500 dark:text-gray-400;
+    }
+    .app-anchor-grey {
+        @apply text-xl font-semibold text-gray-900 ms-3 dark:text-white;
+    }
+    .app-anchor-indigo {
+        @apply inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300;
+    }
+}
 
 [x-cloak] {
     display: none;

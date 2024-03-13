@@ -3,7 +3,7 @@
     @if ($article)
         <div class="flex items-center">
             <i class="bi bi-bookmark icon-2-logged"></i>
-            <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+            <h2 class="app-anchor-grey">
                 Read
             </h2>
         </div>
@@ -19,10 +19,10 @@
             <div>
                 <h5 class="text-xs text-center text-slate-200">{{ $article->summary }}</h5>
             </div>
-            <div class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+            <div class="paragraph-grey">
                 <p class="text-center">{{ $article->content }}</p>
             </div>
-            <div class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+            <div class="paragraph-grey">
                 @foreach ($authors as $author)
                     <p class="text-center"> {{ $author->email }}</p>
                 @endforeach

@@ -1,6 +1,6 @@
 <div>
 
-    <div class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+    <div class="paragraph-grey">
         <form wire:submit="search">
             <x-input placeholder="search in titles" type="text" wire:model="query" />
             <x-button title="search in titles" type="submit">Search</x-button>

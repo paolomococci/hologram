@@ -3,14 +3,14 @@
     @if ($article)
         <div class="flex items-center">
             <i class="bi bi-pencil-square icon-2-logged"></i>
-            <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+            <h2 class="app-anchor-grey">
                 Update article &#8220;{{ $article->title }}&#8221;
             </h2>
         </div>
 
         <form wire:submit="update">
             <div
-                class="grid grid-cols-1 gap-6 p-6 bg-gray-200 bg-opacity-25 dark:bg-gray-800 md:grid-cols-2 lg:gap-8 lg:p-8">
+                class="dashboard-grid">
 
                 <div>
                     <x-label for="title" class="mt-3 ml-1">Title:</x-label>
@@ -59,11 +59,11 @@
                 </div>
 
                 <div>
-                    <h3 class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    <h3 class="paragraph-grey">
                         has received contributions from the following authors:
                     </h3>
 
-                    <div class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+                    <div class="app-anchor-grey">
                         @foreach ($relatedAuthors as $relatedAuthor)
                             <h2>
                                 {{ $relatedAuthor->email }}

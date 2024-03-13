@@ -926,11 +926,11 @@
                                 <i class="bi bi-book icon-red-2"></i>
                             </div>
 
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
+                            <h2 class="welcome-h2-grey">
                                 Documentation
                             </h2>
 
-                            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                            <p class="paragraph-grey">
                                 Some documentation text of landing web application
                                 <i class="bi bi-chevron-right icon-red-1"></i>
                             </p>
@@ -945,11 +945,11 @@
                                 <i class="bi bi-camera icon-red-2"></i>
                             </div>
 
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
+                            <h2 class="welcome-h2-grey">
                                 Screenshots
                             </h2>
 
-                            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                            <p class="paragraph-grey">
                                 Some screenshots for example purposes
                                 <i class="bi bi-chevron-right icon-red-1"></i>
                             </p>
@@ -964,11 +964,11 @@
                                 <i class="bi bi-chat-left-dots icon-red-2"></i>
                             </div>
 
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
+                            <h2 class="welcome-h2-grey">
                                 Comments
                             </h2>
 
-                            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                            <p class="paragraph-grey">
                                 Some comments provided by web application users
                                 <i class="bi bi-chevron-right icon-red-1"></i>
                             </p>
@@ -983,29 +983,29 @@
                                 <i class="bi bi-diagram-3 icon-red-2"></i>
                             </div>
 
-                            <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">
+                            <h2 class="welcome-h2-grey">
                                 Ecosystem
                             </h2>
 
-                            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                            <p class="paragraph-grey">
                                 <a href="#"
-                                    class="inline-flex underline decoration-0 hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                    class="welcome-anchor-grey">
                                     relationship
                                     <i class="bi bi-chevron-right icon-red-1"></i>
                                 </a>
                             </p>
 
-                            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                            <p class="paragraph-grey">
                                 <a href="#"
-                                    class="inline-flex underline decoration-0 hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                    class="welcome-anchor-grey">
                                     bot
                                     <i class="bi bi-chevron-right icon-red-1"></i>
                                 </a>
                             </p>
 
-                            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                            <p class="paragraph-grey">
                                 <a href="#"
-                                    class="inline-flex underline decoration-0 hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                    class="welcome-anchor-grey">
                                     cognitive
                                     <i class="bi bi-chevron-right icon-red-1"></i>
                                 </a>

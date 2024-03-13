@@ -3,14 +3,14 @@
     @if ($author)
         <div class="flex items-center">
             <i class="bi bi-pencil-square icon-2-logged"></i>
-            <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+            <h2 class="app-anchor-grey">
                 Update author &#8220;{{ $author->name }}&#8221;
             </h2>
         </div>
 
         <form wire:submit="update">
             <div
-                class="grid grid-cols-1 gap-6 p-6 bg-gray-200 bg-opacity-25 dark:bg-gray-800 md:grid-cols-2 lg:gap-8 lg:p-8">
+                class="dashboard-grid">
 
                 <div>
                     <x-label for="name" class="mt-3 ml-1">Name:</x-label>
@@ -53,11 +53,11 @@
                     </x-label>
                     <x-input type="checkbox" id="suspended" name="suspended" wire:model.blur="suspended" />
 
-                    <h3 class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    <h3 class="paragraph-grey">
                         author of the following articles:
                     </h3>
 
-                    <div class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+                    <div class="app-anchor-grey">
                         @foreach ($relatedArticles as $relatedArticle)
                             <section class="p-1 mt-1 ml-1 border border-gray-400 border-solid rounded-lg">
                                 <h2 class="inline">
