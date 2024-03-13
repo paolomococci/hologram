@@ -59,3 +59,11 @@ php artisan make:livewire paper.upload-paper
 ```bash
 chown --recursive --verbose developer_username:www-data .
 ```
+
+## edit element styles
+
+Important, once you have added the style classes, you must always remember to run the following command in the project root:
+
+```bash
+npm run build
+```

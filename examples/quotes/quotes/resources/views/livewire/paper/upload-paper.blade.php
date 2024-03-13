@@ -58,7 +58,7 @@
 
     @if (session('status'))
         <div class="alert">
-            <h3 class="p-1 mt-2 text-base text-center rounded-s" style="border-radius: 0.25rem;background-color: #ff7">
+            <h3 class="p-1 mt-2 text-base text-center bg-yellow-300 rounded-lg">
                 {{ session('status') }}
             </h3>
         </div>
