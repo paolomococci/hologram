@@ -52,6 +52,7 @@ php artisan make:livewire contributor.clear-data
 ```bash
 php artisan make:livewire paper.overview-papers
 php artisan make:livewire paper.upload-paper
+php artisan make:livewire paper.update-paper
 ```
 
 ## set file owners
