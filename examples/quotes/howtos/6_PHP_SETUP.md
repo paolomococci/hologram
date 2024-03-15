@@ -179,8 +179,33 @@ Finally, I can do one last check and enable module `php-fpm`:
 ```bash
 apachectl configtest
 sudo a2enconf php-fpm
-sudo systemctl reload apache2 --no-pager
+sudo systemctl reload apache2
 sudo systemctl status apache2 --no-pager
+```
+
+## now I try to start the newly created service:
+
+```bash
+sudo systemctl status php-fpm --no-pager
+sudo systemctl enable php-fpm
+sudo systemctl daemon-reload
+sudo systemctl start php-fpm
+sudo systemctl status php-fpm --no-pager
+```
+
+or, if you have just compiled a new version of PHP:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart php-fpm
+sudo systemctl status php-fpm --no-pager
+```
+
+If there are problems, investigate with:
+
+```bash
+journalctl -b -u php-fpm
+```
 ```
 
 If problems arise, it will be necessary to issue the following commands: 
@@ -206,10 +231,4 @@ Update `locate` cache:
 ```bash
 sudo updatedb
 locate php.ini
-```
-
-If necessary:
-
-```bash
-sudo reboot
 ```
