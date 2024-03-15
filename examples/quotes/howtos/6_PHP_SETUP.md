@@ -219,6 +219,9 @@ and consult the log files.
 
 ## make PHP accessible globally not just from Apache
 
+Attention, it will be necessary to delete the symbolic links if they already exist.
+Since, in this example I have just compiled a newer version of PHP, the aforementioned symlinks will already be present and will point to the older version.
+
 ```bash
 sudo ln --symbolic --verbose /opt/php/8.3.4/bin/php /usr/bin/php
 sudo ln --symbolic --verbose /opt/php/8.3.4/bin/phar.phar /usr/bin/phar
