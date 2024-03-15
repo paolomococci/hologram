@@ -29,4 +29,6 @@ Below are the screenshots of the tabs of this web application example:
 
 ![articles](screenshots/articles.png)
 
+![articles](screenshots/papers.png)
+
 ![tools](screenshots/tools.png)

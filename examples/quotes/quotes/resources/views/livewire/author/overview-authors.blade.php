@@ -10,12 +10,12 @@
 
     <ul class="text-basetext-white ">
         @if ($authors->isEmpty())
-            <p>No author is registered with the aforementioned surname!</p>
+            <p class="paragraph-empty-items-info">No author is registered with the aforementioned surname!</p>
         @else
             @foreach ($authors as $author)
                 <li id="author_{{ $author->id }}" wire:key='{{ $author->id }}'>
                     <span wire:click="showAuthor( @js($author->id) )"
-                        class="inline-flex items-center font-semibold text-indigo-700 cursor-pointer dark:text-indigo-300">
+                        class="items-list">
                         {{ $author->name }} {{ $author->surname }}
                         <i class="bi bi-chevron-right icon-1-logged"></i>
                     </span>

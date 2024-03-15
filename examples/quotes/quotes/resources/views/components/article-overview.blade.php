@@ -45,9 +45,9 @@
             </h2>
         </div>
 
-        <div class="paragraph-grey">
+        <p class="paragraph-grey">
             To access an article's data you need to click on the link of interest.
-        </div>
+        </p>
 
         <div class="mt-4 text-sm">
             <livewire:article.overview-articles />

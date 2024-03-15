@@ -25,14 +25,14 @@ class OverviewPapers extends Component
     }
 
     /**
-     * showArticle
+     * showPaper
      *
      * retrieve a specific data of paper by tracking it by identifier
      *
      * @param  int $id
      * @return void
      */
-    public function showArticle($id): void
+    public function showPaper($id): void
     {
         $this->paper = Paper::find($id);
         $this->dispatch('toModify', $this->paper->id);

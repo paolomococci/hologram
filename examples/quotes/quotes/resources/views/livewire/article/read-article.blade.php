@@ -32,12 +32,12 @@
 
         <p class="mt-4 text-sm">
             <span wire:click="editArticle( @js($article->id) )"
-                class="inline-flex items-center font-semibold text-indigo-700 cursor-pointer dark:text-indigo-300">
+                class="items-list">
                 Update
                 <i class="bi bi-pencil-square icon-1-logged"></i>
             </span>
             {{-- <span wire:click="deprecateArticle( @js($article->id) )"
-                class="inline-flex items-center font-semibold text-indigo-700 cursor-pointer dark:text-indigo-300">
+                class="items-list">
                 Deprecate
                 <i class="bi bi-shield-x icon-1-logged"></i>
             </span> --}}

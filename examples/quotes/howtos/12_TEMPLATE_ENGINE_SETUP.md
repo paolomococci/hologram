@@ -53,6 +53,7 @@ php artisan make:livewire contributor.clear-data
 php artisan make:livewire paper.overview-papers
 php artisan make:livewire paper.upload-paper
 php artisan make:livewire paper.update-paper
+php artisan make:livewire paper.delete-all-papers
 ```
 
 ## set file owners

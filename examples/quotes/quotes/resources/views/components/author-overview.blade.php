@@ -24,9 +24,9 @@
             articles.
         </p>
 
-        <p class="mt-4 text-sm">
+        <div class="mt-4 text-sm">
             <livewire:author.create-author />
-        </p>
+        </div>
     </div>
 
     <div>

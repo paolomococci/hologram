@@ -10,12 +10,12 @@
 
     <ul class="text-basetext-white ">
         @if ($papers->isEmpty())
-            <p>There are no papers registered in the system.</p>
+            <p class="paragraph-empty-items-info">There are no papers registered in the system!</p>
         @else
             @foreach ($papers as $paper)
                 <li id="paper_{{ $paper->id }}" wire:key='{{ $paper->id }}'>
                     <span wire:click="showPaper( @js($paper->id) )"
-                        class="inline-flex items-center font-semibold text-indigo-700 cursor-pointer dark:text-indigo-300">
+                        class="items-list">
                         {{ $paper->title }}
                         <i class="bi bi-chevron-right icon-1-logged"></i>
                     </span>
