@@ -31,14 +31,14 @@ make install
 php --ini
 updatedb
 locate xdebug.ini
-rnano /opt/php/8.3.3/lib/php.ini
+rnano /opt/php/8.3.4/lib/php.ini
 ```
 
 First it is a good idea to view the contents of the file without risking causing damage.
-And now I edit `/opt/php/8.3.3/lib/php.ini` configuration file
+And now I edit `/opt/php/8.3.4/lib/php.ini` configuration file
 
 ```bash
-nano /opt/php/8.3.3/lib/php.ini
+nano /opt/php/8.3.4/lib/php.ini
 ```
 
 I add this section:
