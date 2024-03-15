@@ -34,14 +34,14 @@ class ClearData extends Component
                 'driver' => 'single',
                 'path' => storage_path('logs/reset_all_data_table_info.log'),
             ])->info('Reset all data table by the operator ' . $operator['email']);
-            return redirect()->to('/tools')->with('status', 'Reset all data table by the operator ' . $operator['email']);
+            return redirect()->to('/tools')->with('clear-data-status', 'Reset all data table by the operator ' . $operator['email']);
         } catch (\Exception $e) {
             Log::build([
                 'driver' => 'single',
                 'path' => storage_path('logs/reset_all_data_table_error.log'),
             ])->error($e->getMessage());
-            session()->flash('status', $e->getMessage());
-            return redirect()->to('/tools')->with('status', $e->getMessage());
+            session()->flash('clear-data-status', $e->getMessage());
+            return redirect()->to('/tools')->with('clear-data-status', $e->getMessage());
         }
     }
 

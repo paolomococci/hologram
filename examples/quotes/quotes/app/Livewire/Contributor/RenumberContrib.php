@@ -33,14 +33,14 @@ class RenumberContrib extends Component
                 'driver' => 'single',
                 'path' => storage_path('logs/renumbering_contributor_table_info.log'),
             ])->info('Renumbering contributor table by the operator ' . $operator['email']);
-            return redirect()->to('/tools')->with('status', 'Renumbering contributor table by the operator ' . $operator['email']);
+            return redirect()->to('/tools')->with('renumber-status', 'Renumbering contributor table by the operator ' . $operator['email']);
         } catch (\Exception $e) {
             Log::build([
                 'driver' => 'single',
                 'path' => storage_path('logs/renumbering_contributor_table_error.log'),
             ])->error($e->getMessage());
-            session()->flash('status', $e->getMessage());
-            return redirect()->to('/tools')->with('status', $e->getMessage());
+            session()->flash('renumber-status', $e->getMessage());
+            return redirect()->to('/tools')->with('renumber-status', $e->getMessage());
         }
     }
 
