@@ -8,10 +8,10 @@ Just to give an example, in theory you could symbolically link the directory con
 
 ```bash
 npm i -D bootstrap-icons
-ls -al /var/www/html/quotes/node_modules/bootstrap-icons
-mkdir /var/www/html/quotes/public/icons
-ln --symbolic --verbose /var/www/html/quotes/node_modules/bootstrap-icons /var/www/html/quotes/public/icons/bootstrap-icons
-ls -al /var/www/html/quotes/public/icons/
+ls -al /var/www/html/v1/quotes/node_modules/bootstrap-icons
+mkdir /var/www/html/v1/quotes/public/icons
+ln --symbolic --verbose /var/www/html/v1/quotes/node_modules/bootstrap-icons /var/www/html/v1/quotes/public/icons/bootstrap-icons
+ls -al /var/www/html/v1/quotes/public/icons/
 ```
 
 Then add the referral link wherever it needs to be used:

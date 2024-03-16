@@ -17,7 +17,7 @@ class UploadPaper extends Component
 {
     use WithFileUploads;
 
-    const IMAGE_PATH_STORE = '/var/www/html/quotes/storage/app/papers/';
+    const IMAGE_PATH_STORE = '/var/www/html/v1/quotes/storage/app/papers/';
 
     #[Validate('max:255')]
     public $titleDocumentToUpload = '';
