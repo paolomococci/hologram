@@ -235,3 +235,17 @@ Update `locate` cache:
 sudo updatedb
 locate php.ini
 ```
+
+## info page
+
+Create the following PHP file:
+
+```bash
+nano /var/www/html/info.php
+```
+
+with the following, very short content:
+
+```php
+<? phpinfo(INFO_ALL);
+```
