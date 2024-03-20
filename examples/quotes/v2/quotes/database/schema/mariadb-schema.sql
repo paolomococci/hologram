@@ -118,6 +118,28 @@ CREATE TABLE `password_reset_tokens` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */
 ;
+DROP TABLE IF EXISTS `personal_access_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!40101 SET character_set_client = utf8 */
+;
+CREATE TABLE `personal_access_tokens` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `tokenable_type` varchar(255) NOT NULL,
+    `tokenable_id` bigint(20) unsigned NOT NULL,
+    `name` varchar(255) NOT NULL,
+    `token` varchar(64) NOT NULL,
+    `abilities` text DEFAULT NULL,
+    `last_used_at` timestamp NULL DEFAULT NULL,
+    `expires_at` timestamp NULL DEFAULT NULL,
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+    KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`, `tokenable_id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */
+;
 DROP TABLE IF EXISTS `sessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */
 ;
@@ -136,6 +158,58 @@ CREATE TABLE `sessions` (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */
 ;
+DROP TABLE IF EXISTS `team_invitations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!40101 SET character_set_client = utf8 */
+;
+CREATE TABLE `team_invitations` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `team_id` bigint(20) unsigned NOT NULL,
+    `email` varchar(255) NOT NULL,
+    `role` varchar(255) DEFAULT NULL,
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `team_invitations_team_id_email_unique` (`team_id`, `email`),
+    CONSTRAINT `team_invitations_team_id_foreign` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+DROP TABLE IF EXISTS `team_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!40101 SET character_set_client = utf8 */
+;
+CREATE TABLE `team_user` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `team_id` bigint(20) unsigned NOT NULL,
+    `user_id` bigint(20) unsigned NOT NULL,
+    `role` varchar(255) DEFAULT NULL,
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `team_user_team_id_user_id_unique` (`team_id`, `user_id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+DROP TABLE IF EXISTS `teams`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!40101 SET character_set_client = utf8 */
+;
+CREATE TABLE `teams` (
+    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` bigint(20) unsigned NOT NULL,
+    `name` varchar(255) NOT NULL,
+    `personal_team` tinyint(1) NOT NULL,
+    `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    KEY `teams_user_id_index` (`user_id`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */
+;
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */
 ;
@@ -147,7 +221,12 @@ CREATE TABLE `users` (
     `email` varchar(255) NOT NULL,
     `email_verified_at` timestamp NULL DEFAULT NULL,
     `password` varchar(255) NOT NULL,
+    `two_factor_secret` text DEFAULT NULL,
+    `two_factor_recovery_codes` text DEFAULT NULL,
+    `two_factor_confirmed_at` timestamp NULL DEFAULT NULL,
     `remember_token` varchar(100) DEFAULT NULL,
+    `current_team_id` bigint(20) unsigned DEFAULT NULL,
+    `profile_photo_path` varchar(2048) DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     PRIMARY KEY (`id`),
@@ -171,3 +250,25 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`)
 VALUES (2, '0001_01_01_000001_create_cache_table', 1);
 INSERT INTO `migrations` (`id`, `migration`, `batch`)
 VALUES (3, '0001_01_01_000002_create_jobs_table', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`)
+VALUES (
+        4,
+        '2024_03_19_074812_add_two_factor_columns_to_users_table',
+        1
+    );
+INSERT INTO `migrations` (`id`, `migration`, `batch`)
+VALUES (
+        5,
+        '2024_03_19_074838_create_personal_access_tokens_table',
+        1
+    );
+INSERT INTO `migrations` (`id`, `migration`, `batch`)
+VALUES (6, '2024_03_19_074839_create_teams_table', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`)
+VALUES (7, '2024_03_19_074840_create_team_user_table', 1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`)
+VALUES (
+        8,
+        '2024_03_19_074841_create_team_invitations_table',
+        1
+    );

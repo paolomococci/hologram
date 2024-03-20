@@ -2,7 +2,9 @@
 
 Updating web application `quotes` so that it can use version `11` of framework `Laravel`.
 
-![landing page](screenshots/quotes_v2_landing_page.png)
+![landing page](screenshots/quotes_landing_page.png)
+
+![dashboard page](screenshots/quotes_dashboard_page.png)
 
 ## how to
 
@@ -136,3 +138,15 @@ QUOTES_V2_DB=quotes_v2_db
 ```
 
 Edit the `config/database.php` configuration file appropriately.
+
+## setup of Jetstream
+
+```bash
+cd /var/www/html/v2/quotes/
+php artisan jetstream:install inertia --teams
+npm install
+npm run build
+php artisan migrate:fresh
+php artisan schema:dump
+chown --recursive --verbose developer_username:www-data .
+```
