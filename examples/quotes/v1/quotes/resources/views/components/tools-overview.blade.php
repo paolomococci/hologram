@@ -2,7 +2,7 @@
     class="dashboard-head">
 
     <h1 class="app-h1-grey">
-        Editor of author information
+        Tools for routine technical maintenance
     </h1>
 
     <p class="app-paragraph-grey">
