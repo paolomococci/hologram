@@ -4,6 +4,8 @@ This is an example of a Micro-Frontend application, which together with others, 
 Micro-Frontend Applications instead of a monolithic Single Page Application, to be developed quickly when needed, avoiding the risk of affecting already well-tested functionality.
 And, perhaps, at a later time, once consolidated, it will be possible to bring together the Micro-Frontend applications that had until then been developed separately in a new Single Page Application.
 
+![image for descriptive purposes only](../screenshots/retriever.png)
+
 ## scaffolding
 
 ```sh
