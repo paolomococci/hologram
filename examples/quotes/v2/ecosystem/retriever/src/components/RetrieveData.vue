@@ -97,7 +97,7 @@ function availabilityToggle(q) {
 }
 
 // watch on ref
-// {"available": boolean, "imageName": string}
+/** {"available": boolean, "imageName": string} */
 watch(query, async (newQuery, oldQuery) => {
     if (newQuery.indexOf('?') > -1) {
         statusMessage.value = 'Wait response for new query...'
