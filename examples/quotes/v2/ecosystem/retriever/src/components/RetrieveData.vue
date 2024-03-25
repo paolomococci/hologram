@@ -1,5 +1,5 @@
 <template>
-    <div class="watcher min-watcher">
+    <div class="watcher">
         <p>
             Submit a query filtering data by <em>available</em> field:
             <input v-model.lazy="query" />
