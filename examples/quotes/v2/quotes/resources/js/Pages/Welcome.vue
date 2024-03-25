@@ -37,7 +37,7 @@ function handleImageError() {
                 <header class="grid items-center grid-cols-2 gap-2 py-10 lg:grid-cols-3">
                     <div class="flex lg:justify-center lg:col-start-2">
                         <h1 class="text-3xl uppercase text-slate-600">
-                            <span class="m-2 p-2 rounded-full backdrop-blur-sm bg-red-500/10">
+                            <span class="p-2 m-2 rounded-full backdrop-blur-sm bg-red-500/10">
                                 quotes
                             </span>
                         </h1>
@@ -181,18 +181,8 @@ function handleImageError() {
 
                                 <ul class="mt-4 text-sm/relaxed">
                                     <li>
-                                        <a href="#">
-                                            Relationship
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Bot
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Cognitive
+                                        <a href="https://192.168.122.103/retriever/index.html" target="_blank">
+                                            Retriever
                                         </a>
                                     </li>
                                 </ul>
@@ -202,7 +192,7 @@ function handleImageError() {
                 </main>
 
                 <footer class="py-16 text-sm text-center text-black">
-                    <span class="m-2 p-2 rounded-md backdrop-blur-sm bg-red-500/10">
+                    <span class="p-2 m-2 rounded-md backdrop-blur-sm bg-red-500/10">
                         Laravel v{{ laravelVersion }} - <a href="info.php" target="_blank" title="PHP info">PHP v{{
                         phpVersion }}</a>
                     </span>
