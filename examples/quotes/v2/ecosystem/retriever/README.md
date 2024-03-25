@@ -57,3 +57,6 @@ To successfully deploy to your development web server you need to edit the `vite
 ```
 
 Being careful to assign the correct paths to the constants present in the code.
+
+I simply built the micro-frontend application and then copied it into the public folder of the main application.
+Finally, I assigned a link that points from the landing page to the micro application.
