@@ -3,3 +3,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-300;
+  }
+
+  p {
+    @apply m-2;
+  }
+
+  input {
+    @apply m-1 p-1 rounded-md;
+  }
+
+  strong {
+    @apply text-red-600;
+  }
+
+  table {
+    @apply table-auto md:table-fixed;
+  }
+
+  caption {
+    @apply caption-top text-sm text-slate-500;
+  }
+
+  th {
+    @apply uppercase text-sm text-slate-700;
+  }
+}
+
+@layer components {
+  .watcher {
+    @apply m-4;
+  }
+
+  .alert-box {
+    @apply text-gray-500 bg-yellow-300 border-yellow-600 rounded-lg p-4;
+  }
+}

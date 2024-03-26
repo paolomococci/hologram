@@ -31,34 +31,6 @@
     </div>
 </template>
 
-<style>
-p {
-    padding: 1rem;
-}
-
-input {
-    margin: 1rem;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-}
-
-.watcher {
-    margin: 1rem;
-}
-
-.alert-box {
-    color: #666;
-    background-color: #ff0;
-    border: 1px solid #a91;
-    border-radius: 0.5rem;
-    padding: 1rem;
-}
-
-strong {
-    color: #e32;
-}
-</style>
-
 <script setup>
 import { computed, ref, watch } from 'vue'
 import { API_TEST } from '../../env'
