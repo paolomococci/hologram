@@ -10,7 +10,7 @@ Below is the screenshot before integrating the Tailwind framework into the micro
 
 And after the aforementioned integration.
 
-![the same micro application after having stylized it](../screenshots/retriever_01.png)
+![the same micro application after having stylized it](../screenshots/retriever_02.png)
 
 The nice thing about a class-centric framework is that with almost the same HTML code I can get very different results.
 
