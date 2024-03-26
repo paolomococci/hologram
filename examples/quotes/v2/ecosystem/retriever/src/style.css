@@ -14,7 +14,7 @@
   }
 
   input {
-    @apply m-1 p-1 rounded-md;
+    @apply m-1 p-1 rounded-md focus:ring-cyan-600 focus:border-cyan-600 focus:bg-cyan-100 focus:shadow-2xl focus:shadow-cyan-900;
   }
 
   strong {
@@ -22,24 +22,44 @@
   }
 
   table {
-    @apply table-auto md:table-fixed;
+    @apply table-auto md:table-fixed mx-12 py-4 px-2 bg-slate-100 shadow-2xl shadow-cyan-900 border-spacing-0 border-separate rounded-3xl;
   }
 
   caption {
     @apply caption-top text-sm text-slate-500;
   }
 
+  thead > tr {
+    @apply bg-slate-200;
+  }
+
+  tbody > tr {
+    @apply bg-slate-50 odd:bg-cyan-50;
+  }
+
   th {
-    @apply uppercase text-sm text-slate-700;
+    @apply uppercase text-sm text-slate-700 mx-4 my-2 px-4 py-2;
+  }
+
+  td {
+    @apply mx-4 my-2 px-4 py-2;
+  }
+
+  em {
+    @apply text-sm uppercase text-slate-800;
   }
 }
 
 @layer components {
   .watcher {
-    @apply m-4;
+    @apply m-4 py-8;
   }
 
   .alert-box {
-    @apply text-gray-500 bg-yellow-300 border-yellow-600 rounded-lg p-4;
+    @apply text-gray-500 bg-cyan-100 border-cyan-600 rounded-lg p-4 mx-8 shadow-md shadow-cyan-900;
+  }
+
+  .card {
+    @apply m-4 p-4 bg-slate-500 rounded-lg shadow-lg shadow-cyan-900;
   }
 }

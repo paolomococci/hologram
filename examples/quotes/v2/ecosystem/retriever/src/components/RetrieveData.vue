@@ -1,33 +1,35 @@
 <template>
-    <div class="watcher">
-        <p>
-            Submit a query filtering data by <em>available</em> field:
-            <input v-model.lazy="query" />
-        </p>
-    </div>
-    <div v-if="!isValidStringFilter" class="alert-box">
-        <strong>{{ alertMessage }}</strong>
-    </div>
-    <div class="watcher">
-        <p>{{ statusMessage }}
-        </p>
-    </div>
-    <div class="watcher">
-        <table>
-            <caption>data retrieved</caption>
-            <thead>
-                <tr>
-                    <th>available</th>
-                    <th>image name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in filteredList" :key="item.id">
-                    <td>{{ item.available }}</td>
-                    <td>{{ item.imageName }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="card">
+        <div class="watcher">
+            <p>
+                Submit a query filtering data by <em>available</em> field:
+                <input v-model.lazy="query" />
+            </p>
+        </div>
+        <div v-if="!isValidStringFilter" class="alert-box">
+            <strong>{{ alertMessage }}</strong>
+        </div>
+        <div class="watcher">
+            <p>{{ statusMessage }}
+            </p>
+        </div>
+        <div class="watcher">
+            <table>
+                <caption>data retrieved</caption>
+                <thead>
+                    <tr>
+                        <th>available</th>
+                        <th>image name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in filteredList" :key="item.id">
+                        <td>{{ item.available }}</td>
+                        <td>{{ item.imageName }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 

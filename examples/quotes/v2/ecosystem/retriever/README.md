@@ -4,7 +4,15 @@ This is an example of a Micro-Frontend application, which together with others, 
 Micro-Frontend Applications instead of a monolithic Single Page Application, to be developed quickly when needed, avoiding the risk of affecting already well-tested functionality.
 And, perhaps, at a later time, once consolidated, it will be possible to bring together the Micro-Frontend applications that had until then been developed separately in a new Single Page Application.
 
-![image for descriptive purposes only](../screenshots/retriever.png)
+Below is the screenshot before integrating the Tailwind framework into the micro-frontend application.
+
+![a first screenshot of the retrieve micro application](../screenshots/retriever.png)
+
+And after the aforementioned integration.
+
+![the same micro application after having stylized it](../screenshots/retriever_01.png)
+
+The nice thing about a class-centric framework is that with almost the same HTML code I can get very different results.
 
 ## scaffolding
 
