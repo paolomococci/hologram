@@ -6,7 +6,7 @@
         </p>
     </div>
     <div v-if="!isValidStringFilter" class="alert-box">
-        <strong v-if="!isValidStringFilter">{{ alertMessage }}</strong>
+        <strong>{{ alertMessage }}</strong>
     </div>
     <div class="watcher">
         <p>{{ statusMessage }}
