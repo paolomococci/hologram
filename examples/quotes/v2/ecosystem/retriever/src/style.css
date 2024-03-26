@@ -26,7 +26,7 @@
   }
 
   caption {
-    @apply caption-top text-sm text-slate-500;
+    @apply caption-top text-sm text-slate-50;
   }
 
   thead > tr {
