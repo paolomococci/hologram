@@ -157,3 +157,7 @@ In another virtual terminal I go back to compiling the style sheet only when I n
 ```sh
 npm run stylize
 ```
+
+## to conclude
+
+I believe that this type of micro-frontend application can implement various functionalities only when a need arises. Such as, filter the data, show it in a graph, collect it in a spreadsheet or simply convert it to another portable format.
