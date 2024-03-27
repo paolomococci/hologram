@@ -2,6 +2,10 @@
 
 Updating web application `quotes` so that it can use version `11` of framework `Laravel`.
 
+![landing page](screenshots/quotes_v2_landing_page.png)
+
+Which is followed by a further graphic revision.
+
 ![landing page](screenshots/quotes_landing_page.png)
 
 ![dashboard page](screenshots/quotes_dashboard_page.png)
@@ -70,7 +74,7 @@ sudo nano /etc/apache2/sites-available/000-default.conf
         ServerName quotes.local
         ServerAlias www.quotes.local
         DocumentRoot /var/www/html/v2/quotes/public
-        Redirect "/" "https://192.168.122.103/"
+        Redirect "/" "https://192.168.1.103/"
 
         <Directory /var/www/html/v2/quotes/public>
                 Options Indexes FollowSymLinks MultiViews
@@ -149,4 +153,20 @@ npm run build
 php artisan migrate:fresh
 php artisan schema:dump
 chown --recursive --verbose developer_username:www-data .
+```
+
+## install a collection of Vue composition utilities
+
+```bash
+npm i @vueuse/core
+```
+
+## add Sample model
+
+```bash
+cd /var/www/html/v2/quotes/
+php artisan make:model --all Sample
+chown --recursive --verbose developer_username:www-data .
+php artisan migrate --pretend --path=./database/migrations/2024_03_26_205553_create_samples_table.php
+php artisan migrate --path=./database/migrations/2024_03_26_205553_create_samples_table.php
 ```

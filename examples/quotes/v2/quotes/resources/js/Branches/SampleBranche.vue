@@ -1,14 +1,14 @@
 <template>
     <div>
         <div class="p-6 bg-white border-b border-gray-200 lg:p-8">
-            <ApplicationIcon class="block w-auto size-12 m-6" />
+            <SampleIcon class="block w-auto m-6 size-12" />
 
             <h1 class="mt-8 text-2xl font-medium text-gray-900">
-                Welcome to the dashboard!
+                Sample of view template!
             </h1>
 
             <p class="mt-6 leading-relaxed text-gray-500">
-                A simple description that introduces the user to the use of the application.
+                A simple description that introduces the user how to use this template tab.
             </p>
         </div>
 
@@ -24,7 +24,7 @@
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500">
-                    Some documentation text of landing web application.
+                    Some documentation text of this template.
                 </p>
 
                 <p class="mt-4 text-sm">
@@ -48,7 +48,7 @@
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500">
-                    Some screenshots for example purposes.
+                    Some screenshots of this template.
                 </p>
 
                 <p class="mt-4 text-sm">
@@ -56,7 +56,6 @@
                         Watching screenshot
 
                         <RightArrowIcon class="size-4" />
-
                     </a>
                 </p>
             </div>
@@ -96,7 +95,7 @@
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500">
-                    Some description of good security practices to follow when using the web application.
+                    Some description of good security practices to follow when using this view template.
                 </p>
 
                 <p class="mt-4 text-sm">
@@ -113,7 +112,7 @@
 </template>
 
 <script setup>
-import ApplicationIcon from '@/Icons/ApplicationIcon.vue'
+import SampleIcon from '@/Icons/SampleIcon.vue'
 import DocumentationIcon from '@/Icons/DocumentationIcon.vue'
 import ScreenshotIcon from '@/Icons/ScreenshotIcon.vue'
 import CommentsIcon from '@/Icons/CommentsIcon.vue'

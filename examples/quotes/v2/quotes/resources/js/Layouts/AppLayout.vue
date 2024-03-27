@@ -1,12 +1,12 @@
 <script setup>
 import { ref } from 'vue';
-import { Head, Link, router } from '@inertiajs/vue3';
-import ApplicationMark from '@/Components/ApplicationMark.vue';
-import Banner from '@/Components/Banner.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import { Head, Link, router } from '@inertiajs/vue3'
+import ApplicationIcon from '@/Icons/ApplicationIcon.vue'
+import Banner from '@/Components/Banner.vue'
+import Dropdown from '@/Components/Dropdown.vue'
+import DropdownLink from '@/Components/DropdownLink.vue'
+import NavLink from '@/Components/NavLink.vue'
+import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
 
 defineProps({
     title: String,
@@ -43,7 +43,7 @@ const logout = () => {
                             <!-- Logo -->
                             <div class="flex items-center shrink-0">
                                 <Link :href="route('dashboard')">
-                                <ApplicationMark class="block w-auto h-9" />
+                                    <ApplicationIcon class="block w-auto size-14 m-6" />
                                 </Link>
                             </div>
 
@@ -51,6 +51,9 @@ const logout = () => {
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
+                                </NavLink>
+                                <NavLink :href="route('sample')" :active="route().current('sample')">
+                                    Sample
                                 </NavLink>
                             </div>
                         </div>
@@ -208,6 +211,9 @@ const logout = () => {
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('sample')" :active="route().current('sample')">
+                            Sample
                         </ResponsiveNavLink>
                     </div>
 
