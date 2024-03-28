@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSampleRequest;
 use App\Http\Requests\UpdateSampleRequest;
 use App\Models\Sample;
+use Inertia\Inertia;
 
 class SampleController extends Controller
 {
@@ -13,7 +14,11 @@ class SampleController extends Controller
      */
     public function index()
     {
-        //
+        $samples = Sample::all();
+        // dd($samples);
+        return Inertia::render('Samples/Index', [
+            'samples' => $samples,
+        ]);
     }
 
     /**

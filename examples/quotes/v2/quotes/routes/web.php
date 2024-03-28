@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SampleController;
+use App\Models\Sample;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,10 +20,16 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    // Dashboard tab
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    // Sample tab
     Route::get('/sample', function () {
-        return Inertia::render('Tabs/SampleTab');
+        $samples = Sample::all();
+        // dd($samples);
+        return Inertia::render('Tabs/SampleTab', ['samples' => $samples]);
     })->name('sample');
+    // Sample items thanks to the controller
+    Route::get('/sample-index', [SampleController::class, 'index'])->name('sample-index');
 });

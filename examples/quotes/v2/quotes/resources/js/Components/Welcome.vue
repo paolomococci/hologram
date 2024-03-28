@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="p-6 bg-white border-b border-gray-200 lg:p-8">
-            <ApplicationIcon class="block w-auto size-12 m-6" />
+            <ApplicationIcon class="block w-auto m-6 size-12" />
 
             <h1 class="mt-8 text-2xl font-medium text-gray-900">
                 Welcome to the dashboard!

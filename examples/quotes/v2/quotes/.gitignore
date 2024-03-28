@@ -25,3 +25,4 @@ composer.lock
 package-lock.json
 mysql-schema.sql
 database.sqlite
+env.js
