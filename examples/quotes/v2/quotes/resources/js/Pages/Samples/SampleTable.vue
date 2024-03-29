@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="odd:bg-purple-100 even:bg-purple-50" v-for="sample in samples" :key="sample.id">
+                <tr class="odd:bg-purple-100 even:bg-purple-50" v-for="sample in samples.data" :key="sample.id">
                 <td class="text-sm font-light text-slate-500" v-text="sample.title"></td>
                 <td class="text-sm font-light text-slate-500" v-text="sample.subject"></td>
                 <td v-if="thereIsSummary" class="text-sm font-light text-slate-500" v-text="sample?.summary"></td>
@@ -18,22 +18,20 @@
             </tbody>
         </table>
     </div>
+    <Pagination :links="props?.samples.links" />
 </template>
 
 <script setup>
 import { onBeforeMount, ref } from "vue"
+import Pagination from '@/Components/Pagination.vue'
 
 const thereIsSummary = ref(false)
-const props = defineProps(['caption', 'samples'])
+
+const props = defineProps({ samples: Object, caption: String })
 
 onBeforeMount(() => {
-    props.samples.forEach(element => {
+    props.samples.data.forEach(element => {
         thereIsSummary.value = (element.summary != undefined || element.summary != null)
     })
-console.log('there is a summary: ' + thereIsSummary.value)
 })
-
-console.log('caption: ' + props?.caption)
-console.log('samples: ' + props?.samples.length)
-console.log(props?.samples)
 </script>

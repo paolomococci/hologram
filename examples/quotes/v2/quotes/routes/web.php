@@ -26,7 +26,7 @@ Route::middleware([
     })->name('dashboard');
     // Sample tab
     Route::get('/sample', function () {
-        $samples = Sample::all()->map(fn ($sample) => [
+        $samples = Sample::paginate(5)->through(fn ($sample) => [
             'title' => $sample->title,
             'subject' => $sample->subject,
         ]);

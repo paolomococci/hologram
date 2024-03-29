@@ -119,6 +119,7 @@ import RightArrowIcon from '@/Icons/RightArrowIcon.vue'
 import SampleTable from '@/Pages/Samples/SampleTable.vue'
 import { BASE } from '@/env.js'
 
-const props = defineProps(['samples'])
+defineProps({ samples: Object })
+// const props = defineProps(['samples'])
 const sampleIndexUrl = BASE + 'sample-index'
 </script>

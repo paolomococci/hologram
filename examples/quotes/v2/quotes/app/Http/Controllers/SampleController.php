@@ -14,7 +14,7 @@ class SampleController extends Controller
      */
     public function index()
     {
-        $samples = Sample::all()->map(fn ($sample) => [
+        $samples = Sample::paginate(10)->through(fn ($sample) => [
             'title' => $sample->title,
             'subject' => $sample->subject,
             'summary' => $sample->summary,
