@@ -14,8 +14,11 @@ class SampleController extends Controller
      */
     public function index()
     {
-        $samples = Sample::all();
-        // dd($samples);
+        $samples = Sample::all()->map(fn ($sample) => [
+            'title' => $sample->title,
+            'subject' => $sample->subject,
+            'summary' => $sample->summary,
+        ]);
         return Inertia::render('Samples/Index', [
             'samples' => $samples,
         ]);

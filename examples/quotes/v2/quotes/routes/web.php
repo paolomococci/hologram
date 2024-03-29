@@ -26,7 +26,10 @@ Route::middleware([
     })->name('dashboard');
     // Sample tab
     Route::get('/sample', function () {
-        $samples = Sample::all();
+        $samples = Sample::all()->map(fn ($sample) => [
+            'title' => $sample->title,
+            'subject' => $sample->subject,
+        ]);
         // dd($samples);
         return Inertia::render('Tabs/SampleTab', ['samples' => $samples]);
     })->name('sample');
