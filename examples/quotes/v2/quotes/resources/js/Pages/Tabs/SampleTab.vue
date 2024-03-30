@@ -22,5 +22,4 @@ import AppLayout from '@/Layouts/AppLayout.vue'
 import SampleBranche from '@/Branches/SampleBranche.vue'
 
 defineProps({ samples: Object })
-// const props = defineProps(['samples'])
 </script>

@@ -30,9 +30,9 @@ Route::middleware([
             'title' => $sample->title,
             'subject' => $sample->subject,
         ]);
-        // dd($samples);
         return Inertia::render('Tabs/SampleTab', ['samples' => $samples]);
     })->name('sample');
     // Sample items thanks to the controller
     Route::get('/sample-index', [SampleController::class, 'index'])->name('sample-index');
+    Route::get('/sample-filter', [SampleController::class, 'filter'])->name('sample-filter');
 });

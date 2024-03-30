@@ -9,7 +9,7 @@
             :class="{
                 'text-slate-500': !link.url,
                 'text-purple-300': link.url,
-                'font-bold': link.active,
+                'font-extrabold text-purple-400': link.active,
             }"
         >
         </a>
@@ -17,5 +17,5 @@
 </template>
 
 <script setup>
-defineProps({ links: Array });
+defineProps({ links: Array })
 </script>

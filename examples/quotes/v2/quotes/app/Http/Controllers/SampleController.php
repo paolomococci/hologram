@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSampleRequest;
 use App\Http\Requests\UpdateSampleRequest;
 use App\Models\Sample;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class SampleController extends Controller
@@ -22,6 +23,20 @@ class SampleController extends Controller
         return Inertia::render('Samples/Index', [
             'samples' => $samples,
         ]);
+    }
+
+    /**
+     * Display a filtered list of the resource.
+     */
+    public function filter(Request $request): String
+    {
+        $samples = Sample::all()->map(fn ($sample) => [
+            'title' => $sample->title,
+            'subject' => $sample->subject,
+            'summary' => $sample->summary,
+            'content' => $sample->content,
+        ]);
+        return json_encode($samples);
     }
 
     /**

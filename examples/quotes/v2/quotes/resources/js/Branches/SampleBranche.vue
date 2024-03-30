@@ -85,25 +85,14 @@
             <div>
                 <div class="flex items-center">
 
-                    <DutyAttentionIcon class="size-6" />
+                    <FilterElementIcon class="size-6" />
 
                     <h2 class="text-xl font-semibold text-gray-900 ms-3">
-                        Deprecate
+                        Filter
                     </h2>
                 </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-gray-500">
-                    Some description to deprecate a sample item.
-                </p>
-
-                <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700">
-                        Deprecate obsolete sample
-
-                        <RightArrowIcon class="size-4" />
-
-                    </a>
-                </p>
+                <SampleFiltered />
             </div>
         </div>
     </div>
@@ -114,12 +103,12 @@ import WithCautionIcon from '@/Icons/WithCautionIcon.vue'
 import AddElementIcon from '@/Icons/AddElementIcon.vue'
 import FetchDataIcon from '@/Icons/FetchDataIcon.vue'
 import EditElementIcon from '@/Icons/EditElementIcon.vue'
-import DutyAttentionIcon from '@/Icons/DutyAttentionIcon.vue'
+import FilterElementIcon from '@/Icons/FilterElementIcon.vue'
 import RightArrowIcon from '@/Icons/RightArrowIcon.vue'
 import SampleTable from '@/Pages/Samples/SampleTable.vue'
+import SampleFiltered from '@/Pages/Samples/SampleFiltered.vue'
 import { BASE } from '@/env.js'
 
 defineProps({ samples: Object })
-// const props = defineProps(['samples'])
 const sampleIndexUrl = BASE + 'sample-index'
 </script>
