@@ -70,6 +70,7 @@ const props = defineProps({
     caption: String,
 })
 
+/** checks for the presence of the summary field */
 onBeforeMount(() => {
     props.samples.data.forEach((element) => {
         thereIsSummary.value =

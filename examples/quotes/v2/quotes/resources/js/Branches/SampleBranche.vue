@@ -8,14 +8,16 @@
             </h1>
 
             <p class="mt-6 leading-relaxed text-gray-500">
-                A simple description that introduces the user how to use this template tab.
+                A simple description that introduces the user how to use this
+                template tab.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 gap-6 p-6 bg-gray-200 bg-opacity-25 md:grid-cols-2 lg:gap-8 lg:p-8">
+        <div
+            class="grid grid-cols-1 gap-6 p-6 bg-gray-200 bg-opacity-25 md:grid-cols-2 lg:gap-8 lg:p-8"
+        >
             <div>
                 <div class="flex items-center">
-
                     <AddElementIcon class="size-6" />
 
                     <h2 class="text-xl font-semibold text-gray-900 ms-3">
@@ -28,18 +30,19 @@
                 </p>
 
                 <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700">
+                    <a
+                        href="#"
+                        class="inline-flex items-center font-semibold text-indigo-700"
+                    >
                         Add new sample in full screen mode
 
                         <RightArrowIcon class="size-4" />
-
                     </a>
                 </p>
             </div>
 
             <div>
                 <div class="flex items-center">
-
                     <FetchDataIcon class="size-6" />
 
                     <h2 class="text-xl font-semibold text-gray-900 ms-3">
@@ -47,10 +50,17 @@
                     </h2>
                 </div>
 
-                <SampleTable caption="fetched sample data from RDBMS" :samples="samples" />
+                <SampleTable
+                    caption="fetched sample data from RDBMS"
+                    :samples="samples"
+                />
 
                 <p class="mt-4 text-sm">
-                    <a :href="sampleIndexUrl" target="_blank" class="inline-flex items-center font-semibold text-indigo-700">
+                    <a
+                        :href="sampleIndexUrl"
+                        target="_blank"
+                        class="inline-flex items-center font-semibold text-indigo-700"
+                    >
                         Fetch sample data table in full screen mode
 
                         <RightArrowIcon class="size-4" />
@@ -60,7 +70,6 @@
 
             <div>
                 <div class="flex items-center">
-
                     <EditElementIcon class="size-6" />
 
                     <h2 class="text-xl font-semibold text-gray-900 ms-3">
@@ -73,18 +82,19 @@
                 </p>
 
                 <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700">
+                    <a
+                        href="#"
+                        class="inline-flex items-center font-semibold text-indigo-700"
+                    >
                         Edit selected sample in full screen mode
 
                         <RightArrowIcon class="size-4" />
-
                     </a>
                 </p>
             </div>
 
             <div>
                 <div class="flex items-center">
-
                     <FilterElementIcon class="size-6" />
 
                     <h2 class="text-xl font-semibold text-gray-900 ms-3">
@@ -92,23 +102,23 @@
                     </h2>
                 </div>
 
-                <SampleFiltered />
+                <SampleCarousel />
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import WithCautionIcon from '@/Icons/WithCautionIcon.vue'
-import AddElementIcon from '@/Icons/AddElementIcon.vue'
-import FetchDataIcon from '@/Icons/FetchDataIcon.vue'
-import EditElementIcon from '@/Icons/EditElementIcon.vue'
-import FilterElementIcon from '@/Icons/FilterElementIcon.vue'
-import RightArrowIcon from '@/Icons/RightArrowIcon.vue'
-import SampleTable from '@/Pages/Samples/SampleTable.vue'
-import SampleFiltered from '@/Pages/Samples/SampleFiltered.vue'
-import { BASE } from '@/env.js'
+import WithCautionIcon from "@/Icons/WithCautionIcon.vue"
+import AddElementIcon from "@/Icons/AddElementIcon.vue"
+import FetchDataIcon from "@/Icons/FetchDataIcon.vue"
+import EditElementIcon from "@/Icons/EditElementIcon.vue"
+import FilterElementIcon from "@/Icons/FilterElementIcon.vue"
+import RightArrowIcon from "@/Icons/RightArrowIcon.vue"
+import SampleTable from "@/Pages/Samples/SampleTable.vue"
+import SampleCarousel from "@/Pages/Samples/SampleCarousel.vue"
+import { BASE } from "@/env.js"
 
 defineProps({ samples: Object })
-const sampleIndexUrl = BASE + 'sample-index'
+const sampleIndexUrl = BASE + "sample-index"
 </script>

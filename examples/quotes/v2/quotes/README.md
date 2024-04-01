@@ -10,6 +10,12 @@ Which is followed by a further graphic revision.
 
 ![dashboard page](screenshots/quotes_dashboard_page.png)
 
+![sample tab](screenshots/sample_tab.png)
+
+Note that in the second case, the `Filter` view, I developed the pagination only on the client side.
+
+In the first case, `Read All`, each pagination requires a GET request to the server. And, in this case, I let the filter field get cleaned up.
+
 ## how to
 
 ### `quotes`
