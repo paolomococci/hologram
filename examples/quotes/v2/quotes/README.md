@@ -10,7 +10,7 @@ Which is followed by a further graphic revision.
 
 ![dashboard page](screenshots/quotes_dashboard_page.png)
 
-![sample tab](screenshots/sample_tab.png)
+![sample tab](screenshots/sample_tab_with_forms.png)
 
 Note that in the second case, the `Filter` view, I developed the pagination only on the client side.
 

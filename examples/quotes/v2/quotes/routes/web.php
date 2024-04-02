@@ -24,9 +24,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
     // Sample tab
     Route::get('/sample', function () {
         $samples = Sample::paginate(5)->through(fn ($sample) => [
+            'id' => $sample->id,
             'title' => $sample->title,
             'subject' => $sample->subject,
         ]);
@@ -35,4 +37,6 @@ Route::middleware([
     // Sample items thanks to the controller
     Route::get('/sample-index', [SampleController::class, 'index'])->name('sample-index');
     Route::get('/sample-filter', [SampleController::class, 'filter'])->name('sample-filter');
+    Route::post('/sample-create', [SampleController::class, 'create'])->name('sample-create');
+    Route::post('/sample-edit', [SampleController::class, 'edit'])->name('sample-edit');
 });

@@ -25,20 +25,8 @@
                     </h2>
                 </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-gray-500">
-                    How to insert data of new sample element.
-                </p>
+                <SampleCreate />
 
-                <p class="mt-4 text-sm">
-                    <a
-                        href="#"
-                        class="inline-flex items-center font-semibold text-indigo-700"
-                    >
-                        Add new sample in full screen mode
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
             </div>
 
             <div>
@@ -77,20 +65,8 @@
                     </h2>
                 </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-gray-500">
-                    Edit selected sample.
-                </p>
+                <SampleEdit />
 
-                <p class="mt-4 text-sm">
-                    <a
-                        href="#"
-                        class="inline-flex items-center font-semibold text-indigo-700"
-                    >
-                        Edit selected sample in full screen mode
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
             </div>
 
             <div>
@@ -115,6 +91,8 @@ import FetchDataIcon from "@/Icons/FetchDataIcon.vue"
 import EditElementIcon from "@/Icons/EditElementIcon.vue"
 import FilterElementIcon from "@/Icons/FilterElementIcon.vue"
 import RightArrowIcon from "@/Icons/RightArrowIcon.vue"
+import SampleCreate from "@/Pages/Samples/SampleCreate.vue"
+import SampleEdit from "@/Pages/Samples/SampleEdit.vue"
 import SampleTable from "@/Pages/Samples/SampleTable.vue"
 import SampleCarousel from "@/Pages/Samples/SampleCarousel.vue"
 import { BASE } from "@/env.js"

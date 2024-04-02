@@ -16,6 +16,7 @@ class SampleController extends Controller
     public function index()
     {
         $samples = Sample::paginate(10)->through(fn ($sample) => [
+            'id' => $sample->id,
             'title' => $sample->title,
             'subject' => $sample->subject,
             'summary' => $sample->summary,
@@ -31,6 +32,7 @@ class SampleController extends Controller
     public function filter(Request $request): String
     {
         $samples = Sample::all()->map(fn ($sample) => [
+            'id' => $sample->id,
             'title' => $sample->title,
             'subject' => $sample->subject,
             'summary' => $sample->summary,
@@ -42,9 +44,18 @@ class SampleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(StoreSampleRequest $request)
     {
-        //
+        // dd('create: ', $request);
+        Sample::create(
+            $request->validate([
+                'title' => ['required', 'max:255'],
+                'subject' => ['required', 'max:255'],
+                'summary' => ['max:255'],
+                'content' => ['required', 'max:255'],
+            ])
+        );
+        return to_route('sample');
     }
 
     /**
@@ -66,9 +77,23 @@ class SampleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Sample $sample)
+    public function edit(UpdateSampleRequest $request)
     {
-        //
+        // TODO:
+        $sample = Sample::find(13);
+        $validate = $request->validate([
+            'title' => ['required', 'max:255'],
+            'subject' => ['required', 'max:255'],
+            'summary' => ['max:255'],
+            'content' => ['required', 'max:255'],
+        ]);
+        $sample->title = $validate['title'];
+        $sample->subject = $validate['subject'];
+        $sample->summary = $validate['summary'];
+        $sample->content = $validate['content'];
+        // dd('edit: ', $sample);
+        $sample->save();
+        return to_route('sample');
     }
 
     /**

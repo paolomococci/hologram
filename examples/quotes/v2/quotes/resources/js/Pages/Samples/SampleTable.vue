@@ -13,6 +13,12 @@
                     <tr>
                         <th
                             scope="col"
+                            class="pl-2 text-sm text-left font-extralight text-slate-400"
+                        >
+                            #
+                        </th>
+                        <th
+                            scope="col"
                             class="text-sm text-left font-extralight text-slate-600"
                         >
                             title
@@ -38,6 +44,10 @@
                         v-for="sample in samples.data"
                         :key="sample.id"
                     >
+                        <td
+                            class="pl-2 text-sm font-light text-slate-300"
+                            v-text="sample.id"
+                        ></td>
                         <td
                             class="text-sm font-light text-slate-500"
                             v-text="sample.title"

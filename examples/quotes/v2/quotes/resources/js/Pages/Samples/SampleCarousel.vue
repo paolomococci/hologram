@@ -3,7 +3,7 @@
         <div class="relative w-16 h-16">
             <input
                 v-model.lazy="filtered"
-                class="absolute top-0 m-2 text-xs border border-purple-300 rounded-md focus:border-2 focus:border-purple-500 left-4 text-slate-500"
+                class="absolute top-0 m-2 text-xs border border-purple-300 rounded-md caret-purple-700 focus:border-2 focus:border-purple-500 left-4 text-slate-500"
                 type="text"
                 name="sampleFilter"
                 id="sampleFilter"
@@ -17,6 +17,12 @@
                 ></caption>
                 <thead class="border-b bg-slate-50">
                     <tr>
+                        <th
+                            scope="col"
+                            class="pl-2 text-sm text-left font-extralight text-slate-400"
+                        >
+                            #
+                        </th>
                         <th
                             scope="col"
                             class="text-sm text-left font-extralight text-slate-600"
@@ -45,6 +51,10 @@
                         :key="sample.id"
                     >
                         <td
+                            class="pl-2 text-sm font-light text-slate-300"
+                            v-text="sample.id"
+                        ></td>
+                        <td
                             class="text-sm font-light text-slate-500"
                             v-text="sample.title"
                         ></td>
@@ -65,14 +75,16 @@
         <div v-if="togglePaginator">
             <button
                 @click="left()"
-                class="bg-slate-200 mx-1 my-4 p-2 text-sm rounded-l-xl"
+                class="p-2 mx-1 my-4 text-sm bg-slate-200 rounded-l-xl"
             >
                 <MoveLeftIcon class="size-4" />
             </button>
-            <span class="text-sm text-slate-500">{{ pointer + 1 }} / {{ numberOfPages }}</span>
+            <span class="text-sm text-slate-500"
+                >{{ pointer + 1 }} / {{ numberOfPages }}</span
+            >
             <button
                 @click="right()"
-                class="bg-slate-200 mx-1 my-4 p-2 text-sm rounded-r-xl"
+                class="p-2 mx-1 my-4 text-sm bg-slate-200 rounded-r-xl"
             >
                 <MoveRightIcon class="size-4" />
             </button>
@@ -81,41 +93,41 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-import axios from "axios";
-import MoveLeftIcon from "@/Icons/MoveLeftIcon.vue";
-import MoveRightIcon from "@/Icons/MoveRightIcon.vue";
+import { ref, watch } from "vue"
+import axios from "axios"
+import MoveLeftIcon from "@/Icons/MoveLeftIcon.vue"
+import MoveRightIcon from "@/Icons/MoveRightIcon.vue"
 
-const filtered = ref("");
-const statusMessage = ref("");
+const filtered = ref("")
+const statusMessage = ref("")
 
-const samples = ref();
-const tuples = ref(null);
-const pointer = ref(0);
-const togglePaginator = ref(false);
-const numberOfPages = ref(0);
+const samples = ref()
+const tuples = ref(null)
+const pointer = ref(0)
+const togglePaginator = ref(false)
+const numberOfPages = ref(0)
 
 /** filters the items to show based on what you type in the input element */
 watch(filtered, async (query) => {
     try {
-        const res = await axios.get("/sample-filter");
-        const pages = [];
-        paginate(sieve(query, res.data), pages, 5);
-        tuples.value = pages;
-        console.log(tuples.value[0]);
-        samples.value = tuples.value[0];
-        togglePaginator.value = tuples.value.length > 1;
-        numberOfPages.value = tuples.value.length;
+        const res = await axios.get("/sample-filter")
+        const pages = []
+        paginate(sieve(query, res.data), pages, 5)
+        tuples.value = pages
+        console.log(tuples.value[0])
+        samples.value = tuples.value[0]
+        togglePaginator.value = tuples.value.length > 1
+        numberOfPages.value = tuples.value.length
     } catch (error) {
-        statusMessage.value = "An error has occurred: " + error;
+        statusMessage.value = "An error has occurred: " + error
     }
 });
 
 /** filter items based on title, subject and summary fields */
 function sieve(query, items) {
-    let filtered = new Array();
+    let filtered = new Array()
     if (query === "") {
-        return filtered;
+        return filtered
     }
     items.forEach((item) => {
         if (
@@ -123,26 +135,26 @@ function sieve(query, items) {
             item.subject.toLowerCase().includes(query.toLowerCase()) ||
             item.summary.toLowerCase().includes(query.toLowerCase())
         ) {
-            filtered.push(item);
+            filtered.push(item)
         }
-    });
-    return filtered;
+    })
+    return filtered
 }
 
 /** returns a subgroup of the passed array based on the group index and size */
 function subPaginate(items, index, size) {
-    let end = Math.min((index + 1) * size, items.length);
+    let end = Math.min((index + 1) * size, items.length)
     if (end % size != 0) {
-        return items.slice(index * size, end);
+        return items.slice(index * size, end)
     }
-    return items.slice(Math.max(end - size, 0), end);
+    return items.slice(Math.max(end - size, 0), end)
 }
 
 /** paging the items array into the pages array */
 function paginate(items, pages, size) {
-    let numberOfPages = Math.ceil(items.length / size);
+    let numberOfPages = Math.ceil(items.length / size)
     for (let i = 0; i < numberOfPages; i++) {
-        pages.push(subPaginate(items, i, size));
+        pages.push(subPaginate(items, i, size))
     }
 }
 
@@ -151,24 +163,24 @@ function left() {
     --pointer.value;
     if (tuples.value != null) {
         if (pointer.value < 0) {
-            pointer.value = tuples.value.length + pointer.value;
+            pointer.value = tuples.value.length + pointer.value
         }
-        console.log(pointer.value);
-        console.log(tuples.value[pointer.value]);
-        samples.value = tuples.value[pointer.value];
+        console.log(pointer.value)
+        console.log(tuples.value[pointer.value])
+        samples.value = tuples.value[pointer.value]
     }
 }
 
 /** forward client side pagination */
 function right() {
-    ++pointer.value;
+    ++pointer.value
     if (tuples.value != null) {
         if (pointer.value == tuples.value.length) {
-            pointer.value = 0;
+            pointer.value = 0
         }
-        console.log(pointer.value);
-        console.log(tuples.value[pointer.value]);
-        samples.value = tuples.value[pointer.value];
+        console.log(pointer.value)
+        console.log(tuples.value[pointer.value])
+        samples.value = tuples.value[pointer.value]
     }
 }
 </script>
