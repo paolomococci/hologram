@@ -38,22 +38,13 @@
                     </h2>
                 </div>
 
+                <!-- intercepts and transmits the identifier of the object over which the mouse is hovered -->
                 <SampleTable
                     caption="fetched sample data from RDBMS"
                     :samples="samples"
+                    @grabItemIdentifierFromTable="(id) => retransmitItemIdentifier(id)"
                 />
 
-                <p class="mt-4 text-sm">
-                    <a
-                        :href="sampleIndexUrl"
-                        target="_blank"
-                        class="inline-flex items-center font-semibold text-indigo-700"
-                    >
-                        Fetch sample data table in full screen mode
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
             </div>
 
             <div>
@@ -65,7 +56,13 @@
                     </h2>
                 </div>
 
-                <SampleEdit />
+                <div v-if="editorOneIsVisible">
+                    <SampleEdit :itemId="itemId" />
+                </div>
+
+                <div v-if="editorTwoIsVisible">
+                    <SampleEdit :itemId="itemId" />
+                </div>
 
             </div>
 
@@ -78,25 +75,41 @@
                     </h2>
                 </div>
 
-                <SampleCarousel />
+                <!-- intercepts and transmits the identifier of the object over which the mouse is hovered -->
+                <SampleCarousel @grabItemIdentifierFromCarousel="(id) => retransmitItemIdentifier(id)" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
+import { BASE } from "@/env.js"
+import { ref } from "vue"
+
 import WithCautionIcon from "@/Icons/WithCautionIcon.vue"
 import AddElementIcon from "@/Icons/AddElementIcon.vue"
 import FetchDataIcon from "@/Icons/FetchDataIcon.vue"
 import EditElementIcon from "@/Icons/EditElementIcon.vue"
 import FilterElementIcon from "@/Icons/FilterElementIcon.vue"
-import RightArrowIcon from "@/Icons/RightArrowIcon.vue"
 import SampleCreate from "@/Pages/Samples/SampleCreate.vue"
 import SampleEdit from "@/Pages/Samples/SampleEdit.vue"
 import SampleTable from "@/Pages/Samples/SampleTable.vue"
 import SampleCarousel from "@/Pages/Samples/SampleCarousel.vue"
-import { BASE } from "@/env.js"
 
 defineProps({ samples: Object })
 const sampleIndexUrl = BASE + "sample-index"
+
+const itemId = ref(0)
+const editorOneIsVisible = ref(true)
+const editorTwoIsVisible = ref(false)
+
+function retransmitItemIdentifier(id) {
+    itemId.value = id
+    toggleEditor()
+}
+
+function toggleEditor() {
+    editorOneIsVisible.value = !editorOneIsVisible.value
+    editorTwoIsVisible.value = !editorTwoIsVisible.value
+}
 </script>

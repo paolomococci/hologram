@@ -66,5 +66,9 @@ const create = reactive({
 
 function submit() {
     router.post("/sample-create", create)
+    create.title = ''
+    create.subject = ''
+    create.summary = ''
+    create.content = ''
 }
 </script>

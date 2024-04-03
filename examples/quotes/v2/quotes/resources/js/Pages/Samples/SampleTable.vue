@@ -44,9 +44,11 @@
                         v-for="sample in samples.data"
                         :key="sample.id"
                     >
+                        <!-- emits the identifier of the object being moused over -->
                         <td
-                            class="pl-2 text-sm font-light text-slate-300"
+                            class="pl-2 text-sm font-light cursor-grabbing text-slate-300"
                             v-text="sample.id"
+                            @mouseover="$emit('grabItemIdentifierFromTable', sample.id)"
                         ></td>
                         <td
                             class="text-sm font-light text-slate-500"
@@ -87,4 +89,9 @@ onBeforeMount(() => {
             element.summary != undefined || element.summary != null
     })
 })
+
+/** grab id of element */
+function currentIdentifier(id) {
+    console.log(id)
+}
 </script>

@@ -27,7 +27,7 @@ Route::middleware([
 
     // Sample tab
     Route::get('/sample', function () {
-        $samples = Sample::paginate(5)->through(fn ($sample) => [
+        $samples = Sample::paginate(10)->through(fn ($sample) => [
             'id' => $sample->id,
             'title' => $sample->title,
             'subject' => $sample->subject,
@@ -37,6 +37,7 @@ Route::middleware([
     // Sample items thanks to the controller
     Route::get('/sample-index', [SampleController::class, 'index'])->name('sample-index');
     Route::get('/sample-filter', [SampleController::class, 'filter'])->name('sample-filter');
+    Route::get('/sample-read/{id}', [SampleController::class, 'read'])->name('sample-read');
     Route::post('/sample-create', [SampleController::class, 'create'])->name('sample-create');
     Route::post('/sample-edit', [SampleController::class, 'edit'])->name('sample-edit');
 });

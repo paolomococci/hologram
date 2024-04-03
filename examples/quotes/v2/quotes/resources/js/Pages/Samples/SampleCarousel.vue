@@ -50,9 +50,11 @@
                         v-for="sample in samples"
                         :key="sample.id"
                     >
+                        <!-- emits the identifier of the object being moused over -->
                         <td
-                            class="pl-2 text-sm font-light text-slate-300"
+                            class="pl-2 text-sm font-light cursor-grabbing text-slate-300"
                             v-text="sample.id"
+                            @mouseover="$emit('grabItemIdentifierFromCarousel', sample.id)"
                         ></td>
                         <td
                             class="text-sm font-light text-slate-500"
@@ -75,7 +77,7 @@
         <div v-if="togglePaginator">
             <button
                 @click="left()"
-                class="p-2 mx-1 my-4 text-sm bg-slate-200 rounded-l-xl"
+                class="p-2 mx-1 my-4 text-sm bg-slate-200 hover:shadow-md active:shadow-sm rounded-l-xl"
             >
                 <MoveLeftIcon class="size-4" />
             </button>
@@ -84,7 +86,7 @@
             >
             <button
                 @click="right()"
-                class="p-2 mx-1 my-4 text-sm bg-slate-200 rounded-r-xl"
+                class="p-2 mx-1 my-4 text-sm bg-slate-200 hover:shadow-md active:shadow-sm rounded-r-xl"
             >
                 <MoveRightIcon class="size-4" />
             </button>
@@ -112,7 +114,7 @@ watch(filtered, async (query) => {
     try {
         const res = await axios.get("/sample-filter")
         const pages = []
-        paginate(sieve(query, res.data), pages, 5)
+        paginate(sieve(query, res.data), pages, 10)
         tuples.value = pages
         console.log(tuples.value[0])
         samples.value = tuples.value[0]
@@ -150,7 +152,7 @@ function subPaginate(items, index, size) {
     return items.slice(Math.max(end - size, 0), end)
 }
 
-/** paging the items array into the pages array */
+/** paging the items array into the pages array, the size parameter determines the number of items on the page */
 function paginate(items, pages, size) {
     let numberOfPages = Math.ceil(items.length / size)
     for (let i = 0; i < numberOfPages; i++) {

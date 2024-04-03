@@ -4,6 +4,18 @@
             <div>
                 <input
                     class="m-2 text-xs border border-purple-300 rounded-md caret-purple-700 focus:border-2 focus:border-purple-500 left-4 text-slate-500"
+                    v-model.lazy="edit.id"
+                    size="30"
+                    type="text"
+                    name="id"
+                    id="id"
+                    placeholder="#"
+                    readonly
+                />
+            </div>
+            <div>
+                <input
+                    class="m-2 text-xs border border-purple-300 rounded-md caret-purple-700 focus:border-2 focus:border-purple-500 left-4 text-slate-500"
                     v-model.lazy="edit.title"
                     size="30"
                     type="text"
@@ -54,10 +66,20 @@
 </template>
 
 <script setup>
-import { reactive } from "vue"
+import { reactive, onBeforeMount } from "vue"
 import { router } from "@inertiajs/vue3"
+import axios from "axios"
+
+const props = defineProps({
+    itemId: String,
+})
+
+onBeforeMount(() => {
+    fetchDataItem(props?.itemId)
+})
 
 const edit = reactive({
+    id: null,
     title: null,
     subject: null,
     summary: null,
@@ -66,5 +88,28 @@ const edit = reactive({
 
 function submit() {
     router.post("/sample-edit", edit)
+    edit.id = '#'
+    edit.title = ''
+    edit.subject = ''
+    edit.summary = ''
+    edit.content = ''
+}
+
+async function fetchDataItem(id) {
+    if (id > 0) {
+        try {
+            const res = await axios.get("/sample-read/" + id)
+            if (res.status) {
+                console.log(res.data)
+                edit.id = res.data.id
+                edit.title = res.data.title
+                edit.subject = res.data.subject
+                edit.summary = res.data?.summary
+                edit.content = res.data.content
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 </script>

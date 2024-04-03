@@ -8,6 +8,8 @@ use App\Models\Sample;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
+use function PHPUnit\Framework\isNull;
+
 class SampleController extends Controller
 {
     /**
@@ -39,6 +41,19 @@ class SampleController extends Controller
             'content' => $sample->content,
         ]);
         return json_encode($samples);
+    }
+
+    /**
+     * Display the identified resource.
+     */
+    public function read(int $id)
+    {
+        try {
+            $sample = Sample::find($id);
+            return json_encode($sample);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
     }
 
     /**
@@ -79,19 +94,17 @@ class SampleController extends Controller
      */
     public function edit(UpdateSampleRequest $request)
     {
-        // TODO:
-        $sample = Sample::find(13);
+        $sample = Sample::find($request['id']);
         $validate = $request->validate([
             'title' => ['required', 'max:255'],
             'subject' => ['required', 'max:255'],
             'summary' => ['max:255'],
             'content' => ['required', 'max:255'],
         ]);
-        $sample->title = $validate['title'];
-        $sample->subject = $validate['subject'];
-        $sample->summary = $validate['summary'];
-        $sample->content = $validate['content'];
-        // dd('edit: ', $sample);
+            $sample->title = $validate['title'];
+            $sample->subject = $validate['subject'];
+            $sample->summary = $validate['summary'];
+            $sample->content = $validate['content'];
         $sample->save();
         return to_route('sample');
     }
