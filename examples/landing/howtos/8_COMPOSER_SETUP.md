@@ -19,3 +19,18 @@ When there are updates, you can use the following program to update the dependen
 ```bash
 sudo composer self-update
 ```
+
+## commands that may prove useful
+
+To diagnose any problems:
+
+```bash
+composer --help diagnose
+composer diagnose
+```
+
+To update `composer`:
+
+```bash
+sudo composer self-update
+```
