@@ -1,5 +1,11 @@
 # Xdebug setup
 
+Side note, if you don't want to continuously repeat the `sudo` command and like me in this case you need to issue numerous commands from root, the following command might be useful:
+
+```bash
+sudo -s
+```
+
 First, however, it is necessary to make PHP also usable from the command line.
 
 ## make PHP accessible globally not just from Apache
@@ -7,23 +13,26 @@ First, however, it is necessary to make PHP also usable from the command line.
 Quick warning, if the following links are already there, you will need to remove them first. To then recreate new ones that point to the newly installed versions.
 
 ```bash
-sudo ln --symbolic --verbose /opt/php/8.3.6/bin/php /usr/bin/php
-sudo ln --symbolic --verbose /opt/php/8.3.6/bin/phar.phar /usr/bin/phar
-sudo ln --symbolic --verbose /opt/php/8.3.6/bin/phpize /usr/bin/phpize
-sudo ln --symbolic --verbose /opt/php/8.3.6/bin/php-config /usr/bin/php-config
+rm /usr/bin/php
+rm /usr/bin/phar
+rm /usr/bin/phpize
+rm /usr/bin/php-config
+```
+
+Otherwise, if this is the first installation from sources, we immediately move on to the following instructions:
+
+```bash
+ln --symbolic --verbose /opt/php/8.3.6/bin/php /usr/bin/php
+ln --symbolic --verbose /opt/php/8.3.6/bin/phar.phar /usr/bin/phar
+ln --symbolic --verbose /opt/php/8.3.6/bin/phpize /usr/bin/phpize
+ln --symbolic --verbose /opt/php/8.3.6/bin/php-config /usr/bin/php-config
 ```
 
 Update `locate` cache:
 
 ```bash
-sudo updatedb
+updatedb
 locate php.ini
-```
-
-Side note, if you don't want to continuously repeat the `sudo` command and like me in this case you need to issue numerous commands from root, the following command might be useful:
-
-```bash
-sudo -s
 ```
 
 ## install Xdebug from source
@@ -94,8 +103,8 @@ As can be seen from the last setting I considered using vscode.
 Then I have to restart the `PHP-FPM` service
 
 ```bash
-sudo systemctl reload php-fpm
-sudo systemctl status php-fpm --no-pager
+systemctl reload php-fpm
+systemctl status php-fpm --no-pager
 php -v
 ```
 
