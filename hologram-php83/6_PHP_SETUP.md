@@ -45,6 +45,7 @@ sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.3.6/
 Optionally I prefer to set the language option `short_open_tag` to `On`:
 
 ```bash
+grep -i "short_open_tag = Off"  /opt/php/8.3.6/lib/php.ini
 sudo sed -i 's/short_open_tag = Off/short_open_tag = On/g' /opt/php/8.3.6/lib/php.ini
 ```
 

@@ -41,6 +41,13 @@ sudo cp /opt/php/8.2.15/etc/php-fpm.conf.default /opt/php/8.2.15/etc/php-fpm.con
 sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.2.15/etc/php-fpm.conf
 ```
 
+Optionally I prefer to set the language option `short_open_tag` to `On`:
+
+```bash
+grep -i "short_open_tag = Off"  /opt/php/8.2.15/lib/php.ini
+sudo sed -i 's/short_open_tag = Off/short_open_tag = On/g' /opt/php/8.2.15/lib/php.ini
+```
+
 Obviously the `timezone` must be set in the most appropriate way because it depends on where the server is located.
 
 At the end of the `/opt/php/8.2.15/etc/php-fpm.conf` file add the following lines:
