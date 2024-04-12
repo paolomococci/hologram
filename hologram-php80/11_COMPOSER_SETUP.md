@@ -13,3 +13,18 @@ whereis php
 sudo cp composer.phar /usr/bin/composer
 composer list
 ```
+
+## commands that may prove useful
+
+To diagnose any problems:
+
+```bash
+composer --help diagnose
+composer diagnose
+```
+
+To update `composer`:
+
+```bash
+sudo composer self-update
+```
