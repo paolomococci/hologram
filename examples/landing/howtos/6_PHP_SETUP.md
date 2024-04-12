@@ -1,26 +1,26 @@
-# Apache 2 and PHP 8.3.4
+# Apache 2 and PHP 8.3.6
 
 Below we will explain the steps necessary to ensure that the Apache 2 web server uses PHP-FPM (FastCGI Process Manager) compiled from sources.
 
-## download PHP 8.3.4
+## download PHP 8.3.6
 
 ```bash
 cd ~
 mkdir php && cd php
-wget https://www.php.net/distributions/php-8.3.4.tar.xz
+wget https://www.php.net/distributions/php-8.3.6.tar.xz
 ls -al
-sha256sum php-8.3.4.tar.xz
-tar -xvf php-8.3.4.tar.xz
+sha256sum php-8.3.6.tar.xz
+tar -xvf php-8.3.6.tar.xz
 ls -al
-cd php-8.3.4/
+cd php-8.3.6/
 ```
 
-## settings and compilation from PHP version 8.3.4 sources.
+## settings and compilation from PHP version 8.3.6 sources.
 
 ```bash
 mkdir build_session && cd build_session
 ../configure --help | grep -i "opcache"
-../configure --prefix=/opt/php/8.3.4 --enable-fpm --enable-bcmath --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug
+../configure --prefix=/opt/php/8.3.6 --enable-fpm --enable-bcmath --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug
 make
 make test
 sudo make install
@@ -29,17 +29,17 @@ sudo make install
 ## setup of php-fpm
 
 ```bash
-find ~/php/php-8.3.4 -iname 'php.ini*'
-sudo cp ~/php/php-8.3.4/php.ini-development /opt/php/8.3.4/lib/php.ini
-sudo sed -i 's/;date.timezone =/date.timezone = "Europe\/Rome"/g' /opt/php/8.3.4/lib/php.ini
-sudo sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /opt/php/8.3.4/lib/php.ini
-sudo sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /opt/php/8.3.4/lib/php.ini
-grep -i "max_execution_time"  /opt/php/8.3.4/lib/php.ini
-sudo sed -i 's/max_execution_time = 30/max_execution_time = 100/g' /opt/php/8.3.4/lib/php.ini
-grep -i "upload_max_filesize"  /opt/php/8.3.4/lib/php.ini
-sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/g' /opt/php/8.3.4/lib/php.ini
-sudo cp /opt/php/8.3.4/etc/php-fpm.conf.default /opt/php/8.3.4/etc/php-fpm.conf
-sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.3.4/etc/php-fpm.conf
+find ~/php/php-8.3.6 -iname 'php.ini*'
+sudo cp ~/php/php-8.3.6/php.ini-development /opt/php/8.3.6/lib/php.ini
+sudo sed -i 's/;date.timezone =/date.timezone = "Europe\/Rome"/g' /opt/php/8.3.6/lib/php.ini
+sudo sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /opt/php/8.3.6/lib/php.ini
+sudo sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /opt/php/8.3.6/lib/php.ini
+grep -i "max_execution_time"  /opt/php/8.3.6/lib/php.ini
+sudo sed -i 's/max_execution_time = 30/max_execution_time = 100/g' /opt/php/8.3.6/lib/php.ini
+grep -i "upload_max_filesize"  /opt/php/8.3.6/lib/php.ini
+sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/g' /opt/php/8.3.6/lib/php.ini
+sudo cp /opt/php/8.3.6/etc/php-fpm.conf.default /opt/php/8.3.6/etc/php-fpm.conf
+sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.3.6/etc/php-fpm.conf
 ```
 
 Obviously the `timezone` must be set in the most appropriate way because it depends on where the server is located.
@@ -47,14 +47,14 @@ Obviously the `timezone` must be set in the most appropriate way because it depe
 When and if I want to use short tags in PHP files, I will need to make the following change to the `php.ini` file:
 
 ```bash
-grep -i "short_open_tag = Off"  /opt/php/8.3.4/lib/php.ini
-sudo sed -i 's/short_open_tag = Off/short_open_tag = On/g' /opt/php/8.3.4/lib/php.ini
+grep -i "short_open_tag = Off"  /opt/php/8.3.6/lib/php.ini
+sudo sed -i 's/short_open_tag = Off/short_open_tag = On/g' /opt/php/8.3.6/lib/php.ini
 ```
 
-At the end of the `/opt/php/8.3.4/etc/php-fpm.conf` file 
+At the end of the `/opt/php/8.3.6/etc/php-fpm.conf` file 
 
 ```bash
-sudo nano /opt/php/8.3.4/etc/php-fpm.conf
+sudo nano /opt/php/8.3.6/etc/php-fpm.conf
 ```
 
 add the following lines:
@@ -68,7 +68,7 @@ group = www-data
 Now copy `www.conf`:
 
 ```bash
-sudo cp /opt/php/8.3.4/etc/php-fpm.d/www.conf.default /opt/php/8.3.4/etc/php-fpm.d/www.conf
+sudo cp /opt/php/8.3.6/etc/php-fpm.d/www.conf.default /opt/php/8.3.6/etc/php-fpm.d/www.conf
 ls -al /usr/lib/systemd/system/
 ```
 
@@ -80,13 +80,13 @@ sudo nano /usr/lib/systemd/system/php-fpm.service
 
 ```text
 [Unit]
-Description=PHP 8.3.4 FastCGI Process Manager
+Description=PHP 8.3.6 FastCGI Process Manager
 After=network.target
 
 [Service]
 Type=simple
-PIDFile=/opt/php/8.3.4/var/run/php-fpm.pid
-ExecStart=/opt/php/8.3.4/sbin/php-fpm --nodaemonize --fpm-config /opt/php/8.3.4/etc/php-fpm.conf
+PIDFile=/opt/php/8.3.6/var/run/php-fpm.pid
+ExecStart=/opt/php/8.3.6/sbin/php-fpm --nodaemonize --fpm-config /opt/php/8.3.6/etc/php-fpm.conf
 ExecReload=/bin/kill -USR2 $MAINPID
 
 [Install]
@@ -96,14 +96,14 @@ WantedBy=multi-user.target
 Enable Zend OPcache:
 
 ```bash
-grep -i "zend_extension" /opt/php/8.3.4/lib/php.ini
-sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.3.4/lib/php.ini
+grep -i "zend_extension" /opt/php/8.3.6/lib/php.ini
+sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.3.6/lib/php.ini
 ```
 
 ## make Apache work together with PHP-FPM
 
 ```bash
-sudo nano /opt/php/8.3.4/etc/php-fpm.d/www.conf
+sudo nano /opt/php/8.3.6/etc/php-fpm.d/www.conf
 ```
 
 I change the module's listening mode from socket TCP to socket UNIX:
@@ -206,10 +206,10 @@ Attention, it will be necessary to delete the symbolic links if they already exi
 Since, in this example I have just compiled a newer version of PHP, the aforementioned symlinks will already be present and will point to the older version.
 
 ```bash
-sudo ln --symbolic --verbose /opt/php/8.3.4/bin/php /usr/bin/php
-sudo ln --symbolic --verbose /opt/php/8.3.4/bin/phar.phar /usr/bin/phar
-sudo ln --symbolic --verbose /opt/php/8.3.4/bin/phpize /usr/bin/phpize
-sudo ln --symbolic --verbose /opt/php/8.3.4/bin/php-config /usr/bin/php-config
+sudo ln --symbolic --verbose /opt/php/8.3.6/bin/php /usr/bin/php
+sudo ln --symbolic --verbose /opt/php/8.3.6/bin/phar.phar /usr/bin/phar
+sudo ln --symbolic --verbose /opt/php/8.3.6/bin/phpize /usr/bin/phpize
+sudo ln --symbolic --verbose /opt/php/8.3.6/bin/php-config /usr/bin/php-config
 ```
 
 Update `locate` cache:
