@@ -118,7 +118,6 @@ const numberOfPages = ref(0)
 watch(filtered, async (query) => {
     try {
         const res = await axios.get("/sample-filter")
-
         const pages = []
         paginate(sieve(query, res.data), pages, 10)
         tuples.value = pages
@@ -139,7 +138,7 @@ function sieve(query, items) {
     }
     let queryLowerCase = query.toLowerCase()
     items.forEach((item) => {
-        console.log(item)
+        // console.log(item)
         if (
             isInTitle(item.title, queryLowerCase) ||
             isInSubject(item.subject, queryLowerCase) ||
