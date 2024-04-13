@@ -118,6 +118,14 @@ sudo systemctl start php-fpm
 sudo systemctl status php-fpm --no-pager
 ```
 
+But if I'm updating it's better:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart php-fpm
+sudo systemctl status php-fpm --no-pager
+```
+
 If there are problems, investigate with:
 
 ```bash

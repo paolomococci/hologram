@@ -172,7 +172,7 @@ sudo systemctl start php-fpm
 sudo systemctl status php-fpm --no-pager
 ```
 
-or, if you have just compiled a new version of PHP:
+But if I'm updating it's better:
 
 ```bash
 sudo systemctl daemon-reload
