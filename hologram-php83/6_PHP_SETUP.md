@@ -65,6 +65,14 @@ user = www-data
 group = www-data
 ```
 
+with the following commands, then verifying the outcome:
+
+```bash
+sudo sed -i '$auser = www-data' /opt/php/8.3.6/etc/php-fpm.conf
+sudo sed -i '$agroup = www-data' /opt/php/8.3.6/etc/php-fpm.conf
+tail /opt/php/8.3.6/etc/php-fpm.conf
+```
+
 Now copy `www.conf`:
 
 ```bash
