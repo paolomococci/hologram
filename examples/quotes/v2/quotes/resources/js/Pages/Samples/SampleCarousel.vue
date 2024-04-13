@@ -54,7 +54,12 @@
                         <td
                             class="pl-2 text-sm font-light cursor-grabbing text-slate-300"
                             v-text="sample.id"
-                            @mouseover="$emit('grabItemIdentifierFromCarousel', sample.id)"
+                            @mouseover="
+                                $emit(
+                                    'grabItemIdentifierFromCarousel',
+                                    sample.id
+                                )
+                            "
                         ></td>
                         <td
                             class="text-sm font-light text-slate-500"
@@ -113,29 +118,32 @@ const numberOfPages = ref(0)
 watch(filtered, async (query) => {
     try {
         const res = await axios.get("/sample-filter")
+
         const pages = []
         paginate(sieve(query, res.data), pages, 10)
         tuples.value = pages
-        console.log(tuples.value[0])
+        // console.log(tuples.value[0])
         samples.value = tuples.value[0]
         togglePaginator.value = tuples.value.length > 1
         numberOfPages.value = tuples.value.length
     } catch (error) {
         statusMessage.value = "An error has occurred: " + error
     }
-});
+})
 
 /** filter items based on title, subject and summary fields */
 function sieve(query, items) {
     let filtered = new Array()
-    if (query === "") {
+    if (queryIsEmpty(query)) {
         return filtered
     }
+    let queryLowerCase = query.toLowerCase()
     items.forEach((item) => {
+        console.log(item)
         if (
-            item.title.toLowerCase().includes(query.toLowerCase()) ||
-            item.subject.toLowerCase().includes(query.toLowerCase()) ||
-            item.summary.toLowerCase().includes(query.toLowerCase())
+            isInTitle(item.title, queryLowerCase) ||
+            isInSubject(item.subject, queryLowerCase) ||
+            isInSummary(item.summary, queryLowerCase)
         ) {
             filtered.push(item)
         }
@@ -162,13 +170,13 @@ function paginate(items, pages, size) {
 
 /** backward client side pagination */
 function left() {
-    --pointer.value;
+    --pointer.value
     if (tuples.value != null) {
         if (pointer.value < 0) {
             pointer.value = tuples.value.length + pointer.value
         }
-        console.log(pointer.value)
-        console.log(tuples.value[pointer.value])
+        // console.log(pointer.value)
+        // console.log(tuples.value[pointer.value])
         samples.value = tuples.value[pointer.value]
     }
 }
@@ -180,9 +188,35 @@ function right() {
         if (pointer.value == tuples.value.length) {
             pointer.value = 0
         }
-        console.log(pointer.value)
-        console.log(tuples.value[pointer.value])
+        // console.log(pointer.value)
+        // console.log(tuples.value[pointer.value])
         samples.value = tuples.value[pointer.value]
     }
+}
+
+/** check if query is empty string */
+function queryIsEmpty(query) {
+    return query.length === 0 || query === null || query === undefined
+}
+
+/** check if the query string is present in the title */
+function isInTitle(title, query) {
+    if (title === null || summary === undefined) return false
+    let titleToLowerCase = title.toLowerCase()
+    return titleToLowerCase.includes(query)
+}
+
+/** check if the query string is present in the subject */
+function isInSubject(subject, query) {
+    if (subject === null || summary === undefined) return false
+    let subjectToLowerCase = subject.toLowerCase()
+    return subjectToLowerCase.includes(query)
+}
+
+/** check if the query string is present in the summary */
+function isInSummary(summary, query) {
+    if (summary === null || summary === undefined) return false
+    let summaryToLowerCase = summary.toLowerCase()
+    return summaryToLowerCase.includes(query)
 }
 </script>
