@@ -65,7 +65,7 @@ user = www-data
 group = www-data
 ```
 
-with the following commands, then verifying the outcome:
+But it is better to modify with sed and then check the result:
 
 ```bash
 sudo sed -i '$auser = www-data' /opt/php/8.3.6/etc/php-fpm.conf
