@@ -65,6 +65,14 @@ user = www-data
 group = www-data
 ```
 
+But it is better to modify with sed and then check the result:
+
+```bash
+sudo sed -i '$auser = www-data' /opt/php/8.3.6/etc/php-fpm.conf
+sudo sed -i '$agroup = www-data' /opt/php/8.3.6/etc/php-fpm.conf
+tail /opt/php/8.3.6/etc/php-fpm.conf
+```
+
 Now copy `www.conf`:
 
 ```bash
@@ -91,6 +99,12 @@ ExecReload=/bin/kill -USR2 $MAINPID
 
 [Install]
 WantedBy=multi-user.target
+```
+
+Or better:
+
+```bash
+sudo sed -i 's/8.3.4/8.3.6/g' /usr/lib/systemd/system/php-fpm.service
 ```
 
 Enable Zend OPcache:

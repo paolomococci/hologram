@@ -101,6 +101,12 @@ ExecReload=/bin/kill -USR2 $MAINPID
 WantedBy=multi-user.target
 ```
 
+Or better:
+
+```bash
+sudo sed -i 's/8.3.4/8.3.6/g' /usr/lib/systemd/system/php-fpm.service
+```
+
 Enable Zend OPcache:
 
 ```bash
