@@ -199,8 +199,19 @@ Finally, I can do one last check and enable module `php-fpm`:
 ```bash
 apachectl configtest
 sudo a2enconf php-fpm
-sudo systemctl reload apache2
+sudo systemctl restart apache2
+sudo systemctl restart php-fpm
 sudo systemctl status apache2 --no-pager
+sudo systemctl status php-fpm --no-pager
+```
+
+In case of update:
+
+```bash
+sudo systemctl restart apache2
+sudo systemctl restart php-fpm
+sudo systemctl status apache2 --no-pager
+sudo systemctl status php-fpm --no-pager
 ```
 
 If problems arise, it will be necessary to issue the following commands: 
