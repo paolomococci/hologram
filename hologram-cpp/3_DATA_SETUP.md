@@ -60,10 +60,22 @@ The following command is used to obtain a list of databases present in the syste
 \l
 ```
 
-and this to change working database:
+this to change working database:
 
 ```console
 \c landing_db
+```
+
+The following command is useful for getting help on how to use the console:
+
+```console
+\?
+```
+
+and the following command is used to return to the shell:
+
+```console
+\q
 ```
 
 Now it's time to log in with the newly created account:
