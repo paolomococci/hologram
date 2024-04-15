@@ -3,6 +3,7 @@
 Start by typing the following command:
 
 ```bash
+sudo apt install postgresql
 postgres --version
 ```
 
