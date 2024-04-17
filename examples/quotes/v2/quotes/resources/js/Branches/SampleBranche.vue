@@ -25,7 +25,7 @@
                     </h2>
                 </div>
 
-                <SampleCreate />
+                <SampleCreate :errors="$page.props.errors" />
 
             </div>
 
