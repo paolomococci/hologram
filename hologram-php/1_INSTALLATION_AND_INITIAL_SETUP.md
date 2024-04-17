@@ -96,6 +96,6 @@ sudo apt update
 sudo apt list --upgradable
 sudo apt upgrade
 sudo apt autoremove
-sudo du -sh /var/cache/apt/archives/
+sudo du --human-readable --summarize /var/cache/apt/archives/
 sudo apt-get autoclean
 ```
