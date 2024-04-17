@@ -88,3 +88,14 @@ With the following command you can check if the package is already installed:
 ```bash
 dpkg -l build-essential
 ```
+
+Below are some useful commands for maintaining the system:
+
+```bash
+sudo apt update
+sudo apt list --upgradable
+sudo apt upgrade
+sudo apt autoremove
+sudo du -sh /var/cache/apt/archives/
+sudo apt-get autoclean
+```

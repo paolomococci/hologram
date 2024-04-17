@@ -115,3 +115,14 @@ sudo rm /etc/ssh/ssh_host_*
 sudo dpkg-reconfigure openssh-server
 sudo reboot
 ```
+
+Below are some useful commands for maintaining the system:
+
+```bash
+sudo apt update
+sudo apt list --upgradable
+sudo apt upgrade
+sudo apt autoremove
+sudo du -sh /var/cache/apt/archives/
+sudo apt-get autoclean
+```
