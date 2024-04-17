@@ -2,7 +2,7 @@
     <div>
         <form @submit.prevent="submit">
             <div>
-                <div v-if="errors.title" class="content-center pt-2 text-xs rounded-md">
+                <div v-if="errors.title" class="pt-2 text-xs">
                     <p class="text-red-700">{{ errors.title }}</p>
                 </div>
                 <input
@@ -16,7 +16,7 @@
                 />
             </div>
             <div>
-                <div v-if="errors.subject" class="content-center pt-2 text-xs rounded-md">
+                <div v-if="errors.subject" class="pt-2 text-xs">
                     <p class="text-red-700">{{ errors.subject }}</p>
                 </div>
                 <input
@@ -41,7 +41,7 @@
                 />
             </div>
             <div>
-                <div v-if="errors.content" class="content-center pt-2 text-xs rounded-md">
+                <div v-if="errors.content" class="pt-2 text-xs">
                     <p class="text-red-700">{{ errors.content }}</p>
                 </div>
                 <textarea

@@ -4,7 +4,7 @@
             <div>
                 <input
                     class="m-2 text-xs border border-purple-300 rounded-md caret-purple-700 focus:border-2 focus:border-purple-500 left-4 text-slate-500"
-                    v-model.lazy="edit.id"
+                    v-model.lazy="editForm.id"
                     size="30"
                     type="text"
                     name="id"
@@ -16,7 +16,7 @@
             <div>
                 <input
                     class="m-2 text-xs border border-purple-300 rounded-md caret-purple-700 focus:border-2 focus:border-purple-500 left-4 text-slate-500"
-                    v-model.lazy="edit.title"
+                    v-model.lazy="editForm.title"
                     size="30"
                     type="text"
                     name="title"
@@ -27,7 +27,7 @@
             <div>
                 <input
                     class="m-2 text-xs border border-purple-300 rounded-md caret-purple-700 focus:border-2 focus:border-purple-500 left-4 text-slate-500"
-                    v-model.lazy="edit.subject"
+                    v-model.lazy="editForm.subject"
                     size="30"
                     type="text"
                     name="subject"
@@ -38,7 +38,7 @@
             <div>
                 <input
                     class="m-2 text-xs border border-purple-300 rounded-md caret-purple-700 focus:border-2 focus:border-purple-500 left-4 text-slate-500"
-                    v-model.lazy="edit.summary"
+                    v-model.lazy="editForm.summary"
                     size="30"
                     type="text"
                     name="summary"
@@ -49,7 +49,7 @@
             <div>
                 <textarea
                     class="m-2 text-xs border border-purple-300 rounded-md max-h-60 min-h-36 caret-purple-700 focus:border-2 focus:border-purple-500 left-4 text-slate-500"
-                    v-model.lazy="edit.content"
+                    v-model.lazy="editForm.content"
                     name="content"
                     id="content"
                     cols="30"
@@ -71,14 +71,14 @@ import { router } from "@inertiajs/vue3"
 import axios from "axios"
 
 const props = defineProps({
-    itemId: String,
+    itemId: String
 })
 
 onBeforeMount(() => {
     fetchDataItem(props?.itemId)
 })
 
-const edit = reactive({
+const editForm = reactive({
     id: null,
     title: null,
     subject: null,
@@ -86,30 +86,45 @@ const edit = reactive({
     content: null,
 })
 
+/** sends the values and clears the fields */
 function submit() {
-    router.post("/sample-edit", edit)
-    edit.id = '#'
-    edit.title = ''
-    edit.subject = ''
-    edit.summary = ''
-    edit.content = ''
+    if (fieldEmptyCheck()) {
+        router.post("/sample-edit", editForm)
+        editForm.id = '#'
+        editForm.title = ''
+        editForm.subject = ''
+        editForm.summary = ''
+        editForm.content = ''
+    } else {
+        console.log(editForm)
+        alert("Attention please: the title, subject and content fields are mandatory!")
+        fetchDataItem(editForm.id)
+    }
 }
 
+/** fetch data of item thanks to the id */
 async function fetchDataItem(id) {
     if (id > 0) {
         try {
             const res = await axios.get("/sample-read/" + id)
             if (res.status) {
                 console.log(res.data)
-                edit.id = res.data.id
-                edit.title = res.data.title
-                edit.subject = res.data.subject
-                edit.summary = res.data?.summary
-                edit.content = res.data.content
+                editForm.id = res.data.id
+                editForm.title = res.data.title
+                editForm.subject = res.data.subject
+                editForm.summary = res.data?.summary
+                editForm.content = res.data.content
             }
         } catch (error) {
             console.log(error)
         }
     }
+}
+
+/** check if the mandatory fields have been filled in */
+function fieldEmptyCheck() {
+    let checkField = (editForm.title != '' && editForm.subject != '' && editForm.content != '') &&
+        (editForm.title != null && editForm.subject != null && editForm.content != null)
+    return checkField
 }
 </script>
