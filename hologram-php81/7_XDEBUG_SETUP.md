@@ -1,27 +1,41 @@
 # Xdebug setup
 
+Side note, if you don't want to continuously repeat the `sudo` command and like me in this case you need to issue numerous commands from root, the following command might be useful:
+
+```bash
+cd ~
+sudo -s
+```
+
+First, however, it is necessary to make PHP also usable from the command line.
+
+## make PHP accessible globally not just from Apache
+
+Quick warning, if the following links are already there, you will need to remove them first. To then recreate new ones that point to the newly installed versions.
+
+```bash
+rm /usr/bin/php
+rm /usr/bin/phar
+rm /usr/bin/phpize
+rm /usr/bin/php-config
+```
+
 First, however, it is necessary to make PHP also usable from the command line.
 
 ## make PHP accessible globally not just from Apache
 
 ```bash
-sudo ln --symbolic --verbose /opt/php/8.1.27/bin/php /usr/bin/php
-sudo ln --symbolic --verbose /opt/php/8.1.27/bin/phar.phar /usr/bin/phar
-sudo ln --symbolic --verbose /opt/php/8.1.27/bin/phpize /usr/bin/phpize
-sudo ln --symbolic --verbose /opt/php/8.1.27/bin/php-config /usr/bin/php-config
+ln --symbolic --verbose /opt/php/8.1.28/bin/php /usr/bin/php
+ln --symbolic --verbose /opt/php/8.1.28/bin/phar.phar /usr/bin/phar
+ln --symbolic --verbose /opt/php/8.1.28/bin/phpize /usr/bin/phpize
+ln --symbolic --verbose /opt/php/8.1.28/bin/php-config /usr/bin/php-config
 ```
 
 Update `locate` cache:
 
 ```bash
-sudo updatedb
+updatedb
 locate php.ini
-```
-
-Side note, if you don't want to continuously repeat the `sudo` command and like me in this case you need to issue numerous commands from root, the following command might be useful:
-
-```bash
-sudo -s
 ```
 
 ## install Xdebug from source
@@ -29,14 +43,25 @@ sudo -s
 Be sure to replace the real link of the version you prefer.
 
 ```bash
-cd ~
 mkdir xdebug && cd xdebug
-wget https://xdebug.org/files/xdebug-X.X.X.tgz
-sha256sum xdebug-X.X.X.tgz
-tar -xvzf xdebug-X.X.X.tgz
-cd xdebug-X.X.X/
+wget https://xdebug.org/files/xdebug-3.3.1.tgz
+sha256sum xdebug-3.3.1.tgz
+tar -xvzf xdebug-3.3.1.tgz
+cd xdebug-3.3.1/
 phpize
 mkdir build_session && cd build_session
+../configure --help
+../configure --prefix=/opt/php/xdebug --enable-xdebug
+make
+make install
+```
+
+Instead, if it is an update:
+
+```bash
+cd xdebug/xdebug-3.3.1/
+phpize
+mkdir build_session_update && cd build_session_update
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make
@@ -49,14 +74,14 @@ make install
 php --ini
 updatedb
 locate xdebug.ini
-rnano /opt/php/8.1.27/lib/php.ini
+rnano /opt/php/8.1.28/lib/php.ini
 ```
 
 First it is a good idea to view the contents of the file without risking causing damage.
-And now I edit `/opt/php/8.1.27/lib/php.ini` configuration file
+And now I edit `/opt/php/8.1.28/lib/php.ini` configuration file
 
 ```bash
-nano /opt/php/8.1.27/lib/php.ini
+nano /opt/php/8.1.28/lib/php.ini
 ```
 
 I add this section:
@@ -90,8 +115,8 @@ As can be seen from the last setting I considered using vscode.
 Then I have to restart the `PHP-FPM` service
 
 ```bash
-sudo systemctl reload php-fpm
-sudo systemctl status php-fpm --no-pager
+systemctl reload php-fpm
+systemctl status php-fpm --no-pager
 php -v
 ```
 
