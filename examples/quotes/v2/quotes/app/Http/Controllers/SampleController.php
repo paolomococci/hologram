@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSampleRequest;
-use App\Http\Requests\UpdateSampleRequest;
+use Inertia\Inertia;
 use App\Models\Sample;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
-use function PHPUnit\Framework\isNull;
+use App\Http\Requests\StoreSampleRequest;
+use App\Http\Requests\UpdateSampleRequest;
 
 class SampleController extends Controller
 {
@@ -17,12 +18,23 @@ class SampleController extends Controller
      */
     public function index()
     {
+        $operator = ['email' => Auth::user()->email];
+        // dd($operator);
         $samples = Sample::paginate(10)->through(fn ($sample) => [
             'id' => $sample->id,
             'title' => $sample->title,
             'subject' => $sample->subject,
             'summary' => $sample->summary,
         ]);
+        $jsonArrayDataLog = [
+            'operator' => $operator,
+            'performed' => 'readAll',
+        ];
+        // dd($jsonArrayDataLog);
+        Log::build([
+            'driver' => 'single',
+            'path' => storage_path('logs/samples_read_all_info.log'),
+        ])->info(json_encode($jsonArrayDataLog));
         return Inertia::render('Samples/Index', [
             'samples' => $samples,
         ]);
@@ -33,6 +45,8 @@ class SampleController extends Controller
      */
     public function filter(Request $request): String
     {
+        $operator = ['email' => Auth::user()->email];
+        // dd($operator);
         $samples = Sample::all()->map(fn ($sample) => [
             'id' => $sample->id,
             'title' => $sample->title,
@@ -40,6 +54,15 @@ class SampleController extends Controller
             'summary' => $sample->summary,
             'content' => $sample->content,
         ]);
+        $jsonArrayDataLog = [
+            'operator' => $operator,
+            'performed' => 'filter',
+        ];
+        // dd($jsonArrayDataLog);
+        Log::build([
+            'driver' => 'single',
+            'path' => storage_path('logs/samples_filter_info.log'),
+        ])->info(json_encode($jsonArrayDataLog));
         return json_encode($samples);
     }
 
@@ -49,7 +72,18 @@ class SampleController extends Controller
     public function read(int $id)
     {
         try {
+            $operator = ['email' => Auth::user()->email];
+            // dd($operator);
             $sample = Sample::find($id);
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'performed' => 'read',
+            ];
+            // dd($jsonArrayDataLog);
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/samples_read_info.log'),
+            ])->info(json_encode($jsonArrayDataLog));
             return json_encode($sample);
         } catch (\Exception $e) {
             $e->getMessage();
@@ -62,15 +96,32 @@ class SampleController extends Controller
     public function create(StoreSampleRequest $request)
     {
         // dd('create: ', $request);
-        Sample::create(
-            $request->validate([
-                'title' => ['required', 'max:255'],
-                'subject' => ['required', 'max:255'],
-                'summary' => ['max:255'],
-                'content' => ['required', 'max:255'],
-            ])
-        );
-        return to_route('sample');
+        try {
+            $operator = ['email' => Auth::user()->email];
+            // dd($operator);
+            $sample = Sample::create(
+                $request->validate([
+                    'title' => ['required', 'max:255'],
+                    'subject' => ['required', 'max:255'],
+                    'summary' => ['max:255'],
+                    'content' => ['required', 'max:255'],
+                ])
+            );
+            // dd($sample);
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'sample' => $sample,
+                'performed' => 'create',
+            ];
+            // dd($jsonArrayDataLog);
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/samples_create_info.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+            return to_route('sample');
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
     }
 
     /**
@@ -94,19 +145,35 @@ class SampleController extends Controller
      */
     public function edit(UpdateSampleRequest $request)
     {
-        $sample = Sample::find($request['id']);
-        $validate = $request->validate([
-            'title' => ['required', 'max:255'],
-            'subject' => ['required', 'max:255'],
-            'summary' => ['max:255'],
-            'content' => ['required', 'max:255'],
-        ]);
+        try {
+            $operator = ['email' => Auth::user()->email];
+            // dd($operator);
+            $sample = Sample::find($request['id']);
+            $validate = $request->validate([
+                'title' => ['required', 'max:255'],
+                'subject' => ['required', 'max:255'],
+                'summary' => ['max:255'],
+                'content' => ['required', 'max:255'],
+            ]);
             $sample->title = $validate['title'];
             $sample->subject = $validate['subject'];
             $sample->summary = $validate['summary'];
             $sample->content = $validate['content'];
-        $sample->save();
-        return to_route('sample');
+            $sample->save();
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'sample' => $sample,
+                'performed' => 'edit',
+            ];
+            // dd($jsonArrayDataLog);
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/samples_edit_info.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+            return to_route('sample');
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
     }
 
     /**
