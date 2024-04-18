@@ -3,6 +3,7 @@
 Side note, if you don't want to continuously repeat the `sudo` command and like me in this case you need to issue numerous commands from root, the following command might be useful:
 
 ```bash
+cd ~
 sudo -s
 ```
 
@@ -40,12 +41,23 @@ locate php.ini
 Be sure to replace the real link of the version you prefer.
 
 ```bash
-cd ~
 mkdir xdebug && cd xdebug
 wget https://xdebug.org/files/xdebug-3.3.1.tgz
 sha256sum xdebug-3.3.1.tgz
 tar -xvzf xdebug-3.3.1.tgz
 cd xdebug-3.3.1/
+phpize
+mkdir build_session && cd build_session
+../configure --help
+../configure --prefix=/opt/php/xdebug --enable-xdebug
+make
+make install
+```
+
+Instead, if it is an update:
+
+```bash
+cd xdebug/xdebug-3.3.1/
 phpize
 mkdir build_session && cd build_session
 ../configure --help

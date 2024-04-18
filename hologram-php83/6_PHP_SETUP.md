@@ -51,7 +51,7 @@ sudo sed -i 's/short_open_tag = Off/short_open_tag = On/g' /opt/php/8.3.6/lib/ph
 
 Obviously the `timezone` must be set in the most appropriate way because it depends on where the server is located.
 
-At the end of the `/opt/php/8.3.6/etc/php-fpm.conf` file 
+At the end of the `/opt/php/8.3.6/etc/php-fpm.conf` file
 
 ```bash
 sudo nano /opt/php/8.3.6/etc/php-fpm.conf
@@ -101,7 +101,7 @@ ExecReload=/bin/kill -USR2 $MAINPID
 WantedBy=multi-user.target
 ```
 
-Or better:
+Or better yet, if the file just needs modifications:
 
 ```bash
 sudo sed -i 's/8.3.4/8.3.6/g' /usr/lib/systemd/system/php-fpm.service
@@ -128,7 +128,7 @@ But if I'm updating it's better:
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl start php-fpm
+sudo systemctl restart php-fpm
 sudo systemctl status php-fpm --no-pager
 ```
 
