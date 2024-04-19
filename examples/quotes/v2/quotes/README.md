@@ -28,6 +28,7 @@ I then used a `props` to pass the identifier to another child component, which t
 cd /var/www/html/v2/
 composer create-project laravel/laravel:^11.0 quotes
 chown --recursive --verbose developer_username:www-data .
+cd quotes
 chmod --recursive 775 bootstrap/cache
 chmod --recursive 775 storage
 chmod --recursive 775 database
