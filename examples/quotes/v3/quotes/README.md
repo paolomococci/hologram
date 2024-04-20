@@ -61,7 +61,7 @@ sudo nano /etc/apache2/sites-available/000-default.conf
         ServerName quotes.local
         ServerAlias www.quotes.local
         DocumentRoot /var/www/html/v3/quotes/public
-        Redirect "/" "https://192.168.1.XXX/"
+        Redirect "/" "https://192.168.1.103/"
 
         <Directory /var/www/html/v3/quotes/public>
                 Options Indexes FollowSymLinks MultiViews
@@ -136,3 +136,15 @@ QUOTES_v3_DB=quotes_v3_db
 ```
 
 Edit the `config/database.php` configuration file appropriately.
+
+## add appropriate models for application
+
+Considering I'm in the root directory of the project:
+
+```bash
+php artisan make:model --all Author
+php artisan make:model --all Article
+php artisan make:model --pivot --migration Merit
+php artisan make:model --all Paper
+chown --recursive --verbose developer_username:www-data .
+```
