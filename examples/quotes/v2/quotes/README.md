@@ -85,7 +85,7 @@ sudo nano /etc/apache2/sites-available/000-default.conf
         ServerName quotes.local
         ServerAlias www.quotes.local
         DocumentRoot /var/www/html/v2/quotes/public
-        Redirect "/" "https://192.168.1.103/"
+        Redirect "/" "https://192.168.1.XXX/"
 
         <Directory /var/www/html/v2/quotes/public>
                 Options Indexes FollowSymLinks MultiViews
