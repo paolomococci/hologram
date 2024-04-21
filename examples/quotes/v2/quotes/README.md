@@ -158,6 +158,7 @@ Edit the `config/database.php` configuration file appropriately.
 
 ```bash
 cd /var/www/html/v2/quotes/
+composer require laravel/jetstream
 php artisan jetstream:install inertia --teams
 npm install
 npm run build
