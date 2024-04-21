@@ -23,8 +23,6 @@ class Article extends Model
     /**
      * getRelatedAuthors
      *
-     * this is a workaround
-     *
      * @param  int  $authorId
      * @return array
      */
