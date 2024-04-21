@@ -150,3 +150,11 @@ chown --recursive --verbose developer_username:www-data .
 ```
 
 Appropriately modify the files relating to the models and the files relating to the migrations, including the reference to the correct database.
+
+## setup of Jetstream
+
+Considering I'm in the root directory of the project:
+
+```bash
+composer require laravel/jetstream
+```
