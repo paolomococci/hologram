@@ -9,7 +9,7 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $connection = 'quotes';
+    protected $connection = 'quotesdb';
 
     /**
      * The attributes that are mass assignable.

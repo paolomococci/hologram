@@ -157,4 +157,30 @@ Considering I'm in the root directory of the project:
 
 ```bash
 composer require laravel/jetstream
+php artisan jetstream:install inertia --teams --dark --ssr
+npm install
+npm run build
+```
+
+Remember to comment out the default setting to SQLite and set the correct default database in the `config/database.php` file:
+
+```php
+...
+// 'default' => env('DB_CONNECTION', 'sqlite'),
+    'default' => env('LARAVEL_V3_DB_CONNECTION', 'laraveldb'),
+...
+```
+
+```bash
+php artisan migrate --pretend
+sudo chown --recursive --verbose developer_username:www-data .
+php artisan migrate
+```
+
+## install a collection of Vue composition utilities
+
+Considering I'm in the root directory of the project:
+
+```bash
+npm i @vueuse/core
 ```

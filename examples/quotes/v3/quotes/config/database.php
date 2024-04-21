@@ -16,7 +16,10 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    // 'default' => env('DB_CONNECTION', 'sqlite'),
+
+    // default connection: laraveldb
+    'default' => env('LARAVEL_V3_DB_CONNECTION', 'laraveldb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -59,12 +62,13 @@ return [
             ]) : [],
         ],
 
-        'quotes' => [
+        // default connection: laraveldb
+        'laraveldb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
             'host' => env('LARAVEL_V3_DB_HOST', '127.0.0.1'),
             'port' => env('LARAVEL_V3_DB_PORT', '3306'),
-            'database' => env('QUOTES_V3_DB', 'forge'),
+            'database' => env('LARAVEL_V3_DB_DATABASE', 'laraveldb'),
             'username' => env('LARAVEL_V3_DB_USERNAME', 'root'),
             'password' => env('LARAVEL_V3_DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
@@ -79,14 +83,15 @@ return [
             ]) : [],
         ],
 
-        'mariadb' => [
+        // connection to the data of the specific web application: quotesdb
+        'quotesdb' => [
             'driver' => 'mariadb',
             'url' => env('DB_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'laravel'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('LARAVEL_V3_DB_HOST', '127.0.0.1'),
+            'port' => env('LARAVEL_V3_DB_PORT', '3306'),
+            'database' => env('QUOTES_V3_DB', 'laraveldb'),
+            'username' => env('LARAVEL_V3_DB_USERNAME', 'root'),
+            'password' => env('LARAVEL_V3_DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
             'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
