@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    protected $connection = 'quotes';
+
     /**
      * Run the migrations.
      */
@@ -13,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->unique();
+            $table->string('subject');
+            $table->text('summary')->nullable();
+            $table->text('content');
+            $table->boolean('deprecated')->default(0);
             $table->timestamps();
         });
     }

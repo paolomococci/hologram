@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    protected $connection = 'quotes';
+
     /**
      * Run the migrations.
      */
@@ -13,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('surname');
+            $table->string('nickname')->nullable();
+            $table->string('email')->unique();
+            $table->boolean('suspended')->default(0);
             $table->timestamps();
         });
     }

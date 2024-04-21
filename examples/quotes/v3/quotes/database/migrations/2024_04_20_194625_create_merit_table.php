@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    protected $connection = 'quotes';
+
     /**
      * Run the migrations.
      */
@@ -13,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('merit', function (Blueprint $table) {
             $table->id();
+            $table->boolean('is_main_author')->nullable();
+            $table->unsignedBigInteger('article_id');
+            $table->unsignedBigInteger('author_id');
+            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
             $table->timestamps();
         });
     }

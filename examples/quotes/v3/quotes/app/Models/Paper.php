@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Paper extends Model
 {
     use HasFactory;
+    protected $connection = 'quotes';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'title', 'name', 'size', 'content',
+    ];
 }
