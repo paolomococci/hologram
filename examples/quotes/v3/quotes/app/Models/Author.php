@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Author extends Model
 {
     use HasFactory;
+
     protected $connection = 'quotes';
 
     /**
@@ -24,7 +25,7 @@ class Author extends Model
      *
      * this is a workaround
      *
-     * @param  int $authorId
+     * @param  int  $authorId
      * @return array
      */
     public function getRelatedArticles()
@@ -34,6 +35,7 @@ class Author extends Model
         foreach ($merits as $article) {
             $articles[] = Article::findOrFail($article['article_id']);
         }
+
         return $articles;
     }
 }

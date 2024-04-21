@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Merit extends Pivot
 {
@@ -20,8 +20,6 @@ class Merit extends Pivot
 
     /**
      * authors
-     *
-     * @return BelongsToMany
      */
     public function authors(): BelongsToMany
     {
@@ -30,8 +28,6 @@ class Merit extends Pivot
 
     /**
      * articles
-     *
-     * @return BelongsToMany
      */
     public function articles(): BelongsToMany
     {
