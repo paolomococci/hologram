@@ -185,16 +185,6 @@ Considering I'm in the root directory of the project:
 npm i @vueuse/core
 ```
 
-## allow the use of APIs
-
-Edit the `config/jetstream.php` file, just uncomment the following line :
-
-```php
-...
-Features::api(),
-...
-```
-
 ## encountering a problem: `Call to undefined method App\Models\User::ownedTeams()`
 
 I had to change the code of model `User` from like this:
@@ -249,6 +239,31 @@ and repeat the migration for table `users`:
 
 ```bash
 php artisan migrate --path=./database/migrations/0001_01_01_000000_create_users_table.php
+```
+
+## allow the use of APIs
+
+Edit the `config/jetstream.php` file, just uncomment the following line :
+
+```php
+...
+Features::api(),
+...
+```
+
+Attention, you may need to issue the following command:
+
+```bash
+php artisan install:api
+```
+
+and repeat at least the following migrations:
+
+```bash
 php artisan migrate --path=./database/migrations/2024_04_21_050741_create_teams_table.php
 php artisan migrate --path=./database/migrations/2024_04_21_050742_create_team_user_table.php
+php artisan migrate --path=./database/migrations/2024_04_21_050741_create_personal_access_tokens_table.php
+php artisan migrate --path=./database/migrations/2024_04_21_050743_create_team_invitations_table.php
 ```
+
+Naturally, in addition to issuing the previous commands by positioning yourself in the project root, the file names will be different in the part referring to the date.
