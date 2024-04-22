@@ -267,3 +267,20 @@ php artisan migrate --path=./database/migrations/2024_04_21_050743_create_team_i
 ```
 
 Naturally, in addition to issuing the previous commands by positioning yourself in the project root, the file names will be different in the part referring to the date.
+
+## useful notes for solving small problems
+
+Remember to always run the following command whenever you edit files involving HTML:
+
+```bash
+npm run build
+```
+
+If you receive a permissions error it may be helpful to repeat the following commands:
+
+```bash
+chown --recursive --verbose developer_username:www-data .
+chmod --recursive 775 bootstrap/cache
+chmod --recursive 775 storage
+chmod --recursive 775 database
+```
