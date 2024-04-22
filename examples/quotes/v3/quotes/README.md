@@ -184,3 +184,70 @@ Considering I'm in the root directory of the project:
 ```bash
 npm i @vueuse/core
 ```
+
+## allow the use of APIs
+
+Edit the `config/jetstream.php` file, just uncomment the following line :
+
+```php
+...
+Features::api(),
+...
+```
+
+## encountering a problem: `Call to undefined method App\Models\User::ownedTeams()`
+
+I had to change the code of model `User` from like this:
+
+```php
+...
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable
+{
+    use HasFactory, Notifiable;
+...
+```
+
+to like this:
+
+```php
+...
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Jetstream\HasTeams;
+use Laravel\Sanctum\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
+    use HasTeams;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
+...
+```
+
+Then I had to add the following two lines of code to the file that migrates model `User`:
+
+```php
+...
+$table->foreignId('current_team_id')->nullable();
+$table->string('profile_photo_path', 2048)->nullable();
+...
+```
+
+and repeat the migration for table `users`:
+
+```bash
+php artisan migrate --pretend --path=./database/migrations/0001_01_01_000000_create_users_table.php
+php artisan migrate --path=./database/migrations/0001_01_01_000000_create_users_table.php
+```
