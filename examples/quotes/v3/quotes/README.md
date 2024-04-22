@@ -248,6 +248,7 @@ $table->string('profile_photo_path', 2048)->nullable();
 and repeat the migration for table `users`:
 
 ```bash
-php artisan migrate --pretend --path=./database/migrations/0001_01_01_000000_create_users_table.php
 php artisan migrate --path=./database/migrations/0001_01_01_000000_create_users_table.php
+php artisan migrate --path=./database/migrations/2024_04_21_050741_create_teams_table.php
+php artisan migrate --path=./database/migrations/2024_04_21_050742_create_team_user_table.php
 ```
