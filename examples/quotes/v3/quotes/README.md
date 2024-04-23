@@ -1,5 +1,7 @@
 # `quotes` version 3
 
+![landing page](screenshots/quotes_v3_landing_page.png)
+
 ```bash
 cd /var/www/html/v3/
 composer create-project laravel/laravel:^11.0 quotes
