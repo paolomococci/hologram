@@ -1,0 +1,1 @@
+<? phpinfo(INFO_ALL);
