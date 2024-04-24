@@ -278,11 +278,25 @@ Remember to always run the following command whenever you edit files involving H
 npm run build
 ```
 
-If you receive a permissions error it may be helpful to repeat the following commands:
+When I ran into an authorization error it was helpful to repeat the following commands:
 
 ```bash
 chown --recursive --verbose developer_username:www-data .
 chmod --recursive 775 bootstrap/cache
 chmod --recursive 775 storage
 chmod --recursive 775 database
+```
+
+I have to remember to issue the following commands when I add a new route and it is not listed:
+
+```bash
+php artisan route:cache
+php artisan route:clear
+php artisan route:list
+```
+
+and, if I am examining the presence of a specific route, the following command has been useful to me:
+
+```bash
+php artisan route:list | grep "help"
 ```

@@ -18,7 +18,12 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    // Help tab
+    Route::get('/help', function () {
+        return Inertia::render('Tabs/Help/HelpTab');
+    })->name('help');
+    // Template tab
+    Route::get('/template', function () {
+        return Inertia::render('Tabs/Template/TemplateTab');
+    })->name('template');
 });
