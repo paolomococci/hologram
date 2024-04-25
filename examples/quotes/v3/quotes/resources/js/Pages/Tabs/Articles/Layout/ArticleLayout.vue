@@ -1,10 +1,13 @@
 <script setup>
 import ArticlesIcon from '@/Icons/ArticlesIcon.vue';
 import AddElementIcon from '@/Icons/AddElementIcon.vue';
-import RightArrowIcon from '@/Icons/RightArrowIcon.vue';
 import FetchDataIcon from '@/Icons/FetchDataIcon.vue';
 import EditElementIcon from '@/Icons/EditElementIcon.vue';
 import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
+import ArticleCreate from '@/Pages/Tabs/Articles/Components/Create.vue'
+import ArticlePaginated from '@/Pages/Tabs/Articles/Components/TablePaginated.vue'
+import ArticleEditor from '@/Pages/Tabs/Articles/Components/Edit.vue'
+import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
 </script>
 
 <template>
@@ -18,7 +21,7 @@ import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
             </h1>
 
             <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">
-                A simple description that introduces the user to the use of this application.
+                A simple description that introduces the user to the use of this tab.
             </p>
         </div>
 
@@ -32,17 +35,7 @@ import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
                     </h2>
                 </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Create.
-                </p>
-
-                <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Create
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
+                <ArticleCreate />
             </div>
 
             <div>
@@ -53,17 +46,7 @@ import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
                     </h2>
                 </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Read all element to pagination.
-                </p>
-
-                <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Pagination
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
+                <ArticlePaginated />
             </div>
 
             <div>
@@ -74,17 +57,7 @@ import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
                     </h2>
                 </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Edit articles content.
-                </p>
-
-                <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Update content
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
+                <ArticleEditor />
             </div>
 
             <div>
@@ -95,17 +68,7 @@ import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
                     </h2>
                 </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Filter articles by content.
-                </p>
-
-                <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Filter by content
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
+                <ArticleFiltered />
             </div>
         </div>
     </div>

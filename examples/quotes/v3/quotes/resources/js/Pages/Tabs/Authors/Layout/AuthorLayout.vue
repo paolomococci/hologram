@@ -1,10 +1,13 @@
 <script setup>
 import AuthorsIcon from '@/Icons/AuthorsIcon.vue';
 import AddElementIcon from '@/Icons/AddElementIcon.vue';
-import RightArrowIcon from '@/Icons/RightArrowIcon.vue';
 import FetchDataIcon from '@/Icons/FetchDataIcon.vue';
 import EditElementIcon from '@/Icons/EditElementIcon.vue';
 import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
+import AuthorCreate from '@/Pages/Tabs/Authors/Components/Create.vue'
+import AuthorPaginated from '@/Pages/Tabs/Authors/Components/TablePaginated.vue'
+import AuthorEditor from '@/Pages/Tabs/Authors/Components/Edit.vue'
+import AuthorFiltered from '@/Pages/Tabs/Authors/Components/TableFiltered.vue'
 </script>
 
 <template>
@@ -18,7 +21,7 @@ import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
             </h1>
 
             <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">
-                A simple description that introduces the user to the use of this application.
+                A simple description that introduces the user to the use of this tab.
             </p>
         </div>
 
@@ -32,17 +35,7 @@ import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
                     </h2>
                 </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Create.
-                </p>
-
-                <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Create
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
+                <AuthorCreate />
             </div>
 
             <div>
@@ -53,17 +46,7 @@ import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
                     </h2>
                 </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Read all element to pagination.
-                </p>
-
-                <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Pagination
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
+                <AuthorPaginated />
             </div>
 
             <div>
@@ -74,17 +57,7 @@ import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
                     </h2>
                 </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Edit authors data.
-                </p>
-
-                <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Update data
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
+                <AuthorEditor />
             </div>
 
             <div>
@@ -95,17 +68,7 @@ import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
                     </h2>
                 </div>
 
-                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Filter authors by data.
-                </p>
-
-                <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Filter by data
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
+                <AuthorFiltered />
             </div>
         </div>
     </div>

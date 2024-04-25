@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!-- TODO -->
+        <p>upload a new paper</p>
     </div>
 </template>
 
