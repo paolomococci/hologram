@@ -1,10 +1,8 @@
 <script setup>
 import ToolsIcon from '@/Icons/ToolsIcon.vue';
-import DocumentationIcon from '@/Icons/DocumentationIcon.vue';
+import RenumberIcon from '@/Icons/RenumberIcon.vue';
 import RightArrowIcon from '@/Icons/RightArrowIcon.vue';
-import ScreenshotIcon from '@/Icons/ScreenshotIcon.vue';
-import CommentsIcon from '@/Icons/CommentsIcon.vue';
-import SecurityIcon from '@/Icons/SecurityIcon.vue';
+import DropDataIcon from '@/Icons/DropDataIcon.vue';
 </script>
 
 <template>
@@ -14,11 +12,11 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
             <ToolsIcon class="block w-auto h-12" />
 
             <h1 class="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
-                Welcome to the tools tab!
+                Tools for routine technical maintenance.
             </h1>
 
             <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">
-                A simple description that introduces the user to the use of this application.
+                Here are some useful tools to maintain data consistency.
             </p>
         </div>
 
@@ -26,19 +24,21 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
             class="grid grid-cols-1 gap-6 p-6 bg-gray-200 bg-opacity-25 dark:bg-gray-800 md:grid-cols-2 lg:gap-8 lg:p-8">
             <div>
                 <div class="flex items-center">
-                    <DocumentationIcon class="m-2 size-6" />
+                    <RenumberIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Documentation</a>
+                        <a href="#">Renumber</a>
                     </h2>
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Some documentation text of landing web application.
+                    Tool that regenerates the numerical identifiers of the table that maintains the correlations between
+                    the
+                    author and the article he contributed to writing.
                 </p>
 
                 <p class="mt-4 text-sm">
                     <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Explore the documentation
+                        Renumber identifier numbers
 
                         <RightArrowIcon class="size-4" />
                     </a>
@@ -47,61 +47,19 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
 
             <div>
                 <div class="flex items-center">
-                    <ScreenshotIcon class="m-2 size-6" />
+                    <DropDataIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Screenshot</a>
+                        <a href="#">Clean</a>
                     </h2>
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Some screenshots for example purposes.
+                    Tool that cleans the database of all data and restarts the numbering of the respective IDs from one.
                 </p>
 
                 <p class="mt-4 text-sm">
                     <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Watching screenshot
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
-            </div>
-
-            <div>
-                <div class="flex items-center">
-                    <CommentsIcon class="m-2 size-6" />
-                    <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Comments</a>
-                    </h2>
-                </div>
-
-                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Some comments provided by web application users.
-                </p>
-
-                <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Read other users' comments
-
-                        <RightArrowIcon class="size-4" />
-                    </a>
-                </p>
-            </div>
-
-            <div>
-                <div class="flex items-center">
-                    <SecurityIcon class="m-2 size-6" />
-                    <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        Web security
-                    </h2>
-                </div>
-
-                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Some description of good security practices to follow when using the web application.
-                </p>
-
-                <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        View security practices
+                        Clean the database
 
                         <RightArrowIcon class="size-4" />
                     </a>
@@ -112,5 +70,5 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
 </template>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>

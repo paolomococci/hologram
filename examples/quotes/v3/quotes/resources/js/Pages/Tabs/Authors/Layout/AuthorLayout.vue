@@ -1,10 +1,10 @@
 <script setup>
 import AuthorsIcon from '@/Icons/AuthorsIcon.vue';
-import DocumentationIcon from '@/Icons/DocumentationIcon.vue';
+import AddElementIcon from '@/Icons/AddElementIcon.vue';
 import RightArrowIcon from '@/Icons/RightArrowIcon.vue';
-import ScreenshotIcon from '@/Icons/ScreenshotIcon.vue';
-import CommentsIcon from '@/Icons/CommentsIcon.vue';
-import SecurityIcon from '@/Icons/SecurityIcon.vue';
+import FetchDataIcon from '@/Icons/FetchDataIcon.vue';
+import EditElementIcon from '@/Icons/EditElementIcon.vue';
+import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
 </script>
 
 <template>
@@ -26,19 +26,19 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
             class="grid grid-cols-1 gap-6 p-6 bg-gray-200 bg-opacity-25 dark:bg-gray-800 md:grid-cols-2 lg:gap-8 lg:p-8">
             <div>
                 <div class="flex items-center">
-                    <DocumentationIcon class="m-2 size-6" />
+                    <AddElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Documentation</a>
+                        <a href="#">Add</a>
                     </h2>
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Some documentation text of landing web application.
+                    Create.
                 </p>
 
                 <p class="mt-4 text-sm">
                     <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Explore the documentation
+                        Create
 
                         <RightArrowIcon class="size-4" />
                     </a>
@@ -47,19 +47,19 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
 
             <div>
                 <div class="flex items-center">
-                    <ScreenshotIcon class="m-2 size-6" />
+                    <FetchDataIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Screenshot</a>
+                        <a href="#">Index</a>
                     </h2>
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Some screenshots for example purposes.
+                    Read all element to pagination.
                 </p>
 
                 <p class="mt-4 text-sm">
                     <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Watching screenshot
+                        Pagination
 
                         <RightArrowIcon class="size-4" />
                     </a>
@@ -68,19 +68,19 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
 
             <div>
                 <div class="flex items-center">
-                    <CommentsIcon class="m-2 size-6" />
+                    <EditElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Comments</a>
+                        <a href="#">Edit</a>
                     </h2>
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Some comments provided by web application users.
+                    Edit authors data.
                 </p>
 
                 <p class="mt-4 text-sm">
                     <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Read other users' comments
+                        Update data
 
                         <RightArrowIcon class="size-4" />
                     </a>
@@ -89,19 +89,19 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
 
             <div>
                 <div class="flex items-center">
-                    <SecurityIcon class="m-2 size-6" />
+                    <FilterElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        Web security
+                        Filtering
                     </h2>
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Some description of good security practices to follow when using the web application.
+                    Filter authors by data.
                 </p>
 
                 <p class="mt-4 text-sm">
                     <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        View security practices
+                        Filter by data
 
                         <RightArrowIcon class="size-4" />
                     </a>
