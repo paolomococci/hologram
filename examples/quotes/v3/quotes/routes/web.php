@@ -18,12 +18,35 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    // Help tab
+
+    /* tab: Help */
     Route::get('/help', function () {
         return Inertia::render('Tabs/Help/HelpTab');
     })->name('help');
-    // Template tab
-    Route::get('/template', function () {
-        return Inertia::render('Tabs/Template/TemplateTab');
-    })->name('template');
+
+    /* tab: Author */
+    Route::get('/authors', function () {
+        return Inertia::render('Tabs/Authors/AuthorTab');
+    })->name('authors');
+
+    /* tab: Article */
+    Route::get('/articles', function () {
+        return Inertia::render('Tabs/Articles/ArticleTab');
+    })->name('articles');
+
+    /* tab: Paper */
+    Route::get('/papers', function () {
+        return Inertia::render('Tabs/Papers/PaperTab');
+    })->name('papers');
+
+    /* tab: Tool */
+    Route::get('/tools', function () {
+        return Inertia::render('Tabs/Tools/ToolTab');
+    })->name('tools');
+
+    /* tab: Template */
+    // Route::get('/template', function () {
+    //     return Inertia::render('Tabs/Template/TemplateTab');
+    // })->name('template');
+
 });

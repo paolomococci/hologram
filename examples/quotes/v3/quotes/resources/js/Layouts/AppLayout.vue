@@ -52,6 +52,18 @@ const logout = () => {
                                 <NavLink :href="route('help')" :active="route().current('help')">
                                     Help
                                 </NavLink>
+                                <NavLink :href="route('authors')" :active="route().current('authors')">
+                                    Authors
+                                </NavLink>
+                                <NavLink :href="route('articles')" :active="route().current('articles')">
+                                    Articles
+                                </NavLink>
+                                <NavLink :href="route('papers')" :active="route().current('papers')">
+                                    Papers
+                                </NavLink>
+                                <NavLink :href="route('tools')" :active="route().current('tools')">
+                                    Tools
+                                </NavLink>
                             </div>
                         </div>
 
@@ -206,6 +218,18 @@ const logout = () => {
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('help')" :active="route().current('help')">
                             Help
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('authors')" :active="route().current('authors')">
+                            Authors
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('articles')" :active="route().current('articles')">
+                            Articles
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('papers')" :active="route().current('papers')">
+                            Papers
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('tools')" :active="route().current('tools')">
+                            Tools
                         </ResponsiveNavLink>
                     </div>
 
