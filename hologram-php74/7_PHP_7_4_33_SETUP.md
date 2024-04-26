@@ -32,9 +32,9 @@ sudo cp ~/php/php-7.4.33/php.ini-development /opt/php/7.4.33/lib/php.ini
 sudo sed -i 's/;date.timezone =/date.timezone = "Europe\/Rome"/g' /opt/php/7.4.33/lib/php.ini
 sudo sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /opt/php/7.4.33/lib/php.ini
 sudo sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /opt/php/7.4.33/lib/php.ini
-grep -i "max_execution_time"  /opt/php/7.4.33/lib/php.ini
+grep -i "max_execution_time" /opt/php/7.4.33/lib/php.ini
 sudo sed -i 's/max_execution_time = 30/max_execution_time = 100/g' /opt/php/7.4.33/lib/php.ini
-grep -i "upload_max_filesize"  /opt/php/7.4.33/lib/php.ini
+grep -i "upload_max_filesize" /opt/php/7.4.33/lib/php.ini
 sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/g' /opt/php/7.4.33/lib/php.ini
 sudo sed -i 's/;openssl.capath=/openssl.capath=\/usr\/lib\/ssl\/certs\//g' /opt/php/7.4.33/lib/php.ini
 sudo cp /opt/php/7.4.33/etc/php-fpm.conf.default /opt/php/7.4.33/etc/php-fpm74.conf
