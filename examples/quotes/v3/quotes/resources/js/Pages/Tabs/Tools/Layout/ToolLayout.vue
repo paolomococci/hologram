@@ -1,8 +1,17 @@
 <script setup>
+import { defineProps } from "vue"
 import ToolsIcon from '@/Icons/ToolsIcon.vue';
 import RenumberIcon from '@/Icons/RenumberIcon.vue';
 import RightArrowIcon from '@/Icons/RightArrowIcon.vue';
 import DropDataIcon from '@/Icons/DropDataIcon.vue';
+import { BASE } from "@/env.js"
+
+const props = defineProps({
+    feedback: String,
+})
+
+const renumberUri = BASE + "renumber"
+const cleanUri = BASE + "clean"
 </script>
 
 <template>
@@ -18,6 +27,8 @@ import DropDataIcon from '@/Icons/DropDataIcon.vue';
             <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">
                 Here are some useful tools to maintain data consistency.
             </p>
+
+            <p v-if="props.feedback">{{ props.feedback }}</p>
         </div>
 
         <div
@@ -37,8 +48,8 @@ import DropDataIcon from '@/Icons/DropDataIcon.vue';
                 </p>
 
                 <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Renumber identifier numbers
+                    <a :href="renumberUri" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
+                        renumber the correlation table
 
                         <RightArrowIcon class="size-4" />
                     </a>
@@ -58,8 +69,8 @@ import DropDataIcon from '@/Icons/DropDataIcon.vue';
                 </p>
 
                 <p class="mt-4 text-sm">
-                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
-                        Clean the database
+                    <a :href="cleanUri" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
+                        deletes all data from the database
 
                         <RightArrowIcon class="size-4" />
                     </a>

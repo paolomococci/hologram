@@ -1,6 +1,9 @@
 <script setup>
+import { defineProps } from "vue"
 import AppLayout from '@/Layouts/AppLayout.vue';
 import ToolLayout from '@/Pages/Tabs/Tools/Layout/ToolLayout.vue';
+
+defineProps({ feedback: String })
 </script>
 
 <template>
@@ -14,7 +17,7 @@ import ToolLayout from '@/Pages/Tabs/Tools/Layout/ToolLayout.vue';
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
-                    <ToolLayout />
+                    <ToolLayout :feedback="feedback" />
                 </div>
             </div>
         </div>

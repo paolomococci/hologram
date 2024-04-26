@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ToolController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -48,5 +49,9 @@ Route::middleware([
     // Route::get('/template', function () {
     //     return Inertia::render('Tabs/Template/TemplateTab');
     // })->name('template');
+
+    /* tools controller */
+    Route::get('/renumber', [ToolController::class, 'renumber'])->name('renumber');
+    Route::get('/clean', [ToolController::class, 'clean'])->name('clean');
 
 });
