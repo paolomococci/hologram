@@ -8,9 +8,9 @@
 import { reactive, onBeforeMount } from "vue"
 import { router } from "@inertiajs/vue3"
 import axios from "axios"
-    // TODO
+// TODO
 </script>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>

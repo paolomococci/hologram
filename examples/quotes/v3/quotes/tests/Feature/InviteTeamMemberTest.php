@@ -15,7 +15,7 @@ class InviteTeamMemberTest extends TestCase
 
     public function test_team_members_can_be_invited_to_team(): void
     {
-        if (! Features::sendsTeamInvitations()) {
+        if (!Features::sendsTeamInvitations()) {
             $this->markTestSkipped('Team invitations not enabled.');
         }
 
@@ -23,7 +23,7 @@ class InviteTeamMemberTest extends TestCase
 
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
-        $response = $this->post('/teams/'.$user->currentTeam->id.'/members', [
+        $response = $this->post('/teams/' . $user->currentTeam->id . '/members', [
             'email' => 'test@quotes.local',
             'role' => 'admin',
         ]);
@@ -35,7 +35,7 @@ class InviteTeamMemberTest extends TestCase
 
     public function test_team_member_invitations_can_be_cancelled(): void
     {
-        if (! Features::sendsTeamInvitations()) {
+        if (!Features::sendsTeamInvitations()) {
             $this->markTestSkipped('Team invitations not enabled.');
         }
 
@@ -48,7 +48,7 @@ class InviteTeamMemberTest extends TestCase
             'role' => 'admin',
         ]);
 
-        $response = $this->delete('/team-invitations/'.$invitation->id);
+        $response = $this->delete('/team-invitations/' . $invitation->id);
 
         $this->assertCount(0, $user->currentTeam->fresh()->teamInvitations);
     }

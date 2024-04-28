@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-    // TODO
+// TODO
 </script>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>

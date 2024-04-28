@@ -9,9 +9,9 @@ import { ref, watch } from "vue"
 import axios from "axios"
 import MoveLeftIcon from "@/Icons/MoveLeftIcon.vue"
 import MoveRightIcon from "@/Icons/MoveRightIcon.vue"
-    // TODO
+// TODO
 </script>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>

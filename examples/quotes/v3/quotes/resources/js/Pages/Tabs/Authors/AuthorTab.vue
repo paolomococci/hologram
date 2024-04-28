@@ -22,5 +22,5 @@ import AuthorLayout from '@/Pages/Tabs/Authors/Layout/AuthorLayout.vue';
 </template>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>

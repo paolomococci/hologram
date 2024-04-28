@@ -75,5 +75,5 @@ import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
 </template>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>

@@ -7,9 +7,9 @@
 <script setup>
 import { onBeforeMount, ref } from "vue"
 import Pagination from "@/Pages/Tabs/Common/PaginationCommon.vue"
-    // TODO
+// TODO
 </script>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>

@@ -48,7 +48,8 @@ const cleanUri = BASE + "clean"
                 </p>
 
                 <p class="mt-4 text-sm">
-                    <a :href="renumberUri" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
+                    <a :href="renumberUri"
+                        class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
                         renumber the correlation table
 
                         <RightArrowIcon class="size-4" />
@@ -69,7 +70,8 @@ const cleanUri = BASE + "clean"
                 </p>
 
                 <p class="mt-4 text-sm">
-                    <a :href="cleanUri" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
+                    <a :href="cleanUri"
+                        class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
                         deletes all data from the database
 
                         <RightArrowIcon class="size-4" />

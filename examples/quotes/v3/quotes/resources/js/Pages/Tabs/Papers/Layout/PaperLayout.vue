@@ -75,5 +75,5 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
 </template>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>

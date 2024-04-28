@@ -22,5 +22,5 @@ import ArticleLayout from '@/Pages/Tabs/Articles/Layout/ArticleLayout.vue';
 </template>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>

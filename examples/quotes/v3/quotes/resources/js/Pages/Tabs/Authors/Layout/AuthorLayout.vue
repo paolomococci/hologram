@@ -75,5 +75,5 @@ import AuthorFiltered from '@/Pages/Tabs/Authors/Components/TableFiltered.vue'
 </template>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>

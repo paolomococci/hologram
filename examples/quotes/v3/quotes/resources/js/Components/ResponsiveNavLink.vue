@@ -22,7 +22,7 @@ const classes = computed(() => {
         </button>
 
         <Link v-else :href="href" :class="classes">
-            <slot />
+        <slot />
         </Link>
     </div>
 </template>

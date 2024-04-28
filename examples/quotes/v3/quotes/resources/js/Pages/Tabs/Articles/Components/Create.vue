@@ -18,9 +18,9 @@ const createForm = reactive({
     summary: null,
     content: null,
 })
-    // TODO
+// TODO
 </script>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>

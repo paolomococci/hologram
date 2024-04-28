@@ -22,5 +22,5 @@ import PaperLayout from '@/Pages/Tabs/Papers/Layout/PaperLayout.vue';
 </template>
 
 <style scoped>
-    /* TODO */
+/* TODO */
 </style>
