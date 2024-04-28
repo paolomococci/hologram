@@ -2,6 +2,16 @@
 
 ![landing page](screenshots/quotes_v3_landing_page.png)
 
+## scaffolding
+
+If I find that I don't have an updated version of Composer, just issue the following command:
+
+```bash
+sudo composer self-update
+```
+
+and then continue with the scaffolding of the application:
+
 ```bash
 cd /var/www/html/v3/
 composer create-project laravel/laravel:^11.0 quotes

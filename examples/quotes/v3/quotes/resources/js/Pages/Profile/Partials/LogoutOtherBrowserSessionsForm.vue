@@ -87,7 +87,7 @@ const closeModal = () => {
                             <div class="text-xs text-gray-500">
                                 {{ session.ip_address }},
 
-                                <span v-if="session.is_current_device" class="font-semibold text-green-500">This
+                                <span v-if="session.is_current_device" class="text-green-500 font-semibold">This
                                     device</span>
                                 <span v-else>Last active {{ session.last_active }}</span>
                             </div>
@@ -117,7 +117,7 @@ const closeModal = () => {
                     across all of your devices.
 
                     <div class="mt-4">
-                        <TextInput ref="passwordInput" v-model="form.password" type="password" class="block mt-1 w-3/4"
+                        <TextInput ref="passwordInput" v-model="form.password" type="password" class="mt-1 block w-3/4"
                             placeholder="Password" autocomplete="current-password"
                             @keyup.enter="logoutOtherBrowserSessions" />
 

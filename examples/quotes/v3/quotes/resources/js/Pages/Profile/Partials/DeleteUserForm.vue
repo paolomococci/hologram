@@ -71,7 +71,7 @@ const closeModal = () => {
                     permanently delete your account.
 
                     <div class="mt-4">
-                        <TextInput ref="passwordInput" v-model="form.password" type="password" class="block mt-1 w-3/4"
+                        <TextInput ref="passwordInput" v-model="form.password" type="password" class="mt-1 block w-3/4"
                             placeholder="Password" autocomplete="current-password" @keyup.enter="deleteUser" />
 
                         <InputError :message="form.errors.password" class="mt-2" />

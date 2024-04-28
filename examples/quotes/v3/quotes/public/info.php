@@ -1,1 +1,3 @@
-<? phpinfo(INFO_ALL);
+<?php
+
+phpinfo(INFO_ALL);

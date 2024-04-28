@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class ToolController extends Controller
 {
@@ -11,6 +11,7 @@ class ToolController extends Controller
     {
         try {
             $operator = ['email' => Auth::user()->email];
+
             // dd($operator);
             return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => "operator: {$operator['email']} has just renumbered correlations"]);
         } catch (\Exception $e) {
@@ -24,6 +25,7 @@ class ToolController extends Controller
 
         try {
             $operator = ['email' => Auth::user()->email];
+
             return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => "operator: {$operator['email']} has just deleted all data"]);
         } catch (\Exception $e) {
             // TODO: log this eventually error!

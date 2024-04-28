@@ -38,21 +38,21 @@ const submit = () => {
             <AuthenticationCardLogo />
         </template>
 
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600 dark:text-green-400">
+        <div v-if="status" class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
             {{ status }}
         </div>
 
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Email" />
-                <TextInput id="email" v-model="form.email" type="email" class="block mt-1 w-full" required autofocus
+                <TextInput id="email" v-model="form.email" type="email" class="mt-1 block w-full" required autofocus
                     autocomplete="username" />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="mt-4">
                 <InputLabel for="password" value="Password" />
-                <TextInput id="password" v-model="form.password" type="password" class="block mt-1 w-full" required
+                <TextInput id="password" v-model="form.password" type="password" class="mt-1 block w-full" required
                     autocomplete="current-password" />
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
@@ -60,13 +60,13 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="text-sm text-gray-600 ms-2 dark:text-gray-400">Remember me</span>
+                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
                 </label>
             </div>
 
-            <div class="flex justify-end items-center mt-4">
+            <div class="flex items-center justify-end mt-4">
                 <Link v-if="canResetPassword" :href="route('password.request')"
-                    class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                    class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
                 Forgot your password?
                 </Link>
 

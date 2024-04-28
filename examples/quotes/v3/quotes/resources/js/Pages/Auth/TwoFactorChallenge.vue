@@ -61,20 +61,20 @@ const submit = () => {
             <div v-if="!recovery">
                 <InputLabel for="code" value="Code" />
                 <TextInput id="code" ref="codeInput" v-model="form.code" type="text" inputmode="numeric"
-                    class="block mt-1 w-full" autofocus autocomplete="one-time-code" />
+                    class="mt-1 block w-full" autofocus autocomplete="one-time-code" />
                 <InputError class="mt-2" :message="form.errors.code" />
             </div>
 
             <div v-else>
                 <InputLabel for="recovery_code" value="Recovery Code" />
                 <TextInput id="recovery_code" ref="recoveryCodeInput" v-model="form.recovery_code" type="text"
-                    class="block mt-1 w-full" autocomplete="one-time-code" />
+                    class="mt-1 block w-full" autocomplete="one-time-code" />
                 <InputError class="mt-2" :message="form.errors.recovery_code" />
             </div>
 
-            <div class="flex justify-end items-center mt-4">
+            <div class="flex items-center justify-end mt-4">
                 <button type="button"
-                    class="text-sm text-gray-600 underline cursor-pointer dark:text-gray-400 hover:text-gray-900"
+                    class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 underline cursor-pointer"
                     @click.prevent="toggleRecovery">
                     <template v-if="!recovery">
                         Use a recovery code
