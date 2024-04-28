@@ -5,6 +5,7 @@ import RenumberIcon from '@/Icons/RenumberIcon.vue';
 import RightArrowIcon from '@/Icons/RightArrowIcon.vue';
 import DropDataIcon from '@/Icons/DropDataIcon.vue';
 import { BASE } from "@/env.js"
+import Feedback from "@/Pages/Tabs/Tools/Components/Feedback.vue";
 
 const props = defineProps({
     feedback: String,
@@ -28,7 +29,7 @@ const cleanUri = BASE + "clean"
                 Here are some useful tools to maintain data consistency.
             </p>
 
-            <p v-if="props.feedback">{{ props.feedback }}</p>
+            <Feedback :feedback="feedback" />
         </div>
 
         <div

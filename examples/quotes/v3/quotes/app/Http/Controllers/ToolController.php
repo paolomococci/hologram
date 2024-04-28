@@ -11,9 +11,11 @@ class ToolController extends Controller
     {
         try {
             $operator = ['email' => Auth::user()->email];
-
-            // dd($operator);
-            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => "operator: {$operator['email']} has just renumbered correlations"]);
+            $outcome = [
+                'message' => "operator: {$operator['email']} has just renumbered correlations",
+            ];
+            // dd(json_encode($outcome));
+            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => json_encode($outcome)]);
         } catch (\Exception $e) {
             // TODO: log this eventually error!
         }
