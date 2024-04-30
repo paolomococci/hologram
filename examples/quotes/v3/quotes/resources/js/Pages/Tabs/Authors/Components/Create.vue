@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { reactive, defineProps } from "vue"
+import { reactive, defineProps } from 'vue'
 import { router } from "@inertiajs/vue3"
 
 const props = defineProps({

@@ -1,6 +1,6 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import AuthorLayout from '@/Pages/Tabs/Authors/Layout/AuthorLayout.vue';
+import AppLayout from '@/Layouts/AppLayout.vue'
+import AuthorLayout from '@/Pages/Tabs/Authors/Layout/AuthorLayout.vue'
 </script>
 
 <template>

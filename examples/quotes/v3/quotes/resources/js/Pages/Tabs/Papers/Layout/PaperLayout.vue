@@ -1,9 +1,9 @@
 <script setup>
-import PapersIcon from '@/Icons/PapersIcon.vue';
-import UploadElementIcon from '@/Icons/UploadElementIcon.vue';
-import FetchDataIcon from '@/Icons/FetchDataIcon.vue';
-import EditElementIcon from '@/Icons/EditElementIcon.vue';
-import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
+import PapersIcon from '@/Icons/PapersIcon.vue'
+import UploadElementIcon from '@/Icons/UploadElementIcon.vue'
+import FetchDataIcon from '@/Icons/FetchDataIcon.vue'
+import EditElementIcon from '@/Icons/EditElementIcon.vue'
+import FilterElementIcon from '@/Icons/FilterElementIcon.vue'
 import PaperUpload from '@/Pages/Tabs/Papers/Components/Upload.vue'
 import PaperPaginated from '@/Pages/Tabs/Papers/Components/TablePaginated.vue'
 import PaperEditor from '@/Pages/Tabs/Papers/Components/Edit.vue'
@@ -31,7 +31,7 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                 <div class="flex items-center">
                     <UploadElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Upload</a>
+                        <span>Upload</span>
                     </h2>
                 </div>
 
@@ -42,7 +42,7 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                 <div class="flex items-center">
                     <FetchDataIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Index</a>
+                        <span>Index</span>
                     </h2>
                 </div>
 
@@ -53,7 +53,7 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                 <div class="flex items-center">
                     <EditElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Edit</a>
+                        <span>Edit</span>
                     </h2>
                 </div>
 
@@ -64,7 +64,7 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                 <div class="flex items-center">
                     <FilterElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        Filtering
+                        <span>Filtering</span>
                     </h2>
                 </div>
 

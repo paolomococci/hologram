@@ -5,8 +5,8 @@
 </template>
 
 <script setup>
-import { onBeforeMount, ref } from "vue"
-import Pagination from "@/Pages/Tabs/Common/PaginationCommon.vue"
+import { onBeforeMount, ref } from 'vue'
+import Pagination from '@/Pages/Tabs/Common/PaginationCommon.vue'
 // TODO
 </script>
 

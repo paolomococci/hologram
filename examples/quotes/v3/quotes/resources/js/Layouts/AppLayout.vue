@@ -1,16 +1,16 @@
 <script setup>
-import { ref } from 'vue';
-import { Head, Link, router } from '@inertiajs/vue3';
-import Banner from '@/Components/Banner.vue';
-import Dropdown from '@/Components/Dropdown.vue';
-import DropdownLink from '@/Components/DropdownLink.vue';
-import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import ApplicationIcon from '@/Icons/ApplicationIcon.vue';
+import { ref } from 'vue'
+import { Head, Link, router } from '@inertiajs/vue3'
+import Banner from '@/Components/Banner.vue'
+import Dropdown from '@/Components/Dropdown.vue'
+import DropdownLink from '@/Components/DropdownLink.vue'
+import NavLink from '@/Components/NavLink.vue'
+import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue'
+import ApplicationIcon from '@/Icons/ApplicationIcon.vue'
 
 defineProps({
     title: String,
-});
+})
 
 const showingNavigationDropdown = ref(false);
 
@@ -19,12 +19,12 @@ const switchToTeam = (team) => {
         team_id: team.id,
     }, {
         preserveState: false,
-    });
-};
+    })
+}
 
 const logout = () => {
     router.post(route('logout'));
-};
+}
 </script>
 
 <template>

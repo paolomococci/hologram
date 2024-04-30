@@ -1,18 +1,18 @@
 <script setup>
-import { ref, computed, watch } from 'vue';
-import { router, useForm, usePage } from '@inertiajs/vue3';
-import ActionSection from '@/Components/ActionSection.vue';
-import ConfirmsPassword from '@/Components/ConfirmsPassword.vue';
-import DangerButton from '@/Components/DangerButton.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import { ref, computed, watch } from 'vue'
+import { router, useForm, usePage } from '@inertiajs/vue3'
+import ActionSection from '@/Components/ActionSection.vue'
+import ConfirmsPassword from '@/Components/ConfirmsPassword.vue'
+import DangerButton from '@/Components/DangerButton.vue'
+import InputError from '@/Components/InputError.vue'
+import InputLabel from '@/Components/InputLabel.vue'
+import PrimaryButton from '@/Components/PrimaryButton.vue'
+import SecondaryButton from '@/Components/SecondaryButton.vue'
+import TextInput from '@/Components/TextInput.vue'
 
 const props = defineProps({
     requiresConfirmation: Boolean,
-});
+})
 
 const page = usePage();
 const enabling = ref(false);
@@ -24,7 +24,7 @@ const recoveryCodes = ref([]);
 
 const confirmationForm = useForm({
     code: '',
-});
+})
 
 const twoFactorEnabled = computed(
     () => !enabling.value && page.props.auth.user?.two_factor_enabled,
@@ -35,7 +35,7 @@ watch(twoFactorEnabled, () => {
         confirmationForm.reset();
         confirmationForm.clearErrors();
     }
-});
+})
 
 const enableTwoFactorAuthentication = () => {
     enabling.value = true;
@@ -51,26 +51,26 @@ const enableTwoFactorAuthentication = () => {
             enabling.value = false;
             confirming.value = props.requiresConfirmation;
         },
-    });
-};
+    })
+}
 
 const showQrCode = () => {
     return axios.get(route('two-factor.qr-code')).then(response => {
         qrCode.value = response.data.svg;
-    });
-};
+    })
+}
 
 const showSetupKey = () => {
     return axios.get(route('two-factor.secret-key')).then(response => {
         setupKey.value = response.data.secretKey;
-    });
+    })
 }
 
 const showRecoveryCodes = () => {
     return axios.get(route('two-factor.recovery-codes')).then(response => {
         recoveryCodes.value = response.data;
-    });
-};
+    })
+}
 
 const confirmTwoFactorAuthentication = () => {
     confirmationForm.post(route('two-factor.confirm'), {
@@ -82,14 +82,14 @@ const confirmTwoFactorAuthentication = () => {
             qrCode.value = null;
             setupKey.value = null;
         },
-    });
-};
+    })
+}
 
 const regenerateRecoveryCodes = () => {
     axios
         .post(route('two-factor.recovery-codes'))
         .then(() => showRecoveryCodes());
-};
+}
 
 const disableTwoFactorAuthentication = () => {
     disabling.value = true;
@@ -100,8 +100,8 @@ const disableTwoFactorAuthentication = () => {
             disabling.value = false;
             confirming.value = false;
         },
-    });
-};
+    })
+}
 </script>
 
 <template>

@@ -1,24 +1,24 @@
 <script setup>
-import { ref } from 'vue';
-import { Link, router, useForm } from '@inertiajs/vue3';
-import ActionMessage from '@/Components/ActionMessage.vue';
-import FormSection from '@/Components/FormSection.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import { ref } from 'vue'
+import { Link, router, useForm } from '@inertiajs/vue3'
+import ActionMessage from '@/Components/ActionMessage.vue'
+import FormSection from '@/Components/FormSection.vue'
+import InputError from '@/Components/InputError.vue'
+import InputLabel from '@/Components/InputLabel.vue'
+import PrimaryButton from '@/Components/PrimaryButton.vue'
+import SecondaryButton from '@/Components/SecondaryButton.vue'
+import TextInput from '@/Components/TextInput.vue'
 
 const props = defineProps({
     user: Object,
-});
+})
 
 const form = useForm({
     _method: 'PUT',
     name: props.user.name,
     email: props.user.email,
     photo: null,
-});
+})
 
 const verificationLinkSent = ref(null);
 const photoPreview = ref(null);
@@ -33,16 +33,16 @@ const updateProfileInformation = () => {
         errorBag: 'updateProfileInformation',
         preserveScroll: true,
         onSuccess: () => clearPhotoFileInput(),
-    });
-};
+    })
+}
 
 const sendEmailVerification = () => {
     verificationLinkSent.value = true;
-};
+}
 
 const selectNewPhoto = () => {
     photoInput.value.click();
-};
+}
 
 const updatePhotoPreview = () => {
     const photo = photoInput.value.files[0];
@@ -53,10 +53,10 @@ const updatePhotoPreview = () => {
 
     reader.onload = (e) => {
         photoPreview.value = e.target.result;
-    };
+    }
 
     reader.readAsDataURL(photo);
-};
+}
 
 const deletePhoto = () => {
     router.delete(route('current-user-photo.destroy'), {
@@ -65,14 +65,14 @@ const deletePhoto = () => {
             photoPreview.value = null;
             clearPhotoFileInput();
         },
-    });
-};
+    })
+}
 
 const clearPhotoFileInput = () => {
     if (photoInput.value?.value) {
         photoInput.value.value = null;
     }
-};
+}
 </script>
 
 <template>

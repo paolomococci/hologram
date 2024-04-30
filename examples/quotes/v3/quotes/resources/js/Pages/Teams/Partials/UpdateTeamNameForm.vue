@@ -1,27 +1,27 @@
 <script setup>
-import { useForm } from '@inertiajs/vue3';
-import ActionMessage from '@/Components/ActionMessage.vue';
-import FormSection from '@/Components/FormSection.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import { useForm } from '@inertiajs/vue3'
+import ActionMessage from '@/Components/ActionMessage.vue'
+import FormSection from '@/Components/FormSection.vue'
+import InputError from '@/Components/InputError.vue'
+import InputLabel from '@/Components/InputLabel.vue'
+import PrimaryButton from '@/Components/PrimaryButton.vue'
+import TextInput from '@/Components/TextInput.vue'
 
 const props = defineProps({
     team: Object,
     permissions: Object,
-});
+})
 
 const form = useForm({
     name: props.team.name,
-});
+})
 
 const updateTeamName = () => {
     form.put(route('teams.update', props.team), {
         errorBag: 'updateTeamName',
         preserveScroll: true,
-    });
-};
+    })
+}
 </script>
 
 <template>
@@ -40,12 +40,12 @@ const updateTeamName = () => {
                 <InputLabel value="Team Owner" />
 
                 <div class="flex items-center mt-2">
-                    <img class="w-12 h-12 rounded-full object-cover" :src="team.owner.profile_photo_url"
+                    <img class="object-cover w-12 h-12 rounded-full" :src="team.owner.profile_photo_url"
                         :alt="team.owner.name">
 
-                    <div class="ms-4 leading-tight">
+                    <div class="leading-tight ms-4">
                         <div class="text-gray-900 dark:text-white">{{ team.owner.name }}</div>
-                        <div class="text-gray-700 dark:text-gray-300 text-sm">
+                        <div class="text-sm text-gray-700 dark:text-gray-300">
                             {{ team.owner.email }}
                         </div>
                     </div>
@@ -56,7 +56,7 @@ const updateTeamName = () => {
             <div class="col-span-6 sm:col-span-4">
                 <InputLabel for="name" value="Team Name" />
 
-                <TextInput id="name" v-model="form.name" type="text" class="mt-1 block w-full"
+                <TextInput id="name" v-model="form.name" type="text" class="block mt-1 w-full"
                     :disabled="!permissions.canUpdateTeam" />
 
                 <InputError :message="form.errors.name" class="mt-2" />

@@ -1,9 +1,9 @@
 <script setup>
-import ArticlesIcon from '@/Icons/ArticlesIcon.vue';
-import AddElementIcon from '@/Icons/AddElementIcon.vue';
-import FetchDataIcon from '@/Icons/FetchDataIcon.vue';
-import EditElementIcon from '@/Icons/EditElementIcon.vue';
-import FilterElementIcon from '@/Icons/FilterElementIcon.vue';
+import ArticlesIcon from '@/Icons/ArticlesIcon.vue'
+import AddElementIcon from '@/Icons/AddElementIcon.vue'
+import FetchDataIcon from '@/Icons/FetchDataIcon.vue'
+import EditElementIcon from '@/Icons/EditElementIcon.vue'
+import FilterElementIcon from '@/Icons/FilterElementIcon.vue'
 import ArticleCreate from '@/Pages/Tabs/Articles/Components/Create.vue'
 import ArticlePaginated from '@/Pages/Tabs/Articles/Components/TablePaginated.vue'
 import ArticleEditor from '@/Pages/Tabs/Articles/Components/Edit.vue'
@@ -31,7 +31,7 @@ import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
                 <div class="flex items-center">
                     <AddElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Add</a>
+                        <span>Add</span>
                     </h2>
                 </div>
 
@@ -42,7 +42,7 @@ import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
                 <div class="flex items-center">
                     <FetchDataIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Index</a>
+                        <span>Index</span>
                     </h2>
                 </div>
 
@@ -53,7 +53,7 @@ import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
                 <div class="flex items-center">
                     <EditElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Edit</a>
+                        <span>Edit</span>
                     </h2>
                 </div>
 
@@ -64,7 +64,7 @@ import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
                 <div class="flex items-center">
                     <FilterElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        Filtering
+                        <span>Filtering</span>
                     </h2>
                 </div>
 

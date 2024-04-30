@@ -1,6 +1,6 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import HelpLayout from '@/Pages/Tabs/Help/Layout/HelpLayout.vue';
+import AppLayout from '@/Layouts/AppLayout.vue'
+import HelpLayout from '@/Pages/Tabs/Help/Layout/HelpLayout.vue'
 </script>
 
 <template>

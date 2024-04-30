@@ -1,10 +1,10 @@
 <script setup>
-import HelpIcon from '@/Icons/HelpIcon.vue';
-import DocumentationIcon from '@/Icons/DocumentationIcon.vue';
-import RightArrowIcon from '@/Icons/RightArrowIcon.vue';
-import ScreenshotIcon from '@/Icons/ScreenshotIcon.vue';
-import CommentsIcon from '@/Icons/CommentsIcon.vue';
-import SecurityIcon from '@/Icons/SecurityIcon.vue';
+import HelpIcon from '@/Icons/HelpIcon.vue'
+import DocumentationIcon from '@/Icons/DocumentationIcon.vue'
+import RightArrowIcon from '@/Icons/RightArrowIcon.vue'
+import ScreenshotIcon from '@/Icons/ScreenshotIcon.vue'
+import CommentsIcon from '@/Icons/CommentsIcon.vue'
+import SecurityIcon from '@/Icons/SecurityIcon.vue'
 </script>
 
 <template>
@@ -28,7 +28,7 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
                 <div class="flex items-center">
                     <DocumentationIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Documentation</a>
+                        <span>Documentation</span>
                     </h2>
                 </div>
 
@@ -49,7 +49,7 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
                 <div class="flex items-center">
                     <ScreenshotIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Screenshot</a>
+                        <span>Screenshot</span>
                     </h2>
                 </div>
 
@@ -70,7 +70,7 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
                 <div class="flex items-center">
                     <CommentsIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Comments</a>
+                        <span>Comments</span>
                     </h2>
                 </div>
 
@@ -91,7 +91,7 @@ import SecurityIcon from '@/Icons/SecurityIcon.vue';
                 <div class="flex items-center">
                     <SecurityIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        Web security
+                        <span>Web security</span>
                     </h2>
                 </div>
 

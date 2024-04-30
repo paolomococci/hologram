@@ -1,6 +1,6 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
-import ReturnBackIcon from '@/Icons/ReturnBackIcon.vue';
+import { Link } from '@inertiajs/vue3'
+import ReturnBackIcon from '@/Icons/ReturnBackIcon.vue'
 </script>
 
 <template>

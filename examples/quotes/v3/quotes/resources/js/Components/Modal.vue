@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
 const props = defineProps({
     show: {
@@ -14,7 +14,7 @@ const props = defineProps({
         type: Boolean,
         default: true,
     },
-});
+})
 
 const emit = defineEmits(['close']);
 const dialog = ref();
@@ -32,26 +32,26 @@ watch(() => props.show, () => {
             showSlot.value = false;
         }, 200);
     }
-});
+})
 
 const close = () => {
     if (props.closeable) {
         emit('close');
     }
-};
+}
 
 const closeOnEscape = (e) => {
     if (e.key === 'Escape' && props.show) {
         close();
     }
-};
+}
 
 onMounted(() => document.addEventListener('keydown', closeOnEscape));
 
 onUnmounted(() => {
     document.removeEventListener('keydown', closeOnEscape);
     document.body.style.overflow = null;
-});
+})
 
 const maxWidthClass = computed(() => {
     return {
@@ -61,7 +61,7 @@ const maxWidthClass = computed(() => {
         'xl': 'sm:max-w-xl',
         '2xl': 'sm:max-w-2xl',
     }[props.maxWidth];
-});
+})
 </script>
 
 <template>

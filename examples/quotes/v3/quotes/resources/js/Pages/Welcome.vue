@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3'
 
 defineProps({
     canLogin: {
@@ -16,7 +16,7 @@ defineProps({
         type: String,
         required: true,
     },
-});
+})
 
 function handleImageError() {
     document.getElementById('screenshot-container')?.classList.add('!hidden');

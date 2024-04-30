@@ -1,5 +1,5 @@
 <script setup>
-import Modal from './Modal.vue';
+import Modal from './Modal.vue'
 
 const emit = defineEmits(['close']);
 
@@ -16,11 +16,11 @@ defineProps({
         type: Boolean,
         default: true,
     },
-});
+})
 
 const close = () => {
     emit('close');
-};
+}
 </script>
 
 <template>

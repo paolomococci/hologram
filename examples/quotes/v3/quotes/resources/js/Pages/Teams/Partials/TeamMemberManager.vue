@@ -1,38 +1,38 @@
 <script setup>
-import { ref } from 'vue';
-import { router, useForm, usePage } from '@inertiajs/vue3';
-import ActionMessage from '@/Components/ActionMessage.vue';
-import ActionSection from '@/Components/ActionSection.vue';
-import ConfirmationModal from '@/Components/ConfirmationModal.vue';
-import DangerButton from '@/Components/DangerButton.vue';
-import DialogModal from '@/Components/DialogModal.vue';
-import FormSection from '@/Components/FormSection.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
-import SectionBorder from '@/Components/SectionBorder.vue';
-import TextInput from '@/Components/TextInput.vue';
+import { ref } from 'vue'
+import { router, useForm, usePage } from '@inertiajs/vue3'
+import ActionMessage from '@/Components/ActionMessage.vue'
+import ActionSection from '@/Components/ActionSection.vue'
+import ConfirmationModal from '@/Components/ConfirmationModal.vue'
+import DangerButton from '@/Components/DangerButton.vue'
+import DialogModal from '@/Components/DialogModal.vue'
+import FormSection from '@/Components/FormSection.vue'
+import InputError from '@/Components/InputError.vue'
+import InputLabel from '@/Components/InputLabel.vue'
+import PrimaryButton from '@/Components/PrimaryButton.vue'
+import SecondaryButton from '@/Components/SecondaryButton.vue'
+import SectionBorder from '@/Components/SectionBorder.vue'
+import TextInput from '@/Components/TextInput.vue'
 
 const props = defineProps({
     team: Object,
     availableRoles: Array,
     userPermissions: Object,
-});
+})
 
 const page = usePage();
 
 const addTeamMemberForm = useForm({
     email: '',
     role: null,
-});
+})
 
 const updateRoleForm = useForm({
     role: null,
-});
+})
 
-const leaveTeamForm = useForm({});
-const removeTeamMemberForm = useForm({});
+const leaveTeamForm = useForm({})
+const removeTeamMemberForm = useForm({})
 
 const currentlyManagingRole = ref(false);
 const managingRoleFor = ref(null);
@@ -44,39 +44,39 @@ const addTeamMember = () => {
         errorBag: 'addTeamMember',
         preserveScroll: true,
         onSuccess: () => addTeamMemberForm.reset(),
-    });
-};
+    })
+}
 
 const cancelTeamInvitation = (invitation) => {
     router.delete(route('team-invitations.destroy', invitation), {
         preserveScroll: true,
-    });
-};
+    })
+}
 
 const manageRole = (teamMember) => {
     managingRoleFor.value = teamMember;
     updateRoleForm.role = teamMember.membership.role;
     currentlyManagingRole.value = true;
-};
+}
 
 const updateRole = () => {
     updateRoleForm.put(route('team-members.update', [props.team, managingRoleFor.value]), {
         preserveScroll: true,
         onSuccess: () => currentlyManagingRole.value = false,
-    });
-};
+    })
+}
 
 const confirmLeavingTeam = () => {
     confirmingLeavingTeam.value = true;
-};
+}
 
 const leaveTeam = () => {
     leaveTeamForm.delete(route('team-members.destroy', [props.team, page.props.auth.user]));
-};
+}
 
 const confirmTeamMemberRemoval = (teamMember) => {
     teamMemberBeingRemoved.value = teamMember;
-};
+}
 
 const removeTeamMember = () => {
     removeTeamMemberForm.delete(route('team-members.destroy', [props.team, teamMemberBeingRemoved.value]), {
@@ -84,12 +84,12 @@ const removeTeamMember = () => {
         preserveScroll: true,
         preserveState: true,
         onSuccess: () => teamMemberBeingRemoved.value = null,
-    });
-};
+    })
+}
 
 const displayableRole = (role) => {
     return props.availableRoles.find(r => r.key === role).name;
-};
+}
 </script>
 
 <template>
@@ -118,7 +118,7 @@ const displayableRole = (role) => {
                     <div class="col-span-6 sm:col-span-4">
                         <InputLabel for="email" value="Email" />
                         <TextInput id="email" v-model="addTeamMemberForm.email" type="email"
-                            class="mt-1 block w-full" />
+                            class="block mt-1 w-full" />
                         <InputError :message="addTeamMemberForm.errors.email" class="mt-2" />
                     </div>
 
@@ -128,9 +128,9 @@ const displayableRole = (role) => {
                         <InputError :message="addTeamMemberForm.errors.role" class="mt-2" />
 
                         <div
-                            class="relative z-0 mt-1 border border-gray-200 dark:border-gray-700 rounded-lg cursor-pointer">
+                            class="relative z-0 mt-1 rounded-lg border border-gray-200 cursor-pointer dark:border-gray-700">
                             <button v-for="(role, i) in availableRoles" :key="role.key" type="button"
-                                class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                                class="inline-flex relative px-4 py-3 w-full rounded-lg focus:z-10 focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600"
                                 :class="{ 'border-t border-gray-200 dark:border-gray-700 focus:border-none rounded-t-none': i > 0, 'rounded-b-none': i != Object.keys(availableRoles).length - 1 }"
                                 @click="addTeamMemberForm.role = role.key">
                                 <div
@@ -143,7 +143,7 @@ const displayableRole = (role) => {
                                         </div>
 
                                         <svg v-if="addTeamMemberForm.role == role.key"
-                                            class="ms-2 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg"
+                                            class="w-5 h-5 text-green-400 ms-2" xmlns="http://www.w3.org/2000/svg"
                                             fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -191,7 +191,7 @@ const displayableRole = (role) => {
                 <template #content>
                     <div class="space-y-6">
                         <div v-for="invitation in team.team_invitations" :key="invitation.id"
-                            class="flex items-center justify-between">
+                            class="flex justify-between items-center">
                             <div class="text-gray-600 dark:text-gray-400">
                                 {{ invitation.email }}
                             </div>
@@ -199,7 +199,7 @@ const displayableRole = (role) => {
                             <div class="flex items-center">
                                 <!-- Cancel Team Invitation -->
                                 <button v-if="userPermissions.canRemoveTeamMembers"
-                                    class="cursor-pointer ms-6 text-sm text-red-500 focus:outline-none"
+                                    class="text-sm text-red-500 cursor-pointer ms-6 focus:outline-none"
                                     @click="cancelTeamInvitation(invitation)">
                                     Cancel
                                 </button>
@@ -226,9 +226,9 @@ const displayableRole = (role) => {
                 <!-- Team Member List -->
                 <template #content>
                     <div class="space-y-6">
-                        <div v-for="user in team.users" :key="user.id" class="flex items-center justify-between">
+                        <div v-for="user in team.users" :key="user.id" class="flex justify-between items-center">
                             <div class="flex items-center">
-                                <img class="w-8 h-8 rounded-full object-cover" :src="user.profile_photo_url"
+                                <img class="object-cover w-8 h-8 rounded-full" :src="user.profile_photo_url"
                                     :alt="user.name">
                                 <div class="ms-4 dark:text-white">
                                     {{ user.name }}
@@ -238,23 +238,23 @@ const displayableRole = (role) => {
                             <div class="flex items-center">
                                 <!-- Manage Team Member Role -->
                                 <button v-if="userPermissions.canUpdateTeamMembers && availableRoles.length"
-                                    class="ms-2 text-sm text-gray-400 underline" @click="manageRole(user)">
+                                    class="text-sm text-gray-400 underline ms-2" @click="manageRole(user)">
                                     {{ displayableRole(user.membership.role) }}
                                 </button>
 
-                                <div v-else-if="availableRoles.length" class="ms-2 text-sm text-gray-400">
+                                <div v-else-if="availableRoles.length" class="text-sm text-gray-400 ms-2">
                                     {{ displayableRole(user.membership.role) }}
                                 </div>
 
                                 <!-- Leave Team -->
                                 <button v-if="$page.props.auth.user.id === user.id"
-                                    class="cursor-pointer ms-6 text-sm text-red-500" @click="confirmLeavingTeam">
+                                    class="text-sm text-red-500 cursor-pointer ms-6" @click="confirmLeavingTeam">
                                     Leave
                                 </button>
 
                                 <!-- Remove Team Member -->
                                 <button v-else-if="userPermissions.canRemoveTeamMembers"
-                                    class="cursor-pointer ms-6 text-sm text-red-500"
+                                    class="text-sm text-red-500 cursor-pointer ms-6"
                                     @click="confirmTeamMemberRemoval(user)">
                                     Remove
                                 </button>
@@ -274,9 +274,9 @@ const displayableRole = (role) => {
             <template #content>
                 <div v-if="managingRoleFor">
                     <div
-                        class="relative z-0 mt-1 border border-gray-200 dark:border-gray-700 rounded-lg cursor-pointer">
+                        class="relative z-0 mt-1 rounded-lg border border-gray-200 cursor-pointer dark:border-gray-700">
                         <button v-for="(role, i) in availableRoles" :key="role.key" type="button"
-                            class="relative px-4 py-3 inline-flex w-full rounded-lg focus:z-10 focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                            class="inline-flex relative px-4 py-3 w-full rounded-lg focus:z-10 focus:outline-none focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600"
                             :class="{ 'border-t border-gray-200 dark:border-gray-700 focus:border-none rounded-t-none': i > 0, 'rounded-b-none': i !== Object.keys(availableRoles).length - 1 }"
                             @click="updateRoleForm.role = role.key">
                             <div :class="{ 'opacity-50': updateRoleForm.role && updateRoleForm.role !== role.key }">
@@ -287,7 +287,7 @@ const displayableRole = (role) => {
                                         {{ role.name }}
                                     </div>
 
-                                    <svg v-if="updateRoleForm.role == role.key" class="ms-2 h-5 w-5 text-green-400"
+                                    <svg v-if="updateRoleForm.role == role.key" class="w-5 h-5 text-green-400 ms-2"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round"

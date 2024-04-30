@@ -1,6 +1,6 @@
 <script setup>
-import { ref, watchEffect } from 'vue';
-import { usePage } from '@inertiajs/vue3';
+import { ref, watchEffect } from 'vue'
+import { usePage } from '@inertiajs/vue3'
 
 const page = usePage();
 const show = ref(true);
@@ -11,7 +11,7 @@ watchEffect(async () => {
     style.value = page.props.jetstream.flash?.bannerStyle || 'success';
     message.value = page.props.jetstream.flash?.banner || '';
     show.value = true;
-});
+})
 </script>
 
 <template>
