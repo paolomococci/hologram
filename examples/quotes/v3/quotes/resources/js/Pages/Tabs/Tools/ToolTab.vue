@@ -1,9 +1,19 @@
 <script setup>
-import { defineProps } from "vue"
-import AppLayout from '@/Layouts/AppLayout.vue';
-import ToolLayout from '@/Pages/Tabs/Tools/Layout/ToolLayout.vue';
+import { defineProps } from 'vue'
+import AppLayout from '@/Layouts/AppLayout.vue'
+import ToolLayout from '@/Pages/Tabs/Tools/Layout/ToolLayout.vue'
+import { BASE } from '@/env.js'
 
-defineProps({ feedback: String })
+const tools = BASE + "tools"
+
+const props = defineProps({ feedback: String })
+
+/** processes what it receives from the child component by cleaning up the content of the feedback and returns to the tools tab */
+function resetMessage(message) {
+    console.log(`ToolTab: ${message}`)
+    props.feedback = message
+    window.location.href = tools
+}
 </script>
 
 <template>
@@ -17,7 +27,9 @@ defineProps({ feedback: String })
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
-                    <ToolLayout :feedback="feedback" />
+
+                    <!-- allows you to receive the event emitted by the child component -->
+                    <ToolLayout @resetFeedbackMessage="(message) => resetMessage(message)" :feedback="feedback" />
                 </div>
             </div>
         </div>

@@ -1,18 +1,27 @@
 <script setup>
-import { defineProps } from "vue"
-import ToolsIcon from '@/Icons/ToolsIcon.vue';
-import RenumberIcon from '@/Icons/RenumberIcon.vue';
-import RightArrowIcon from '@/Icons/RightArrowIcon.vue';
-import DropDataIcon from '@/Icons/DropDataIcon.vue';
-import { BASE } from "@/env.js"
-import Feedback from "@/Pages/Tabs/Tools/Components/Feedback.vue";
+import { defineProps, defineEmits } from 'vue'
+import ToolsIcon from '@/Icons/ToolsIcon.vue'
+import RenumberIcon from '@/Icons/RenumberIcon.vue'
+import RightArrowIcon from '@/Icons/RightArrowIcon.vue'
+import DropDataIcon from '@/Icons/DropDataIcon.vue'
+import { BASE } from '@/env.js'
+import Feedback from '@/Pages/Tabs/Common/FeedbackCommon.vue'
 
 const props = defineProps({
     feedback: String,
 })
 
+const emit = defineEmits(['resetFeedbackMessage'])
+
 const renumberUri = BASE + "renumber"
 const cleanUri = BASE + "clean"
+
+/** collects what the child component emitted and transmits it back to the parent component */
+function resetMessage(message) {
+    console.log(`ToolLayout: ${message}`)
+    props.feedback = message
+    emit('resetFeedbackMessage', message)
+}
 </script>
 
 <template>
@@ -29,7 +38,8 @@ const cleanUri = BASE + "clean"
                 Here are some useful tools to maintain data consistency.
             </p>
 
-            <Feedback :feedback="feedback" />
+            <!-- allows the emission of an event to the parent component, retransmitting what it received from the child component -->
+            <Feedback @resetFeedbackMessage="(message) => resetMessage(message)" :feedback="feedback" />
         </div>
 
         <div
@@ -38,7 +48,7 @@ const cleanUri = BASE + "clean"
                 <div class="flex items-center">
                     <RenumberIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Renumber</a>
+                        <span>Renumber</span>
                     </h2>
                 </div>
 
@@ -62,7 +72,7 @@ const cleanUri = BASE + "clean"
                 <div class="flex items-center">
                     <DropDataIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <a href="#">Clean</a>
+                        <span>Clean</span>
                     </h2>
                 </div>
 
