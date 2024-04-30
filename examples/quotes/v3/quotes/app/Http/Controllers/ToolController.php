@@ -36,7 +36,7 @@ class ToolController extends Controller
                 'message' => "Operator {$operator['email']} just attempted to renumber the correlations between authors and articles, causing the following error: {$e->getMessage()}",
             ];
 
-            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => json_encode($outcome['message'])]);
+            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => $outcome['message']]);
         }
     }
 
@@ -60,7 +60,7 @@ class ToolController extends Controller
                 'message' => "Operator {$operator['email']} has just deleted all data from database quotes_v3_db!",
             ];
 
-            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => "Operator: {$operator['email']} has just deleted all data from database quotes_v3_db"]);
+            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => "Operator {$operator['email']} has just deleted all data from database quotes_v3_db"]);
         } catch (\Exception $e) {
             Log::build([
                 'driver' => 'single',
@@ -70,7 +70,7 @@ class ToolController extends Controller
                 'message' => "Operator {$operator['email']} just attempted to delete all data from database quotes_v3_db, causing the following error: {$e->getMessage()}",
             ];
 
-            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => json_encode($outcome['message'])]);
+            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => $outcome['message']]);
         }
     }
 }
