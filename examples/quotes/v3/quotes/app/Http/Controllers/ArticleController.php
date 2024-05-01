@@ -19,9 +19,15 @@ class ArticleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(StoreArticleRequest $request)
     {
-        //
+        return json_encode([
+            'title' => $request['title'],
+            'subject' => $request['subject'],
+            'summary' => $request['summary'],
+            'content' => $request['content'],
+            'deprecated' => $request['deprecated'],
+        ]);
     }
 
     /**
@@ -29,7 +35,7 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        //
+        return $this->create($request);
     }
 
     /**

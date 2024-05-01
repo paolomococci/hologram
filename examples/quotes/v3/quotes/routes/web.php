@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ToolController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,9 @@ Route::middleware([
     Route::get('/articles', function () {
         return Inertia::render('Tabs/Articles/ArticleTab');
     })->name('articles');
+
+    /* articles controller */
+    Route::post('/articles', [ArticleController::class, 'store'])->name('articles');
 
     /* tab: Paper */
     Route::get('/papers', function () {
