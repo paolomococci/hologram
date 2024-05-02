@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Inertia\Inertia;
 
 class ArticleController extends Controller
 {
@@ -19,15 +22,9 @@ class ArticleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(StoreArticleRequest $request)
+    public function create()
     {
-        return json_encode([
-            'title' => $request['title'],
-            'subject' => $request['subject'],
-            'summary' => $request['summary'],
-            'content' => $request['content'],
-            'deprecated' => $request['deprecated'],
-        ]);
+        //
     }
 
     /**
@@ -35,7 +32,45 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        return $this->create($request);
+        $operator = ['email' => Auth::user()->email];
+        // TODO: add code to sanitize user input
+
+        return $request['content'];
+        try {
+            $article = Article::create(
+                $request->validate([
+                    'title' => ['required', 'min:16', 'max:255', 'unique:quotesdb.articles,title'],
+                    'subject' => ['required', 'min:16', 'max:255'],
+                    'summary' => ['min:16', 'max:255'],
+                    'content' => ['required', 'min:32', 'max:1024'],
+                    'deprecated' => ['boolean'],
+                ])
+            );
+            $jsonArrayDataLog = [
+                'operator' => $operator['email'],
+                'article' => $article['title'],
+                'performed' => 'store',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/articles_store_info.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+
+            return Inertia::render('Tabs/Articles/ArticleTab', ['feedback' => "The operator {$operator['email']} just saved the article titled {$request['title']}"]);
+        } catch (\Exception $e) {
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'request' => $request['title'],
+                'error' => $e->getMessage(),
+                'performed' => 'store',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/articles_store_error.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+
+            return Inertia::render('Tabs/Articles/ArticleTab', ['feedback' => "An error {$e->getMessage()} occurred while operator {$operator['email']} was trying to save the article titled {$request['title']}"]);
+        }
     }
 
     /**
