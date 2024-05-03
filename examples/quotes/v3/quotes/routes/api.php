@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use App\Models\Article;
+use App\Http\Controllers\Rest\ArticleRestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -11,8 +10,6 @@ Route::get('/user', function (Request $request) {
 
 /* articles API */
 
-Route::get('/articles', function () {
-    return Article::all();
-})->middleware('auth:sanctum');
+Route::get('/articles', [ArticleRestController::class, 'index'])->middleware('auth:sanctum');
 
-Route::post('/articles', [ArticleController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/articles', [ArticleRestController::class, 'store'])->middleware('auth:sanctum');

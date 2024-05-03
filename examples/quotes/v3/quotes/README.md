@@ -338,3 +338,15 @@ So I can issue the following command:
 ```bash
 npm run dev
 ```
+
+### add SanitizerUtil class
+
+```bash
+php artisan make:class Utils/SanitizerUtil
+```
+
+### add ArticleRestController class
+
+```bash
+php artisan make:controller Rest/ArticleRestController
+```

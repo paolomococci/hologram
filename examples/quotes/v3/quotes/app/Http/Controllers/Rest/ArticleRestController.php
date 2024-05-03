@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Rest;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArticleRequest;
-use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use App\Utils\SanitizerUtil;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Inertia\Inertia;
 
-class ArticleController extends Controller
+class ArticleRestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,18 +17,18 @@ class ArticleController extends Controller
     public function index()
     {
         try {
-            return Article::all();
+            $articles = Article::all();
+            foreach ($articles as $article) {
+                $article['title'] = SanitizerUtil::rehydrate($article['title']);
+                $article['subject'] = SanitizerUtil::rehydrate($article['subject']);
+                $article['summary'] = SanitizerUtil::rehydrate($article['summary']);
+                $article['content'] = SanitizerUtil::rehydrate($article['content']);
+            }
+
+            return response()->json($articles);
         } catch (\Exception $e) {
             $e->getMessage();
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -64,7 +63,7 @@ class ArticleController extends Controller
                 'path' => storage_path('logs/articles_store_info.log'),
             ])->info(json_encode($jsonArrayDataLog));
 
-            return Inertia::render('Tabs/Articles/ArticleTab', ['feedback' => "The operator {$operator['email']} just saved the article titled {$request['title']}"]);
+            return response()->json($jsonArrayDataLog);
         } catch (\Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,
@@ -77,39 +76,7 @@ class ArticleController extends Controller
                 'path' => storage_path('logs/articles_store_error.log'),
             ])->info(json_encode($jsonArrayDataLog));
 
-            return Inertia::render('Tabs/Articles/ArticleTab', ['feedback' => "An error {$e->getMessage()} occurred while operator {$operator['email']} was trying to save the article titled {$request['title']}"]);
+            return response()->json($jsonArrayDataLog);
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Article $article)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Article $article)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateArticleRequest $request, Article $article)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Article $article)
-    {
-        //
     }
 }
