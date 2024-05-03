@@ -12,4 +12,4 @@ Route::get('/user', function (Request $request) {
 Route::post('/articles', [ArticleRestController::class, 'create'])->middleware('auth:sanctum');
 Route::get('/articles/{id}', [ArticleRestController::class, 'read'])->middleware('auth:sanctum');
 Route::get('/articles', [ArticleRestController::class, 'index'])->middleware('auth:sanctum');
-Route::patch('/articles/{id}', [ArticleRestController::class, 'update'])->middleware('auth:sanctum');
+Route::put('/articles/{id}', [ArticleRestController::class, 'update'])->middleware('auth:sanctum');

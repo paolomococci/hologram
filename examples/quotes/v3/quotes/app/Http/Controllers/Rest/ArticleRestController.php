@@ -43,7 +43,12 @@ class ArticleRestController extends Controller
                 'path' => storage_path('logs/articles_api_create_info.log'),
             ])->info(json_encode($jsonArrayDataLog));
 
-            return response()->json($jsonArrayDataLog, 201);
+            return response()->json(
+                [
+                    'message' => 'Created'
+                ],
+                201
+            );
         } catch (\Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,
@@ -90,17 +95,74 @@ class ArticleRestController extends Controller
             return response()->json(
                 [
                     'message' => 'Not Found'
-                ], 404
+                ],
+                404
             );
         }
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update the specified resource.
      */
-    public function update(int $id, Article $article)
+    public function update(int $id, StoreArticleRequest $request)
     {
-        //
+        $operator = ['email' => Auth::user()->email];
+
+        $request['subject'] = SanitizerUtil::sanitize($request['subject']);
+        $request['summary'] = SanitizerUtil::sanitize($request['summary']);
+        $request['content'] = SanitizerUtil::sanitize($request['content']);
+
+        try {
+            $article = Article::findOrFail($id);
+
+            $validated = $request->validate([
+                'subject' => ['required', 'min:16', 'max:255'],
+                'summary' => ['min:16', 'max:255'],
+                'content' => ['required', 'min:32', 'max:1024'],
+                'deprecated' => ['boolean'],
+            ]);
+
+            $article['subject'] = $validated['subject'];
+            $article['summary'] = $validated['summary'];
+            $article['content'] = $validated['content'];
+            $article['deprecated'] = $validated['deprecated'];
+
+            $article->save();
+            $jsonArrayDataLog = [
+                'operator' => $operator['email'],
+                'article' => $article['title'],
+                'performed' => 'update',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/articles_api_update_info.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+
+            return response()->json(
+                [
+                    'message' => 'No Content'
+                ],
+                204
+            );
+        } catch (\Exception $e) {
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'request' => $request['title'],
+                'error' => $e->getMessage(),
+                'performed' => 'update',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/articles_api_update_error.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+
+            return response()->json(
+                [
+                    'message' => 'Not Found'
+                ],
+                404
+            );
+        }
     }
 
     /**
