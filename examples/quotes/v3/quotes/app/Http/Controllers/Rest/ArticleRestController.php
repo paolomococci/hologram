@@ -18,6 +18,7 @@ class ArticleRestController extends Controller
     {
         $operator = ['email' => Auth::user()->email];
 
+        $request['title'] = $request['title'].' '.date('jS F Y l, h:i:s a');
         $request['title'] = SanitizerUtil::sanitize($request['title']);
         $request['subject'] = SanitizerUtil::sanitize($request['subject']);
         $request['summary'] = SanitizerUtil::sanitize($request['summary']);
@@ -45,7 +46,7 @@ class ArticleRestController extends Controller
 
             return response()->json(
                 [
-                    'message' => 'Created'
+                    'message' => 'Created',
                 ],
                 201
             );
@@ -94,7 +95,7 @@ class ArticleRestController extends Controller
 
             return response()->json(
                 [
-                    'message' => 'Not Found'
+                    'message' => 'Not Found',
                 ],
                 404
             );
@@ -140,7 +141,7 @@ class ArticleRestController extends Controller
 
             return response()->json(
                 [
-                    'message' => 'No Content'
+                    'message' => 'No Content',
                 ],
                 204
             );
@@ -158,7 +159,7 @@ class ArticleRestController extends Controller
 
             return response()->json(
                 [
-                    'message' => 'Not Found'
+                    'message' => 'Not Found',
                 ],
                 404
             );
