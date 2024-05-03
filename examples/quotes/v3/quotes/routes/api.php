@@ -9,7 +9,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 /* articles API */
-
+Route::post('/articles', [ArticleRestController::class, 'create'])->middleware('auth:sanctum');
+Route::get('/articles/{id}', [ArticleRestController::class, 'read'])->middleware('auth:sanctum');
 Route::get('/articles', [ArticleRestController::class, 'index'])->middleware('auth:sanctum');
-
-Route::post('/articles', [ArticleRestController::class, 'store'])->middleware('auth:sanctum');
+Route::patch('/articles/{id}', [ArticleRestController::class, 'update'])->middleware('auth:sanctum');

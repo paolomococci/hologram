@@ -84,7 +84,7 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Article $article)
+    public function show(int $id)
     {
         //
     }
@@ -92,7 +92,7 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Article $article)
+    public function edit(int $id, Article $article)
     {
         //
     }
