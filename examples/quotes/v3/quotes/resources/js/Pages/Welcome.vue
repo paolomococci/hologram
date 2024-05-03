@@ -37,7 +37,7 @@ function handleImageError() {
                     <header class="grid grid-cols-2 gap-2 items-center py-10 lg:grid-cols-3">
                         <div class="flex lg:justify-center lg:col-start-2">
                             <h1 class="text-3xl uppercase text-slate-600">
-                                <span class="p-2 m-2 rounded-full backdrop-blur-sm bg-red-500/10">
+                                <span class="p-4 m-2 rounded-full backdrop-blur-sm bg-red-500/10">
                                     quotes
                                 </span>
                             </h1>
