@@ -36,27 +36,27 @@ class ArticleRestController extends Controller
             $jsonArrayDataLog = [
                 'operator' => $operator['email'],
                 'article' => $article['title'],
-                'performed' => 'store',
+                'performed' => 'create',
             ];
             Log::build([
                 'driver' => 'single',
-                'path' => storage_path('logs/articles_store_info.log'),
+                'path' => storage_path('logs/articles_api_create_info.log'),
             ])->info(json_encode($jsonArrayDataLog));
 
-            return response()->json($jsonArrayDataLog);
+            return response()->json($jsonArrayDataLog, 201);
         } catch (\Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,
                 'request' => $request['title'],
                 'error' => $e->getMessage(),
-                'performed' => 'store',
+                'performed' => 'create',
             ];
             Log::build([
                 'driver' => 'single',
-                'path' => storage_path('logs/articles_store_error.log'),
+                'path' => storage_path('logs/articles_api_create_error.log'),
             ])->info(json_encode($jsonArrayDataLog));
 
-            return response()->json($jsonArrayDataLog);
+            return response()->json($jsonArrayDataLog, 500);
         }
     }
 
@@ -65,7 +65,34 @@ class ArticleRestController extends Controller
      */
     public function read(int $id)
     {
-        //
+        $operator = ['email' => Auth::user()->email];
+
+        try {
+            $article = Article::findOrFail($id);
+            $article['title'] = SanitizerUtil::rehydrate($article['title']);
+            $article['subject'] = SanitizerUtil::rehydrate($article['subject']);
+            $article['summary'] = SanitizerUtil::rehydrate($article['summary']);
+            $article['content'] = SanitizerUtil::rehydrate($article['content']);
+
+            return response()->json($article);
+        } catch (\Exception $e) {
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'articleId' => $id,
+                'error' => $e->getMessage(),
+                'performed' => 'read',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/articles_api_read_error.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+
+            return response()->json(
+                [
+                    'message' => 'Not Found'
+                ], 404
+            );
+        }
     }
 
     /**
@@ -75,6 +102,7 @@ class ArticleRestController extends Controller
     {
         //
     }
+
     /**
      * Display a listing of the resource.
      */
