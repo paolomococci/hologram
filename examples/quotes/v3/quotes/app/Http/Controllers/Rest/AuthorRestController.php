@@ -1,0 +1,200 @@
+<?php
+
+namespace App\Http\Controllers\Rest;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAuthorRequest;
+use App\Models\Author;
+use App\Utils\SanitizerUtil;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
+class AuthorRestController extends Controller
+{
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function create(StoreAuthorRequest $request)
+    {
+        $operator = ['email' => Auth::user()->email];
+
+        try {
+            $request['name'] = SanitizerUtil::filtrate($request['name']);
+            $request['surname'] = SanitizerUtil::filtrate($request['surname']);
+            $request['nickname'] = SanitizerUtil::filtrate($request['nickname']);
+
+            $request->validate([
+                'name' => ['required', 'min:1', 'max:255'],
+                'surname' => ['required', 'min:1', 'max:255'],
+                'nickname' => ['min:16', 'max:255'],
+                'email' => ['required', 'min:10', 'max:255', 'email', 'unique:quotesdb.authors,email'],
+                'suspended' => ['boolean'],
+            ]);
+
+            return response()->json($request);
+
+            $author = Author::create(
+                $request->validate([
+                    'name' => ['required', 'min:1', 'max:255'],
+                    'surname' => ['required', 'min:1', 'max:255'],
+                    'nickname' => ['min:16', 'max:255'],
+                    'email' => ['required', 'min:10', 'max:255', 'email', 'unique:quotesdb.authors,email'],
+                    'suspended' => ['boolean'],
+                ])
+            );
+            $jsonArrayDataLog = [
+                'operator' => $operator['email'],
+                'author' => $author['email'],
+                'performed' => 'create',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/authors_api_create_info.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+
+            return response()->json(
+                [
+                    'message' => 'Created',
+                ],
+                201
+            );
+        } catch (\Exception $e) {
+            $req = [
+                'name' => $request['name'],
+                'surname' => $request['surname'],
+                'nickname' => $request['nickname'],
+                'email' => $request['email'],
+                'suspended' => $request['suspended'],
+            ];
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'request' => $req,
+                'error' => $e->getMessage(),
+                'performed' => 'create',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/authors_api_create_error.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+
+            return response()->json($jsonArrayDataLog, 500);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function read(int $id)
+    {
+        $operator = ['email' => Auth::user()->email];
+
+        try {
+            $author = Author::findOrFail($id);
+
+            return response()->json($author);
+        } catch (\Exception $e) {
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'authorId' => $id,
+                'error' => $e->getMessage(),
+                'performed' => 'read',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/authors_api_read_error.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+
+            return response()->json(
+                [
+                    'message' => 'Not Found',
+                ],
+                404
+            );
+        }
+    }
+
+    /**
+     * Update the specified resource.
+     */
+    public function update(int $id, StoreAuthorRequest $request)
+    {
+        $operator = ['email' => Auth::user()->email];
+
+        try {
+            $request['surname'] = SanitizerUtil::filtrate($request['surname']);
+            $request['nickname'] = SanitizerUtil::filtrate($request['nickname']);
+            $request['email'] = SanitizerUtil::filtrate($request['email']);
+
+            $author = Author::findOrFail($id);
+
+            $validated = $request->validate([
+                'surname' => ['required', 'min:1', 'max:255'],
+                'nickname' => ['min:1', 'max:255'],
+                'email' => ['required', 'min:10', 'max:255'],
+                'suspended' => ['boolean'],
+            ]);
+
+            $author['surname'] = $validated['surname'];
+            $author['nickname'] = $validated['nickname'];
+            $author['email'] = $validated['email'];
+            $author['suspended'] = $validated['suspended'];
+
+            $author->save();
+            $jsonArrayDataLog = [
+                'operator' => $operator['email'],
+                'author' => $author['email'],
+                'performed' => 'update',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/authors_api_update_info.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+
+            return response()->json(
+                [
+                    'message' => 'No Content',
+                ],
+                204
+            );
+        } catch (\Exception $e) {
+            $req = [
+                'name' => $request['name'],
+                'surname' => $request['surname'],
+                'nickname' => $request['nickname'],
+                'email' => $request['email'],
+                'suspended' => $request['suspended'],
+            ];
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'request' => $req,
+                'error' => $e->getMessage(),
+                'performed' => 'update',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/authors_api_update_error.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+
+            return response()->json(
+                [
+                    'message' => 'Not Found',
+                ],
+                404
+            );
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        try {
+            $authors = Author::all();
+
+            return response()->json($authors);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+    }
+}

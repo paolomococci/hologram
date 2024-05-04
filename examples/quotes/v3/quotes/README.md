@@ -345,8 +345,9 @@ npm run dev
 php artisan make:class Utils/SanitizerUtil
 ```
 
-### add ArticleRestController class
+### I added two REST controller classes
 
 ```bash
+php artisan make:controller Rest/AuthorRestController
 php artisan make:controller Rest/ArticleRestController
 ```

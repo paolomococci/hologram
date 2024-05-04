@@ -18,13 +18,13 @@ class ArticleRestController extends Controller
     {
         $operator = ['email' => Auth::user()->email];
 
-        $request['title'] = $request['title'].' '.date('jS F Y l, h:i:s a');
-        $request['title'] = SanitizerUtil::sanitize($request['title']);
-        $request['subject'] = SanitizerUtil::sanitize($request['subject']);
-        $request['summary'] = SanitizerUtil::sanitize($request['summary']);
-        $request['content'] = SanitizerUtil::sanitize($request['content']);
-
         try {
+            $request['title'] = $request['title'].' '.date('jS F Y l, h:i:s a');
+            $request['title'] = SanitizerUtil::sanitize($request['title']);
+            $request['subject'] = SanitizerUtil::sanitize($request['subject']);
+            $request['summary'] = SanitizerUtil::sanitize($request['summary']);
+            $request['content'] = SanitizerUtil::sanitize($request['content']);
+
             $article = Article::create(
                 $request->validate([
                     'title' => ['required', 'min:16', 'max:255', 'unique:quotesdb.articles,title'],
@@ -51,9 +51,16 @@ class ArticleRestController extends Controller
                 201
             );
         } catch (\Exception $e) {
+            $req = [
+                'title' => $request['title'],
+                'subject' => $request['subject'],
+                'summary' => $request['summary'],
+                'content' => $request['content'],
+                'deprecated' => $request['deprecated'],
+            ];
             $jsonArrayDataLog = [
                 'operator' => $operator,
-                'request' => $request['title'],
+                'request' => $req,
                 'error' => $e->getMessage(),
                 'performed' => 'create',
             ];
@@ -109,11 +116,11 @@ class ArticleRestController extends Controller
     {
         $operator = ['email' => Auth::user()->email];
 
-        $request['subject'] = SanitizerUtil::sanitize($request['subject']);
-        $request['summary'] = SanitizerUtil::sanitize($request['summary']);
-        $request['content'] = SanitizerUtil::sanitize($request['content']);
-
         try {
+            $request['subject'] = SanitizerUtil::sanitize($request['subject']);
+            $request['summary'] = SanitizerUtil::sanitize($request['summary']);
+            $request['content'] = SanitizerUtil::sanitize($request['content']);
+
             $article = Article::findOrFail($id);
 
             $validated = $request->validate([
@@ -146,9 +153,16 @@ class ArticleRestController extends Controller
                 204
             );
         } catch (\Exception $e) {
+            $req = [
+                'title' => $request['title'],
+                'subject' => $request['subject'],
+                'summary' => $request['summary'],
+                'content' => $request['content'],
+                'deprecated' => $request['deprecated'],
+            ];
             $jsonArrayDataLog = [
                 'operator' => $operator,
-                'request' => $request['title'],
+                'request' => $req,
                 'error' => $e->getMessage(),
                 'performed' => 'update',
             ];

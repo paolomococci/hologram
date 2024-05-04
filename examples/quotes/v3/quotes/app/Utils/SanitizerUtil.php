@@ -7,16 +7,45 @@ class SanitizerUtil
     /**
      * a first attempt to sanitize user input
      */
-    public static function sanitize(string $suspicious): string
+    public static function filtrate(string $suspicious): string
     {
         try {
-            $trimmed = trim(preg_replace('/\r|\v|\t/', '', $suspicious), ' \n');
-            $withoutNullCharactersHtmlTags = preg_replace(
+            $trimmed = trim(preg_replace('/\r|\v|\t|\n/', '', $suspicious), ' ');
+            $withoutNullCharactersAndHtmlTags = preg_replace(
                 '/\x00|<[^>]*>?/',
                 '',
                 $trimmed
             );
-            $translatedIntoEntities = self::dehydrate($withoutNullCharactersHtmlTags);
+            $filtrate = preg_replace(
+                '/^\d|[^\sa-zA-Z]+|\s*$/',
+                '',
+                $withoutNullCharactersAndHtmlTags
+            );
+            $filtrate = trim(preg_replace(
+                '/\s\s+/',
+                ' ',
+                $filtrate
+            ), ' ');
+
+            return $filtrate;
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * a first attempt to sanitize user input
+     */
+    public static function sanitize(string $suspicious): string
+    {
+        try {
+            $trimmed = trim(preg_replace('/\r|\v|\t/', '', $suspicious), ' \n');
+            $withoutNullCharactersAndHtmlTags = preg_replace(
+                '/\x00|<[^>]*>?/',
+                '',
+                $trimmed
+            );
+            $translatedIntoEntities = self::dehydrate($withoutNullCharactersAndHtmlTags);
 
             return $translatedIntoEntities;
         } catch (\Exception $e) {
