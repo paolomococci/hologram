@@ -25,7 +25,7 @@ class ArticleRestController extends Controller
             $request['summary'] = SanitizerUtil::sanitize($request['summary']);
             $request['content'] = SanitizerUtil::sanitize($request['content']);
 
-            $article = Article::create(
+            Article::create(
                 $request->validate([
                     'title' => ['required', 'min:16', 'max:255', 'unique:quotesdb.articles,title'],
                     'subject' => ['required', 'min:16', 'max:255'],
@@ -34,9 +34,16 @@ class ArticleRestController extends Controller
                     'deprecated' => ['boolean'],
                 ])
             );
+            $req = [
+                'title' => $request['title'],
+                'subject' => $request['subject'],
+                'summary' => $request['summary'],
+                'content' => $request['content'],
+                'deprecated' => $request['deprecated'],
+            ];
             $jsonArrayDataLog = [
                 'operator' => $operator['email'],
-                'article' => $article['title'],
+                'request' => $req,
                 'performed' => 'create',
             ];
             Log::build([
@@ -51,13 +58,6 @@ class ArticleRestController extends Controller
                 201
             );
         } catch (\Exception $e) {
-            $req = [
-                'title' => $request['title'],
-                'subject' => $request['subject'],
-                'summary' => $request['summary'],
-                'content' => $request['content'],
-                'deprecated' => $request['deprecated'],
-            ];
             $jsonArrayDataLog = [
                 'operator' => $operator,
                 'request' => $req,
@@ -136,9 +136,16 @@ class ArticleRestController extends Controller
             $article['deprecated'] = $validated['deprecated'];
 
             $article->save();
+            $req = [
+                'title' => $request['title'],
+                'subject' => $request['subject'],
+                'summary' => $request['summary'],
+                'content' => $request['content'],
+                'deprecated' => $request['deprecated'],
+            ];
             $jsonArrayDataLog = [
                 'operator' => $operator['email'],
-                'article' => $article['title'],
+                'request' => $req,
                 'performed' => 'update',
             ];
             Log::build([
@@ -153,13 +160,6 @@ class ArticleRestController extends Controller
                 204
             );
         } catch (\Exception $e) {
-            $req = [
-                'title' => $request['title'],
-                'subject' => $request['subject'],
-                'summary' => $request['summary'],
-                'content' => $request['content'],
-                'deprecated' => $request['deprecated'],
-            ];
             $jsonArrayDataLog = [
                 'operator' => $operator,
                 'request' => $req,

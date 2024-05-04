@@ -339,7 +339,7 @@ So I can issue the following command:
 npm run dev
 ```
 
-### add SanitizerUtil class
+### I added SanitizerUtil class
 
 ```bash
 php artisan make:class Utils/SanitizerUtil

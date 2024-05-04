@@ -18,7 +18,15 @@ class ArticleController extends Controller
     public function index()
     {
         try {
-            return Article::all();
+            $articles = Article::all();
+            foreach ($articles as $article) {
+                $article['title'] = SanitizerUtil::rehydrate($article['title']);
+                $article['subject'] = SanitizerUtil::rehydrate($article['subject']);
+                $article['summary'] = SanitizerUtil::rehydrate($article['summary']);
+                $article['content'] = SanitizerUtil::rehydrate($article['content']);
+            }
+
+            return response()->json($articles);
         } catch (\Exception $e) {
             $e->getMessage();
         }
@@ -39,13 +47,14 @@ class ArticleController extends Controller
     {
         $operator = ['email' => Auth::user()->email];
 
-        $request['title'] = SanitizerUtil::sanitize($request['title']);
-        $request['subject'] = SanitizerUtil::sanitize($request['subject']);
-        $request['summary'] = SanitizerUtil::sanitize($request['summary']);
-        $request['content'] = SanitizerUtil::sanitize($request['content']);
-
         try {
-            $article = Article::create(
+            $request['title'] = $request['title'].' '.date('jS F Y l, h:i:s a');
+            $request['title'] = SanitizerUtil::sanitize($request['title']);
+            $request['subject'] = SanitizerUtil::sanitize($request['subject']);
+            $request['summary'] = SanitizerUtil::sanitize($request['summary']);
+            $request['content'] = SanitizerUtil::sanitize($request['content']);
+
+            Article::create(
                 $request->validate([
                     'title' => ['required', 'min:16', 'max:255', 'unique:quotesdb.articles,title'],
                     'subject' => ['required', 'min:16', 'max:255'],
@@ -54,9 +63,16 @@ class ArticleController extends Controller
                     'deprecated' => ['boolean'],
                 ])
             );
+            $req = [
+                'title' => $request['title'],
+                'subject' => $request['subject'],
+                'summary' => $request['summary'],
+                'content' => $request['content'],
+                'deprecated' => $request['deprecated'],
+            ];
             $jsonArrayDataLog = [
                 'operator' => $operator['email'],
-                'article' => $article['title'],
+                'request' => $req,
                 'performed' => 'store',
             ];
             Log::build([
@@ -68,7 +84,7 @@ class ArticleController extends Controller
         } catch (\Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,
-                'request' => $request['title'],
+                'request' => $req,
                 'error' => $e->getMessage(),
                 'performed' => 'store',
             ];

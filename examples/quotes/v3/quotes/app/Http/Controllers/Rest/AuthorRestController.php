@@ -33,7 +33,7 @@ class AuthorRestController extends Controller
 
             return response()->json($request);
 
-            $author = Author::create(
+            Author::create(
                 $request->validate([
                     'name' => ['required', 'min:1', 'max:255'],
                     'surname' => ['required', 'min:1', 'max:255'],
@@ -42,9 +42,16 @@ class AuthorRestController extends Controller
                     'suspended' => ['boolean'],
                 ])
             );
+            $req = [
+                'name' => $request['name'],
+                'surname' => $request['surname'],
+                'nickname' => $request['nickname'],
+                'email' => $request['email'],
+                'suspended' => $request['suspended'],
+            ];
             $jsonArrayDataLog = [
                 'operator' => $operator['email'],
-                'author' => $author['email'],
+                'request' => $req,
                 'performed' => 'create',
             ];
             Log::build([
@@ -59,13 +66,6 @@ class AuthorRestController extends Controller
                 201
             );
         } catch (\Exception $e) {
-            $req = [
-                'name' => $request['name'],
-                'surname' => $request['surname'],
-                'nickname' => $request['nickname'],
-                'email' => $request['email'],
-                'suspended' => $request['suspended'],
-            ];
             $jsonArrayDataLog = [
                 'operator' => $operator,
                 'request' => $req,
@@ -121,28 +121,35 @@ class AuthorRestController extends Controller
         $operator = ['email' => Auth::user()->email];
 
         try {
+            $request['name'] = SanitizerUtil::filtrate($request['name']);
             $request['surname'] = SanitizerUtil::filtrate($request['surname']);
             $request['nickname'] = SanitizerUtil::filtrate($request['nickname']);
-            $request['email'] = SanitizerUtil::filtrate($request['email']);
 
             $author = Author::findOrFail($id);
 
             $validated = $request->validate([
+                'name' => ['required', 'min:1', 'max:255'],
                 'surname' => ['required', 'min:1', 'max:255'],
                 'nickname' => ['min:1', 'max:255'],
-                'email' => ['required', 'min:10', 'max:255'],
                 'suspended' => ['boolean'],
             ]);
 
+            $author['name'] = $validated['name'];
             $author['surname'] = $validated['surname'];
             $author['nickname'] = $validated['nickname'];
-            $author['email'] = $validated['email'];
             $author['suspended'] = $validated['suspended'];
 
             $author->save();
+            $req = [
+                'name' => $request['name'],
+                'surname' => $request['surname'],
+                'nickname' => $request['nickname'],
+                'email' => $request['email'],
+                'suspended' => $request['suspended'],
+            ];
             $jsonArrayDataLog = [
                 'operator' => $operator['email'],
-                'author' => $author['email'],
+                'request' => $req,
                 'performed' => 'update',
             ];
             Log::build([
@@ -157,13 +164,6 @@ class AuthorRestController extends Controller
                 204
             );
         } catch (\Exception $e) {
-            $req = [
-                'name' => $request['name'],
-                'surname' => $request['surname'],
-                'nickname' => $request['nickname'],
-                'email' => $request['email'],
-                'suspended' => $request['suspended'],
-            ];
             $jsonArrayDataLog = [
                 'operator' => $operator,
                 'request' => $req,
