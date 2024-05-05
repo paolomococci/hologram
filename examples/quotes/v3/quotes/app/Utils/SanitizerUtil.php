@@ -16,18 +16,18 @@ class SanitizerUtil
                 '',
                 $trimmed
             );
-            $filtrate = preg_replace(
+            $allowedCharacters = preg_replace(
                 '/^\d|[^\sa-zA-Z]+|\s*$/',
                 '',
                 $withoutNullCharactersAndHtmlTags
             );
-            $filtrate = trim(preg_replace(
+            $withoutRepeatedSpaces = trim(preg_replace(
                 '/\s\s+/',
                 ' ',
-                $filtrate
+                $allowedCharacters
             ), ' ');
 
-            return $filtrate;
+            return $withoutRepeatedSpaces;
         } catch (\Exception $e) {
             return $e->getMessage();
         }
