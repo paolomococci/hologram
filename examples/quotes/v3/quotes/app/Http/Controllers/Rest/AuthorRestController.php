@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Log;
 class AuthorRestController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * store a newly created author in storage
      */
-    public function create(StoreAuthorRequest $request)
+    public function create(StoreAuthorRequest $request): string
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -82,9 +82,9 @@ class AuthorRestController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * display the specified author
      */
-    public function read(int $id)
+    public function read(int $id): string
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -114,9 +114,9 @@ class AuthorRestController extends Controller
     }
 
     /**
-     * Update the specified resource.
+     * update the specified author
      */
-    public function update(int $id, StoreAuthorRequest $request)
+    public function update(int $id, StoreAuthorRequest $request): string
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -185,9 +185,9 @@ class AuthorRestController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * display a listing of the authors
      */
-    public function index()
+    public function index(): string
     {
         try {
             $authors = Author::all();

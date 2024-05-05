@@ -9,20 +9,75 @@ use App\Utils\SanitizerUtil;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class AuthorController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * returns a list of resources as a json structured string
      */
-    public function index()
+    public function indexJson(): string
     {
+        $operator = ['email' => Auth::user()->email];
+
         try {
             $authors = Author::all();
+            $jsonArrayData = [
+                'operator' => $operator,
+                'authors' => $authors,
+                'error' => null,
+                'performed' => 'index_json',
+            ];
 
-            return response()->json($authors);
+            return response()->json($jsonArrayData);
         } catch (\Exception $e) {
-            $e->getMessage();
+            $jsonArrayData = [
+                'operator' => $operator,
+                'authors' => null,
+                'error' => $e->getMessage(),
+                'performed' => 'index_json',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/authors_index_info.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return response()->json($jsonArrayData);
+        }
+    }
+
+    /**
+     * returns a list of authors
+     */
+    public function index(): Response
+    {
+        $operator = ['email' => Auth::user()->email];
+
+        try {
+            $author = Author::paginate(10)->through(fn ($article) => [
+                'id' => $article->id,
+                'name' => $article->name,
+                'surname' => $article->surname,
+                'email' => $article->email,
+            ]);
+
+            return Inertia::render('Tabs/Authors/AuthorTab', [
+                'author' => $author,
+            ]);
+        } catch (\Exception $e) {
+            $jsonArrayData = [
+                'operator' => $operator,
+                'error' => $e->getMessage(),
+                'performed' => 'index',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/author_index_info.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return Inertia::render('Tabs/Authors/AuthorTab', [
+                'feedback' => "An error {$e->getMessage()} occurred while operator {$operator['email']} was trying to paginate the authors.",
+            ]);
         }
     }
 
@@ -35,9 +90,9 @@ class AuthorController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store a newly created author in storage
      */
-    public function store(StoreAuthorRequest $request)
+    public function store(StoreAuthorRequest $request): Response
     {
         $operator = ['email' => Auth::user()->email];
 

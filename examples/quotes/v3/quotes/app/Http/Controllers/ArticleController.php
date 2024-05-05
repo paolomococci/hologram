@@ -9,10 +9,14 @@ use App\Utils\SanitizerUtil;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class ArticleController extends Controller
 {
-    public function indexJson()
+    /**
+     * returns a list of articles as a json structured string
+     */
+    public function indexJson(): string
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -49,9 +53,9 @@ class ArticleController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * returns a list of articles
      */
-    public function index()
+    public function index(): Response
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -92,9 +96,9 @@ class ArticleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store a newly created article in storage
      */
-    public function store(StoreArticleRequest $request)
+    public function store(StoreArticleRequest $request): Response
     {
         $operator = ['email' => Auth::user()->email];
 

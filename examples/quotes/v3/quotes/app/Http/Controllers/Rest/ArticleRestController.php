@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Log;
 class ArticleRestController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * store a newly created article in storage
      */
-    public function create(StoreArticleRequest $request)
+    public function create(StoreArticleRequest $request): string
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -74,9 +74,9 @@ class ArticleRestController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * display the specified article
      */
-    public function read(int $id)
+    public function read(int $id): string
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -110,9 +110,9 @@ class ArticleRestController extends Controller
     }
 
     /**
-     * Update the specified resource.
+     * update the specified article
      */
-    public function update(int $id, StoreArticleRequest $request)
+    public function update(int $id, StoreArticleRequest $request): string
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -181,9 +181,9 @@ class ArticleRestController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * display a listing of the articles
      */
-    public function index()
+    public function index(): string
     {
         try {
             $articles = Article::all();
