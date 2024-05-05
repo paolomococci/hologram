@@ -5,7 +5,10 @@ namespace App\Utils;
 class SanitizerUtil
 {
     /**
-     * a first attempt to sanitize user input
+     * a first attempt to filtrate user input
+     *
+     * @param string $suspicious
+     * @return string
      */
     public static function filtrate(string $suspicious): string
     {
@@ -35,6 +38,9 @@ class SanitizerUtil
 
     /**
      * a first attempt to sanitize user input
+     *
+     * @param string $suspicious
+     * @return string
      */
     public static function sanitize(string $suspicious): string
     {
@@ -55,6 +61,9 @@ class SanitizerUtil
 
     /**
      * translate from character to html entities
+     *
+     * @param string $hazy
+     * @return string
      */
     public static function dehydrate(string $hazy): string
     {
@@ -71,6 +80,9 @@ class SanitizerUtil
 
     /**
      * translate from html entities to character
+     *
+     * @param string $dehydrated
+     * @return string
      */
     public static function rehydrate(string $dehydrated): string
     {
