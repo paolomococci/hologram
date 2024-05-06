@@ -35,6 +35,9 @@ Route::middleware([
     Route::get('/articles', function () {
         return Inertia::render('Tabs/Articles/ArticleTab');
     })->name('articles');
+    Route::post('/articles',
+        [ArticleController::class, 'store']
+    )->name('articles');
 
     /* articles controller */
     Route::post('/articles', [ArticleController::class, 'store'])->name('articles');

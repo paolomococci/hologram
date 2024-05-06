@@ -108,6 +108,7 @@ class ArticleController extends Controller
             $request['subject'] = SanitizerUtil::sanitize($request['subject']);
             $request['summary'] = SanitizerUtil::sanitize($request['summary']);
             $request['content'] = SanitizerUtil::sanitize($request['content']);
+            // dd('create: ', $request['title'], $request['subject'], $request['summary'], $request['content']);
 
             Article::create(
                 $request->validate([

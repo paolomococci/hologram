@@ -17,11 +17,12 @@ import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
             <ArticlesIcon class="block w-auto h-12" />
 
             <h1 class="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
-                Welcome to the articles tab!
+                Editor of information and article content
             </h1>
 
             <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">
-                A simple description that introduces the user to the use of this tab.
+                Here the article's are entered into the system, listed and, when necessary, the data concerning them is
+                modified.
             </p>
         </div>
 
@@ -35,7 +36,7 @@ import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
                     </h2>
                 </div>
 
-                <ArticleCreate />
+                <ArticleCreate :errors="$page.props.errors" />
             </div>
 
             <div>
