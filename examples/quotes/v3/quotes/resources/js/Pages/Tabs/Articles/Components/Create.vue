@@ -45,8 +45,13 @@ const emit = defineEmits(['postFeedbackMessage'])
 
 /** transmits it back to the parent component */
 function postMessage() {
-    console.log('You have just registered a new article with the following basic title: ' + title.value)
-    emit('postFeedbackMessage', `You have just registered a new article with the following basic title: ${title.value}`)
+    if (fieldEmptyCheck()) {
+        console.log('You have just registered a new article with the following basic title: ' + title.value)
+        emit('postFeedbackMessage', `You have just registered a new article with the following basic title: ${title.value}`)
+    } else {
+        console.log('Attention, the form has not been filled out correctly!')
+        emit('postFeedbackMessage', 'Attention, the form has not been filled out correctly!')
+    }
 }
 
 const createForm = reactive({
