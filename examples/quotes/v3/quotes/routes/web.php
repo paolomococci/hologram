@@ -1,8 +1,6 @@
 <?php
 
 use Inertia\Inertia;
-use App\Models\Article;
-use App\Utils\SanitizerUtil;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ToolController;
