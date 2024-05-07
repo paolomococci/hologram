@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Pagination :links="props?.articles.links" />
         <div class="p-4 rounded-md bg-slate-50">
             <table class="min-w-full table-auto">
                 <caption class="text-sm font-light text-center caption-top text-slate-300">
@@ -36,7 +37,6 @@
                 </tbody>
             </table>
         </div>
-        <Pagination :links="props?.articles.links" />
     </div>
 </template>
 
