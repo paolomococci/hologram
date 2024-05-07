@@ -8,6 +8,18 @@ import ArticleCreate from '@/Pages/Tabs/Articles/Components/Create.vue'
 import ArticlePaginated from '@/Pages/Tabs/Articles/Components/TablePaginated.vue'
 import ArticleEditor from '@/Pages/Tabs/Articles/Components/Edit.vue'
 import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
+import Feedback from '@/Pages/Tabs/Common/FeedbackCommon.vue'
+
+const props = defineProps({
+    feedback: String,
+    articles: Object
+})
+
+function retransmitItemIdentifier(id) {
+    console.log(id)
+    // itemId.value = id
+    // toggleEditor()
+}
 </script>
 
 <template>
@@ -24,6 +36,8 @@ import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
                 Here the article's are entered into the system, listed and, when necessary, the data concerning them is
                 modified.
             </p>
+
+            <Feedback :feedback="props?.feedback" />
         </div>
 
         <div
@@ -36,7 +50,7 @@ import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
                     </h2>
                 </div>
 
-                <ArticleCreate :errors="$page.props.errors" />
+                <ArticleCreate />
             </div>
 
             <div>
@@ -47,7 +61,10 @@ import ArticleFiltered from '@/Pages/Tabs/Articles/Components/TableFiltered.vue'
                     </h2>
                 </div>
 
-                <ArticlePaginated />
+                <ArticlePaginated
+                    caption="fetched article data from RDBMS"
+                    :articles="props.articles"
+                    @grabItemIdentifierFromTable="(id) => retransmitItemIdentifier(id)" />
             </div>
 
             <div>

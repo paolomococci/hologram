@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ToolController;
+use App\Models\Article;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,10 +33,11 @@ Route::middleware([
     })->name('authors');
 
     /* tab: Article */
-    Route::get('/articles', function () {
-        return Inertia::render('Tabs/Articles/ArticleTab');
-    })->name('articles');
-    Route::post('/articles',
+    Route::get(
+        '/articles', [ArticleController::class, 'index']
+    )->name('articles');
+    Route::post(
+        '/articles',
         [ArticleController::class, 'store']
     )->name('articles');
 

@@ -2,9 +2,6 @@
     <div>
         <form @submit.prevent="submit">
             <div>
-                <div v-if="errors.title" class="content-center pt-2 text-xs rounded-md">
-                    <p class="text-red-700">{{ errors.title }}</p>
-                </div>
                 <input
                     class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-500"
                     v-model.lazy="createForm.title"
@@ -13,12 +10,12 @@
                     name="title"
                     id="title"
                     placeholder="Title"
+                    required
+                    minlength="16"
+                    maxlength="255"
                 />
             </div>
             <div>
-                <div v-if="errors.subject" class="content-center pt-2 text-xs rounded-md">
-                    <p class="text-red-700">{{ errors.subject }}</p>
-                </div>
                 <input
                     class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-500"
                     v-model.lazy="createForm.subject"
@@ -27,6 +24,9 @@
                     name="subject"
                     id="subject"
                     placeholder="Subject"
+                    required
+                    minlength="16"
+                    maxlength="255"
                 />
             </div>
             <div>
@@ -38,12 +38,10 @@
                     name="summary"
                     id="summary"
                     placeholder="Summary"
+                    maxlength="255"
                 />
             </div>
             <div>
-                <div v-if="errors.content" class="content-center pt-2 text-xs rounded-md">
-                    <p class="text-red-700">{{ errors.content }}</p>
-                </div>
                 <textarea
                     class="left-4 m-2 max-h-60 text-xs rounded-md border border-purple-300 min-h-36 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-500"
                     v-model.lazy="createForm.content"
@@ -52,6 +50,9 @@
                     cols="30"
                     rows="10"
                     placeholder="Content"
+                    required
+                    minlength="32"
+                    maxlength="1024"
                 ></textarea>
             </div>
             <div>
@@ -67,12 +68,8 @@
 </template>
 
 <script setup>
-import { reactive, defineProps } from 'vue'
+import { reactive } from 'vue'
 import { router } from "@inertiajs/vue3"
-
-const props = defineProps({
-    errors: Object
-})
 
 const createForm = reactive({
     title: null,

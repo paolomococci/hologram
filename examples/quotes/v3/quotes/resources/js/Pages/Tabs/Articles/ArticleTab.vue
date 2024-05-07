@@ -1,6 +1,10 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
 import ArticleLayout from '@/Pages/Tabs/Articles/Layout/ArticleLayout.vue'
+const props = defineProps({
+    feedback: String,
+    articles: Object
+})
 </script>
 
 <template>
@@ -14,7 +18,7 @@ import ArticleLayout from '@/Pages/Tabs/Articles/Layout/ArticleLayout.vue'
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
-                    <ArticleLayout />
+                    <ArticleLayout :articles="props?.articles" :feedback="props?.feedback" />
                 </div>
             </div>
         </div>

@@ -95,12 +95,18 @@ class AuthorController extends Controller
     public function store(StoreAuthorRequest $request): Response
     {
         $operator = ['email' => Auth::user()->email];
+        $request['name'] = SanitizerUtil::filtrate($request['name']);
+        $request['surname'] = SanitizerUtil::filtrate($request['surname']);
+        $request['nickname'] = SanitizerUtil::filtrate($request['nickname']);
+        $req = [
+            'name' => $request['name'],
+            'surname' => $request['surname'],
+            'nickname' => $request['nickname'],
+            'email' => $request['email'],
+            'suspended' => $request['suspended'],
+        ];
 
         try {
-            $request['name'] = SanitizerUtil::filtrate($request['name']);
-            $request['surname'] = SanitizerUtil::filtrate($request['surname']);
-            $request['nickname'] = SanitizerUtil::filtrate($request['nickname']);
-
             Author::create(
                 $request->validate([
                     'name' => ['required', 'min:16', 'max:255'],
@@ -110,13 +116,6 @@ class AuthorController extends Controller
                     'deprecated' => ['boolean'],
                 ])
             );
-            $req = [
-                'name' => $request['name'],
-                'surname' => $request['surname'],
-                'nickname' => $request['nickname'],
-                'email' => $request['email'],
-                'suspended' => $request['suspended'],
-            ];
             $jsonArrayDataLog = [
                 'operator' => $operator['email'],
                 'request' => $req,

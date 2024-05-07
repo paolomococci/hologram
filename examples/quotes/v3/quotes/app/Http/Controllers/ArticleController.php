@@ -6,6 +6,7 @@ use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use App\Utils\SanitizerUtil;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
@@ -64,11 +65,11 @@ class ArticleController extends Controller
                 'id' => $article->id,
                 'title' => SanitizerUtil::rehydrate($article->title),
                 'subject' => SanitizerUtil::rehydrate($article->subject),
-                'summary' => SanitizerUtil::rehydrate($article->summary),
             ]);
 
             return Inertia::render('Tabs/Articles/ArticleTab', [
                 'articles' => $articles,
+                'feedback' => '',
             ]);
         } catch (\Exception $e) {
             $jsonArrayData = [
@@ -82,6 +83,7 @@ class ArticleController extends Controller
             ])->info(json_encode($jsonArrayData));
 
             return Inertia::render('Tabs/Articles/ArticleTab', [
+                'articles' => null,
                 'feedback' => "An error {$e->getMessage()} occurred while operator {$operator['email']} was trying to paginate the articles.",
             ]);
         }
@@ -98,19 +100,29 @@ class ArticleController extends Controller
     /**
      * store a newly created article in storage
      */
-    public function store(StoreArticleRequest $request): Response
+    public function store(StoreArticleRequest $request): RedirectResponse
     {
         $operator = ['email' => Auth::user()->email];
 
-        try {
+        if (! empty($request['title'])) {
             $request['title'] = $request['title'].' '.date('jS F Y l, h:i:s a');
-            $request['title'] = SanitizerUtil::sanitize($request['title']);
-            $request['subject'] = SanitizerUtil::sanitize($request['subject']);
-            $request['summary'] = SanitizerUtil::sanitize($request['summary']);
-            $request['content'] = SanitizerUtil::sanitize($request['content']);
-            // dd('create: ', $request['title'], $request['subject'], $request['summary'], $request['content']);
+        }
 
-            Article::create(
+        $request['title'] = SanitizerUtil::sanitize($request['title']);
+        $request['subject'] = SanitizerUtil::sanitize($request['subject']);
+        $request['summary'] = SanitizerUtil::sanitize($request['summary']);
+        $request['content'] = SanitizerUtil::sanitize($request['content']);
+
+        $req = [
+            'title' => $request['title'],
+            'subject' => $request['subject'],
+            'summary' => $request['summary'],
+            'content' => $request['content'],
+            'deprecated' => $request['deprecated'],
+        ];
+
+        try {
+            $article = Article::create(
                 $request->validate([
                     'title' => ['required', 'min:16', 'max:255', 'unique:quotesdb.articles,title'],
                     'subject' => ['required', 'min:16', 'max:255'],
@@ -119,13 +131,6 @@ class ArticleController extends Controller
                     'deprecated' => ['boolean'],
                 ])
             );
-            $req = [
-                'title' => $request['title'],
-                'subject' => $request['subject'],
-                'summary' => $request['summary'],
-                'content' => $request['content'],
-                'deprecated' => $request['deprecated'],
-            ];
             $jsonArrayData = [
                 'operator' => $operator['email'],
                 'request' => $req,
@@ -136,7 +141,8 @@ class ArticleController extends Controller
                 'path' => storage_path('logs/articles_store_info.log'),
             ])->info(json_encode($jsonArrayData));
 
-            return Inertia::render('Tabs/Articles/ArticleTab', ['feedback' => "The operator {$operator['email']} just saved the article titled {$request['title']}"]);
+            return to_route('articles');
+
         } catch (\Exception $e) {
             $jsonArrayData = [
                 'operator' => $operator,
@@ -149,7 +155,7 @@ class ArticleController extends Controller
                 'path' => storage_path('logs/articles_store_error.log'),
             ])->info(json_encode($jsonArrayData));
 
-            return Inertia::render('Tabs/Articles/ArticleTab', ['feedback' => "An error {$e->getMessage()} occurred while operator {$operator['email']} was trying to save the article titled {$request['title']}"]);
+            return to_route('articles');
         }
     }
 
