@@ -20,6 +20,18 @@ function retransmitItemIdentifier(id) {
     // itemId.value = id
     // toggleEditor()
 }
+
+/** processes feedback from the child */
+function postMessage(message) {
+    console.log(`ArticleLayout component: ${message}`)
+    props.feedback = message
+    // window.location.href = tools
+}
+
+/** clean feedback */
+function cleanFeedback() {
+    props.feedback = ''
+}
 </script>
 
 <template>
@@ -37,7 +49,7 @@ function retransmitItemIdentifier(id) {
                 modified.
             </p>
 
-            <Feedback :feedback="props?.feedback" />
+            <Feedback @resetFeedbackMessage="()=>cleanFeedback()" :feedback="props?.feedback" />
         </div>
 
         <div
@@ -50,7 +62,7 @@ function retransmitItemIdentifier(id) {
                     </h2>
                 </div>
 
-                <ArticleCreate />
+                <ArticleCreate @postFeedbackMessage="(message)=>postMessage(message)" />
             </div>
 
             <div>
@@ -61,9 +73,7 @@ function retransmitItemIdentifier(id) {
                     </h2>
                 </div>
 
-                <ArticlePaginated
-                    caption="fetched article data from RDBMS"
-                    :articles="props.articles"
+                <ArticlePaginated caption="fetched article data from RDBMS" :articles="props.articles"
                     @grabItemIdentifierFromTable="(id) => retransmitItemIdentifier(id)" />
             </div>
 

@@ -16,6 +16,8 @@ class ArticleController extends Controller
 {
     /**
      * returns a list of articles as a json structured string
+     *
+     * @return string
      */
     public function indexJson(): string
     {
@@ -54,7 +56,9 @@ class ArticleController extends Controller
     }
 
     /**
-     * returns a list of articles
+     * returns a list paginated of articles
+     *
+     * @return Response
      */
     public function index(): Response
     {
@@ -68,8 +72,7 @@ class ArticleController extends Controller
             ]);
 
             return Inertia::render('Tabs/Articles/ArticleTab', [
-                'articles' => $articles,
-                'feedback' => '',
+                'articles' => $articles
             ]);
         } catch (\Exception $e) {
             $jsonArrayData = [
@@ -82,10 +85,7 @@ class ArticleController extends Controller
                 'path' => storage_path('logs/articles_index_info.log'),
             ])->info(json_encode($jsonArrayData));
 
-            return Inertia::render('Tabs/Articles/ArticleTab', [
-                'articles' => null,
-                'feedback' => "An error {$e->getMessage()} occurred while operator {$operator['email']} was trying to paginate the articles.",
-            ]);
+            return Inertia::render('Tabs/Articles/ArticleTab');
         }
     }
 
@@ -99,6 +99,9 @@ class ArticleController extends Controller
 
     /**
      * store a newly created article in storage
+     *
+     * @param StoreArticleRequest $request
+     * @return RedirectResponse
      */
     public function store(StoreArticleRequest $request): RedirectResponse
     {
