@@ -19,7 +19,7 @@ class ArticleController extends Controller
      *
      * @return string
      */
-    public function indexJson(): string
+    public function filter()
     {
         $operator = ['email' => Auth::user()->email];
 

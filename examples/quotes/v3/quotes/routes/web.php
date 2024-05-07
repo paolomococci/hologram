@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\ToolController;
-use App\Models\Article;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Article;
+use App\Utils\SanitizerUtil;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ToolController;
+use App\Http\Controllers\ArticleController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -34,12 +35,16 @@ Route::middleware([
 
     /* tab: Article */
     Route::get(
-        '/articles', [ArticleController::class, 'index']
+        '/articles',
+        [ArticleController::class, 'index']
     )->name('articles');
     Route::post(
         '/articles',
         [ArticleController::class, 'store']
     )->name('articles');
+    Route::get(
+        '/articles/filter', [ArticleController::class, 'filter']
+    )->name('articles-filter');
 
     /* articles controller */
     Route::post('/articles', [ArticleController::class, 'store'])->name('articles');
