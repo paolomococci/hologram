@@ -17,7 +17,6 @@ class ArticleController extends Controller
     /**
      * returns a list of articles as a json structured string
      *
-     * @return string
      */
     public function filter()
     {
@@ -107,8 +106,8 @@ class ArticleController extends Controller
     {
         $operator = ['email' => Auth::user()->email];
 
-        if (! empty($request['title'])) {
-            $request['title'] = $request['title'].' '.date('jS F Y l, h:i:s a');
+        if (!empty($request['title'])) {
+            $request['title'] = $request['title'] . ' ' . date('jS F Y l, h:i:s a');
         }
 
         $request['title'] = SanitizerUtil::sanitize($request['title']);
@@ -125,7 +124,7 @@ class ArticleController extends Controller
         ];
 
         try {
-            $article = Article::create(
+            Article::create(
                 $request->validate([
                     'title' => ['required', 'min:16', 'max:255', 'unique:quotesdb.articles,title'],
                     'subject' => ['required', 'min:16', 'max:255'],
@@ -136,7 +135,7 @@ class ArticleController extends Controller
             );
             $jsonArrayData = [
                 'operator' => $operator['email'],
-                'request' => $req,
+                'title' => $req['title'],
                 'performed' => 'store',
             ];
             Log::build([
@@ -145,11 +144,10 @@ class ArticleController extends Controller
             ])->info(json_encode($jsonArrayData));
 
             return to_route('articles');
-
         } catch (\Exception $e) {
             $jsonArrayData = [
                 'operator' => $operator,
-                'request' => $req,
+                'title' => $req['title'],
                 'error' => $e->getMessage(),
                 'performed' => 'store',
             ];
@@ -167,7 +165,27 @@ class ArticleController extends Controller
      */
     public function show(int $id)
     {
-        //
+        try {
+            $operator = ['email' => Auth::user()->email];
+
+            $article = Article::find($id);
+            $article['title'] = SanitizerUtil::rehydrate($article['title']);
+            $article['subject'] = SanitizerUtil::rehydrate($article['subject']);
+            $article['summary'] = SanitizerUtil::rehydrate($article['summary']);
+            $article['content'] = SanitizerUtil::rehydrate($article['content']);
+
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'performed' => 'show',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/article_show_info.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+            return response()->json($article);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
     }
 
     /**
@@ -179,11 +197,71 @@ class ArticleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * update the specified resource in storage
+     *
+     * @param UpdateArticleRequest $request
+     * @return RedirectResponse
      */
-    public function update(UpdateArticleRequest $request, Article $article)
+    public function update(UpdateArticleRequest $request): RedirectResponse
     {
-        //
+        $operator = ['email' => Auth::user()->email];
+
+        $request['subject'] = SanitizerUtil::sanitize($request['subject']);
+        $request['summary'] = SanitizerUtil::sanitize($request['summary']);
+        $request['content'] = SanitizerUtil::sanitize($request['content']);
+
+        $req = [
+            'id' => $request['id'],
+            'title' => $request['title'],
+            'subject' => $request['subject'],
+            'summary' => $request['summary'],
+            'content' => $request['content'],
+            'deprecated' => $request['deprecated'],
+        ];
+
+        try {
+            $article = Article::findOrFail($req['id']);
+
+            $validated = $request->validate([
+                'subject' => ['required', 'min:16', 'max:255'],
+                'summary' => ['min:16', 'max:255'],
+                'content' => ['required', 'min:32', 'max:1024'],
+                'deprecated' => ['boolean'],
+            ]);
+            // dd($validated);
+
+            $article['subject'] = $validated['subject'];
+            $article['summary'] = $validated['summary'];
+            $article['content'] = $validated['content'];
+            $article['deprecated'] = $validated['deprecated'];
+
+            $article->save();
+
+            $jsonArrayData = [
+                'operator' => $operator['email'],
+                'title' => $req['title'],
+                'performed' => 'update',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/articles_update_info.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return to_route('articles');
+        } catch (\Exception $e) {
+            $jsonArrayData = [
+                'operator' => $operator,
+                'title' => $req['title'],
+                'error' => $e->getMessage(),
+                'performed' => 'update',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/articles_update_error.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return to_route('articles');
+        }
     }
 
     /**

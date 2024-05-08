@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\Rest;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
 use App\Utils\SanitizerUtil;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreArticleRequest;
+use App\Http\Requests\UpdateArticleRequest;
 
 class ArticleRestController extends Controller
 {
     /**
      * store a newly created article in storage
+     *
+     * @param StoreArticleRequest $request
+     * @return string
      */
     public function create(StoreArticleRequest $request): string
     {
@@ -75,6 +79,9 @@ class ArticleRestController extends Controller
 
     /**
      * display the specified article
+     *
+     * @param integer $id
+     * @return string
      */
     public function read(int $id): string
     {
@@ -111,8 +118,12 @@ class ArticleRestController extends Controller
 
     /**
      * update the specified article
+     *
+     * @param integer $id
+     * @param UpdateArticleRequest $request
+     * @return string
      */
-    public function update(int $id, StoreArticleRequest $request): string
+    public function update(int $id, UpdateArticleRequest $request): string
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -182,6 +193,8 @@ class ArticleRestController extends Controller
 
     /**
      * display a listing of the articles
+     *
+     * @return string
      */
     public function index(): string
     {

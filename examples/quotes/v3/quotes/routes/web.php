@@ -39,13 +39,19 @@ Route::middleware([
     Route::post(
         '/articles',
         [ArticleController::class, 'store']
-    )->name('articles');
+    )->name('articles-store');
+    Route::put(
+        '/articles',
+        [ArticleController::class, 'update']
+    )->name('articles-update');
     Route::get(
-        '/articles/filter', [ArticleController::class, 'filter']
+        '/articles/filter',
+        [ArticleController::class, 'filter']
     )->name('articles-filter');
-
-    /* articles controller */
-    Route::post('/articles', [ArticleController::class, 'store'])->name('articles');
+    Route::get(
+        '/articles/show/{id}',
+        [ArticleController::class, 'show']
+    )->name('articles-show');
 
     /* tab: Paper */
     Route::get('/papers', function () {

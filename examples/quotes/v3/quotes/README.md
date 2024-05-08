@@ -1,6 +1,12 @@
 # `quotes` version 3
 
+Landing page:
+
 ![landing page](screenshots/quotes_v3_landing_page.png)
+
+Articles tab:
+
+![articles tab](screenshots/quotes_v3_articles_tab.png)
 
 ## scaffolding
 

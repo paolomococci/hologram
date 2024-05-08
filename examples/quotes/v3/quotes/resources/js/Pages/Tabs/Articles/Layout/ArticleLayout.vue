@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue"
 import ArticlesIcon from '@/Icons/ArticlesIcon.vue'
 import AddElementIcon from '@/Icons/AddElementIcon.vue'
 import FetchDataIcon from '@/Icons/FetchDataIcon.vue'
@@ -15,10 +16,18 @@ const props = defineProps({
     articles: Object
 })
 
+const itemId = ref(0)
+const editorOneIsVisible = ref(true)
+const editorTwoIsVisible = ref(false)
+
 function retransmitItemIdentifier(id) {
-    console.log(id)
-    // itemId.value = id
-    // toggleEditor()
+    itemId.value = id
+    toggleEditor()
+}
+
+function toggleEditor() {
+    editorOneIsVisible.value = !editorOneIsVisible.value
+    editorTwoIsVisible.value = !editorTwoIsVisible.value
 }
 
 /** processes feedback from the child */
@@ -49,7 +58,7 @@ function cleanFeedback() {
                 modified.
             </p>
 
-            <Feedback @resetFeedbackMessage="()=>cleanFeedback()" :feedback="props?.feedback" />
+            <Feedback @resetFeedbackMessage="() => cleanFeedback()" :feedback="props?.feedback" />
         </div>
 
         <div
@@ -62,7 +71,7 @@ function cleanFeedback() {
                     </h2>
                 </div>
 
-                <ArticleCreate @postFeedbackMessage="(message)=>postMessage(message)" />
+                <ArticleCreate @postFeedbackMessage="(message) => postMessage(message)" />
             </div>
 
             <div>
@@ -85,7 +94,14 @@ function cleanFeedback() {
                     </h2>
                 </div>
 
-                <ArticleEditor />
+                <div v-if="editorOneIsVisible">
+                    <ArticleEditor @postFeedbackMessage="(message) => postMessage(message)" :itemId="itemId" />
+                </div>
+
+                <div v-if="editorTwoIsVisible">
+                    <ArticleEditor @postFeedbackMessage="(message) => postMessage(message)" :itemId="itemId" />
+                </div>
+
             </div>
 
             <div>
@@ -96,7 +112,7 @@ function cleanFeedback() {
                     </h2>
                 </div>
 
-                <ArticleFiltered />
+                <ArticleFiltered @grabItemIdentifierFromTable="(id) => retransmitItemIdentifier(id)" />
             </div>
         </div>
     </div>

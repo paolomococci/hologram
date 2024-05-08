@@ -3,25 +3,25 @@
         <form @submit.prevent="submit">
             <div>
                 <input
-                    class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-500"
+                    class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.title" size="30" type="text" name="title" id="title" placeholder="Title"
                     required minlength="16" maxlength="255" />
             </div>
             <div>
                 <input
-                    class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-500"
+                    class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.subject" size="30" type="text" name="subject" id="subject"
                     placeholder="Subject" required minlength="16" maxlength="255" />
             </div>
             <div>
                 <input
-                    class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-500"
+                    class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.summary" size="30" type="text" name="summary" id="summary"
                     placeholder="Summary" maxlength="255" />
             </div>
             <div>
                 <textarea
-                    class="left-4 m-2 max-h-60 text-xs rounded-md border border-purple-300 min-h-36 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-500"
+                    class="left-4 m-2 max-h-60 text-xs rounded-md border border-purple-300 min-h-36 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.content" name="content" id="content" cols="30" rows="10"
                     placeholder="Content" required minlength="32" maxlength="1024"></textarea>
             </div>
@@ -46,8 +46,8 @@ const emit = defineEmits(['postFeedbackMessage'])
 /** transmits it back to the parent component */
 function postMessage() {
     if (fieldEmptyCheck()) {
-        console.log('You have just registered a new article with the following basic title: ' + title.value)
-        emit('postFeedbackMessage', `You have just registered a new article with the following basic title: ${title.value}`)
+        console.log('You have just registered a new article with the following basic title: ' + createForm.title)
+        emit('postFeedbackMessage', `You have just registered a new article with the following basic title: ${createForm.title}`)
     } else {
         console.log('Attention, the form has not been filled out correctly!')
         emit('postFeedbackMessage', 'Attention, the form has not been filled out correctly!')
