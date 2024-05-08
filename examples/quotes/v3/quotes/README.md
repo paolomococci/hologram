@@ -2,7 +2,7 @@
 
 Landing page:
 
-![landing page](screenshots/quotes_v3_landing_page.png)
+![landing page](screenshots/quotes_v3_landing_page_.png)
 
 Articles tab:
 
