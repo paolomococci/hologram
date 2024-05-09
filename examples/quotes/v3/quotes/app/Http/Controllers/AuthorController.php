@@ -15,6 +15,8 @@ class AuthorController extends Controller
 {
     /**
      * returns a list of resources as a json structured string
+     *
+     * @return string
      */
     public function indexJson(): string
     {
@@ -47,22 +49,59 @@ class AuthorController extends Controller
     }
 
     /**
+     * returns a list of authors as a json structured string
+     *
+     */
+    public function filter()
+    {
+        $operator = ['email' => Auth::user()->email];
+
+        try {
+            $authors = Author::all();
+
+            $jsonArrayData = [
+                'operator' => $operator,
+                'authors' => $authors,
+                'error' => null,
+                'performed' => 'index_json',
+            ];
+
+            return response()->json($jsonArrayData);
+        } catch (\Exception $e) {
+            $jsonArrayData = [
+                'operator' => $operator,
+                'authors' => null,
+                'error' => $e->getMessage(),
+                'performed' => 'index_json',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/authors_index_info.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return response()->json($jsonArrayData);
+        }
+    }
+
+    /**
      * returns a list of authors
+     *
+     * @return Response
      */
     public function index(): Response
     {
         $operator = ['email' => Auth::user()->email];
 
         try {
-            $author = Author::paginate(10)->through(fn ($article) => [
-                'id' => $article->id,
-                'name' => $article->name,
-                'surname' => $article->surname,
-                'email' => $article->email,
+            $authors = Author::paginate(10)->through(fn ($author) => [
+                'id' => $author->id,
+                'name' => $author->name,
+                'surname' => $author->surname,
+                'email' => $author->email,
             ]);
 
             return Inertia::render('Tabs/Authors/AuthorTab', [
-                'author' => $author,
+                'authors' => $authors,
             ]);
         } catch (\Exception $e) {
             $jsonArrayData = [
@@ -91,6 +130,9 @@ class AuthorController extends Controller
 
     /**
      * store a newly created author in storage
+     *
+     * @param StoreAuthorRequest $request
+     * @return Response
      */
     public function store(StoreAuthorRequest $request): Response
     {

@@ -13,6 +13,9 @@ class AuthorRestController extends Controller
 {
     /**
      * store a newly created author in storage
+     *
+     * @param StoreAuthorRequest $request
+     * @return string
      */
     public function create(StoreAuthorRequest $request): string
     {
@@ -83,6 +86,9 @@ class AuthorRestController extends Controller
 
     /**
      * display the specified author
+     *
+     * @param integer $id
+     * @return string
      */
     public function read(int $id): string
     {
@@ -115,6 +121,10 @@ class AuthorRestController extends Controller
 
     /**
      * update the specified author
+     *
+     * @param integer $id
+     * @param StoreAuthorRequest $request
+     * @return string
      */
     public function update(int $id, StoreAuthorRequest $request): string
     {
@@ -186,6 +196,8 @@ class AuthorRestController extends Controller
 
     /**
      * display a listing of the authors
+     *
+     * @return string
      */
     public function index(): string
     {
