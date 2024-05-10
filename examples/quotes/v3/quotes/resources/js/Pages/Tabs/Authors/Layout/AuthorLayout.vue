@@ -17,12 +17,19 @@ const props = defineProps({
 })
 
 const itemId = ref(0)
+const editorOneIsVisible = ref(true)
+const editorTwoIsVisible = ref(false)
 
 /** to retrieve the item identifier from the child component that displays the essential data and notifies the child component that allows it to be updated */
 function retransmitItemIdentifier(id) {
     itemId.value = id
-    console.log(itemId.value)
-    // toggleEditor()
+    // console.log(itemId.value)
+    toggleEditor()
+}
+
+function toggleEditor() {
+    editorOneIsVisible.value = !editorOneIsVisible.value
+    editorTwoIsVisible.value = !editorTwoIsVisible.value
 }
 
 /** processes feedback from the child */
@@ -88,7 +95,13 @@ function cleanFeedback() {
                     </h2>
                 </div>
 
-                <AuthorEditor />
+                <div v-if="editorOneIsVisible">
+                    <AuthorEditor @postFeedbackMessage="(message) => postMessage(message)" :itemId="itemId" />
+                </div>
+
+                <div v-if="editorTwoIsVisible">
+                    <AuthorEditor @postFeedbackMessage="(message) => postMessage(message)" :itemId="itemId" />
+                </div>
             </div>
 
             <div>

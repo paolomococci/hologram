@@ -29,6 +29,7 @@ class ArticleController extends Controller
                 $article['subject'] = SanitizerUtil::rehydrate($article['subject']);
                 $article['summary'] = SanitizerUtil::rehydrate($article['summary']);
                 $article['content'] = SanitizerUtil::rehydrate($article['content']);
+                $article['deprecated'] = $article['deprecated'];
             }
             $jsonArrayData = [
                 'operator' => $operator,
@@ -68,6 +69,7 @@ class ArticleController extends Controller
                 'id' => $article->id,
                 'title' => SanitizerUtil::rehydrate($article->title),
                 'subject' => SanitizerUtil::rehydrate($article->subject),
+                'deprecated' => $article->deprecated,
             ]);
 
             return Inertia::render('Tabs/Articles/ArticleTab', [
@@ -161,9 +163,12 @@ class ArticleController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * display the specified resource
+     *
+     * @param integer $id
+     * @return mixed
      */
-    public function show(int $id)
+    public function show(int $id): mixed
     {
         try {
             $operator = ['email' => Auth::user()->email];

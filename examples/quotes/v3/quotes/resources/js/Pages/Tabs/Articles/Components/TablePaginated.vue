@@ -22,6 +22,9 @@
                         <th v-if="thereIsSummary" scope="col" class="text-sm font-extralight text-left text-slate-600">
                             summary
                         </th>
+                        <th scope="col" class="text-sm font-extralight text-left text-slate-600">
+                            &#160;
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +36,12 @@
                         <td class="text-sm font-light text-slate-600" v-text="article.subject"></td>
                         <td v-if="thereIsSummary" class="text-sm font-light text-slate-600" v-text="article?.summary">
                         </td>
+                        <td v-if="article?.deprecated">
+                            <SecurityIcon class="size-4" />
+                        </td>
+                        <td v-else>
+                            &#160;
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -43,6 +52,7 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
 import Pagination from '@/Pages/Tabs/Common/PaginationCommon.vue'
+import SecurityIcon from '@/Icons/SecurityIcon.vue'
 
 const thereIsSummary = ref(false)
 

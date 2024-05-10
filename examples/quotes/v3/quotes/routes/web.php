@@ -36,18 +36,18 @@ Route::middleware([
         '/authors',
         [AuthorController::class, 'store']
     )->name('authors-store');
-    // Route::put(
-    //     '/authors',
-    //     [AuthorController::class, 'update']
-    // )->name('authors-update');
+    Route::put(
+        '/authors',
+        [AuthorController::class, 'update']
+    )->name('authors-update');
     Route::get(
         '/authors/filter',
         [AuthorController::class, 'filter']
     )->name('authors-filter');
-    // Route::get(
-    //     '/authors/show/{id}',
-    //     [AuthorController::class, 'show']
-    // )->name('authors-show');
+    Route::get(
+        '/authors/show/{id}',
+        [AuthorController::class, 'show']
+    )->name('authors-show');
 
     /* tab: Article */
     Route::get(

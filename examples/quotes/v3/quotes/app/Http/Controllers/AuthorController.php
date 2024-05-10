@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAuthorRequest;
-use App\Http\Requests\UpdateAuthorRequest;
-use App\Models\Author;
-use App\Utils\SanitizerUtil;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Author;
+use App\Utils\SanitizerUtil;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\StoreAuthorRequest;
+use App\Http\Requests\UpdateAuthorRequest;
 
 class AuthorController extends Controller
 {
@@ -51,8 +52,9 @@ class AuthorController extends Controller
     /**
      * returns a list of authors as a json structured string
      *
+     * @return mixed
      */
-    public function filter()
+    public function filter():mixed
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -98,6 +100,7 @@ class AuthorController extends Controller
                 'name' => $author->name,
                 'surname' => $author->surname,
                 'email' => $author->email,
+                'suspended' => $author->suspended,
             ]);
 
             return Inertia::render('Tabs/Authors/AuthorTab', [
@@ -137,6 +140,7 @@ class AuthorController extends Controller
     public function store(StoreAuthorRequest $request): Response
     {
         $operator = ['email' => Auth::user()->email];
+
         $request['name'] = SanitizerUtil::filtrate($request['name']);
         $request['surname'] = SanitizerUtil::filtrate($request['surname']);
         $request['nickname'] = SanitizerUtil::filtrate($request['nickname']);
@@ -186,11 +190,30 @@ class AuthorController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * display the specified resource
+     *
+     * @param integer $id
+     * @return mixed
      */
-    public function show(Author $author)
+    public function show(int $id): mixed
     {
-        //
+        try {
+            $operator = ['email' => Auth::user()->email];
+
+            $author = Author::find($id);
+
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'performed' => 'show',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/author_show_info.log'),
+            ])->info(json_encode($jsonArrayDataLog));
+            return response()->json($author);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
     }
 
     /**
@@ -202,11 +225,66 @@ class AuthorController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * update the specified resource in storage
+     *
+     * @param UpdateAuthorRequest $request
+     * @return RedirectResponse
      */
-    public function update(UpdateAuthorRequest $request, Author $author)
+    public function update(UpdateAuthorRequest $request): RedirectResponse
     {
-        //
+        $operator = ['email' => Auth::user()->email];
+
+        $req = [
+            'id' => $request['id'],
+            'name' => $request['name'],
+            'surname' => $request['surname'],
+            'nickname' => $request['nickname'],
+            'email' => $request['email'],
+            'suspended' => $request['suspended'],
+        ];
+
+        try {
+            $author = Author::findOrFail($req['id']);
+
+            $validated = $request->validate([
+                'name' => ['required', 'min:1', 'max:255'],
+                'surname' => ['required', 'min:1', 'max:255'],
+                'nickname' => ['max:255'],
+                'suspended' => ['boolean'],
+            ]);
+
+            $author['name'] = $validated['name'];
+            $author['surname'] = $validated['surname'];
+            $author['nickname'] = $validated['nickname'];
+            $author['suspended'] = $validated['suspended'];
+
+            $author->save();
+
+            $jsonArrayData = [
+                'operator' => $operator['email'],
+                'request' => $req,
+                'performed' => 'update',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/authors_update_info.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return to_route('authors');
+        } catch (\Exception $e) {
+            $jsonArrayData = [
+                'operator' => $operator,
+                'request' => $req,
+                'error' => $e->getMessage(),
+                'performed' => 'update',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/authors_update_error.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return to_route('authors');
+        }
     }
 
     /**

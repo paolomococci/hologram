@@ -33,8 +33,11 @@
                         <th scope="col" class="text-sm font-extralight text-left text-slate-600">
                             surname
                         </th>
-                        <th v-if="thereIsEmail" scope="col" class="text-sm font-extralight text-left text-slate-600">
+                        <!-- <th scope="col" class="text-sm font-extralight text-left text-slate-600">
                             email
+                        </th> -->
+                        <th scope="col" class="text-sm font-extralight text-left text-slate-600">
+                            &#160;
                         </th>
                     </tr>
                 </thead>
@@ -45,7 +48,13 @@
                             @mouseover="$emit('grabItemIdentifierFromTable', author.id)"></td>
                         <td class="text-sm font-light text-slate-600" v-text="author.name"></td>
                         <td class="text-sm font-light text-slate-600" v-text="author.surname"></td>
-                        <td v-if="thereIsEmail" class="text-sm font-light text-slate-600" v-text="author?.email">
+                        <!-- <td class="text-sm font-light text-slate-600" v-text="author?.email">
+                        </td> -->
+                        <td v-if="author?.suspended">
+                            <SecurityIcon class="size-4" />
+                        </td>
+                        <td v-else>
+                            &#160;
                         </td>
                     </tr>
                 </tbody>
@@ -60,6 +69,7 @@ import { ref, watch } from 'vue'
 import axios from "axios"
 import MoveLeftIcon from '@/Icons/MoveLeftIcon.vue'
 import MoveRightIcon from '@/Icons/MoveRightIcon.vue'
+import SecurityIcon from '@/Icons/SecurityIcon.vue'
 
 const filtered = ref("")
 const statusMessage = ref("")
@@ -78,7 +88,6 @@ watch(filtered, async (query) => {
         const pages = []
         paginate(sieve(query, res.data?.authors), pages, 10)
         tuples.value = pages
-        // console.log(tuples.value[0])
         authors.value = tuples.value[0]
         togglePaginator.value = tuples.value.length > 1
         numberOfPages.value = tuples.value.length
@@ -131,8 +140,6 @@ function left() {
         if (pointer.value < 0) {
             pointer.value = tuples.value.length + pointer.value
         }
-        // console.log(pointer.value)
-        // console.log(tuples.value[pointer.value])
         authors.value = tuples.value[pointer.value]
     }
 }
@@ -144,8 +151,6 @@ function right() {
         if (pointer.value == tuples.value.length) {
             pointer.value = 0
         }
-        // console.log(pointer.value)
-        // console.log(tuples.value[pointer.value])
         authors.value = tuples.value[pointer.value]
     }
 }
