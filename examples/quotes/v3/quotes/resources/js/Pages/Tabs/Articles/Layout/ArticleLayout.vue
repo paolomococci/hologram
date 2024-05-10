@@ -34,7 +34,6 @@ function toggleEditor() {
 function postMessage(message) {
     console.log(`ArticleLayout component: ${message}`)
     props.feedback = message
-    // window.location.href = tools
 }
 
 /** clean feedback */

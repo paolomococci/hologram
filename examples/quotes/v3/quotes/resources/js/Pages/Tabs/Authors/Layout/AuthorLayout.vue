@@ -8,6 +8,23 @@ import AuthorCreate from '@/Pages/Tabs/Authors/Components/Create.vue'
 import AuthorPaginated from '@/Pages/Tabs/Authors/Components/TablePaginated.vue'
 import AuthorEditor from '@/Pages/Tabs/Authors/Components/Edit.vue'
 import AuthorFiltered from '@/Pages/Tabs/Authors/Components/TableFiltered.vue'
+import Feedback from '@/Pages/Tabs/Common/FeedbackCommon.vue'
+
+const props = defineProps({
+    feedback: String,
+    authors: Object
+})
+
+/** processes feedback from the child */
+function postMessage(message) {
+    console.log(`AuthorLayout component: ${message}`)
+    props.feedback = message
+}
+
+/** clean feedback */
+function cleanFeedback() {
+    props.feedback = ''
+}
 </script>
 
 <template>
@@ -21,8 +38,11 @@ import AuthorFiltered from '@/Pages/Tabs/Authors/Components/TableFiltered.vue'
             </h1>
 
             <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">
-                A simple description that introduces the user to the use of this tab.
+                Here the author's are entered into the system, listed and, when necessary, the data concerning them is
+                modified.
             </p>
+
+            <Feedback @resetFeedbackMessage="() => cleanFeedback()" :feedback="props?.feedback" />
         </div>
 
         <div
@@ -35,7 +55,7 @@ import AuthorFiltered from '@/Pages/Tabs/Authors/Components/TableFiltered.vue'
                     </h2>
                 </div>
 
-                <AuthorCreate />
+                <AuthorCreate @postFeedbackMessage="(message) => postMessage(message)" />
             </div>
 
             <div>

@@ -151,11 +151,11 @@ class AuthorController extends Controller
         try {
             Author::create(
                 $request->validate([
-                    'name' => ['required', 'min:16', 'max:255'],
-                    'surname' => ['required', 'min:16', 'max:255'],
-                    'nickname' => ['min:16', 'max:255'],
-                    'email' => ['required', 'min:32', 'max:1024', 'email', 'unique:quotesdb.authors,email'],
-                    'deprecated' => ['boolean'],
+                    'name' => ['required', 'min:1', 'max:255'],
+                    'surname' => ['required', 'min:1', 'max:255'],
+                    'nickname' => ['max:255'],
+                    'email' => ['required', 'min:8', 'max:255', 'email', 'unique:quotesdb.authors,email'],
+                    'suspended' => ['boolean'],
                 ])
             );
             $jsonArrayDataLog = [

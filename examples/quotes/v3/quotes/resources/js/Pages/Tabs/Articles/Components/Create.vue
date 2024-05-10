@@ -28,7 +28,7 @@
             <div>
                 <button
                     class="p-1 px-2 mx-2 text-sm text-purple-900 bg-purple-200 rounded-md hover:bg-purple-300 hover:shadow-md active:text-purple-600 active:shadow-sm"
-                    type="submit" :disabled="createForm.processing" @click="postMessage()">Save</button>
+                    type="submit" :disabled="createForm.processing">Save</button>
                 <button
                     class="p-1 px-2 mx-2 text-sm rounded-md text-slate-900 bg-slate-200 hover:bg-slate-300 hover:shadow-md active:text-slate-600 active:shadow-sm"
                     type="reset">Reset</button>
@@ -64,6 +64,7 @@ const createForm = reactive({
 /** if there are no errors it sends the values and clears the fields */
 function submit() {
     router.post("/articles", createForm)
+    postMessage()
     if (fieldEmptyCheck()) {
         createForm.title = ''
         createForm.subject = ''

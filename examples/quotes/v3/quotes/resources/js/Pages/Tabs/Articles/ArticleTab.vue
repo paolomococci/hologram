@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
 import ArticleLayout from '@/Pages/Tabs/Articles/Layout/ArticleLayout.vue'
+
 const props = defineProps({
     feedback: String,
     articles: Object

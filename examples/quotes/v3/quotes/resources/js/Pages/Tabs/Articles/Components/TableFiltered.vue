@@ -2,7 +2,7 @@
     <div>
         <div class="relative w-16 h-16">
             <input v-model.lazy="filtered"
-                class="absolute top-0 left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
+                class="absolute top-0 left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500  text-slate-600"
                 type="text" name="articleFilter" id="articleFilter" placeholder="Filter..." />
         </div>
 
@@ -11,7 +11,7 @@
                 class="p-2 mx-1 my-4 text-sm rounded-l-xl bg-slate-200 hover:shadow-md active:shadow-sm">
                 <MoveLeftIcon class="size-4" />
             </button>
-            <span class="text-sm text-slate-600">{{ pointer + 1 }} / {{ numberOfPages }}</span>
+            <span class="text-sm   text-slate-600">{{ pointer + 1 }} / {{ numberOfPages }}</span>
             <button @click="right()"
                 class="p-2 mx-1 my-4 text-sm rounded-r-xl bg-slate-200 hover:shadow-md active:shadow-sm">
                 <MoveRightIcon class="size-4" />
@@ -42,9 +42,9 @@
                         <!-- emits the identifier of the object being moused over -->
                         <td class="pl-2 text-sm font-light cursor-grabbing text-slate-300" v-text="article.id"
                             @mouseover="$emit('grabItemIdentifierFromTable', article.id)"></td>
-                        <td class="text-sm font-light text-slate-600" v-text="article.title"></td>
-                        <td class="text-sm font-light text-slate-600" v-text="article.subject"></td>
-                        <td v-if="thereIsSummary" class="text-sm font-light text-slate-600" v-text="article?.summary">
+                        <td class="text-sm font-light   text-slate-600" v-text="article.title"></td>
+                        <td class="text-sm font-light   text-slate-600" v-text="article.subject"></td>
+                        <td v-if="thereIsSummary" class="text-sm font-light   text-slate-600" v-text="article?.summary">
                         </td>
                     </tr>
                 </tbody>

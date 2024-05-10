@@ -1,6 +1,11 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
 import AuthorLayout from '@/Pages/Tabs/Authors/Layout/AuthorLayout.vue'
+
+const props = defineProps({
+    feedback: String,
+    authors: Object
+})
 </script>
 
 <template>
@@ -14,7 +19,7 @@ import AuthorLayout from '@/Pages/Tabs/Authors/Layout/AuthorLayout.vue'
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
-                    <AuthorLayout />
+                    <AuthorLayout :authors="props?.authors" />
                 </div>
             </div>
         </div>

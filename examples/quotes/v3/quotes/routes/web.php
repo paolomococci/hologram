@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ToolController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ArticleController;
 
 Route::get('/', function () {
@@ -30,6 +31,22 @@ Route::middleware([
     Route::get('/authors', function () {
         return Inertia::render('Tabs/Authors/AuthorTab');
     })->name('authors');
+    Route::post(
+        '/authors',
+        [AuthorController::class, 'store']
+    )->name('authors-store');
+    // Route::put(
+    //     '/authors',
+    //     [AuthorController::class, 'update']
+    // )->name('authors-update');
+    // Route::get(
+    //     '/authors/filter',
+    //     [AuthorController::class, 'filter']
+    // )->name('authors-filter');
+    // Route::get(
+    //     '/authors/show/{id}',
+    //     [AuthorController::class, 'show']
+    // )->name('authors-show');
 
     /* tab: Article */
     Route::get(
