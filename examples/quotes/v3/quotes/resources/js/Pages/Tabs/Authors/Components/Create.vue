@@ -66,14 +66,9 @@ function submit() {
     let author = JSON.parse(
         JSON.stringify(createForm)
     )
-    // console.log(author.email)
     author.name = checkAllowedCharacters(author.name)
     author.surname = checkAllowedCharacters(author.surname)
     author.nickname = checkAllowedCharacters(author?.nickname)
-    const proxy = new Proxy(author, {})
-    // console.log(proxy)
-    // console.log(createForm)
-    // console.log(isValidEmail(author.email))
 
     if (isValidEmail(author.email)) {
         router.post("/authors", author)

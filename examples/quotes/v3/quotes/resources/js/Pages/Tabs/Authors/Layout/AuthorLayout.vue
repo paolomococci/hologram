@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue"
 import AuthorsIcon from '@/Icons/AuthorsIcon.vue'
 import AddElementIcon from '@/Icons/AddElementIcon.vue'
 import FetchDataIcon from '@/Icons/FetchDataIcon.vue'
@@ -14,6 +15,15 @@ const props = defineProps({
     feedback: String,
     authors: Object
 })
+
+const itemId = ref(0)
+
+/** to retrieve the item identifier from the child component that displays the essential data and notifies the child component that allows it to be updated */
+function retransmitItemIdentifier(id) {
+    itemId.value = id
+    console.log(itemId.value)
+    // toggleEditor()
+}
 
 /** processes feedback from the child */
 function postMessage(message) {
@@ -34,7 +44,7 @@ function cleanFeedback() {
             <AuthorsIcon class="block w-auto h-12" />
 
             <h1 class="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
-                Welcome to the authors tab!
+                To record, view, filter and edit author data
             </h1>
 
             <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">
@@ -66,7 +76,8 @@ function cleanFeedback() {
                     </h2>
                 </div>
 
-                <AuthorPaginated />
+                <AuthorPaginated caption="fetched author data from RDBMS" :authors="props.authors"
+                    @grabItemIdentifierFromTable="(id) => retransmitItemIdentifier(id)" />
             </div>
 
             <div>

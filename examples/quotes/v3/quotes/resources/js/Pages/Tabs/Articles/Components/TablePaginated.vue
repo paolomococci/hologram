@@ -29,9 +29,9 @@
                         <!-- emits the identifier of the object being moused over -->
                         <td class="pl-2 text-sm font-light cursor-grabbing text-slate-300" v-text="article.id"
                             @mouseover="$emit('grabItemIdentifierFromTable', article.id)"></td>
-                        <td class="text-sm font-light   text-slate-600" v-text="article.title"></td>
-                        <td class="text-sm font-light   text-slate-600" v-text="article.subject"></td>
-                        <td v-if="thereIsSummary" class="text-sm font-light   text-slate-600" v-text="article?.summary">
+                        <td class="text-sm font-light text-slate-600" v-text="article.title"></td>
+                        <td class="text-sm font-light text-slate-600" v-text="article.subject"></td>
+                        <td v-if="thereIsSummary" class="text-sm font-light text-slate-600" v-text="article?.summary">
                         </td>
                     </tr>
                 </tbody>
@@ -58,11 +58,6 @@ onBeforeMount(() => {
             element.summary != undefined || element.summary != null
     })
 })
-
-/** grab id of element */
-function currentIdentifier(id) {
-    console.log(id)
-}
 </script>
 
 <style scoped>

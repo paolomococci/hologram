@@ -17,11 +17,11 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
             <PapersIcon class="block w-auto h-12" />
 
             <h1 class="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
-                Welcome to the papers tab!
+                To record, view, filter and edit paper data
             </h1>
 
             <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">
-                A simple description that introduces the user to the use of this tab.
+                This is the tab where you process scanned documents.
             </p>
         </div>
 

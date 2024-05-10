@@ -20,6 +20,7 @@ const itemId = ref(0)
 const editorOneIsVisible = ref(true)
 const editorTwoIsVisible = ref(false)
 
+/** to retrieve the item identifier from the child component that displays the essential data and notifies the child component that allows it to be updated */
 function retransmitItemIdentifier(id) {
     itemId.value = id
     toggleEditor()
@@ -49,7 +50,7 @@ function cleanFeedback() {
             <ArticlesIcon class="block w-auto h-12" />
 
             <h1 class="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
-                Editor of information and article content
+                To record, view, filter and edit article content
             </h1>
 
             <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">

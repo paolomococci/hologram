@@ -28,9 +28,10 @@ Route::middleware([
     })->name('help');
 
     /* tab: Author */
-    Route::get('/authors', function () {
-        return Inertia::render('Tabs/Authors/AuthorTab');
-    })->name('authors');
+    Route::get(
+        '/authors',
+        [AuthorController::class, 'index']
+    )->name('authors');
     Route::post(
         '/authors',
         [AuthorController::class, 'store']
