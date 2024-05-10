@@ -40,10 +40,10 @@ Route::middleware([
     //     '/authors',
     //     [AuthorController::class, 'update']
     // )->name('authors-update');
-    // Route::get(
-    //     '/authors/filter',
-    //     [AuthorController::class, 'filter']
-    // )->name('authors-filter');
+    Route::get(
+        '/authors/filter',
+        [AuthorController::class, 'filter']
+    )->name('authors-filter');
     // Route::get(
     //     '/authors/show/{id}',
     //     [AuthorController::class, 'show']

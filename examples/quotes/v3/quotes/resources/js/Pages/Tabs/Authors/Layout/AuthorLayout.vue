@@ -99,7 +99,7 @@ function cleanFeedback() {
                     </h2>
                 </div>
 
-                <AuthorFiltered />
+                <AuthorFiltered @grabItemIdentifierFromTable="(id) => retransmitItemIdentifier(id)" />
             </div>
         </div>
     </div>
