@@ -61,7 +61,7 @@ Instead, if it is an update:
 ```bash
 cd xdebug/xdebug-3.3.1/
 phpize
-mkdir build_session_update && cd build_session_update
+mkdir build_session_update_n && cd build_session_update_n
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make

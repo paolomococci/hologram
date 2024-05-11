@@ -54,6 +54,18 @@ make
 make install
 ```
 
+Instead, if it is an update:
+
+```bash
+cd xdebug/xdebug-3.3.2/
+phpize
+mkdir build_session_update_n && cd build_session_update_n
+../configure --help
+../configure --prefix=/opt/php/xdebug --enable-xdebug
+make
+make install
+```
+
 ## setup of Xdebug
 
 ```bash

@@ -71,7 +71,7 @@ Now copy `www.conf`:
 
 ```bash
 sudo cp /opt/php/8.2.19/etc/php-fpm.d/www.conf.default /opt/php/8.2.19/etc/php-fpm.d/www.conf
-ls -al /usr/lib/systemd/system/
+ls -al /usr/lib/systemd/system/ | grep -i "php-fpm.service"
 ```
 
 I create the configuration file `php-fpm.service`:
