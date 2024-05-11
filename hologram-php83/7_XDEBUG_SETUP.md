@@ -93,7 +93,8 @@ I add this section:
 zend_extension=xdebug
 
 ; xdebug.mode=[off,develop,coverage,debug,gcstats,profile,trace]
-xdebug.mode=debug,trace
+xdebug.mode=develop,debug,trace
+xdebug.cli_color=1
 xdebug.start_with_request=trigger
 xdebug.discover_client_host=1
 xdebug.remote_enable=1
