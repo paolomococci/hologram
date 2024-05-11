@@ -29,6 +29,7 @@ And if I want to compile PHP from source, if not previously installed, I will ne
 * libonig-dev 
 * apache2-dev
 * libxml2-dev
+* libffi-dev
 
 With the following command I can check if the package is already installed:
 
@@ -42,5 +43,5 @@ As follows, for example only:
 
 ```bash
 sudo apt update
-sudo apt install libcurl4-openssl-dev libbz2-dev libjpeg-dev libgmp3-dev libxslt1-dev libpng-dev libsqlite3-dev libonig-dev apache2-dev libxml2-dev
+sudo apt install libcurl4-openssl-dev libbz2-dev libjpeg-dev libgmp3-dev libxslt1-dev libpng-dev libsqlite3-dev libonig-dev apache2-dev libxml2-dev libffi-dev
 ```
