@@ -10,10 +10,17 @@ Articles tab:
 
 ## scaffolding
 
-If I find that I don't have an updated version of Composer, just issue the following command:
+If I find that I don't have an updated version of composer, npm and node, just issue the following commands:
 
 ```bash
+composer -v
 sudo composer self-update
+npm -v
+node -v
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+sudo npm install -g npm@latest
 ```
 
 and then continue with the scaffolding of the application:

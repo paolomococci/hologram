@@ -23,8 +23,17 @@ composer --help diagnose
 composer diagnose
 ```
 
-To update `composer`:
+## to update development tools:
+
+If I find that I don't have an updated version of composer, npm and node, just issue the following commands:
 
 ```bash
+composer -v
 sudo composer self-update
+npm -v
+node -v
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+sudo npm install -g npm@latest
 ```
