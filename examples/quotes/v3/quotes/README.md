@@ -364,3 +364,27 @@ php artisan make:class Utils/SanitizerUtil
 php artisan make:controller Rest/AuthorRestController
 php artisan make:controller Rest/ArticleRestController
 ```
+
+## FFI, example of use
+
+Creating a directory that contains the sample shared libraries:
+
+```bash
+sudo mkdir -o /opt/share/lib
+```
+
+Compile C code and incorporate object code into a shared library:
+
+```bash
+gcc -c -Wall -Werror -fpic linked.c
+gcc -shared -o linked.so linked.o
+rm linked.o
+sudo mv linked.so /opt/share/lib/
+```
+
+The LinkedExtension class:
+
+```bash
+php artisan make:class Extensions/LinkedExtension
+php artisan make:controller ExtensionController
+```

@@ -84,4 +84,9 @@ Route::middleware([
     /* tools controller */
     Route::get('/renumber', [ToolController::class, 'renumber'])->name('renumber');
     Route::get('/clean', [ToolController::class, 'clean'])->name('clean');
+
+    /* tab: Extension */
+    Route::get('/extensions', function () {
+        return Inertia::render('Tabs/Extensions/ExtensionTab');
+    })->name('extensions');
 });
