@@ -43,11 +43,22 @@
                 <div class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
                     <ul>
                         <li class="left-4 text-xs text-gray-900 ms-3 dark:text-slate-200"
-                            v-for="author in editForm?.authors" :key="author.id">
-                            {{ author.email }}
+                            v-for="contributor in editForm?.contributors" :key="contributor.id">
+                            {{ contributor.email }}
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div class="pb-4">
+                <label class="left-4 text-xs text-gray-900 ms-3 dark:text-white" for="author">
+                    Add a correlation to the following author:
+                </label>
+                <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
+                    type="checkbox" v-model.lazy="editForm.author" name="author" id="author" list="authors">
+
+                <datalist id="authors">
+                    <!-- TODO -->
+                </datalist>
             </div>
             <div>
                 <button
@@ -94,6 +105,7 @@ const editForm = reactive({
     summary: null,
     content: null,
     deprecated: false,
+    contributors: [],
     authors: [],
 })
 
@@ -127,6 +139,7 @@ async function fetchDataItem(id) {
                 editForm.summary = res.data?.summary
                 editForm.content = res.data.content
                 editForm.deprecated = res.data.deprecated ? true : false
+                editForm.contributors = res.data?.contributors
                 editForm.authors = res.data?.authors
             }
             console.log(res)
@@ -143,9 +156,9 @@ function fieldEmptyCheck() {
     return checkField
 }
 
-/** checks whether an article has been attributed to authors */
+/** checks whether an article has been attributed to contributors */
 function hasContributors() {
-    if (editForm?.authors.length > 0) {
+    if (editForm?.contributors.length > 0) {
         return true
     }
     return false;

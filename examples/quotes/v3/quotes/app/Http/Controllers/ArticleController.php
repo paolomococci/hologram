@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use App\Models\Author;
 use App\Utils\SanitizerUtil;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -179,7 +180,12 @@ class ArticleController extends Controller
             $article['summary'] = SanitizerUtil::rehydrate($article['summary']);
             $article['content'] = SanitizerUtil::rehydrate($article['content']);
 
-            $authors = $article->getRelatedAuthors();
+            // Contributors
+            $contributors = $article->getRelatedAuthors();
+            $article['contributors'] = $contributors;
+
+            // Authors
+            $authors = Author::where('suspended', 0)->get();
             $article['authors'] = $authors;
 
             $jsonArrayDataLog = [
