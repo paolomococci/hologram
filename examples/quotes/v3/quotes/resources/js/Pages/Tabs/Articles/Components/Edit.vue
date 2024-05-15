@@ -9,7 +9,8 @@
             <div>
                 <input
                     class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
-                    v-model.lazy="editForm.title" size="30" type="text" name="title" id="title" placeholder="Title" readonly />
+                    v-model.lazy="editForm.title" size="30" type="text" name="title" id="title" placeholder="Title"
+                    readonly />
             </div>
             <div>
                 <input
@@ -30,17 +31,22 @@
                     placeholder="Content" required minlength="32" maxlength="1024"></textarea>
             </div>
             <div class="pb-4">
-                <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white" for="deprecated">deprecated</label>
-                <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700" type="checkbox" v-model.lazy="editForm.deprecated" name="deprecated" id="deprecated">
+                <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
+                    for="deprecated">deprecated</label>
+                <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
+                    type="checkbox" v-model.lazy="editForm.deprecated" name="deprecated" id="deprecated">
             </div>
-            <div class="pb-4">
-                <p class="left-4 text-xs text-center text-gray-900 ms-3 dark:text-white">
+            <div v-if="hasContributors()" class="pb-4">
+                <p class="left-4 text-xs text-gray-900 ms-3 dark:text-white">
                     Has received contributions from the following authors:
                 </p>
                 <div class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                    <p class="left-4 text-xs text-center text-gray-900 ms-3 dark:text-slate-200" v-for="author in editForm?.authors" :key="author.id">
-                        {{ author.email }}
-                    </p>
+                    <ul>
+                        <li class="left-4 text-xs text-gray-900 ms-3 dark:text-slate-200"
+                            v-for="author in editForm?.authors" :key="author.id">
+                            {{ author.email }}
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div>
@@ -88,7 +94,7 @@ const editForm = reactive({
     summary: null,
     content: null,
     deprecated: false,
-    authors: null,
+    authors: [],
 })
 
 /** sends the values and clears the fields */
@@ -135,6 +141,14 @@ function fieldEmptyCheck() {
     let checkField = (editForm.title != '' && editForm.subject != '' && editForm.content != '') &&
         (editForm.title != null && editForm.subject != null && editForm.content != null)
     return checkField
+}
+
+/** checks whether an article has been attributed to authors */
+function hasContributors() {
+    if (editForm?.authors.length > 0) {
+        return true
+    }
+    return false;
 }
 </script>
 

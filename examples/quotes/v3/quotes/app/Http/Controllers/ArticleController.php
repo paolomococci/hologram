@@ -181,7 +181,6 @@ class ArticleController extends Controller
 
             $authors = $article->getRelatedAuthors();
             $article['authors'] = $authors;
-            // dd($article);
 
             $jsonArrayDataLog = [
                 'operator' => $operator,
@@ -237,7 +236,6 @@ class ArticleController extends Controller
                 'content' => ['required', 'min:32', 'max:1024'],
                 'deprecated' => ['boolean'],
             ]);
-            // dd($validated);
 
             $article['subject'] = $validated['subject'];
             $article['summary'] = $validated['summary'];
