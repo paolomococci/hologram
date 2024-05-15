@@ -4,9 +4,17 @@ Landing page:
 
 ![landing page](screenshots/quotes_v3_landing_page_.png)
 
+Authors tab:
+
+![authors tab](screenshots/quotes_v3_author_tab.png)
+
 Articles tab:
 
-![articles tab](screenshots/quotes_v3_articles_tab.png)
+![articles tab](screenshots/quotes_v3_article_tab.png)
+
+Tools tab:
+
+![tools tab](screenshots/quotes_v3_tools_tab.png)
 
 Extensions tab, before sending the data to the shared library:
 

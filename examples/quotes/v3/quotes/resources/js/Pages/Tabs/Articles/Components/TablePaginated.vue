@@ -37,7 +37,7 @@
                         <td v-if="thereIsSummary" class="text-sm font-light text-slate-600" v-text="article?.summary">
                         </td>
                         <td v-if="article?.deprecated">
-                            <SecurityIcon class="size-4" />
+                            <DeprecatedIcon class="size-4" />
                         </td>
                         <td v-else>
                             &#160;
@@ -52,7 +52,7 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
 import Pagination from '@/Pages/Tabs/Common/PaginationCommon.vue'
-import SecurityIcon from '@/Icons/SecurityIcon.vue'
+import DeprecatedIcon from '@/Icons/DeprecatedIcon.vue'
 
 const thereIsSummary = ref(false)
 

@@ -37,7 +37,7 @@
                         <!-- <td v-if="thereIsEmail" class="text-sm font-light text-slate-600" v-text="author?.email">
                         </td> -->
                         <td v-if="author?.suspended">
-                            <SecurityIcon class="size-4" />
+                            <SuspendedIcon class="size-4" />
                         </td>
                         <td v-else>
                             &#160;
@@ -52,7 +52,7 @@
 <script setup>
 import { onBeforeMount, ref } from 'vue'
 import Pagination from '@/Pages/Tabs/Common/PaginationCommon.vue'
-import SecurityIcon from '@/Icons/SecurityIcon.vue'
+import SuspendedIcon from '@/Icons/SuspendedIcon.vue'
 
 const thereIsEmail = ref(false)
 

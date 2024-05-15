@@ -7,7 +7,7 @@ use Inertia\Response;
 use App\Extensions\EchoExtension;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\InsertValueLabelRequest;
+use App\Http\Requests\EchoExtensionRequest;
 
 class ExtensionController extends Controller
 {
@@ -24,7 +24,7 @@ class ExtensionController extends Controller
         }
     }
 
-    public function echo(InsertValueLabelRequest $request): RedirectResponse
+    public function echo(EchoExtensionRequest $request): RedirectResponse
     {
         $value = 0;
         $operator = ['email' => Auth::user()->email];

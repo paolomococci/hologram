@@ -51,7 +51,7 @@
                         <!-- <td class="text-sm font-light text-slate-600" v-text="author?.email">
                         </td> -->
                         <td v-if="author?.suspended">
-                            <SecurityIcon class="size-4" />
+                            <SuspendedIcon class="size-4" />
                         </td>
                         <td v-else>
                             &#160;
@@ -69,7 +69,7 @@ import { ref, watch } from 'vue'
 import axios from "axios"
 import MoveLeftIcon from '@/Icons/MoveLeftIcon.vue'
 import MoveRightIcon from '@/Icons/MoveRightIcon.vue'
-import SecurityIcon from '@/Icons/SecurityIcon.vue'
+import SuspendedIcon from '@/Icons/SuspendedIcon.vue'
 
 const filtered = ref("")
 const statusMessage = ref("")

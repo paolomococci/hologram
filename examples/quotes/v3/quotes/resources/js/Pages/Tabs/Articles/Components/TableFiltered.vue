@@ -46,7 +46,7 @@
                         <td class="text-sm font-light text-slate-600" v-text="article.title"></td>
                         <td class="text-sm font-light text-slate-600" v-text="article.subject"></td>
                         <td v-if="article?.deprecated">
-                            <SecurityIcon class="size-4" />
+                            <DeprecatedIcon class="size-4" />
                         </td>
                         <td v-else>
                             &#160;
@@ -64,7 +64,7 @@ import { ref, watch } from "vue"
 import axios from "axios"
 import MoveLeftIcon from "@/Icons/MoveLeftIcon.vue"
 import MoveRightIcon from "@/Icons/MoveRightIcon.vue"
-import SecurityIcon from '@/Icons/SecurityIcon.vue'
+import DeprecatedIcon from '@/Icons/DeprecatedIcon.vue'
 
 const filtered = ref("")
 const statusMessage = ref("")
