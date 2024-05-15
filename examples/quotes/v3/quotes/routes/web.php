@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ExtensionController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -86,7 +87,12 @@ Route::middleware([
     Route::get('/clean', [ToolController::class, 'clean'])->name('clean');
 
     /* tab: Extension */
-    Route::get('/extensions', function () {
-        return Inertia::render('Tabs/Extensions/ExtensionTab');
-    })->name('extensions');
+    Route::get(
+        '/extensions',
+        [ExtensionController::class, 'index']
+    )->name('extensions');
+    Route::post(
+        '/echo',
+        [ExtensionController::class, 'echo']
+    )->name('echo');
 });

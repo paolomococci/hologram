@@ -8,6 +8,14 @@ Articles tab:
 
 ![articles tab](screenshots/quotes_v3_articles_tab.png)
 
+Extensions tab, before sending the data to the shared library:
+
+![extensions tab](screenshots/quotes_v3_extensions_tab_1.png)
+
+Articles tab, after sending the data to the shared library:
+
+![extensions tab's feedback](screenshots/quotes_v3_extensions_tab_2.png)
+
 ## scaffolding
 
 If I find that I don't have an updated version of composer, npm and node, just issue the following commands:
@@ -367,24 +375,41 @@ php artisan make:controller Rest/ArticleRestController
 
 ## FFI, example of use
 
+Basic example which only serves to clarify the steps necessary to call functions written in C programming language.
+Such as, for example, the casting of data types from PHP to C and vice versa.
+As well as the association between the underlying C function and the overlying PHP method.
+
+Fist, enable FFI:
+
+```bash
+grep -i "ffi.enable" /opt/php/8.3.7/lib/php.ini
+sudo sed -i 's/;ffi.enable=preload/ffi.enable=true/' /opt/php/8.3.7/lib/php.ini
+sudo systemctl restart apache2
+sudo systemctl restart php-fpm
+sudo systemctl status apache2 --no-pager
+sudo systemctl status php-fpm --no-pager
+```
+
 Creating a directory that contains the sample shared libraries:
 
 ```bash
 sudo mkdir -o /opt/share/lib
 ```
 
-Compile C code and incorporate object code into a shared library:
+Now I compile C code and incorporate object code into a shared library.
+From root directory of project:
 
 ```bash
-gcc -c -Wall -Werror -fpic linked.c
-gcc -shared -o linked.so linked.o
-rm linked.o
-sudo mv linked.so /opt/share/lib/
+cd shared
+gcc -c -Wall -Werror -fpic echo.c
+gcc -shared -o echo.so echo.o
+rm echo.o
+sudo mv echo.so /opt/share/lib/
 ```
 
-The LinkedExtension class:
+The EchoExtension class:
 
 ```bash
-php artisan make:class Extensions/LinkedExtension
+php artisan make:class Extensions/EchoExtension
 php artisan make:controller ExtensionController
 ```
