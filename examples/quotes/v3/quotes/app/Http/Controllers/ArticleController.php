@@ -179,6 +179,10 @@ class ArticleController extends Controller
             $article['summary'] = SanitizerUtil::rehydrate($article['summary']);
             $article['content'] = SanitizerUtil::rehydrate($article['content']);
 
+            $authors = $article->getRelatedAuthors();
+            $article['authors'] = $authors;
+            // dd($article);
+
             $jsonArrayDataLog = [
                 'operator' => $operator,
                 'performed' => 'show',

@@ -33,6 +33,16 @@
                 <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white" for="deprecated">deprecated</label>
                 <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700" type="checkbox" v-model.lazy="editForm.deprecated" name="deprecated" id="deprecated">
             </div>
+            <div class="pb-4">
+                <p class="left-4 text-xs text-center text-gray-900 ms-3 dark:text-white">
+                    Has received contributions from the following authors:
+                </p>
+                <div class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+                    <p class="left-4 text-xs text-center text-gray-900 ms-3 dark:text-slate-200" v-for="author in editForm?.authors" :key="author.id">
+                        {{ author.email }}
+                    </p>
+                </div>
+            </div>
             <div>
                 <button
                     class="px-2 py-1 mx-2 text-sm text-purple-900 bg-purple-200 rounded-md hover:bg-purple-300 hover:shadow-md active:text-purple-600 active:shadow-sm"
@@ -78,6 +88,7 @@ const editForm = reactive({
     summary: null,
     content: null,
     deprecated: false,
+    authors: null,
 })
 
 /** sends the values and clears the fields */
@@ -110,7 +121,9 @@ async function fetchDataItem(id) {
                 editForm.summary = res.data?.summary
                 editForm.content = res.data.content
                 editForm.deprecated = res.data.deprecated ? true : false
+                editForm.authors = res.data?.authors
             }
+            console.log(res)
         } catch (error) {
             console.log(error)
         }
