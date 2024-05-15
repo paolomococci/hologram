@@ -4,6 +4,10 @@ Landing page:
 
 ![landing page](screenshots/quotes_v3_landing_page_.png)
 
+Help tab:
+
+![help tab](screenshots/quotes_v3_help_tab.png)
+
 Authors tab:
 
 ![authors tab](screenshots/quotes_v3_author_tab.png)

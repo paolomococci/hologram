@@ -8,6 +8,10 @@ Landing page:
 
 ![landing page](examples/quotes/v3/quotes/screenshots/quotes_v3_landing_page_.png)
 
+Help tab:
+
+![help tab](examples/quotes/v3/quotes/screenshots/quotes_v3_help_tab.png)
+
 Authors tab:
 
 ![authors tab](examples/quotes/v3/quotes/screenshots/quotes_v3_author_tab.png)
