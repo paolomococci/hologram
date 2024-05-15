@@ -201,6 +201,8 @@ class AuthorController extends Controller
             $operator = ['email' => Auth::user()->email];
 
             $author = Author::find($id);
+            $articles = $author->getRelatedArticles();
+            $author['articles'] = $articles;
 
             $jsonArrayDataLog = [
                 'operator' => $operator,

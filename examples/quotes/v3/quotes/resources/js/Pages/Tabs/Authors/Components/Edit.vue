@@ -36,6 +36,19 @@
                 <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
                     type="checkbox" v-model.lazy="editForm.suspended" name="suspended" id="suspended">
             </div>
+            <div v-if="hasContributed()" class="pb-4">
+                <p class="left-4 text-xs text-gray-900 ms-3 dark:text-white">
+                    Contributed to the following articles:
+                </p>
+                <div class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+                    <ul>
+                        <li class="left-4 text-xs text-gray-900 ms-3 dark:text-slate-200"
+                            v-for="article in editForm?.articles" :key="article.id">
+                            {{ article.title }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div>
                 <button
                     class="px-2 py-1 mx-2 text-sm text-purple-900 bg-purple-200 rounded-md hover:bg-purple-300 hover:shadow-md active:text-purple-600 active:shadow-sm"
@@ -82,6 +95,7 @@ const editForm = reactive({
     nickname: null,
     email: null,
     suspended: false,
+    articles: [],
 })
 
 /** sends the values and clears the fields */
@@ -128,6 +142,7 @@ async function fetchDataItem(id) {
                 editForm.nickname = res.data?.nickname
                 editForm.email = res.data.email
                 editForm.suspended = res.data.suspended ? true : false
+                editForm.articles = res.data?.articles
             }
         } catch (error) {
             console.log(error)
@@ -158,6 +173,14 @@ function fieldEmptyCheck() {
     let checkField = (editForm.name.length > 1 && editForm.surname.length > 1 && editForm.email.length > 8) &&
         (editForm.name != null && editForm.surname != null && editForm.email != null)
     return checkField
+}
+
+/** checks if an author has contributed to articles */
+function hasContributed() {
+    if (editForm?.articles.length > 0) {
+        return true
+    }
+    return false;
 }
 </script>
 
