@@ -14,7 +14,7 @@ class ExtensionController extends Controller
     public function index(): Response
     {
         try {
-            if (!empty($_GET)) {
+            if (isset($_GET['value'])) {
                 $value = self::isNumeric($_GET['value']) ? $_GET['value'] : 0;
                 return Inertia::render('Tabs/Extensions/ExtensionTab', ['value' => $value]);
             }
