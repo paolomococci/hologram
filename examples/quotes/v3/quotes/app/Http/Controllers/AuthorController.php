@@ -313,6 +313,13 @@ class AuthorController extends Controller
         //
     }
 
+    /**
+     * set a correlation from author to article thanks to the identifier
+     *
+     * @param integer $articleId
+     * @param integer $authorId
+     * @return void
+     */
     private function setCorrelateById(int $articleId, int $authorId) {
         if (is_numeric($articleId)) {
             //Check that `author` is correctly registered.
@@ -333,6 +340,13 @@ class AuthorController extends Controller
         }
     }
 
+    /**
+     * set a correlation from author to article thanks to the title
+     *
+     * @param string $articleTitle
+     * @param integer $authorId
+     * @return void
+     */
     private function setCorrelateByTitle(string $articleTitle, int $authorId) {
         if ($articleTitle) {
             $articleTitle = SanitizerUtil::sanitize($articleTitle);
