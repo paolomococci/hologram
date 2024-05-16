@@ -50,18 +50,17 @@
                 </div>
             </div>
             <div v-if="editForm?.id" class="pb-4">
-                <p class="left-4 text-xs text-gray-900 ms-3 dark:text-white">
-                    Add a correlation to the following articles:
-                </p>
-                <select id="articles" v-model.lazy="editForm.correlation" class="left-4 ml-2 text-xs rounded-md border">
-                    <!-- <option class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700" value="0">
-                        none
-                    </option> -->
+                <label class="left-4 text-xs text-gray-900 ms-3 dark:text-white" for="articleId">
+                    Add a correlation to the following article:
+                </label>
+                <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
+                    v-model.lazy="editForm.correlation" size="30" type="text" name="articleId" id="articleId" list="articles">
+                <datalist id="articles" class="left-4 ml-2 text-xs rounded-md border">
                     <option
                         class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700 hover:bg-purple-400"
-                        v-for="article in editForm?.articles" :key="article.id" :value="article.id"
+                        v-for="article in editForm?.articles" :key="article.id" :value="article.title"
                         v-text="truncateTitle(article.title)"></option>
-                </select>
+                </datalist>
             </div>
             <div>
                 <button

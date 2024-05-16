@@ -270,24 +270,11 @@ class AuthorController extends Controller
             $author['nickname'] = $validated['nickname'];
             $author['suspended'] = $validated['suspended'];
 
-            // Check that `$request['correlation']` is set as a number.
-            if (isset($request['correlation']) && is_numeric($request['correlation'])) {
-                //Check that `author` is correctly registered.
-                $correlation = Article::findOrFail($request['correlation']);
-                // Runs a query to see if a previous correlation exists.
-                $merit = Merit::where('author_id', $author->id)->where('article_id', $correlation->id)->get();
-                // If a correlation already exists, it ignores it and proceeds with any changes to the fields.
-                if (!$merit->count()) {
-                    Merit::create(
-                        [
-                            // field is_main_author is temporarily set to zero by default
-                            'is_main_author' => 0,
-                            'article_id' => $correlation->id,
-                            'author_id' => $author->id,
-                        ]
-                    );
-                }
-            }
+            // Set correlation based on the identifier of article.
+            // self::setCorrelateById($request['correlation'], $author['id']);
+
+            // Set correlation based on the title of article.
+            self::setCorrelateByTitle($request['correlation'], $author['id']);
 
             $author->save();
 
@@ -324,5 +311,46 @@ class AuthorController extends Controller
     public function destroy(Author $author)
     {
         //
+    }
+
+    private function setCorrelateById(int $articleId, int $authorId) {
+        if (is_numeric($articleId)) {
+            //Check that `author` is correctly registered.
+            $correlation = Article::findOrFail($articleId);
+            // Runs a query to see if a previous correlation exists.
+            $merit = Merit::where('author_id', $authorId)->where('article_id', $correlation->id)->get();
+            // If a correlation already exists, it ignores it and proceeds with any changes to the fields.
+            if (!$merit->count()) {
+                Merit::create(
+                    [
+                        // field is_main_author is temporarily set to zero by default
+                        'is_main_author' => 0,
+                        'article_id' => $correlation->id,
+                        'author_id' => $authorId,
+                    ]
+                );
+            }
+        }
+    }
+
+    private function setCorrelateByTitle(string $articleTitle, int $authorId) {
+        if ($articleTitle) {
+            $articleTitle = SanitizerUtil::sanitize($articleTitle);
+            //Check that `author` is correctly registered.
+            $correlation = Article::where('title', $articleTitle)->first();
+            // Runs a query to see if a previous correlation exists.
+            $merit = Merit::where('author_id', $authorId)->where('article_id', $correlation->id)->get();
+            // If a correlation already exists, it ignores it and proceeds with any changes to the fields.
+            if (!$merit->count()) {
+                Merit::create(
+                    [
+                        // field is_main_author is temporarily set to zero by default
+                        'is_main_author' => 0,
+                        'article_id' => $correlation->id,
+                        'author_id' => $authorId,
+                    ]
+                );
+            }
+        }
     }
 }
