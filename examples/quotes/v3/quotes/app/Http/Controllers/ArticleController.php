@@ -26,13 +26,7 @@ class ArticleController extends Controller
 
         try {
             $articles = Article::all();
-            foreach ($articles as $article) {
-                $article['title'] = SanitizerUtil::rehydrate($article['title']);
-                $article['subject'] = SanitizerUtil::rehydrate($article['subject']);
-                $article['summary'] = SanitizerUtil::rehydrate($article['summary']);
-                $article['content'] = SanitizerUtil::rehydrate($article['content']);
-                $article['deprecated'] = $article['deprecated'];
-            }
+            Article::rehydrate($articles);
             $jsonArrayData = [
                 'operator' => $operator,
                 'articles' => $articles,

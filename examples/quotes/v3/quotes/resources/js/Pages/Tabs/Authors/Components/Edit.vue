@@ -43,11 +43,25 @@
                 <div class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
                     <ul>
                         <li class="left-4 text-xs text-gray-900 ms-3 dark:text-slate-200"
-                            v-for="article in editForm?.articles" :key="article.id">
-                            {{ article.title }}
+                            v-for="contribution in editForm?.contributions" :key="contribution.id">
+                            {{ contribution.title }}
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div v-if="editForm?.id" class="pb-4">
+                <p class="left-4 text-xs text-gray-900 ms-3 dark:text-white" for="article">
+                    Add a correlation to the following articles:
+                </p>
+                <select id="articles" v-model.lazy="editForm.correlation" class="left-4 ml-2 text-xs rounded-md border">
+                    <!-- <option class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700" value="0">
+                        none
+                    </option> -->
+                    <option
+                        class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700 hover:bg-purple-400"
+                        v-for="article in editForm?.articles" :key="article.id" :value="article.id"
+                        v-text="truncateTitle(article.title)"></option>
+                </select>
             </div>
             <div>
                 <button
@@ -95,6 +109,8 @@ const editForm = reactive({
     nickname: null,
     email: null,
     suspended: false,
+    correlation: null,
+    contributions: [],
     articles: [],
 })
 
@@ -117,6 +133,7 @@ function submit() {
             editForm.nickname = ''
             editForm.email = ''
             editForm.suspended = false
+            editForm.correlation = null
         }
         // else {
         //     console.log(editForm)
@@ -142,6 +159,7 @@ async function fetchDataItem(id) {
                 editForm.nickname = res.data?.nickname
                 editForm.email = res.data.email
                 editForm.suspended = res.data.suspended ? true : false
+                editForm.contributions = res.data?.contributions
                 editForm.articles = res.data?.articles
             }
         } catch (error) {
@@ -177,10 +195,15 @@ function fieldEmptyCheck() {
 
 /** checks if an author has contributed to articles */
 function hasContributed() {
-    if (editForm?.articles.length > 0) {
+    if (editForm?.contributions.length > 0) {
         return true
     }
     return false;
+}
+
+function truncateTitle(title) {
+    let truncated = title.substring(0, 29) + '…'
+    return truncated
 }
 </script>
 

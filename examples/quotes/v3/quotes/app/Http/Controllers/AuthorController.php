@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Inertia\Inertia;
+use App\Models\Merit;
 use Inertia\Response;
 use App\Models\Author;
+use App\Models\Article;
 use App\Utils\SanitizerUtil;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -201,7 +203,15 @@ class AuthorController extends Controller
             $operator = ['email' => Auth::user()->email];
 
             $author = Author::find($id);
-            $articles = $author->getRelatedArticles();
+
+            // Contributions
+            $contributions = $author->getRelatedArticles();
+            Article::rehydrate($contributions);
+            $author['contributions'] = $contributions;
+
+            // Articles
+            $articles = Article::where('deprecated', 0)->get();
+            Article::rehydrate($articles);
             $author['articles'] = $articles;
 
             $jsonArrayDataLog = [
@@ -259,6 +269,25 @@ class AuthorController extends Controller
             $author['surname'] = $validated['surname'];
             $author['nickname'] = $validated['nickname'];
             $author['suspended'] = $validated['suspended'];
+
+            // Check that `$request['correlation']` is set as a number.
+            if (isset($request['correlation']) && is_numeric($request['correlation'])) {
+                //Check that `author` is correctly registered.
+                $correlation = Article::findOrFail($request['correlation']);
+                // Runs a query to see if a previous correlation exists.
+                $merit = Merit::where('author_id', $author->id)->where('article_id', $correlation->id)->get();
+                // If a correlation already exists, it ignores it and proceeds with any changes to the fields.
+                if (!$merit->count()) {
+                    Merit::create(
+                        [
+                            // field is_main_author is temporarily set to zero by default
+                            'is_main_author' => 0,
+                            'article_id' => $correlation->id,
+                            'author_id' => $author->id,
+                        ]
+                    );
+                }
+            }
 
             $author->save();
 

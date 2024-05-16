@@ -54,9 +54,9 @@
                     Add a correlation to the following authors:
                 </p>
                 <select id="authors" v-model.lazy="editForm.correlation" class="left-4 ml-2 text-xs rounded-md border">
-                    <option class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700" value="0">
+                    <!-- <option class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700" value="0">
                         none
-                    </option>
+                    </option> -->
                     <option
                         class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700 hover:bg-purple-400"
                         v-for="author in editForm?.authors" :key="author.id" :value="author.id">{{ author.email }}

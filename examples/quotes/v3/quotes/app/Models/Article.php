@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Utils\SanitizerUtil;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
@@ -35,5 +36,15 @@ class Article extends Model
         }
 
         return $authors;
+    }
+
+    public static function rehydrate(mixed &$articles) {
+        foreach ($articles as $article) {
+            $article['title'] = SanitizerUtil::rehydrate($article['title']);
+            $article['subject'] = SanitizerUtil::rehydrate($article['subject']);
+            $article['summary'] = SanitizerUtil::rehydrate($article['summary']);
+            $article['content'] = SanitizerUtil::rehydrate($article['content']);
+            $article['deprecated'] = $article['deprecated'];
+        }
     }
 }
