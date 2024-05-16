@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div v-if="editForm?.id" class="pb-4">
-                <p class="left-4 text-xs text-gray-900 ms-3 dark:text-white" for="author">
+                <p class="left-4 text-xs text-gray-900 ms-3 dark:text-white">
                     Add a correlation to the following authors:
                 </p>
                 <select id="authors" v-model.lazy="editForm.correlation" class="left-4 ml-2 text-xs rounded-md border">
