@@ -6,6 +6,7 @@ use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Author;
+use App\Models\Merit;
 use App\Utils\SanitizerUtil;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -247,6 +248,25 @@ class ArticleController extends Controller
             $article['summary'] = $validated['summary'];
             $article['content'] = $validated['content'];
             $article['deprecated'] = $validated['deprecated'];
+
+            // Check that `$request['correlation']` is set as a number.
+            if (isset($request['correlation']) && is_numeric($request['correlation'])) {
+                //Check that `author` is correctly registered.
+                $correlation = Author::findOrFail($request['correlation']);
+                // Runs a query to see if a previous correlation exists.
+                $merit = Merit::where('article_id', $article->id)->where('author_id', $correlation->id)->get();
+                // If a correlation already exists, it ignores it and proceeds with any changes to the fields.
+                if (!$merit->count()) {
+                    Merit::create(
+                        [
+                            // field is_main_author is temporarily set to zero by default
+                            'is_main_author' => 0,
+                            'article_id' => $article->id,
+                            'author_id' => $correlation->id,
+                        ]
+                    );
+                }
+            }
 
             $article->save();
 

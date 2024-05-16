@@ -49,16 +49,19 @@
                     </ul>
                 </div>
             </div>
-            <div class="pb-4">
-                <label class="left-4 text-xs text-gray-900 ms-3 dark:text-white" for="author">
+            <div v-if="editForm?.id" class="pb-4">
+                <p class="left-4 text-xs text-gray-900 ms-3 dark:text-white" for="author">
                     Add a correlation to the following author:
-                </label>
-                <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
-                    type="checkbox" v-model.lazy="editForm.author" name="author" id="author" list="authors">
-
-                <datalist id="authors">
-                    <!-- TODO -->
-                </datalist>
+                </p>
+                <select id="authors" v-model.lazy="editForm.correlation" class="left-4 ml-2 text-xs rounded-md border">
+                    <option class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700" value="0">
+                        none
+                    </option>
+                    <option
+                        class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700 hover:bg-purple-400"
+                        v-for="author in editForm?.authors" :key="author.id" :value="author.id">{{ author.email }}
+                    </option>
+                </select>
             </div>
             <div>
                 <button
@@ -105,6 +108,7 @@ const editForm = reactive({
     summary: null,
     content: null,
     deprecated: false,
+    correlation: null,
     contributors: [],
     authors: [],
 })
@@ -112,6 +116,7 @@ const editForm = reactive({
 /** sends the values and clears the fields */
 function submit() {
     if (fieldEmptyCheck()) {
+        console.log(`Correlation: ${editForm.correlation}`)
         router.put("/articles", editForm)
         editForm.id = '#'
         editForm.title = ''
@@ -119,6 +124,7 @@ function submit() {
         editForm.summary = ''
         editForm.content = ''
         editForm.deprecated = false
+        editForm.correlation = null
     } else {
         console.log(editForm)
         alert("Attention please: the title, subject and content fields are mandatory!")
