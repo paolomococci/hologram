@@ -50,18 +50,16 @@
                 </div>
             </div>
             <div v-if="editForm?.id" class="pb-4">
-                <p class="left-4 text-xs text-gray-900 ms-3 dark:text-white">
-                    Add a correlation to the following authors:
-                </p>
-                <select id="authors" v-model.lazy="editForm.correlation" class="left-4 ml-2 text-xs rounded-md border">
-                    <!-- <option class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700" value="0">
-                        none
-                    </option> -->
-                    <option
-                        class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700 hover:bg-purple-400"
-                        v-for="author in editForm?.authors" :key="author.id" :value="author.id">{{ author.email }}
-                    </option>
-                </select>
+                <label class="left-4 text-xs text-gray-900 ms-3 dark:text-white" for="authorId">
+                    Add a correlation to one of the following authors:
+                </label>
+                <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
+                    v-model.lazy="editForm.correlation" size="30" type="text" name="authorId" id="authorId"
+                    list="authors">
+                <datalist id="authors" class="left-4 ml-2 text-xs rounded-md border">
+                    <option class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700 hover:bg-purple-400"
+                        v-for="author in editForm?.authors" :key="author.id" :value="author.email" v-text="author.email"></option>
+                </datalist>
             </div>
             <div>
                 <button

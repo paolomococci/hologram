@@ -51,10 +51,11 @@
             </div>
             <div v-if="editForm?.id" class="pb-4">
                 <label class="left-4 text-xs text-gray-900 ms-3 dark:text-white" for="articleId">
-                    Add a correlation to the following article:
+                    Add a correlation to one of the following article:
                 </label>
                 <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
-                    v-model.lazy="editForm.correlation" size="30" type="text" name="articleId" id="articleId" list="articles">
+                    v-model.lazy="editForm.correlation" size="30" type="text" name="articleId" id="articleId"
+                    list="articles">
                 <datalist id="articles" class="left-4 ml-2 text-xs rounded-md border">
                     <option
                         class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700 hover:bg-purple-400"
@@ -200,6 +201,7 @@ function hasContributed() {
     return false;
 }
 
+/** truncates the last part of the title */
 function truncateTitle(title) {
     let truncated = title.substring(0, 29) + '…'
     return truncated

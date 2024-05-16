@@ -56,7 +56,7 @@ class AuthorController extends Controller
      *
      * @return mixed
      */
-    public function filter():mixed
+    public function filter(): mixed
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -270,11 +270,13 @@ class AuthorController extends Controller
             $author['nickname'] = $validated['nickname'];
             $author['suspended'] = $validated['suspended'];
 
-            // Set correlation based on the identifier of article.
-            // self::setCorrelateById($request['correlation'], $author['id']);
+            if (isset($request['correlation'])) {
+                // Set correlation based on the identifier of article.
+                // self::setCorrelationById($request['correlation'], $author['id']);
 
-            // Set correlation based on the title of article.
-            self::setCorrelateByTitle($request['correlation'], $author['id']);
+                // Set correlation based on the title of article.
+                self::setCorrelationByTitle($request['correlation'], $author['id']);
+            }
 
             $author->save();
 
@@ -320,7 +322,8 @@ class AuthorController extends Controller
      * @param integer $authorId
      * @return void
      */
-    private function setCorrelateById(int $articleId, int $authorId) {
+    private function setCorrelationById(int $articleId, int $authorId)
+    {
         if (is_numeric($articleId)) {
             //Check that `author` is correctly registered.
             $correlation = Article::findOrFail($articleId);
@@ -347,7 +350,8 @@ class AuthorController extends Controller
      * @param integer $authorId
      * @return void
      */
-    private function setCorrelateByTitle(string $articleTitle, int $authorId) {
+    private function setCorrelationByTitle(string $articleTitle, int $authorId)
+    {
         if ($articleTitle) {
             $articleTitle = SanitizerUtil::sanitize($articleTitle);
             //Check that `author` is correctly registered.
