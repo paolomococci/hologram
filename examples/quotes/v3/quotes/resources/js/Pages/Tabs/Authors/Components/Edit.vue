@@ -220,7 +220,13 @@ function truncateTitle(title) {
 
 /** prepares the correlations to be deleted */
 function toDisrelate(id) {
-    editForm.disrelate.push(id)
+    if (editForm.disrelate.includes(id)) {
+        let index = editForm.disrelate.indexOf(id)
+        if (index > -1)
+            editForm.disrelate.splice(index)
+    } else {
+        editForm.disrelate.push(id)
+    }
 }
 </script>
 
