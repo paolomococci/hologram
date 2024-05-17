@@ -270,7 +270,7 @@ class AuthorController extends Controller
             $author['nickname'] = $validated['nickname'];
             $author['suspended'] = $validated['suspended'];
 
-            if (isset($request['correlation'])) {
+            if (isset($request['correlation']) && !is_null($request['correlation'])) {
                 // Set correlation based on the identifier of article.
                 // self::setCorrelationById($request['correlation'], $author['id']);
 

@@ -243,7 +243,7 @@ class ArticleController extends Controller
             $article['content'] = $validated['content'];
             $article['deprecated'] = $validated['deprecated'];
 
-            if (isset($request['correlation'])) {
+            if (isset($request['correlation']) && !is_null($request['correlation'])) {
                 // Set correlation based on the identifier of author.
                 // self::setCorrelationById($request['correlation'], $request['id']);
 
