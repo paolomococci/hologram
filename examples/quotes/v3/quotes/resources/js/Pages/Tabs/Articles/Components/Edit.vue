@@ -45,6 +45,11 @@
                         <li class="left-4 text-xs text-gray-900 ms-3 dark:text-slate-200"
                             v-for="contributor in editForm?.contributors" :key="contributor.id">
                             {{ contributor.email }}
+                            <input
+                                class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
+                                type="checkbox" v-model.lazy="editForm.disrelate" name="disrelate" id="disrelate">
+                            <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
+                                for="disrelate">disrelate</label>
                         </li>
                     </ul>
                 </div>
@@ -57,8 +62,10 @@
                     v-model.lazy="editForm.correlation" size="30" type="text" name="authorId" id="authorId"
                     list="authors">
                 <datalist id="authors" class="left-4 ml-2 text-xs rounded-md border">
-                    <option class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700 hover:bg-purple-400"
-                        v-for="author in editForm?.authors" :key="author.id" :value="author.email" v-text="author.email"></option>
+                    <option
+                        class="text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700 hover:bg-purple-400"
+                        v-for="author in editForm?.authors" :key="author.id" :value="author.email"
+                        v-text="author.email"></option>
                 </datalist>
             </div>
             <div>
@@ -109,6 +116,7 @@ const editForm = reactive({
     correlation: null,
     contributors: [],
     authors: [],
+    disrelate: [],
 })
 
 /** sends the values and clears the fields */
@@ -123,6 +131,9 @@ function submit() {
         editForm.content = ''
         editForm.deprecated = false
         editForm.correlation = null
+        editForm.contributions = []
+        editForm.articles = []
+        editForm.disrelate = []
     } else {
         console.log(editForm)
         alert("Attention please: the title, subject and content fields are mandatory!")

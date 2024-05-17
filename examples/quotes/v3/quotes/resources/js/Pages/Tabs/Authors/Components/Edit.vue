@@ -45,6 +45,11 @@
                         <li class="left-4 text-xs text-gray-900 ms-3 dark:text-slate-200"
                             v-for="contribution in editForm?.contributions" :key="contribution.id">
                             {{ contribution.title }}
+                            <input
+                                class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
+                                type="checkbox" v-model.lazy="editForm.disrelate" name="disrelate" id="disrelate">
+                            <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
+                                for="disrelate">disrelate</label>
                         </li>
                     </ul>
                 </div>
@@ -112,6 +117,7 @@ const editForm = reactive({
     correlation: null,
     contributions: [],
     articles: [],
+    disrelate: [],
 })
 
 /** sends the values and clears the fields */
@@ -134,6 +140,9 @@ function submit() {
             editForm.email = ''
             editForm.suspended = false
             editForm.correlation = null
+            editForm.contributions = []
+            editForm.articles = []
+            editForm.disrelate = []
         }
         // else {
         //     console.log(editForm)
