@@ -218,10 +218,10 @@ class AuthorController extends Controller
                 'operator' => $operator,
                 'performed' => 'show',
             ];
-            Log::build([
-                'driver' => 'single',
-                'path' => storage_path('logs/author_show_info.log'),
-            ])->info(json_encode($jsonArrayDataLog));
+            // Log::build([
+            //     'driver' => 'single',
+            //     'path' => storage_path('logs/author_show_info.log'),
+            // ])->info(json_encode($jsonArrayDataLog));
             return response()->json($author);
         } catch (\Exception $e) {
             $e->getMessage();
