@@ -46,12 +46,11 @@
                             v-for="contributor in editForm?.contributors" :key="contributor.id">
                             {{ contributor.email }}
                             <div>
-                                <input
-                                    class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
-                                    type="checkbox" @click="toDisrelate(contribution.id)"
-                                    :id="setId(contribution.id)">
-                                <label title="double click to select"
-                                    class="left-4 text-gray-900 text-md-center ms-3 dark:text-white" :for="setId(contribution.id)">
+                                <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
+                                    type="checkbox" @click="toDisrelate(contributor.id)"
+                                    :id="setId(contributor.id)">
+                                <label
+                                    class="left-4 text-gray-900 text-md-center ms-3 dark:text-white" :for="setId(contributor.id)">
                                     <DropDataIcon class="inline size-4" />
                                 </label>
                             </div>
@@ -137,7 +136,7 @@ function submit() {
         editForm.content = ''
         editForm.deprecated = false
         editForm.correlation = null
-        editForm.contributions = []
+        editForm.contributors = []
         editForm.articles = []
         editForm.disrelate = []
     } else {

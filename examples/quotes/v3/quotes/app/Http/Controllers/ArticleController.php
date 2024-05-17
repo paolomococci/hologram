@@ -243,12 +243,19 @@ class ArticleController extends Controller
             $article['content'] = $validated['content'];
             $article['deprecated'] = $validated['deprecated'];
 
+            // Check and create correlation
             if (isset($request['correlation']) && !is_null($request['correlation'])) {
                 // Set correlation based on the identifier of author.
                 // self::setCorrelationById($request['correlation'], $request['id']);
 
                 // Set correlation based on the email of author.
                 self::setCorrelationByEmail($request['correlation'], $request['id']);
+            }
+
+            // Checks identifiers and delete correlations
+            if (isset($request['disrelate']) && !is_null($request['disrelate'])) {
+                // dd($request['disrelate']);
+                self::unsetCorrelationById($request['disrelate'], $article['id']);
             }
 
             $article->save();
@@ -342,6 +349,22 @@ class ArticleController extends Controller
                         'author_id' => $correlation->id,
                     ]
                 );
+            }
+        }
+    }
+
+    /**
+     * unset a correlation from author to article thanks to the identifier
+     *
+     * @param mixed $articleIds
+     * @param integer $authorId
+     * @return void
+     */
+    private function unsetCorrelationById(mixed $authorIds, int $articleId)
+    {
+        if (count($authorIds) > 0) {
+            foreach ($authorIds as  $authorId) {
+                Merit::where('author_id', $authorId)->where('article_id', $articleId)->delete();
             }
         }
     }
