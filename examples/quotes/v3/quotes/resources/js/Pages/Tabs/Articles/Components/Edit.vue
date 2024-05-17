@@ -45,11 +45,16 @@
                         <li class="left-4 text-xs text-gray-900 ms-3 dark:text-slate-200"
                             v-for="contributor in editForm?.contributors" :key="contributor.id">
                             {{ contributor.email }}
-                            <input
-                                class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
-                                type="checkbox" v-model.lazy="editForm.disrelate" name="disrelate" id="disrelate">
-                            <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
-                                for="disrelate">disrelate</label>
+                            <div>
+                                <input
+                                    class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
+                                    type="checkbox" @click="toDisrelate(contribution.id)" name="disrelate"
+                                    id="disrelate">
+                                <label title="double click to select"
+                                    class="left-4 text-gray-900 text-md-center ms-3 dark:text-white" for="disrelate">
+                                    <DropDataIcon class="inline size-4" />
+                                </label>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -84,6 +89,7 @@
 import { reactive, onBeforeMount } from 'vue'
 import { router } from "@inertiajs/vue3"
 import axios from "axios"
+import DropDataIcon from '@/Icons/DropDataIcon.vue'
 
 const props = defineProps({
     itemId: String
@@ -122,7 +128,7 @@ const editForm = reactive({
 /** sends the values and clears the fields */
 function submit() {
     if (fieldEmptyCheck()) {
-        console.log(`Correlation: ${editForm.correlation}`)
+        console.log(`Data to update: ${editForm.disrelate}`)
         router.put("/articles", editForm)
         editForm.id = '#'
         editForm.title = ''
@@ -177,6 +183,11 @@ function hasContributors() {
         return true
     }
     return false;
+}
+
+/** prepares the correlations to be deleted */
+function toDisrelate(id) {
+    editForm.disrelate.push(id)
 }
 </script>
 
