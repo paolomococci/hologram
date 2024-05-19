@@ -17,11 +17,12 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
             <PapersIcon class="block w-auto h-12" />
 
             <h1 class="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
-                To record, view, filter and edit paper data
+                OCR (Optical Character Recognition)
             </h1>
 
             <p class="mt-6 leading-relaxed text-gray-500 dark:text-gray-400">
-                This is the tab where you process scanned documents.
+                In this tab it is possible to upload previously scanned documents to be subjected to Optical Character
+                Recognition.
             </p>
         </div>
 
@@ -53,7 +54,7 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                 <div class="flex items-center">
                     <EditElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <span>Edit</span>
+                        <span>Clipboard</span>
                     </h2>
                 </div>
 
@@ -64,7 +65,7 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                 <div class="flex items-center">
                     <FilterElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <span>Filtering</span>
+                        <span>Filter and Delete</span>
                     </h2>
                 </div>
 

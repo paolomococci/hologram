@@ -1,6 +1,10 @@
 <template>
     <div>
-        <p>read all papers in paginated mode</p>
+        <div>
+            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                Below is the list of file titles uploaded to the system, accompanied by the timestamp.
+            </p>
+        </div>
     </div>
 </template>
 

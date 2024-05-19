@@ -10,11 +10,15 @@ Help tab:
 
 Authors tab:
 
-![authors tab](screenshots/quotes_v3_author_tab.png)
+![authors tab](screenshots/quotes_v3_author_tab_1.png)
 
 Articles tab:
 
-![articles tab](screenshots/quotes_v3_article_tab.png)
+![articles tab](screenshots/quotes_v3_article_tab_1.png)
+
+Paper tab:
+
+![paper tab](screenshots/quotes_v3_paper_tab.png)
 
 Tools tab:
 
@@ -424,4 +428,10 @@ The EchoExtension class:
 ```bash
 php artisan make:class Extensions/EchoExtension
 php artisan make:controller ExtensionController
+```
+
+## OCR, (Optical Character Recognition), setup
+
+```bash
+composer require thiagoalessio/tesseract_ocr
 ```
