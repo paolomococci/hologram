@@ -1,21 +1,12 @@
 <template>
     <div>
-        <div>
-            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                Here the textual content contained in the document just examined is highlighted.
-            </p>
-
-            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                Here it can be reviewed and corrected and then copied and finally used in recording the articles in the
-                system.
-            </p>
-        </div>
+        <h3 class="p-4 m-4 text-center">TODO</h3>
     </div>
 </template>
 
 <script setup>
 import { reactive, onBeforeMount } from 'vue'
-import { router } from "@inertiajs/vue3"
+import { router, useForm } from "@inertiajs/vue3"
 import axios from "axios"
 // TODO
 </script>

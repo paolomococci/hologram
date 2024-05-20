@@ -46,11 +46,11 @@
                             v-for="contribution in editForm?.contributions" :key="contribution.id">
                             {{ contribution.title }}
                             <div>
-                                <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
-                                    type="checkbox" @click="toDisrelate(contribution.id)"
-                                    :id="setId(contribution.id)">
-                                <label
-                                    class="left-4 text-gray-900 text-md-center ms-3 dark:text-white" :for="setId(contribution.id)">
+                                <input
+                                    class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
+                                    type="checkbox" @click="toDisrelate(contribution.id)" :id="setId(contribution.id)">
+                                <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
+                                    :for="setId(contribution.id)">
                                     <DropDataIcon class="inline size-4" />
                                 </label>
                             </div>
@@ -73,6 +73,12 @@
                 </datalist>
             </div>
             <div>
+                <progress class="mb-4 w-full h-1 bg-purple-400 rounded-lg dark:bg-purple-600" v-if="editForm.progress"
+                    :value="editForm.progress.percentage" max="100">
+                    {{ editForm.progress.percentage }}%
+                </progress>
+            </div>
+            <div>
                 <button
                     class="px-2 py-1 mx-2 text-sm text-purple-900 bg-purple-200 rounded-md hover:bg-purple-300 hover:shadow-md active:text-purple-600 active:shadow-sm"
                     type="submit" :disabled="editForm.processing">Save</button>
@@ -86,8 +92,8 @@
 </template>
 
 <script setup>
-import { reactive, onBeforeMount } from 'vue'
-import { router } from "@inertiajs/vue3"
+import { onBeforeMount } from 'vue'
+import { router, useForm } from "@inertiajs/vue3"
 import axios from "axios"
 import DropDataIcon from '@/Icons/DropDataIcon.vue'
 
@@ -112,7 +118,7 @@ function postMessage() {
     }
 }
 
-const editForm = reactive({
+const editForm = useForm({
     id: null,
     name: null,
     surname: null,

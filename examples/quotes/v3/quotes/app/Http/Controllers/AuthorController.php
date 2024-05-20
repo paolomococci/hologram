@@ -137,9 +137,9 @@ class AuthorController extends Controller
      * store a newly created author in storage
      *
      * @param StoreAuthorRequest $request
-     * @return Response
+     * @return RedirectResponse
      */
-    public function store(StoreAuthorRequest $request): Response
+    public function store(StoreAuthorRequest $request): RedirectResponse
     {
         $operator = ['email' => Auth::user()->email];
 
@@ -174,7 +174,13 @@ class AuthorController extends Controller
                 'path' => storage_path('logs/authors_store_info.log'),
             ])->info(json_encode($jsonArrayDataLog));
 
-            return Inertia::render('Tabs/Authors/AuthorTab', ['feedback' => "The operator {$operator['email']} just saved the author named {$request['name']}"]);
+            return to_route('authors');
+
+            // Inertia\Response
+            // return Inertia::render(
+            //     'Tabs/Authors/AuthorTab',
+            //     ['feedback' => "The operator {$operator['email']} just saved the author named {$request['name']}"]
+            // );
         } catch (\Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,

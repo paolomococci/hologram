@@ -36,6 +36,16 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                     </h2>
                 </div>
 
+                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    To load a file that takes up a maximum of 2 megabytes of memory you need to click on the label
+                    indicated below and choose a file from your device.
+                </p>
+
+                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    Attention, to save data in the database you need to provide a title. Otherwise only the indicated
+                    file will be loaded.
+                </p>
+
                 <PaperUpload />
             </div>
 
@@ -46,6 +56,10 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                         <span>Index</span>
                     </h2>
                 </div>
+
+                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    Below is the list of file titles uploaded to the system, accompanied by the timestamp.
+                </p>
 
                 <PaperPaginated />
             </div>
@@ -58,6 +72,15 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                     </h2>
                 </div>
 
+                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    Here the textual content contained in the document just examined is highlighted.
+                </p>
+
+                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    Here it can be reviewed and corrected and then copied and finally used in recording the articles in
+                    the system.
+                </p>
+
                 <PaperEditor />
             </div>
 
@@ -68,6 +91,15 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                         <span>Filter and Delete</span>
                     </h2>
                 </div>
+
+                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    Section dedicated to emptying the directory which contains a copy of the documents examined and to
+                    delete all the elements recorded in the table dedicated to them.
+                </p>
+
+                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    Since this tab is intended only as a tool to speed up the insertion of articles into the system.
+                </p>
 
                 <PaperFiltered />
             </div>

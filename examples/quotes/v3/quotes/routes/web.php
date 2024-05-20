@@ -7,6 +7,7 @@ use App\Http\Controllers\ToolController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ExtensionController;
+use App\Http\Controllers\PaperController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -76,6 +77,10 @@ Route::middleware([
     Route::get('/papers', function () {
         return Inertia::render('Tabs/Papers/PaperTab');
     })->name('papers');
+    Route::post(
+        '/papers',
+        [PaperController::class, 'store']
+    )->name('papers-store');
 
     /* tab: Tool */
     Route::get('/tools', function () {

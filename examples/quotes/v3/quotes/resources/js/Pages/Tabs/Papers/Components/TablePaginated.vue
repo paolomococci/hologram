@@ -1,10 +1,6 @@
 <template>
     <div>
-        <div>
-            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                Below is the list of file titles uploaded to the system, accompanied by the timestamp.
-            </p>
-        </div>
+        <h3 class="p-4 m-4 text-center">TODO</h3>
     </div>
 </template>
 

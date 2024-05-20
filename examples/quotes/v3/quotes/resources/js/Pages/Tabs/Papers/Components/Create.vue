@@ -6,13 +6,13 @@
 
 <script setup>
 import { reactive, defineProps } from 'vue'
-import { router } from "@inertiajs/vue3"
+import { router, useForm } from "@inertiajs/vue3"
 
 const props = defineProps({
     errors: Object
 })
 
-const createForm = reactive({
+const createForm = useForm({
     title: null,
     subject: null,
     summary: null,

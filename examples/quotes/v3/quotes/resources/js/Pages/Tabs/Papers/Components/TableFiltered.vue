@@ -1,16 +1,6 @@
 <template>
     <div>
-        <div>
-            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                Section dedicated to emptying the directory which contains a copy of the documents examined and to
-                delete
-                all the elements recorded in the table dedicated to them.
-            </p>
-
-            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                Since this tab is intended only as a tool to speed up the insertion of articles into the system.
-            </p>
-        </div>
+        <h3 class="p-4 m-4 text-center">TODO</h3>
     </div>
 </template>
 

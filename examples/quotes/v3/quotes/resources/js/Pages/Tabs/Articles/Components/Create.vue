@@ -26,6 +26,12 @@
                     placeholder="Content" required minlength="32" maxlength="1024"></textarea>
             </div>
             <div>
+                <progress class="mb-4 w-full h-1 bg-purple-400 rounded-lg dark:bg-purple-600" v-if="createForm.progress"
+                    :value="createForm.progress.percentage" max="100">
+                    {{ createForm.progress.percentage }}%
+                </progress>
+            </div>
+            <div>
                 <button
                     class="p-1 px-2 mx-2 text-sm text-purple-900 bg-purple-200 rounded-md hover:bg-purple-300 hover:shadow-md active:text-purple-600 active:shadow-sm"
                     type="submit" :disabled="createForm.processing">Save</button>
@@ -38,8 +44,8 @@
 </template>
 
 <script setup>
-import { reactive, defineEmits } from 'vue'
-import { router } from "@inertiajs/vue3"
+import { defineEmits } from 'vue'
+import { router, useForm } from "@inertiajs/vue3"
 
 const emit = defineEmits(['postFeedbackMessage'])
 
@@ -54,7 +60,7 @@ function postMessage() {
     }
 }
 
-const createForm = reactive({
+const createForm = useForm({
     title: null,
     subject: null,
     summary: null,
