@@ -4,7 +4,7 @@ import UploadElementIcon from '@/Icons/UploadElementIcon.vue'
 import FetchDataIcon from '@/Icons/FetchDataIcon.vue'
 import EditElementIcon from '@/Icons/EditElementIcon.vue'
 import FilterElementIcon from '@/Icons/FilterElementIcon.vue'
-import PaperUpload from '@/Pages/Tabs/Papers/Components/Upload.vue'
+import PaperCreate from '@/Pages/Tabs/Papers/Components/Create.vue'
 import PaperPaginated from '@/Pages/Tabs/Papers/Components/TablePaginated.vue'
 import PaperEditor from '@/Pages/Tabs/Papers/Components/Edit.vue'
 import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
@@ -46,7 +46,7 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                     file will be loaded.
                 </p>
 
-                <PaperUpload />
+                <PaperCreate />
             </div>
 
             <div>

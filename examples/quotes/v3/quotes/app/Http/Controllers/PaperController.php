@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Paper;
+use App\Utils\SanitizerUtil;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StorePaperRequest;
 use App\Http\Requests\UpdatePaperRequest;
 use thiagoalessio\TesseractOCR\TesseractOCR;
@@ -29,11 +32,110 @@ class PaperController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store a newly created resource in storage
+     * use OCR without having to save the file to disk
+     *
+     * @param StorePaperRequest $request
+     * @return RedirectResponse
      */
-    public function store(StorePaperRequest $request)
+    public function store(StorePaperRequest $request): RedirectResponse
     {
-        dd($request['filename'], $request['scanned']);
+        try {
+            $operator = ['email' => Auth::user()->email];
+            $request->validate([
+                'title' => ['required', 'min:8', 'max:255', 'unique:quotesdb.papers,title'],
+                'scanned' => ['required', 'mimes:jpg,png', 'max:2048']
+            ]);
+            $prepared = self::prepared($request);
+            // dd('store method', $prepared['title'], $prepared['name'], $prepared['filename']);
+
+            // uses the TesseractOCR class directly on the temporary image file
+            $imageTextContent = self::opticalCharacterRecognitionFromImage($operator, $_FILES['scanned']['tmp_name']);
+            // dd($imageTextContent);
+
+            $request['title'] = $prepared['title'];
+            $request['name'] = $prepared['name'];
+            $request['size'] = $_FILES['scanned']['size'];
+            $request['content'] = SanitizerUtil::sanitize($imageTextContent);
+
+            Paper::create(
+                $request->validate([
+                    'title' => ['required', 'min:8', 'max:255', 'unique:quotesdb.papers,title'],
+                    'name' => ['required', 'min:8', 'max:255', 'unique:quotesdb.papers,name'],
+                    'size' => ['required', 'numeric'],
+                    'content' => ['required'],
+                ])
+            );
+
+            $jsonArrayData = [
+                'operator' => $operator['email'],
+                'title' => $request['title'],
+                'performed' => 'store',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/papers_store_info.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return to_route('papers');
+        } catch (\Exception $e) {
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'performed' => 'store',
+                'error_message' => $e->getMessage(),
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/papers_store_error.log'),
+            ])->error(json_encode($jsonArrayDataLog));
+
+            return to_route('papers');
+        }
+    }
+
+    /**
+     * upload a newly resource in storage
+     *
+     * @param StorePaperRequest $request
+     * @return RedirectResponse
+     */
+    public function upload(StorePaperRequest $request): RedirectResponse
+    {
+        try {
+            $operator = ['email' => Auth::user()->email];
+            $request->validate([
+                'title' => ['required', 'min:8', 'max:255', 'unique:quotesdb.papers,title'],
+                'scanned' => ['required', 'mimes:jpg,png', 'max:2048']
+            ]);
+            $prepared = self::prepared($request);
+            dd('upload method', $prepared['title'], $prepared['name'], $prepared['filename']);
+
+            // TODO: actual upload
+
+            $jsonArrayData = [
+                'operator' => $operator['email'],
+                'title' => $request['title'],
+                'performed' => 'upload',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/papers_upload_info.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return to_route('papers');
+        } catch (\Exception $e) {
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'performed' => 'upload',
+                'error_message' => $e->getMessage(),
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/papers_upload_error.log'),
+            ])->error(json_encode($jsonArrayDataLog));
+
+            return to_route('papers');
+        }
     }
 
     /**
@@ -69,48 +171,78 @@ class PaperController extends Controller
     }
 
     /**
-     * prepareName
+     * prepared
      *
-     * @param string $temporaryName
-     * @return string
+     * @param StorePaperRequest $req
+     * @return array
      */
-    private function prepareName(string $temporaryName): string
+    private function prepared(StorePaperRequest $req): array
     {
-        $subName = explode('.', $temporaryName);
-        $indexOfLastElementOfSubName = count($subName) - 1;
-        $name = $subName[0];
-        $name = preg_replace('/\s+/', '_', $name);
-        $name .= ('_' . time());
-        $name .= ('_.' . $subName[$indexOfLastElementOfSubName]);
-        return $name;
+        $name = explode('.', $req->file('scanned')->getClientOriginalName());
+        $extension = $req->file('scanned')->getClientOriginalExtension();
+        $title = preg_replace('/\s+/', '_', $req['title']);
+        $title .=  '_' . time();
+        $preparedName = $name[0] . '_' . $title;
+        $preparedFilename = $preparedName . '.' . $extension;
+        return [
+            'title' => $title,
+            'name' => $preparedName,
+            'filename' => $preparedFilename,
+        ];
     }
 
     /**
-     * opticalCharacterRecognition
+     * opticalCharacterRecognitionFromImage
+     *
+     * @param mixed $operator
+     * @param string $temporaryPath
+     * @return mixed
+     */
+    private function opticalCharacterRecognitionFromImage(mixed $operator, string $temporaryPath): mixed
+    {
+        $tesseractOcr = new TesseractOCR();
+        $content = '';
+        try {
+            $tesseractOcr->image($temporaryPath);
+            $content = $tesseractOcr->run();
+        } catch (\Exception $e) {
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'performed' => 'ocr_from_image',
+                'error_message' => $e->getMessage(),
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/papers_ocr_error.log'),
+            ])->error(json_encode($jsonArrayDataLog));
+        }
+        return $content;
+    }
+
+    /**
+     * opticalCharacterRecognitionFromStoredFile
      *
      * @param mixed $operator
      * @param string $imageName
      * @return mixed
      */
-    private function opticalCharacterRecognition(mixed $operator, string $imageName): mixed
+    private function opticalCharacterRecognitionFromStoredFile(mixed $operator, string $imageName): mixed
     {
         $tesseractOcr = new TesseractOCR();
+        $content = '';
         try {
             $tesseractOcr->image(self::IMAGE_PATH_STORE . $imageName);
             $content = $tesseractOcr->run();
         } catch (\Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,
-                'performed' => 'creation',
+                'performed' => 'ocr_from_stored_file',
                 'error_message' => $e->getMessage(),
             ];
             Log::build([
                 'driver' => 'single',
-                'path' => storage_path('logs/paper_create_error.log'),
+                'path' => storage_path('logs/papers_ocr_error.log'),
             ])->error(json_encode($jsonArrayDataLog));
-            session()->flash('status', $e->getMessage());
-            $this->resetFields();
-            return redirect()->to('/paper')->with('status', $e->getMessage());
         }
         return $content;
     }

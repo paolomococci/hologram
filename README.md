@@ -20,6 +20,10 @@ Articles tab:
 
 ![articles tab](examples/quotes/v3/quotes/screenshots/quotes_v3_article_tab.png)
 
+Paper tab:
+
+![paper tab](examples/quotes/v3/quotes/screenshots/quotes_v3_paper_tab_1.png)
+
 Tools tab:
 
 ![tools tab](examples/quotes/v3/quotes/screenshots/quotes_v3_tools_tab.png)
