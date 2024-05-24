@@ -90,6 +90,7 @@ Route::middleware([
     /* tools controller */
     Route::get('/renumber', [ToolController::class, 'renumber'])->name('renumber');
     Route::get('/clean', [ToolController::class, 'clean'])->name('clean');
+    Route::get('/renumber-papers', [ToolController::class, 'renumberPapers'])->name('renumber-papers');
 
     /* tab: Extension */
     Route::get(

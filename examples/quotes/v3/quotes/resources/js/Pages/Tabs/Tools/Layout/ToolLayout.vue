@@ -15,6 +15,7 @@ const emit = defineEmits(['resetFeedbackMessage'])
 
 const renumberUri = BASE + "renumber"
 const cleanUri = BASE + "clean"
+const renumberPapersUri = BASE + "renumber-papers"
 
 /** collects what the child component emitted and transmits it back to the parent component */
 function resetMessage(message) {
@@ -48,14 +49,13 @@ function resetMessage(message) {
                 <div class="flex items-center">
                     <RenumberIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <span>Renumber</span>
+                        <span>Renumber correlations</span>
                     </h2>
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                     Tool that regenerates the numerical identifiers of the table that maintains the correlations between
-                    the
-                    author and the article he contributed to writing.
+                    the author and the article he contributed to writing.
                 </p>
 
                 <p class="mt-4 text-sm">
@@ -72,7 +72,7 @@ function resetMessage(message) {
                 <div class="flex items-center">
                     <DropDataIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <span>Clean</span>
+                        <span>Clean all tables</span>
                     </h2>
                 </div>
 
@@ -88,6 +88,36 @@ function resetMessage(message) {
                         <RightArrowIcon class="size-4" />
                     </a>
                 </p>
+            </div>
+        </div>
+
+
+        <div
+            class="grid grid-cols-1 gap-6 p-6 bg-gray-200 bg-opacity-25 dark:bg-gray-800 md:grid-cols-2 lg:gap-8 lg:p-8">
+            <div>
+                <div class="flex items-center">
+                    <RenumberIcon class="m-2 size-6" />
+                    <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+                        <span>Renumber papers</span>
+                    </h2>
+                </div>
+
+                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    It also sequentially regenerates the papers table's numeric identifiers.
+                </p>
+
+                <p class="mt-4 text-sm">
+                    <a :href="renumberPapersUri"
+                        class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
+                        renumber the papers table
+
+                        <RightArrowIcon class="size-4" />
+                    </a>
+                </p>
+            </div>
+
+            <div>
+                <!-- TODO -->
             </div>
         </div>
     </div>

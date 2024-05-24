@@ -17,6 +17,9 @@ class ToolController extends Controller
             DB::statement('SET @variableToRenumber := 0');
             DB::statement('UPDATE `quotes_v3_db`.`merit` SET `id` = (@variableToRenumber := @variableToRenumber + 1)');
             DB::statement('ALTER TABLE `quotes_v3_db`.`merit` AUTO_INCREMENT = 1');
+            // DB::statement('SET @variableToRenumber := 0');
+            // DB::statement('UPDATE `quotes_v3_db`.`papers` SET `id` = (@variableToRenumber := @variableToRenumber + 1)');
+            // DB::statement('ALTER TABLE `quotes_v3_db`.`papers` AUTO_INCREMENT = 1');
             DB::statement('SET SQL_SAFE_UPDATES = 1');
             Log::build([
                 'driver' => 'single',
@@ -68,6 +71,37 @@ class ToolController extends Controller
             ])->error('Cleaning all data in the database quotes_v3_db by the operator '.$operator['email'].'was the cause of the following error: '.$e->getMessage());
             $outcome = [
                 'message' => "Operator {$operator['email']} just attempted to delete all data from database quotes_v3_db, causing the following error: {$e->getMessage()}",
+            ];
+
+            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => $outcome['message']]);
+        }
+    }
+
+    public function renumberPapers()
+    {
+        try {
+            $operator = ['email' => Auth::user()->email];
+            DB::statement('SET SQL_SAFE_UPDATES = 0');
+            DB::statement('SET @variableToRenumber := 0');
+            DB::statement('UPDATE `quotes_v3_db`.`papers` SET `id` = (@variableToRenumber := @variableToRenumber + 1)');
+            DB::statement('ALTER TABLE `quotes_v3_db`.`papers` AUTO_INCREMENT = 1');
+            DB::statement('SET SQL_SAFE_UPDATES = 1');
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/renumbering_papers_table_info.log'),
+            ])->info('Renumbering papers table by the operator '.$operator['email']);
+            $outcome = [
+                'message' => "Operator {$operator['email']} has just renumbered papers table!",
+            ];
+
+            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => json_encode($outcome['message'])]);
+        } catch (\Exception $e) {
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/renumbering_papers_table_error.log'),
+            ])->error('Renumbering papers table by the operator '.$operator['email'].'was the cause of the following error: '.$e->getMessage());
+            $outcome = [
+                'message' => "Operator {$operator['email']} just attempted to renumber the papers table, causing the following error: {$e->getMessage()}",
             ];
 
             return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => $outcome['message']]);
