@@ -22,7 +22,7 @@
                     <tr class="odd:bg-purple-100 even:bg-purple-50" v-for="paper in papers.data" :key="paper.id">
                         <!-- emits the identifier of the object being moused over -->
                         <td class="pl-2 text-sm font-light cursor-grabbing text-slate-300" v-text="paper.id"
-                            @mouseover="$emit('grabItemIdentifierFromTable', paper.id)"></td>
+                            @click="$emit('grabItemIdentifierFromTable', paper.id)"></td>
                         <td class="text-sm font-light text-slate-600" v-text="paper.title"></td>
                     </tr>
                 </tbody>
