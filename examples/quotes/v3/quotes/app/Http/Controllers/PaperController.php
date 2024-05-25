@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Inertia\Inertia;
 use App\Models\Paper;
 use Inertia\Response;
@@ -34,7 +35,7 @@ class PaperController extends Controller
             return Inertia::render('Tabs/Papers/PaperTab', [
                 'papers' => $papers
             ]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $jsonArrayData = [
                 'operator' => $operator,
                 'error' => $e->getMessage(),
@@ -68,43 +69,53 @@ class PaperController extends Controller
     {
         try {
             $operator = ['email' => Auth::user()->email];
-            $request->validate([
-                'title' => ['required', 'min:8', 'max:255', 'unique:quotesdb.papers,title'],
-                'scanned' => ['required', 'mimes:jpg,png', 'max:2048']
-            ]);
-            $prepared = self::prepared($request);
-            // dd('store method', $prepared['title'], $prepared['name'], $prepared['filename']);
 
-            // uses the TesseractOCR class directly on the temporary image file
-            $imageTextContent = self::opticalCharacterRecognitionFromImage($operator, $_FILES['scanned']['tmp_name']);
-            // dd($imageTextContent);
-
-            $request['title'] = SanitizerUtil::sanitize($prepared['title']);
-            $request['name'] = $prepared['name'];
-            $request['size'] = $_FILES['scanned']['size'];
-            $request['content'] = SanitizerUtil::sanitize($imageTextContent);
-
-            Paper::create(
+            if (
+                array_key_exists('tmp_name', $_FILES['scanned']) &&
+                array_key_exists('size', $_FILES['scanned']) &&
+                $_FILES['scanned']['size'] > 0
+            ) {
                 $request->validate([
                     'title' => ['required', 'min:8', 'max:255', 'unique:quotesdb.papers,title'],
-                    'name' => ['required', 'min:8', 'max:255', 'unique:quotesdb.papers,name'],
-                    'size' => ['required', 'numeric'],
-                    'content' => ['required'],
-                ])
-            );
+                    'scanned' => ['required', 'mimes:jpg,png', 'max:2048']
+                ]);
+                $prepared = self::prepared($request);
 
-            $jsonArrayData = [
-                'operator' => $operator['email'],
-                'title' => $request['title'],
-                'performed' => 'store',
-            ];
-            Log::build([
-                'driver' => 'single',
-                'path' => storage_path('logs/papers_store_info.log'),
-            ])->info(json_encode($jsonArrayData));
+                // uses the TesseractOCR class directly on the temporary image file
+                $imageTextContent = self::opticalCharacterRecognitionFromImage(
+                    $operator,
+                    $_FILES['scanned']['tmp_name']
+                );
 
-            return to_route('papers');
-        } catch (\Exception $e) {
+                $request['title'] = SanitizerUtil::sanitize($prepared['title']);
+                $request['name'] = $prepared['name'];
+                $request['size'] = $_FILES['scanned']['size'];
+                $request['content'] = SanitizerUtil::sanitize($imageTextContent);
+
+                Paper::create(
+                    $request->validate([
+                        'title' => ['required', 'min:8', 'max:255', 'unique:quotesdb.papers,title'],
+                        'name' => ['required', 'min:8', 'max:255', 'unique:quotesdb.papers,name'],
+                        'size' => ['required', 'numeric'],
+                        'content' => ['required'],
+                    ])
+                );
+
+                $jsonArrayData = [
+                    'operator' => $operator['email'],
+                    'title' => $request['title'],
+                    'performed' => 'store',
+                ];
+                Log::build([
+                    'driver' => 'single',
+                    'path' => storage_path('logs/papers_store_info.log'),
+                ])->info(json_encode($jsonArrayData));
+
+                return to_route('papers');
+            } else {
+                throw new Exception("It appears that a valid file was not selected!");
+            }
+        } catch (Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,
                 'performed' => 'store',
@@ -149,7 +160,7 @@ class PaperController extends Controller
             ])->info(json_encode($jsonArrayData));
 
             return to_route('papers');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,
                 'performed' => 'upload',
@@ -231,7 +242,7 @@ class PaperController extends Controller
         try {
             $tesseractOcr->image($temporaryPath);
             $content = $tesseractOcr->run();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,
                 'performed' => 'ocr_from_image',
@@ -259,7 +270,7 @@ class PaperController extends Controller
         try {
             $tesseractOcr->image(self::IMAGE_PATH_STORE . $imageName);
             $content = $tesseractOcr->run();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,
                 'performed' => 'ocr_from_stored_file',
