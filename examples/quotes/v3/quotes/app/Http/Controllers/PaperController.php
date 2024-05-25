@@ -25,11 +25,11 @@ class PaperController extends Controller
         $operator = ['email' => Auth::user()->email];
 
         try {
-            $papers = Paper::paginate(10)->through(fn ($paper) => [
+            $papers = Paper::latest()->paginate(5)->through(fn ($paper) => [
                 'id' => $paper->id,
-                'title' => SanitizerUtil::rehydrate($paper->title)
+                'title' => SanitizerUtil::rehydrate($paper->title),
+                'created_at' => $paper->created_at
             ]);
-            // dd($papers);
 
             return Inertia::render('Tabs/Papers/PaperTab', [
                 'papers' => $papers

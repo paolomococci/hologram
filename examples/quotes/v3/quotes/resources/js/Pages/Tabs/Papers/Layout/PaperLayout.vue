@@ -73,7 +73,8 @@ function retransmitItemIdentifier(id) {
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Below is the list of file titles uploaded to the system, accompanied by the timestamp.
+                    Below is the list of titles of the image files scanned and listed starting from the last one
+                    registered in the system.
                 </p>
 
                 <PaperPaginated caption="fetched paper data from RDBMS" :papers="props.papers"
