@@ -74,9 +74,10 @@ Route::middleware([
     )->name('articles-show');
 
     /* tab: Paper */
-    Route::get('/papers', function () {
-        return Inertia::render('Tabs/Papers/PaperTab');
-    })->name('papers');
+    Route::get(
+        '/papers',
+        [PaperController::class, 'index']
+    )->name('papers');
     Route::post(
         '/papers',
         [PaperController::class, 'store']

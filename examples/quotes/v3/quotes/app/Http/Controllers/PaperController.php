@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Paper;
+use Inertia\Response;
 use App\Utils\SanitizerUtil;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +20,33 @@ class PaperController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Response
     {
-        //
+        $operator = ['email' => Auth::user()->email];
+
+        try {
+            $papers = Paper::paginate(10)->through(fn ($paper) => [
+                'id' => $paper->id,
+                'title' => SanitizerUtil::rehydrate($paper->title)
+            ]);
+            // dd($papers);
+
+            return Inertia::render('Tabs/Papers/PaperTab', [
+                'papers' => $papers
+            ]);
+        } catch (\Exception $e) {
+            $jsonArrayData = [
+                'operator' => $operator,
+                'error' => $e->getMessage(),
+                'performed' => 'index',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/papers_index_info.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return Inertia::render('Tabs/Papers/PaperTab');
+        }
     }
 
     /**
@@ -53,7 +79,7 @@ class PaperController extends Controller
             $imageTextContent = self::opticalCharacterRecognitionFromImage($operator, $_FILES['scanned']['tmp_name']);
             // dd($imageTextContent);
 
-            $request['title'] = $prepared['title'];
+            $request['title'] = SanitizerUtil::sanitize($prepared['title']);
             $request['name'] = $prepared['name'];
             $request['size'] = $_FILES['scanned']['size'];
             $request['content'] = SanitizerUtil::sanitize($imageTextContent);

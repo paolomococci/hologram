@@ -1,6 +1,11 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue'
 import PaperLayout from '@/Pages/Tabs/Papers/Layout/PaperLayout.vue'
+
+const props = defineProps({
+    feedback: String,
+    papers: Object
+})
 </script>
 
 <template>
@@ -14,7 +19,7 @@ import PaperLayout from '@/Pages/Tabs/Papers/Layout/PaperLayout.vue'
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-xl dark:bg-gray-800 sm:rounded-lg">
-                    <PaperLayout />
+                    <PaperLayout :papers="props?.papers" />
                 </div>
             </div>
         </div>

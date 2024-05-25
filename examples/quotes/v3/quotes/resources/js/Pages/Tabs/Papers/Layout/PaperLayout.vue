@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue"
 import PapersIcon from '@/Icons/PapersIcon.vue'
 import UploadElementIcon from '@/Icons/UploadElementIcon.vue'
 import FetchDataIcon from '@/Icons/FetchDataIcon.vue'
@@ -8,6 +9,20 @@ import PaperCreate from '@/Pages/Tabs/Papers/Components/Create.vue'
 import PaperPaginated from '@/Pages/Tabs/Papers/Components/TablePaginated.vue'
 import PaperEditor from '@/Pages/Tabs/Papers/Components/Edit.vue'
 import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
+
+const props = defineProps({
+    feedback: String,
+    papers: Object
+})
+
+const itemId = ref(0)
+
+/** to retrieve the item identifier from the child component that displays the essential data and notifies the child component that allows it to be updated */
+function retransmitItemIdentifier(id) {
+    itemId.value = id
+    console.log(itemId.value)
+    // toggleEditor()
+}
 </script>
 
 <template>
@@ -61,7 +76,8 @@ import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
                     Below is the list of file titles uploaded to the system, accompanied by the timestamp.
                 </p>
 
-                <PaperPaginated />
+                <PaperPaginated caption="fetched paper data from RDBMS" :papers="props.papers"
+                    @grabItemIdentifierFromTable="(id) => retransmitItemIdentifier(id)" />
             </div>
 
             <div>

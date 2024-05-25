@@ -67,6 +67,7 @@ class ArticleController extends Controller
                 'subject' => SanitizerUtil::rehydrate($article->subject),
                 'deprecated' => $article->deprecated,
             ]);
+            // dd($articles);
 
             return Inertia::render('Tabs/Articles/ArticleTab', [
                 'articles' => $articles
