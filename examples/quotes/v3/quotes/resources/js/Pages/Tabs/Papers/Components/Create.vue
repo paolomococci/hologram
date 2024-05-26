@@ -49,8 +49,22 @@
 </template>
 
 <script setup>
+import { defineEmits } from 'vue'
 import { useForm } from '@inertiajs/vue3'
 import { paperStore } from '@/store'
+
+const emit = defineEmits(['postFeedbackMessage'])
+
+/** transmits it back to the parent component */
+function postMessage() {
+    if (fieldEmptyCheck()) {
+        console.log('You have just registered a new paper with the following basic title: ' + uploadForm.title)
+        emit('postFeedbackMessage', `You have just registered a new paper with the following basic title: ${uploadForm.title}`)
+    } else {
+        console.log('Attention, the form has not been filled out correctly!')
+        emit('postFeedbackMessage', 'Attention, the form has not been filled out correctly!')
+    }
+}
 
 const uploadForm = useForm({
     title: paperStore.title,
@@ -71,7 +85,7 @@ function clearStoreTitle() {
 }
 
 /** clears the form fields and the title value from the store */
-function clearAllField() {
+function clearAllFields() {
     uploadForm.title = ''
     paperStore.title = ''
     uploadForm.name = ''
@@ -83,6 +97,15 @@ function clearAllField() {
 /** send the form */
 function submit() {
     uploadForm.post('/papers')
-    clearAllField()
+    postMessage()
+    if (fieldEmptyCheck()) {
+        clearAllFields()
+    }
+}
+
+/** check if the mandatory fields have been filled in */
+function fieldEmptyCheck() {
+    let checkField = uploadForm.title != '' && uploadForm.title != null && uploadForm.scanned != null
+    return checkField
 }
 </script>

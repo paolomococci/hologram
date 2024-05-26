@@ -49,7 +49,7 @@
 
 <script setup>
 import { defineEmits } from 'vue'
-import { router, useForm } from "@inertiajs/vue3"
+import { router, useForm } from '@inertiajs/vue3'
 import { articleStore } from '@/store'
 
 const emit = defineEmits(['postFeedbackMessage'])

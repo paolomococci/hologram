@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue"
+import { ref } from 'vue'
 import ArticlesIcon from '@/Icons/ArticlesIcon.vue'
 import AddElementIcon from '@/Icons/AddElementIcon.vue'
 import FetchDataIcon from '@/Icons/FetchDataIcon.vue'

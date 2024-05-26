@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue"
+import { ref } from 'vue'
 import PapersIcon from '@/Icons/PapersIcon.vue'
 import UploadElementIcon from '@/Icons/UploadElementIcon.vue'
 import FetchDataIcon from '@/Icons/FetchDataIcon.vue'
@@ -9,6 +9,7 @@ import PaperCreate from '@/Pages/Tabs/Papers/Components/Create.vue'
 import PaperPaginated from '@/Pages/Tabs/Papers/Components/TablePaginated.vue'
 import PaperEditor from '@/Pages/Tabs/Papers/Components/Edit.vue'
 import PaperFiltered from '@/Pages/Tabs/Papers/Components/TableFiltered.vue'
+import Feedback from '@/Pages/Tabs/Common/FeedbackCommon.vue'
 
 const props = defineProps({
     feedback: String,
@@ -22,6 +23,17 @@ function retransmitItemIdentifier(id) {
     itemId.value = id
     console.log(itemId.value)
     // toggleEditor()
+}
+
+/** processes feedback from the child */
+function postMessage(message) {
+    console.log(`PaperLayout component: ${message}`)
+    props.feedback = message
+}
+
+/** clean feedback */
+function cleanFeedback() {
+    props.feedback = ''
 }
 </script>
 
@@ -39,6 +51,8 @@ function retransmitItemIdentifier(id) {
                 In this tab it is possible to upload previously scanned documents to be subjected to Optical Character
                 Recognition.
             </p>
+
+            <Feedback @resetFeedbackMessage="() => cleanFeedback()" :feedback="props?.feedback" />
         </div>
 
         <div
@@ -61,7 +75,7 @@ function retransmitItemIdentifier(id) {
                     file will be loaded.
                 </p>
 
-                <PaperCreate />
+                <PaperCreate @postFeedbackMessage="(message) => postMessage(message)" />
             </div>
 
             <div>
