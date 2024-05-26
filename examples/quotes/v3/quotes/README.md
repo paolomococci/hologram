@@ -435,3 +435,9 @@ php artisan make:controller ExtensionController
 ```bash
 composer require thiagoalessio/tesseract_ocr
 ```
+
+## to have a debug bar
+
+```bash
+composer require barryvdh/laravel-debugbar --dev
+```

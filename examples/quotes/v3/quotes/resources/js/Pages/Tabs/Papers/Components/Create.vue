@@ -5,6 +5,7 @@
                 <input
                     class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="uploadForm.title" size="30" type="text" name="title" id="title" placeholder="Title"
+                    @blur="setStoreTitle()"
                     required title="Please type between eight and two hundred and fifty-five characters." />
             </div>
             <div>
@@ -41,7 +42,7 @@
                     type="submit" :disabled="uploadForm.processing">Save</button>
                 <button
                     class="p-1 px-2 mx-2 text-sm rounded-md text-slate-900 bg-slate-200 hover:bg-slate-300 hover:shadow-md active:text-slate-600 active:shadow-sm"
-                    type="reset">Reset</button>
+                    type="reset" @click="clearStoreTitle()">Reset</button>
             </div>
         </form>
     </div>
@@ -49,21 +50,39 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3'
+import { paperStore } from '@/store'
 
 const uploadForm = useForm({
-    title: null,
+    title: paperStore.title,
     name: null,
     size: null,
     content: null,
     scanned: null
 })
 
+/** retains the value even if you change tabs */
+function setStoreTitle() {
+    paperStore.title = uploadForm.title
+}
+
+/** delete explicitly the field title value from the store */
+function clearStoreTitle() {
+    paperStore.title = ''
+}
+
+/** clears the form fields and the title value from the store */
+function clearAllField() {
+    uploadForm.title = ''
+    paperStore.title = ''
+    uploadForm.name = ''
+    uploadForm.size = ''
+    uploadForm.content = ''
+    document.getElementById('scanned').value = ''
+}
+
+/** send the form */
 function submit() {
     uploadForm.post('/papers')
-    uploadForm.title = '',
-    uploadForm.name = '',
-    uploadForm.size = '',
-    uploadForm.content = '',
-    document.getElementById('scanned').value = ''
+    clearAllField()
 }
 </script>
