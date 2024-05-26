@@ -5,25 +5,29 @@
                 <input
                     class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.name" size="30" type="text" name="name" id="name" placeholder="Name"
-                    required minlength="1" maxlength="255" />
+                    required minlength="1" maxlength="255"
+                    @blur="setStoredName()" />
             </div>
             <div>
                 <input
                     class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.surname" size="30" type="text" name="surname" id="surname"
-                    placeholder="Surname" required minlength="1" maxlength="255" />
+                    placeholder="Surname" required minlength="1" maxlength="255"
+                    @blur="setStoredSurname()" />
             </div>
             <div>
                 <input
                     class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.nickname" size="30" type="text" name="nickname" id="nickname"
-                    placeholder="Nickname" maxlength="255" />
+                    placeholder="Nickname" maxlength="255"
+                    @blur="setStoredNickname()" />
             </div>
             <div>
                 <input
                     class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.email" size="30" name="email" id="email" placeholder="Email" required
-                    minlength="8" maxlength="255" />
+                    minlength="8" maxlength="255"
+                    @blur="setStoredEmail()" />
             </div>
             <div>
                 <progress class="mb-4 w-full h-1 bg-purple-400 rounded-lg dark:bg-purple-600" v-if="createForm.progress"
@@ -37,7 +41,7 @@
                     type="submit" :disabled="createForm.processing">Save</button>
                 <button
                     class="p-1 px-2 mx-2 text-sm rounded-md text-slate-900 bg-slate-200 hover:bg-slate-300 hover:shadow-md active:text-slate-600 active:shadow-sm"
-                    type="reset">Reset</button>
+                    type="reset" @click="clearStoredData()">Reset</button>
             </div>
         </form>
     </div>
@@ -45,7 +49,8 @@
 
 <script setup>
 import { defineEmits } from 'vue'
-import { router, useForm } from "@inertiajs/vue3"
+import { router, useForm } from '@inertiajs/vue3'
+import { authorStore } from '@/store'
 
 const emit = defineEmits(['postFeedbackMessage'])
 
@@ -61,10 +66,10 @@ function postMessage() {
 }
 
 const createForm = useForm({
-    name: null,
-    surname: null,
-    nickname: null,
-    email: null,
+    name: authorStore.name,
+    surname: authorStore.surname,
+    nickname: authorStore.nickname,
+    email: authorStore.email,
 })
 
 /** if there are no errors it sends the values and clears the fields */
@@ -80,10 +85,7 @@ function submit() {
         router.post("/authors", author)
         postMessage()
         if (fieldEmptyCheck()) {
-            createForm.name = ''
-            createForm.surname = ''
-            createForm.nickname = ''
-            createForm.email = ''
+            clearAllFieldsAndStoredData()
         }
     } else {
         createForm.email = ''
@@ -114,6 +116,46 @@ function fieldEmptyCheck() {
     let checkField = (createForm.name.length > 1 && createForm.surname.length > 1 && createForm.email.length > 8) &&
         (createForm.name != null && createForm.surname != null && createForm.email != null)
     return checkField
+}
+
+/** retains the value of name even if you change tabs */
+function setStoredName() {
+    authorStore.name = createForm.name
+}
+
+/** retains the value of surname even if you change tabs */
+function setStoredSurname() {
+    authorStore.surname = createForm.surname
+}
+
+/** retains the value of nickname even if you change tabs */
+function setStoredNickname() {
+    authorStore.nickname = createForm.nickname
+}
+
+/** retains the value of email even if you change tabs */
+function setStoredEmail() {
+    authorStore.email = createForm.email
+}
+
+/** delete explicitly the field values from the store */
+function clearStoredData() {
+    authorStore.name = ''
+    authorStore.surname = ''
+    authorStore.nickname = ''
+    authorStore.email = ''
+}
+
+/** clears the form fields and the stored data */
+function clearAllFieldsAndStoredData() {
+    createForm.name = ''
+    authorStore.name = ''
+    createForm.surname = ''
+    authorStore.surname = ''
+    createForm.nickname = ''
+    authorStore.nickname = ''
+    createForm.email = ''
+    authorStore.email = ''
 }
 </script>
 
