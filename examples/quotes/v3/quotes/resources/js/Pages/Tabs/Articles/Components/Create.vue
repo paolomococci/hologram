@@ -5,25 +5,29 @@
                 <input
                     class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.title" size="30" type="text" name="title" id="title" placeholder="Title"
-                    required minlength="16" maxlength="255" />
+                    required minlength="16" maxlength="255"
+                    @blur="setStoredTitle()" />
             </div>
             <div>
                 <input
                     class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.subject" size="30" type="text" name="subject" id="subject"
-                    placeholder="Subject" required minlength="16" maxlength="255" />
+                    placeholder="Subject" required minlength="16" maxlength="255"
+                    @blur="setStoredSubject()" />
             </div>
             <div>
                 <input
                     class="left-4 m-2 text-xs rounded-md border border-purple-300 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.summary" size="30" type="text" name="summary" id="summary"
-                    placeholder="Summary" maxlength="255" />
+                    placeholder="Summary" maxlength="255"
+                    @blur="setStoredSummary()" />
             </div>
             <div>
                 <textarea
                     class="left-4 m-2 max-h-60 text-xs rounded-md border border-purple-300 min-h-36 caret-purple-700 focus:border-2 focus:border-purple-500 text-slate-600"
                     v-model.lazy="createForm.content" name="content" id="content" cols="30" rows="10"
-                    placeholder="Content" required minlength="32" maxlength="1024"></textarea>
+                    placeholder="Content" required minlength="32" maxlength="1024"
+                    @blur="setStoredContent()"></textarea>
             </div>
             <div>
                 <progress class="mb-4 w-full h-1 bg-purple-400 rounded-lg dark:bg-purple-600" v-if="createForm.progress"
@@ -37,7 +41,7 @@
                     type="submit" :disabled="createForm.processing">Save</button>
                 <button
                     class="p-1 px-2 mx-2 text-sm rounded-md text-slate-900 bg-slate-200 hover:bg-slate-300 hover:shadow-md active:text-slate-600 active:shadow-sm"
-                    type="reset">Reset</button>
+                    type="reset" @click="clearStoredData()">Reset</button>
             </div>
         </form>
     </div>
@@ -46,6 +50,7 @@
 <script setup>
 import { defineEmits } from 'vue'
 import { router, useForm } from "@inertiajs/vue3"
+import { articleStore } from '@/store'
 
 const emit = defineEmits(['postFeedbackMessage'])
 
@@ -61,10 +66,10 @@ function postMessage() {
 }
 
 const createForm = useForm({
-    title: null,
-    subject: null,
-    summary: null,
-    content: null,
+    title: articleStore.title,
+    subject: articleStore.subject,
+    summary: articleStore.summary,
+    content: articleStore.content,
 })
 
 /** if there are no errors it sends the values and clears the fields */
@@ -72,10 +77,7 @@ function submit() {
     router.post("/articles", createForm)
     postMessage()
     if (fieldEmptyCheck()) {
-        createForm.title = ''
-        createForm.subject = ''
-        createForm.summary = ''
-        createForm.content = ''
+        clearAllFieldsAndStoredData()
     }
 }
 
@@ -84,6 +86,46 @@ function fieldEmptyCheck() {
     let checkField = (createForm.title != '' && createForm.subject != '' && createForm.content != '') &&
         (createForm.title != null && createForm.subject != null && createForm.content != null)
     return checkField
+}
+
+/** retains the value of title even if you change tabs */
+function setStoredTitle() {
+    articleStore.title = createForm.title
+}
+
+/** retains the value of subject even if you change tabs */
+function setStoredSubject() {
+    articleStore.subject = createForm.subject
+}
+
+/** retains the value of summary even if you change tabs */
+function setStoredSummary() {
+    articleStore.summary = createForm.summary
+}
+
+/** retains the value of content even if you change tabs */
+function setStoredContent() {
+    articleStore.content = createForm.content
+}
+
+/** delete explicitly the field values from the store */
+function clearStoredData() {
+    articleStore.title = ''
+    articleStore.subject = ''
+    articleStore.summary = ''
+    articleStore.content = ''
+}
+
+/** clears the form fields and the stored data */
+function clearAllFieldsAndStoredData() {
+    createForm.title = ''
+    articleStore.title = ''
+    createForm.subject = ''
+    articleStore.subject = ''
+    createForm.summary = ''
+    articleStore.summary = ''
+    createForm.content = ''
+    articleStore.content = ''
 }
 </script>
 
