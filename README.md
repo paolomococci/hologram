@@ -22,7 +22,7 @@ Articles tab:
 
 Paper tab:
 
-![paper tab](examples/quotes/v3/quotes/screenshots/quotes_v3_paper_tab_2.png)
+![paper tab](examples/quotes/v3/quotes/screenshots/quotes_v3_paper_tab_3.png)
 
 Tools tab:
 
