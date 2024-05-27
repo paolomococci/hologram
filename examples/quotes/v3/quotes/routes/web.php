@@ -82,6 +82,18 @@ Route::middleware([
         '/papers',
         [PaperController::class, 'store']
     )->name('papers-store');
+    Route::put(
+        '/papers',
+        [PaperController::class, 'update']
+    )->name('papers-update');
+    Route::get(
+        '/papers/show/{id}',
+        [PaperController::class, 'show']
+    )->name('papers-show');
+    Route::get(
+        '/papers/filter',
+        [PaperController::class, 'filter']
+    )->name('papers-filter');
 
     /* tab: Tool */
     Route::get('/tools', function () {

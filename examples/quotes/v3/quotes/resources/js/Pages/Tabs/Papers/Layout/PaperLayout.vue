@@ -17,12 +17,20 @@ const props = defineProps({
 })
 
 const itemId = ref(0)
+const editorOneIsVisible = ref(true)
+const editorTwoIsVisible = ref(false)
 
 /** to retrieve the item identifier from the child component that displays the essential data and notifies the child component that allows it to be updated */
 function retransmitItemIdentifier(id) {
     itemId.value = id
     console.log(itemId.value)
-    // toggleEditor()
+    toggleEditor()
+}
+
+/** activates the form fields with the data to be modified each time a new identifier is passed */
+function toggleEditor() {
+    editorOneIsVisible.value = !editorOneIsVisible.value
+    editorTwoIsVisible.value = !editorTwoIsVisible.value
 }
 
 /** processes feedback from the child */
@@ -91,6 +99,10 @@ function cleanFeedback() {
                     registered in the system.
                 </p>
 
+                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    To edit the x you need to click on the identification number at the beginning of the line.
+                </p>
+
                 <PaperPaginated caption="fetched paper data from RDBMS" :papers="props.papers"
                     @grabItemIdentifierFromTable="(id) => retransmitItemIdentifier(id)" />
             </div>
@@ -112,27 +124,32 @@ function cleanFeedback() {
                     the system.
                 </p>
 
-                <PaperEditor />
+                <div v-if="editorOneIsVisible">
+                    <PaperEditor @postFeedbackMessage="(message) => postMessage(message)" :itemId="itemId" />
+                </div>
+
+                <div v-if="editorTwoIsVisible">
+                    <PaperEditor @postFeedbackMessage="(message) => postMessage(message)" :itemId="itemId" />
+                </div>
             </div>
 
             <div>
                 <div class="flex items-center">
                     <FilterElementIcon class="m-2 size-6" />
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
-                        <span>Filter and Delete</span>
+                        <span>Filter</span>
                     </h2>
                 </div>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Section dedicated to emptying the directory which contains a copy of the documents examined and to
-                    delete all the elements recorded in the table dedicated to them.
+                    Filter scanned papers by title and content.
                 </p>
 
                 <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
-                    Since this tab is intended only as a tool to speed up the insertion of articles into the system.
+                    To edit the x you need to click on the identification number at the beginning of the line.
                 </p>
 
-                <PaperFiltered />
+                <PaperFiltered @grabItemIdentifierFromTable="(id) => retransmitItemIdentifier(id)" />
             </div>
         </div>
     </div>

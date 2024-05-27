@@ -26,6 +26,7 @@ function retransmitItemIdentifier(id) {
     toggleEditor()
 }
 
+/** activates the form fields with the data to be modified each time a new identifier is passed */
 function toggleEditor() {
     editorOneIsVisible.value = !editorOneIsVisible.value
     editorTwoIsVisible.value = !editorTwoIsVisible.value

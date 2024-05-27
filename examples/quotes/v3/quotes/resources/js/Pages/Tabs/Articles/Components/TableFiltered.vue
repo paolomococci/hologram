@@ -60,8 +60,8 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue"
-import axios from "axios"
+import { ref, watch } from 'vue'
+import axios from 'axios'
 import MoveLeftIcon from "@/Icons/MoveLeftIcon.vue"
 import MoveRightIcon from "@/Icons/MoveRightIcon.vue"
 import DeprecatedIcon from '@/Icons/DeprecatedIcon.vue'
@@ -162,7 +162,7 @@ function queryIsEmpty(query) {
 
 /** check if the query string is present in the title */
 function isInTitle(title, query) {
-    if (title === null || summary === undefined) return false
+    if (title === null || title === undefined) return false
     let titleToLowerCase = title.toLowerCase()
     return titleToLowerCase.includes(query)
 }

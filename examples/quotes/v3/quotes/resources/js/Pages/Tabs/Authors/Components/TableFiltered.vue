@@ -66,7 +66,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import axios from "axios"
+import axios from 'axios'
 import MoveLeftIcon from '@/Icons/MoveLeftIcon.vue'
 import MoveRightIcon from '@/Icons/MoveRightIcon.vue'
 import SuspendedIcon from '@/Icons/SuspendedIcon.vue'

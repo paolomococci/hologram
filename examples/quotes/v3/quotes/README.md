@@ -18,7 +18,7 @@ Articles tab:
 
 Paper tab:
 
-![paper tab](screenshots/quotes_v3_paper_tab_2.png)
+![paper tab](screenshots/quotes_v3_paper_tab_3.png)
 
 Tools tab:
 

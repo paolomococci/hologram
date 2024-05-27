@@ -19,7 +19,44 @@ class PaperController extends Controller
     const IMAGE_PATH_STORE = '/var/www/html/v3/quotes/storage/app/papers/';
 
     /**
-     * Display a listing of the resource.
+     * returns a list of papers as a json structured string
+     *
+     */
+    public function filter()
+    {
+        $operator = ['email' => Auth::user()->email];
+
+        try {
+            $papers = Paper::all();
+            Paper::rehydrate($papers);
+            $jsonArrayData = [
+                'operator' => $operator,
+                'papers' => $papers,
+                'error' => null,
+                'performed' => 'index_json',
+            ];
+
+            return response()->json($jsonArrayData);
+        } catch (\Exception $e) {
+            $jsonArrayData = [
+                'operator' => $operator,
+                'papers' => null,
+                'error' => $e->getMessage(),
+                'performed' => 'index_json',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/papers_index_info.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return response()->json($jsonArrayData);
+        }
+    }
+
+    /**
+     * returns a list paginated of papers
+     *
+     * @return Response
      */
     public function index(): Response
     {
@@ -176,11 +213,28 @@ class PaperController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * display the specified resource
+     *
+     * @param integer $id
+     * @return mixed
      */
-    public function show(Paper $paper)
+    public function show(int $id): mixed
     {
-        //
+        try {
+            $operator = ['email' => Auth::user()->email];
+
+            $paper = Paper::find($id);
+            $paper['title'] = SanitizerUtil::rehydrate($paper['title']);
+            $paper['content'] = SanitizerUtil::rehydrate($paper['content']);
+
+            $jsonArrayDataLog = [
+                'operator' => $operator,
+                'performed' => 'show',
+            ];
+            return response()->json($paper);
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
     }
 
     /**
@@ -192,11 +246,59 @@ class PaperController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * update the specified resource in storage
+     *
+     * @param UpdatePaperRequest $request
+     * @return RedirectResponse
      */
-    public function update(UpdatePaperRequest $request, Paper $paper)
+    public function update(UpdatePaperRequest $request): RedirectResponse
     {
-        //
+        $operator = ['email' => Auth::user()->email];
+
+        $request['content'] = SanitizerUtil::sanitize($request['content']);
+
+        $req = [
+            'id' => $request['id'],
+            'title' => $request['title'],
+            'content' => $request['content'],
+        ];
+
+        try {
+            $paper = Paper::findOrFail($req['id']);
+
+            $validated = $request->validate([
+                'content' => ['required', 'min:32', 'max:1024'],
+            ]);
+
+            $paper['content'] = $validated['content'];
+
+            $paper->save();
+
+            $jsonArrayData = [
+                'operator' => $operator['email'],
+                'title' => $req['title'],
+                'performed' => 'update',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/papers_update_info.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return to_route('papers');
+        } catch (\Exception $e) {
+            $jsonArrayData = [
+                'operator' => $operator,
+                'title' => $req['title'],
+                'error' => $e->getMessage(),
+                'performed' => 'update',
+            ];
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/papers_update_error.log'),
+            ])->info(json_encode($jsonArrayData));
+
+            return to_route('papers');
+        }
     }
 
     /**

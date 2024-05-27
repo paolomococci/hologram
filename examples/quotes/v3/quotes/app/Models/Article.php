@@ -38,6 +38,12 @@ class Article extends Model
         return $authors;
     }
 
+    /**
+     * translates entities into readable characters contained in articles by reference rather than by value
+     *
+     * @param mixed $articles
+     * @return void
+     */
     public static function rehydrate(mixed &$articles) {
         foreach ($articles as $article) {
             $article['title'] = SanitizerUtil::rehydrate($article['title']);

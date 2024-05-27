@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue"
+import { ref } from 'vue'
 import AuthorsIcon from '@/Icons/AuthorsIcon.vue'
 import AddElementIcon from '@/Icons/AddElementIcon.vue'
 import FetchDataIcon from '@/Icons/FetchDataIcon.vue'
@@ -27,6 +27,7 @@ function retransmitItemIdentifier(id) {
     toggleEditor()
 }
 
+/** activates the form fields with the data to be modified each time a new identifier is passed */
 function toggleEditor() {
     editorOneIsVisible.value = !editorOneIsVisible.value
     editorTwoIsVisible.value = !editorTwoIsVisible.value

@@ -27,7 +27,7 @@
 
 <script setup>
 // import { reactive } from 'vue' // at least for the moment I replace `reactive` with `useForm`
-import { router, useForm } from "@inertiajs/vue3"
+import { router, useForm } from '@inertiajs/vue3'
 
 const createForm = useForm({
     value: null,

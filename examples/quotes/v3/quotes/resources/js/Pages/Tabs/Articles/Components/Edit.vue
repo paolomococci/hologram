@@ -92,8 +92,8 @@
 
 <script setup>
 import { onBeforeMount } from 'vue'
-import { router, useForm } from "@inertiajs/vue3"
-import axios from "axios"
+import { router, useForm } from '@inertiajs/vue3'
+import axios from 'axios'
 import DropDataIcon from '@/Icons/DropDataIcon.vue'
 
 const props = defineProps({

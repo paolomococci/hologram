@@ -1,4 +1,4 @@
-import { reactive } from "vue"
+import { reactive } from 'vue'
 
 export const authorStore = reactive({
     name: '',
