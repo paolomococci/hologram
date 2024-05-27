@@ -122,7 +122,7 @@ class ArticleController extends Controller
         ];
 
         try {
-            Article::create(
+            $article = Article::create(
                 $request->validate([
                     'title' => ['required', 'min:16', 'max:255', 'unique:quotesdb.articles,title'],
                     'subject' => ['required', 'min:16', 'max:255'],
@@ -131,6 +131,11 @@ class ArticleController extends Controller
                     'deprecated' => ['boolean'],
                 ])
             );
+
+            if (isset($request['giver']) && isset($article['id'])) {
+                self::setCorrelationByEmail($request['giver'], $article['id'], 1);
+            }
+
             $jsonArrayData = [
                 'operator' => $operator['email'],
                 'title' => $req['title'],
@@ -331,7 +336,7 @@ class ArticleController extends Controller
      * @param integer $articleId
      * @return void
      */
-    private function setCorrelationByEmail(string $email, int $articleId)
+    private function setCorrelationByEmail(string $email, int $articleId, int $mainAuthor = 0)
     {
 
         if ($email) {
@@ -344,7 +349,7 @@ class ArticleController extends Controller
                 Merit::create(
                     [
                         // field is_main_author is temporarily set to zero by default
-                        'is_main_author' => 0,
+                        'is_main_author' => $mainAuthor,
                         'article_id' => $articleId,
                         'author_id' => $correlation->id,
                     ]

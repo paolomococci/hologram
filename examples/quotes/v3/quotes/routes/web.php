@@ -34,6 +34,10 @@ Route::middleware([
         '/authors',
         [AuthorController::class, 'index']
     )->name('authors');
+    Route::get(
+        '/contributors',
+        [AuthorController::class, 'contributors']
+    )->name('contributors');
     Route::post(
         '/authors',
         [AuthorController::class, 'store']

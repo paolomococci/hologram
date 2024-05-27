@@ -12,6 +12,7 @@ export const articleStore = reactive({
     subject: '',
     summary: '',
     content: '',
+    giver: ''
 })
 
 export const paperStore = reactive({

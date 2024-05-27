@@ -21,33 +21,33 @@ class AuthorController extends Controller
      *
      * @return string
      */
-    public function indexJson(): string
+    public function contributors(): string
     {
         $operator = ['email' => Auth::user()->email];
 
         try {
-            $authors = Author::all();
+            $contributors = Author::all();
             $jsonArrayData = [
                 'operator' => $operator,
-                'authors' => $authors,
+                'contributors' => $contributors,
                 'error' => null,
-                'performed' => 'index_json',
+                'performed' => 'fetch_contributors',
             ];
 
-            return response()->json($jsonArrayData);
+            return json_encode($jsonArrayData);
         } catch (\Exception $e) {
             $jsonArrayData = [
                 'operator' => $operator,
-                'authors' => null,
+                'contributors' => null,
                 'error' => $e->getMessage(),
-                'performed' => 'index_json',
+                'performed' => 'fetch_contributors',
             ];
             Log::build([
                 'driver' => 'single',
                 'path' => storage_path('logs/authors_index_info.log'),
             ])->info(json_encode($jsonArrayData));
 
-            return response()->json($jsonArrayData);
+            return json_encode($jsonArrayData);
         }
     }
 
@@ -67,7 +67,7 @@ class AuthorController extends Controller
                 'operator' => $operator,
                 'authors' => $authors,
                 'error' => null,
-                'performed' => 'index_json',
+                'performed' => 'filter',
             ];
 
             return response()->json($jsonArrayData);
@@ -76,7 +76,7 @@ class AuthorController extends Controller
                 'operator' => $operator,
                 'authors' => null,
                 'error' => $e->getMessage(),
-                'performed' => 'index_json',
+                'performed' => 'filter',
             ];
             Log::build([
                 'driver' => 'single',
