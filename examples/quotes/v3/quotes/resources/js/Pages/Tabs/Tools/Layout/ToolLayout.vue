@@ -17,6 +17,7 @@ const emit = defineEmits(['resetFeedbackMessage'])
 const renumberUri = BASE + "renumber"
 const cleanUri = BASE + "clean"
 const renumberPapersUri = BASE + "renumber-papers"
+const cleanPapersUri = BASE + "clean-papers"
 
 /** collects what the child component emitted and transmits it back to the parent component */
 function resetMessage(message) {
@@ -116,8 +117,32 @@ function resetMessage(message) {
                 </p>
             </div>
 
-            <div
-                class="grid grid-cols-1 gap-6 p-6 bg-gray-200 bg-opacity-25 dark:bg-gray-800 md:grid-cols-2 lg:gap-8 lg:p-8">
+            <div>
+                <div class="flex items-center">
+                    <DropDataIcon class="m-2 size-6" />
+                    <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+                        <span>Clean papers table</span>
+                    </h2>
+                </div>
+
+                <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                    Tool that cleans the all data papers table and restarts the numbering of the IDs from one.
+                </p>
+
+                <p class="mt-4 text-sm">
+                    <a :href="cleanPapersUri"
+                        class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
+                        deletes all data from the papers table
+
+                        <RightArrowIcon class="size-4" />
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="grid grid-cols-1 gap-6 p-6 bg-gray-200 bg-opacity-25 dark:bg-gray-800 md:grid-cols-2 lg:gap-8 lg:p-8">
+            <div>
                 <div class="flex items-center">
                     <!-- TODO: add icon -->
                     <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
@@ -132,8 +157,7 @@ function resetMessage(message) {
                 </p>
 
                 <p class="mt-4 text-sm">
-                    <a href="#"
-                        class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
+                    <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
                         <!-- TODO: add a descriptive text of link -->
 
                         <!-- <RightArrowIcon class="size-4" /> -->
@@ -141,7 +165,31 @@ function resetMessage(message) {
                 </p>
             </div>
         </div>
+
+        <div>
+            <div class="flex items-center">
+                <!-- TODO: add icon -->
+                <h2 class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
+                    <span>
+                        <!-- TODO: add a descriptive title -->
+                    </span>
+                </h2>
+            </div>
+
+            <p class="mt-4 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
+                <!-- TODO: add a brief explanation of what the tool does -->
+            </p>
+
+            <p class="mt-4 text-sm">
+                <a href="#" class="inline-flex items-center font-semibold text-indigo-700 dark:text-indigo-300">
+                    <!-- TODO: add a descriptive text of link -->
+
+                    <!-- <RightArrowIcon class="size-4" /> -->
+                </a>
+            </p>
+        </div>
     </div>
+
 </template>
 
 <style scoped>

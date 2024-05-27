@@ -17,9 +17,6 @@ class ToolController extends Controller
             DB::statement('SET @variableToRenumber := 0');
             DB::statement('UPDATE `quotes_v3_db`.`merit` SET `id` = (@variableToRenumber := @variableToRenumber + 1)');
             DB::statement('ALTER TABLE `quotes_v3_db`.`merit` AUTO_INCREMENT = 1');
-            // DB::statement('SET @variableToRenumber := 0');
-            // DB::statement('UPDATE `quotes_v3_db`.`papers` SET `id` = (@variableToRenumber := @variableToRenumber + 1)');
-            // DB::statement('ALTER TABLE `quotes_v3_db`.`papers` AUTO_INCREMENT = 1');
             DB::statement('SET SQL_SAFE_UPDATES = 1');
             Log::build([
                 'driver' => 'single',
@@ -102,6 +99,37 @@ class ToolController extends Controller
             ])->error('Renumbering papers table by the operator '.$operator['email'].'was the cause of the following error: '.$e->getMessage());
             $outcome = [
                 'message' => "Operator {$operator['email']} just attempted to renumber the papers table, causing the following error: {$e->getMessage()}",
+            ];
+
+            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => $outcome['message']]);
+        }
+    }
+
+    public function cleanPapers()
+    {
+        $operator = ['email' => Auth::user()->email];
+
+        try {
+            $operator = ['email' => Auth::user()->email];
+            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            DB::statement('TRUNCATE TABLE `quotes_v3_db`.`papers`');
+            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/cleaning_quotes_v3_papers_info.log'),
+            ])->info("Deleted all data from the quotes_v3_db.papers table by the operator {$operator['email']}!");
+            $outcome = [
+                'message' => "Operator {$operator['email']} has just deleted all data on quotes_v3_db.papers table!",
+            ];
+
+            return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => "Operator {$operator['email']} has just deleted all data of quotes_v3_db.papers"]);
+        } catch (\Exception $e) {
+            Log::build([
+                'driver' => 'single',
+                'path' => storage_path('logs/cleaning_quotes_v3_papers_error.log'),
+            ])->error('Cleaning all data from the quotes_v3_db.papers table by the operator '.$operator['email'].'was the cause of the following error: '.$e->getMessage());
+            $outcome = [
+                'message' => "Operator {$operator['email']} just attempted to delete all data from the quotes_v3_db.papers table, causing the following error: {$e->getMessage()}",
             ];
 
             return Inertia::render('Tabs/Tools/ToolTab', ['feedback' => $outcome['message']]);

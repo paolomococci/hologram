@@ -441,3 +441,21 @@ composer require thiagoalessio/tesseract_ocr
 ```bash
 composer require barryvdh/laravel-debugbar --dev
 ```
+
+## commands to update the packages used by the web application
+
+Run the following commands to see what will actually update:
+
+```bash
+cd /var/www/html/v3/quotes/
+composer --help update
+composer update --dry-run
+npm outdated
+```
+
+and the following command to carry out the actual update:
+
+```bash
+composer update
+npm update
+```
