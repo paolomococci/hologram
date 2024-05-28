@@ -255,6 +255,10 @@ class ArticleController extends Controller
                 self::unsetCorrelationById($request['disrelate'], $article['id']);
             }
 
+            if (isset($request['mainAuthorIds']) && !is_null($request['mainAuthorIds'])) {
+                self::setMainAuthorsById($request['mainAuthorIds'], $article['id']);
+            }
+
             $article->save();
 
             $jsonArrayData = [
@@ -353,8 +357,8 @@ class ArticleController extends Controller
     /**
      * unset a correlation from author to article thanks to the identifier
      *
-     * @param mixed $articleIds
-     * @param integer $authorId
+     * @param mixed $authorIds
+     * @param integer $articleId
      * @return void
      */
     private function unsetCorrelationById(mixed $authorIds, int $articleId)
@@ -362,6 +366,24 @@ class ArticleController extends Controller
         if (count($authorIds) > 0) {
             foreach ($authorIds as  $authorId) {
                 Merit::where('author_id', $authorId)->where('article_id', $articleId)->delete();
+            }
+        }
+    }
+
+    /**
+     * set a main authors to article thanks to the identifier
+     *
+     * @param mixed $mainAuthorIds
+     * @param integer $articleId
+     * @return void
+     */
+    private function setMainAuthorsById(mixed $mainAuthorIds, int $articleId)
+    {
+        if (count($mainAuthorIds) > 0) {
+            foreach ($mainAuthorIds as  $mainAuthorId) {
+                $merit = Merit::where('author_id', $mainAuthorId)->where('article_id', $articleId)->first();
+                $merit['is_main_author'] = 1;
+                $merit->save();
             }
         }
     }

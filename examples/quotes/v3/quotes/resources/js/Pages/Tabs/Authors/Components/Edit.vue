@@ -45,14 +45,14 @@
                         <li class="left-4 text-xs text-gray-900 ms-3 dark:text-slate-200"
                             v-for="contribution in editForm?.contributions" :key="contribution.article.id">
                             {{ contribution.article.title }}
-                            <span v-if="contribution.isMain"> (main author)</span>
+                            <span v-if="contribution.isMain" class="text-indigo-500"> (main author)</span>
                             <div>
                                 <input
                                     class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
                                     type="checkbox" @click="toDisrelate(contribution.article.id)" :id="setId(contribution.article.id)">
                                 <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
                                     :for="setId(contribution.article.id)">
-                                    <DropDataIcon class="inline size-4" />
+                                    <DropDataIcon class="inline size-4 stroke-red-500" />
                                 </label>
                             </div>
                         </li>

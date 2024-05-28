@@ -45,14 +45,25 @@
                         <li class="left-4 text-xs text-gray-900 ms-3 dark:text-slate-200"
                             v-for="contributor in editForm?.contributors" :key="contributor.author.id">
                             {{ contributor.author.email }}
-                            <span v-if="contributor.isMain"> (main author)</span>
+                            <span v-if="contributor.isMain" class="text-indigo-500"> (main author)</span>
                             <div>
                                 <input
                                     class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
-                                    type="checkbox" @click="toDisrelate(contributor.author.id)" :id="setId(contributor.author.id)">
+                                    type="checkbox" @click="toDisrelate(contributor.author.id)"
+                                    :id="setId(contributor.author.id)">
                                 <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
                                     :for="setId(contributor.author.id)">
-                                    <DropDataIcon class="inline size-4" />
+                                    <DropDataIcon class="inline size-4 stroke-red-500" />
+                                </label>
+                            </div>
+                            <div v-if="!contributor.isMain">
+                                <input
+                                    class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
+                                    type="checkbox" @click="setMainAuthor(contributor.author.id)"
+                                    :id="setId(contributor.author.id)">
+                                <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
+                                    :for="setId(contributor.author.id)">
+                                    <MainAuthorIcon class="inline size-4" />
                                 </label>
                             </div>
                         </li>
@@ -96,6 +107,7 @@ import { onBeforeMount } from 'vue'
 import { router, useForm } from '@inertiajs/vue3'
 import axios from 'axios'
 import DropDataIcon from '@/Icons/DropDataIcon.vue'
+import MainAuthorIcon from '@/Icons/MainAuthorIcon.vue'
 
 const props = defineProps({
     itemId: String
@@ -129,6 +141,7 @@ const editForm = useForm({
     contributors: [],
     authors: [],
     disrelate: [],
+    mainAuthorIds: []
 })
 
 /** sends the values and clears the fields */
@@ -146,6 +159,7 @@ function submit() {
         editForm.contributors = []
         editForm.articles = []
         editForm.disrelate = []
+        editForm.mainAuthorIds = []
     } else {
         console.log(editForm)
         alert("Attention please: the title, subject and content fields are mandatory!")
@@ -201,6 +215,11 @@ function toDisrelate(id) {
     } else {
         editForm.disrelate.push(id)
     }
+}
+
+/** prepares to set main author */
+function setMainAuthor(id) {
+    editForm.mainAuthorIds.push(id)
 }
 
 /** dynamically assigns an identifier to the affected tags */
