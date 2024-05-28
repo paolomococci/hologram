@@ -60,7 +60,7 @@
                                 <input
                                     class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
                                     type="checkbox" @click="setMainAuthor(contributor.author.id)"
-                                    :id="setId(contributor.author.id)">
+                                    :id="setId(contributor.author.id)" title="set main author">
                                 <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
                                     :for="setId(contributor.author.id)">
                                     <MainAuthorIcon class="inline size-4" />

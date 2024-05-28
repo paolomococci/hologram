@@ -60,7 +60,7 @@
                                 <input
                                     class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
                                     type="checkbox" @click="unsetMainAuthor(contribution.article.id)"
-                                    :id="setId(contribution.article.id)">
+                                    :id="setId(contribution.article.id)" title="unset main author">
                                 <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
                                     :for="setId(contribution.article.id)">
                                     <MainAuthorIcon class="inline size-4 stroke-red-500" />
