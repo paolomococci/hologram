@@ -175,12 +175,6 @@ class AuthorController extends Controller
             ])->info(json_encode($jsonArrayDataLog));
 
             return to_route('authors');
-
-            // Inertia\Response
-            // return Inertia::render(
-            //     'Tabs/Authors/AuthorTab',
-            //     ['feedback' => "The operator {$operator['email']} just saved the author named {$request['name']}"]
-            // );
         } catch (\Exception $e) {
             $jsonArrayDataLog = [
                 'operator' => $operator,
@@ -212,7 +206,7 @@ class AuthorController extends Controller
 
             // Contributions
             $contributions = $author->getRelatedArticles();
-            Article::rehydrate($contributions);
+            Article::deeplyRehydrate($contributions);
             $author['contributions'] = $contributions;
 
             // Articles
@@ -220,14 +214,6 @@ class AuthorController extends Controller
             Article::rehydrate($articles);
             $author['articles'] = $articles;
 
-            $jsonArrayDataLog = [
-                'operator' => $operator,
-                'performed' => 'show',
-            ];
-            // Log::build([
-            //     'driver' => 'single',
-            //     'path' => storage_path('logs/author_show_info.log'),
-            // ])->info(json_encode($jsonArrayDataLog));
             return response()->json($author);
         } catch (\Exception $e) {
             $e->getMessage();

@@ -38,8 +38,7 @@ class Article extends Model
             );
             $contributors[] = $contributor;
         }
-        // dd($contributors);
-        // TODO: the value indicating whether or not the following is the main one must also return
+
         return $contributors;
     }
 
@@ -56,6 +55,22 @@ class Article extends Model
             $article['summary'] = SanitizerUtil::rehydrate($article['summary']);
             $article['content'] = SanitizerUtil::rehydrate($article['content']);
             $article['deprecated'] = $article['deprecated'];
+        }
+    }
+
+    /**
+     * translates entities into readable characters contained in articles by reference rather than by value
+     *
+     * @param mixed $contributions
+     * @return void
+     */
+    public static function deeplyRehydrate(mixed &$contributions) {
+        foreach ($contributions as $contribution) {
+            $contribution['article']['title'] = SanitizerUtil::rehydrate($contribution['article']['title']);
+            $contribution['article']['subject'] = SanitizerUtil::rehydrate($contribution['article']['subject']);
+            $contribution['article']['summary'] = SanitizerUtil::rehydrate($contribution['article']['summary']);
+            $contribution['article']['content'] = SanitizerUtil::rehydrate($contribution['article']['content']);
+            $contribution['article']['deprecated'] = $contribution['article']['deprecated'];
         }
     }
 }
