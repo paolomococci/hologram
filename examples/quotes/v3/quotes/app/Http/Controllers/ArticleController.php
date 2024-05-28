@@ -188,14 +188,6 @@ class ArticleController extends Controller
             $authors = Author::where('suspended', 0)->get();
             $article['authors'] = $authors;
 
-            $jsonArrayDataLog = [
-                'operator' => $operator,
-                'performed' => 'show',
-            ];
-            // Log::build([
-            //     'driver' => 'single',
-            //     'path' => storage_path('logs/article_show_info.log'),
-            // ])->info(json_encode($jsonArrayDataLog));
             return response()->json($article);
         } catch (\Exception $e) {
             $e->getMessage();

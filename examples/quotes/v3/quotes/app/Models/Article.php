@@ -29,13 +29,18 @@ class Article extends Model
      */
     public function getRelatedAuthors()
     {
-        $authors = [];
+        $contributors = [];
         $merits = Merit::where('article_id', $this->id)->get();
         foreach ($merits as $merit) {
-            $authors[] = Author::findOrFail($merit['author_id']);
+            $contributor = array(
+                'author' => Author::findOrFail($merit['author_id']),
+                'isMain' => ($merit['is_main_author']) ? true : false,
+            );
+            $contributors[] = $contributor;
         }
-
-        return $authors;
+        // dd($contributors);
+        // TODO: the value indicating whether or not the following is the main one must also return
+        return $contributors;
     }
 
     /**

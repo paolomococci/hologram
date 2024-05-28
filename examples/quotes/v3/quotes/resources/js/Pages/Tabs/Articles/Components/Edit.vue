@@ -43,14 +43,15 @@
                 <div class="text-xl font-semibold text-gray-900 ms-3 dark:text-white">
                     <ul>
                         <li class="left-4 text-xs text-gray-900 ms-3 dark:text-slate-200"
-                            v-for="contributor in editForm?.contributors" :key="contributor.id">
-                            {{ contributor.email }}
+                            v-for="contributor in editForm?.contributors" :key="contributor.author.id">
+                            {{ contributor.author.email }}
+                            <span v-if="contributor.isMain"> (main author)</span>
                             <div>
                                 <input
                                     class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
-                                    type="checkbox" @click="toDisrelate(contributor.id)" :id="setId(contributor.id)">
+                                    type="checkbox" @click="toDisrelate(contributor.author.id)" :id="setId(contributor.author.id)">
                                 <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
-                                    :for="setId(contributor.id)">
+                                    :for="setId(contributor.author.id)">
                                     <DropDataIcon class="inline size-4" />
                                 </label>
                             </div>
@@ -158,7 +159,8 @@ async function fetchDataItem(id) {
         try {
             const res = await axios.get("/articles/show/" + id)
             if (res.status) {
-                console.log(res.data)
+                // console.log(res.data)
+                // console.log(res.data?.contributors)
                 editForm.id = res.data.id
                 editForm.title = res.data.title
                 editForm.subject = res.data.subject

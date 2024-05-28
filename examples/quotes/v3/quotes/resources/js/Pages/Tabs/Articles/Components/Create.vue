@@ -27,7 +27,7 @@
                     @blur="setStoredContent()"></textarea>
             </div>
             <div class="pb-4">
-                <label class="left-4 text-xs text-gray-900 ms-3 dark:text-white" for="giverId">
+                <label class="block left-4 text-xs text-gray-900 ms-3 dark:text-white" for="giverId">
                     Double click to choose the main author:
                 </label>
                 <input class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
