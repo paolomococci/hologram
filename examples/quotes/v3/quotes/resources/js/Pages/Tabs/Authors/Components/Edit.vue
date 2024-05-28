@@ -49,10 +49,21 @@
                             <div>
                                 <input
                                     class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
-                                    type="checkbox" @click="toDisrelate(contribution.article.id)" :id="setId(contribution.article.id)">
+                                    type="checkbox" @click="toDisrelate(contribution.article.id)"
+                                    :id="setId(contribution.article.id)">
                                 <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
                                     :for="setId(contribution.article.id)">
                                     <DropDataIcon class="inline size-4 stroke-red-500" />
+                                </label>
+                            </div>
+                            <div v-if="contribution.isMain">
+                                <input
+                                    class="left-4 ml-2 text-xs rounded-md border indeterminate:bg-gray-300 checked:bg-purple-700"
+                                    type="checkbox" @click="unsetMainAuthor(contribution.article.id)"
+                                    :id="setId(contribution.article.id)">
+                                <label class="left-4 text-gray-900 text-md-center ms-3 dark:text-white"
+                                    :for="setId(contribution.article.id)">
+                                    <MainAuthorIcon class="inline size-4 stroke-red-500" />
                                 </label>
                             </div>
                         </li>
@@ -97,6 +108,7 @@ import { onBeforeMount } from 'vue'
 import { router, useForm } from '@inertiajs/vue3'
 import axios from 'axios'
 import DropDataIcon from '@/Icons/DropDataIcon.vue'
+import MainAuthorIcon from '@/Icons/MainAuthorIcon.vue'
 
 const props = defineProps({
     itemId: String
@@ -130,6 +142,7 @@ const editForm = useForm({
     contributions: [],
     articles: [],
     disrelate: [],
+    mainAuthorArticleIds: []
 })
 
 /** sends the values and clears the fields */
@@ -156,6 +169,7 @@ function submit() {
             editForm.contributions = []
             editForm.articles = []
             editForm.disrelate = []
+            editForm.mainAuthorArticleIds = []
         }
     } else {
         editForm.email = ''
@@ -234,6 +248,12 @@ function toDisrelate(id) {
     } else {
         editForm.disrelate.push(id)
     }
+}
+
+/** prepares to unset main author */
+function unsetMainAuthor(id) {
+    console.log(id)
+    editForm.mainAuthorArticleIds.push(id)
 }
 
 /** dynamically assigns an identifier to the affected tags */

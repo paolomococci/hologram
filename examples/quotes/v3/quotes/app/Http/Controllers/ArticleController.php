@@ -255,6 +255,7 @@ class ArticleController extends Controller
                 self::unsetCorrelationById($request['disrelate'], $article['id']);
             }
 
+            // Check if the main authors IDs have been entered
             if (isset($request['mainAuthorIds']) && !is_null($request['mainAuthorIds'])) {
                 self::setMainAuthorsById($request['mainAuthorIds'], $article['id']);
             }
