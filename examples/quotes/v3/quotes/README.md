@@ -1,37 +1,5 @@
 # `quotes` version 3
 
-Landing page:
-
-![landing page](screenshots/quotes_v3_landing_page_.png)
-
-Help tab:
-
-![help tab](screenshots/quotes_v3_help_tab.png)
-
-Authors tab:
-
-![authors tab](screenshots/quotes_v3_author_tab_1.png)
-
-Articles tab:
-
-![articles tab](screenshots/quotes_v3_article_tab_1.png)
-
-Paper tab:
-
-![paper tab](screenshots/quotes_v3_paper_tab_3.png)
-
-Tools tab:
-
-![tools tab](screenshots/quotes_v3_tools_tab.png)
-
-Extensions tab, before sending the data to the shared library:
-
-![extensions tab](screenshots/quotes_v3_extensions_tab_1.png)
-
-Articles tab, after sending the data to the shared library:
-
-![extensions tab's feedback](screenshots/quotes_v3_extensions_tab_2.png)
-
 ## scaffolding
 
 If I find that I don't have an updated version of composer, npm and node, just issue the following commands:
@@ -39,11 +7,11 @@ If I find that I don't have an updated version of composer, npm and node, just i
 ```bash
 composer -v
 sudo composer self-update
-npm -v
 node -v
 sudo npm cache clean -f
 sudo npm install -g n
 sudo n stable
+npm -v
 sudo npm install -g npm@latest
 ```
 
@@ -141,6 +109,10 @@ sudo systemctl status php-fpm --no-pager
 tail -f /var/log/apache2/quotes_v3_error.log
 tail -f /var/log/apache2/quotes_v3_access.log
 ```
+
+## landing page
+
+![landing page](screenshots/quotes_v3_landing_view_slim.png)
 
 ### database setup
 
@@ -459,3 +431,37 @@ and the following command to carry out the actual update:
 composer update
 npm update
 ```
+
+## views
+
+Register new user:
+
+![register](screenshots/quotes_v3_register_new_user_view.png)
+
+Login:
+
+![login](screenshots/quotes_v3_login_user_view.png)
+
+Help tab:
+
+![help tab](screenshots/quotes_v3_help_tab_view.png)
+
+Authors tab:
+
+![authors tab](screenshots/quotes_v3_authors_tab_view.png)
+
+Articles tab:
+
+![articles tab](screenshots/quotes_v3_articles_tab_view.png)
+
+Paper tab:
+
+![paper tab](screenshots/quotes_v3_papers_tab_view.png)
+
+Tools tab:
+
+![tools tab](screenshots/quotes_v3_tools_tab_view.png)
+
+Extensions tab:
+
+![extensions tab](screenshots/quotes_v3_extensions_tab_view.png)

@@ -6,32 +6,36 @@ Examples of LAMP stack configuration procedures to be used for local development
 
 Landing page:
 
-![landing page](examples/quotes/v3/quotes/screenshots/quotes_v3_landing_page_.png)
+![landing page](examples/quotes/v3/quotes/screenshots/quotes_v3_landing_view.png)
+
+Register new user:
+
+![register](examples/quotes/v3/quotes/screenshots/quotes_v3_register_new_user_view.png)
+
+Login:
+
+![login](examples/quotes/v3/quotes/screenshots/quotes_v3_login_user_view.png)
 
 Help tab:
 
-![help tab](examples/quotes/v3/quotes/screenshots/quotes_v3_help_tab.png)
+![help tab](examples/quotes/v3/quotes/screenshots/quotes_v3_help_tab_view.png)
 
 Authors tab:
 
-![authors tab](examples/quotes/v3/quotes/screenshots/quotes_v3_author_tab.png)
+![authors tab](examples/quotes/v3/quotes/screenshots/quotes_v3_authors_tab_view.png)
 
 Articles tab:
 
-![articles tab](examples/quotes/v3/quotes/screenshots/quotes_v3_article_tab.png)
+![articles tab](examples/quotes/v3/quotes/screenshots/quotes_v3_articles_tab_view.png)
 
 Paper tab:
 
-![paper tab](examples/quotes/v3/quotes/screenshots/quotes_v3_paper_tab_3.png)
+![paper tab](examples/quotes/v3/quotes/screenshots/quotes_v3_papers_tab_view.png)
 
 Tools tab:
 
-![tools tab](examples/quotes/v3/quotes/screenshots/quotes_v3_tools_tab.png)
+![tools tab](examples/quotes/v3/quotes/screenshots/quotes_v3_tools_tab_view.png)
 
-Extensions tab, before sending the data to the shared library:
+Extensions tab:
 
-![extensions tab](examples/quotes/v3/quotes/screenshots/quotes_v3_extensions_tab_1.png)
-
-Articles tab, after sending the data to the shared library:
-
-![extensions tab's feedback](examples/quotes/v3/quotes/screenshots/quotes_v3_extensions_tab_2.png)
+![extensions tab](examples/quotes/v3/quotes/screenshots/quotes_v3_extensions_tab_view.png)

@@ -200,7 +200,7 @@ function handleImageError() {
                                     <ul class="mt-4 text-sm/relaxed">
                                         <li>
                                             <a href="#" target="_blank">
-                                                Retriever
+                                                Printable
                                             </a>
                                         </li>
                                     </ul>
