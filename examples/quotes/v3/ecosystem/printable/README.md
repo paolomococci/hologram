@@ -97,3 +97,83 @@ export const API_TOKEN = ''
 ```
 
 Of course, the IP address must be set appropriately so that it is valid.
+
+## integrate Tailwind into Vue.js project
+
+1. Tailwind and its official plugins
+
+```sh
+npm i -D tailwindcss postcss autoprefixer
+npm i -D @tailwindcss/typography @tailwindcss/forms @tailwindcss/aspect-ratio
+```
+
+2. I create a configuration file
+
+```sh
+npx tailwindcss init -p
+```
+
+I edit tailwind.config.js
+
+```js
+import typography from '@tailwindcss/typography'
+import forms from '@tailwindcss/forms'
+import aspectRatio from '@tailwindcss/aspect-ratio'
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  theme: {
+    extend: {}
+  },
+  plugins: [typography, forms, aspectRatio]
+}
+```
+
+3. I add Tailwind directive on CSS
+
+I edit src/style.css
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+4. I add into .eslintrc.cjs
+
+```js
+...
+    rules: {
+        "vue/no-multiple-template-root": "off"
+    }
+...
+```
+
+5. I add into ./vscode/settings.json
+
+```json
+...
+    "files.associations": {
+        "*.css": "tailwindcss",
+    }
+...
+```
+
+6. I add into package.json this line after "dev" command:
+
+```json
+"stylize": "npx tailwindcss -i ./src/style.css -o ./src/assets/main.css",
+```
+
+And now I can run development build.
+
+```sh
+npm run dev
+```
+
+In another virtual terminal I go back to compiling the style sheet only when I need it with the following command:
+
+```sh
+npm run stylize
+```

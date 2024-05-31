@@ -120,7 +120,7 @@ I edit src/style.css
 @tailwind utilities;
 ```
 
-4. I add into .eslintrc.js
+4. I add into .eslintrc.cjs
 
 ```js
 ...

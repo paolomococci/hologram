@@ -8,8 +8,8 @@ defineProps({
 </script>
 
 <template>
-  <div>
-    <h1>{{ message }}</h1>
+  <div class="card">
+    <h1 class="text-xl text-purple-500">{{ message }}</h1>
     <h3>
       <!-- TODO -->
     </h3>
