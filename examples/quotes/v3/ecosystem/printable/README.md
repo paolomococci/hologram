@@ -10,6 +10,7 @@ cd webapps/vue/
 npm create vue@latest
 cd printable/
 npm install
+npm i axios
 ```
 
 ## prepare environment for developing and preview
@@ -98,7 +99,7 @@ export const API_TOKEN = ''
 
 Of course, the IP address must be set appropriately so that it is valid.
 
-## integrate Tailwind into Vue.js project
+## integrate Tailwind in this micro-frontend application
 
 1. Tailwind and its official plugins
 
@@ -177,3 +178,13 @@ In another virtual terminal I go back to compiling the style sheet only when I n
 ```sh
 npm run stylize
 ```
+
+## view what has been developed so far
+
+```sh
+npm run dev && npm run preview
+```
+
+![printable screenshot](screenshots/quotes_printable_1.png)
+
+Now I will have to develop a search filter, the ability to paginate the results and the button that exports non-deprecated articles in PDF format.

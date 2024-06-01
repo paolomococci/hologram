@@ -29,6 +29,6 @@ coverage
 
 *.tsbuildinfo
 
-/src/assets
+probe/
 package-lock.json
 env.js

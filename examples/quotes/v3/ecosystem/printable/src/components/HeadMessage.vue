@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div class="card">
-    <h1 class="text-xl text-purple-500">{{ message }}</h1>
+    <h1 class="text-xl text-slate-400 indent-8">{{ message }}</h1>
     <h3>
       <!-- TODO -->
     </h3>

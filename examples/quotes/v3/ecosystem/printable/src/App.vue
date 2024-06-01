@@ -4,13 +4,13 @@ import MainView from './components/MainView.vue'
 </script>
 
 <template>
-  <header class="bg-gray-500">
+  <header class="bg-slate-700 m-4 p-4 rounded-lg">
     <div>
-      <HeadMessage message="Welcome to Printable micro-frontend!" />
+      <HeadMessage message="Quotes Printable" />
     </div>
   </header>
 
-  <main class="bg-gray-700">
+  <main>
     <MainView />
   </main>
 </template>
