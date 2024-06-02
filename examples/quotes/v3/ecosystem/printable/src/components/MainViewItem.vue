@@ -1,7 +1,7 @@
 <template>
-  <div class="card m-4 p-4">
-    <div class="bg-slate-300 rounded-lg">
-      <h3 class="text-xl font-semibold leading-relaxed text-slate-700 mx-4 py-6">
+  <div class="p-4 m-4 card">
+    <div class="rounded-lg bg-slate-300">
+      <h3 class="py-6 mx-4 text-xl font-semibold leading-relaxed text-slate-700">
         <slot />
       </h3>
     </div>

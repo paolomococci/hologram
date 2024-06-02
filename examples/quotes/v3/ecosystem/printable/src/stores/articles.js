@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import { API_TEST, API_TOKEN, BASE } from '../../env'
+import { ARTICLES_API, API_TOKEN, BASE } from '../../env'
 
 /** query the articles api */
 
@@ -12,7 +12,7 @@ const query = axios.create({
 
 export const articleStore = defineStore(
     'index', () => {
-        let promise = getPromiseTwo(API_TEST)
+        let promise = getPromiseTwo(ARTICLES_API)
 
         return { promise }
     })

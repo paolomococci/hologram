@@ -90,10 +90,10 @@ export default defineConfig(({ mode }) => ({
 Additionally, at the root of the micro-frontend project I added the `env.js` file to set some environment variables:
 
 ```js
-export const BASE = 'https://192.168.1.XXX/'
+export const BASE = 'https://192.168.1.XXX'
 export const OUT_DIR_NAME = 'printable'
 export const URI_BASE = BASE + OUT_DIR_NAME
-export const API_TEST = 'https://192.168.1.XXX/api/articles'
+export const ARTICLES_API = '/api/articles'
 export const API_TOKEN = ''
 ```
 
@@ -185,6 +185,8 @@ npm run stylize
 npm run dev && npm run preview
 ```
 
-![printable screenshot](screenshots/quotes_printable_1.png)
+![printable screenshot](screenshots/quotes_printable_2.png)
 
-Now I will have to develop a search filter, the ability to paginate the results and the button that exports non-deprecated articles in PDF format.
+![printable screenshot with articles listed](screenshots/quotes_printable_3.png)
+
+Now I will have to develop the possibility of exporting the listed articles in PDF format.

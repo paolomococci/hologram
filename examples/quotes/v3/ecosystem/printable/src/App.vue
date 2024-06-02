@@ -4,7 +4,7 @@ import MainView from './components/MainView.vue'
 </script>
 
 <template>
-  <header class="bg-slate-700 m-4 p-4 rounded-lg">
+  <header class="p-4 m-4 rounded-lg bg-slate-700">
     <div>
       <HeadMessage message="Quotes Printable" />
     </div>
