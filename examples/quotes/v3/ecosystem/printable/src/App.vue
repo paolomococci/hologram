@@ -4,15 +4,27 @@ import MainView from './components/MainView.vue'
 </script>
 
 <template>
-  <header class="p-4 m-4 rounded-lg bg-slate-700">
-    <div>
-      <HeadMessage message="Quotes Printable" />
-    </div>
-  </header>
+  <div class="container min-w-full min-h-screen bg-slate-900">
+    <header class="bg-slate-700">
+      <div>
+        <HeadMessage message="Quotes Printable" />
+      </div>
+    </header>
 
-  <main>
-    <MainView />
-  </main>
+    <main>
+      <MainView />
+    </main>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+main {
+  overflow: hidden;
+}
+</style>

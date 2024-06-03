@@ -45,9 +45,7 @@ function filterArticles(text) {
 <template>
   <div v-for="article in filteredArticles" :key="article.id">
     <div v-if="!article.deprecated">
-      <MainViewItem>
-        {{ article.title }}
-      </MainViewItem>
+      <MainViewItem :article="article" />
     </div>
   </div>
 </template>

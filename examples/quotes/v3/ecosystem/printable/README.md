@@ -11,6 +11,7 @@ npm create vue@latest
 cd printable/
 npm install
 npm i axios
+npm i jspdf
 ```
 
 ## prepare environment for developing and preview
@@ -185,8 +186,12 @@ npm run stylize
 npm run dev && npm run preview
 ```
 
-![printable screenshot](screenshots/quotes_printable_2.png)
+## a preview of the result
 
-![printable screenshot with articles listed](screenshots/quotes_printable_3.png)
+To generate the PDF document starting from the data stored in the database, simply click on the item listed.
 
-Now I will have to develop the possibility of exporting the listed articles in PDF format.
+![printable screenshot with article listed](screenshots/quotes_printable_4.png)
+
+Below is a screenshot of the header of the document obtained thanks to this micro-frontend application:
+
+![document header](screenshots/quotes_printable_5.png)
