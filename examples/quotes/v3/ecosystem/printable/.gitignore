@@ -19,6 +19,7 @@ coverage
 
 # Editor directories and files
 .vscode/*
+.howto/*
 !.vscode/extensions.json
 .idea
 *.suo
@@ -29,6 +30,8 @@ coverage
 
 *.tsbuildinfo
 
+documents/*
+src/assets/*
 probe/
 package-lock.json
 env.js

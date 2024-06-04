@@ -205,9 +205,11 @@ class ArticleRestController extends Controller
                 $article['subject'] = SanitizerUtil::rehydrate($article['subject']);
                 $article['summary'] = SanitizerUtil::rehydrate($article['summary']);
                 $article['content'] = SanitizerUtil::rehydrate($article['content']);
+                $article['contributors'] = $article->getRelatedAuthors();
             }
 
-            return response()->json($articles);
+            // return response()->json($articles);
+            return json_encode($articles);
         } catch (\Exception $e) {
             $e->getMessage();
         }

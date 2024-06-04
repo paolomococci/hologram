@@ -191,7 +191,3 @@ npm run dev && npm run preview
 To generate the PDF document starting from the data stored in the database, simply click on the item listed.
 
 ![printable screenshot with article listed](screenshots/quotes_printable_4.png)
-
-Below is a screenshot of the header of the document obtained thanks to this micro-frontend application:
-
-![document header](screenshots/quotes_printable_5.png)

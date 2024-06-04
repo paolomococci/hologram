@@ -14,6 +14,7 @@ const consumer = () => {
   store.promise.then(
     (result) => {
       articles.value = result.data
+      console.log(articles.value)
     }
   )
   store.promise.catch(
