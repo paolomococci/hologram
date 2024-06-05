@@ -29,5 +29,3 @@ function chose() {
     </div>
   </div>
 </template>
-
-<style scoped></style>

@@ -20,5 +20,3 @@ function generatePdf() {
     </button>
   </div>
 </template>
-
-<style scoped></style>
