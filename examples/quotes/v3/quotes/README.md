@@ -7,11 +7,18 @@ If I find that I don't have an updated version of composer, npm and node, just i
 ```bash
 composer -v
 sudo composer self-update
+```
+
+first I need to check that there are actually updates, then you can proceed:
+
+```bash
 node -v
+npm view node version
 sudo npm cache clean -f
 sudo npm install -g n
 sudo n stable
 npm -v
+npm view npm version
 sudo npm install -g npm@latest
 ```
 

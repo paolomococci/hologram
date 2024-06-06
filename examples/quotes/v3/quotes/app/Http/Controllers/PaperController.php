@@ -267,7 +267,7 @@ class PaperController extends Controller
             $paper = Paper::findOrFail($req['id']);
 
             $validated = $request->validate([
-                'content' => ['required', 'min:32', 'max:1024'],
+                'content' => ['required', 'min:32', 'max:8192'],
             ]);
 
             $paper['content'] = $validated['content'];

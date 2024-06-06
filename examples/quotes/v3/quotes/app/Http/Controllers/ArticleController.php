@@ -127,7 +127,7 @@ class ArticleController extends Controller
                     'title' => ['required', 'min:16', 'max:255', 'unique:quotesdb.articles,title'],
                     'subject' => ['required', 'min:16', 'max:255'],
                     'summary' => ['min:16', 'max:255'],
-                    'content' => ['required', 'min:32', 'max:1024'],
+                    'content' => ['required', 'min:32', 'max:8192'],
                     'deprecated' => ['boolean'],
                 ])
             );
@@ -231,7 +231,7 @@ class ArticleController extends Controller
             $validated = $request->validate([
                 'subject' => ['required', 'min:16', 'max:255'],
                 'summary' => ['min:16', 'max:255'],
-                'content' => ['required', 'min:32', 'max:1024'],
+                'content' => ['required', 'min:32', 'max:8192'],
                 'deprecated' => ['boolean'],
             ]);
 
