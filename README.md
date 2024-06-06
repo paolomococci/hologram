@@ -6,7 +6,7 @@ Examples of LAMP stack configuration procedures to be used for local development
 
 Landing page:
 
-![landing page](examples/quotes/v3/quotes/screenshots/quotes_v3_landing_view.png)
+![landing page](examples/quotes/v3/quotes/screenshots/quotes_v3_landing_page_view_slim_1.png)
 
 Register new user:
 
@@ -42,4 +42,4 @@ Extensions tab:
 
 ## ecosystem micro-frontend
 
-![printable micro-frontend](examples/quotes/v3/ecosystem/printable/screenshots/quotes_printable_4.png)
+![printable micro-frontend](examples/quotes/v3/ecosystem/printable/screenshots/quotes_printable.png)
