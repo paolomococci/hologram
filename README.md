@@ -39,3 +39,7 @@ Tools tab:
 Extensions tab:
 
 ![extensions tab](examples/quotes/v3/quotes/screenshots/quotes_v3_extensions_tab_view.png)
+
+## ecosystem micro-frontend
+
+![printable micro-frontend](examples/quotes/v3/ecosystem/printable/screenshots/quotes_printable_4.png)
