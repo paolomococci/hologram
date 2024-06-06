@@ -229,10 +229,34 @@ cd ~/webapps/vue/printable/
 npm run build
 ```
 
-and then move the result into the public directory of the main project:
+and then move the result into the `public` directory of the main project:
 
 ```sh
 mv printable/ /var/www/html/v3/quotes/public/
 ```
 
+but, in case I have already done a first deploy of this application, it will first be necessary to remove what is present in the `public` directory of the project::
+
+```sh
+rm --recursive /var/www/html/v3/quotes/public/printable/
+mv printable/ /var/www/html/v3/quotes/public/
+```
+
 Naturally, it will be necessary to create a link on the landing page of the main project that refers to the micro-frontend application just deployed.
+
+## check for updates
+
+```sh
+cd ~/webapps/vue/printable/
+npm outdated
+```
+
+## do the update
+
+```sh
+cd ~/webapps/vue/printable/
+npm update
+npm run stylize && npm run build
+rm --recursive /var/www/html/v3/quotes/public/printable/
+mv printable/ /var/www/html/v3/quotes/public/
+```
