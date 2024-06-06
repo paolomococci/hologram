@@ -208,7 +208,6 @@ class ArticleRestController extends Controller
                 $article['contributors'] = $article->getRelatedAuthors();
             }
 
-            // return response()->json($articles);
             return json_encode($articles);
         } catch (\Exception $e) {
             $e->getMessage();
