@@ -68,7 +68,7 @@ file `package.json`:
 file `vite.config.js`:
 
 ```js
-// import { OUT_DIR_NAME, URI_BASE } from './env'
+// import { OUT_DIR_NAME, URL_BASE } from './env'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -84,7 +84,7 @@ export default defineConfig(({ mode }) => ({
   // build: {
   //   outDir: OUT_DIR_NAME
   // },
-  // base: URI_BASE
+  // base: URL_BASE
 }))
 ```
 
@@ -93,9 +93,9 @@ Additionally, at the root of the micro-frontend project I added the `env.js` fil
 ```js
 export const BASE = 'https://192.168.1.XXX'
 export const OUT_DIR_NAME = 'printable'
-export const URI_BASE = BASE + OUT_DIR_NAME
+export const URL_BASE = 'https://192.168.1.XXX/printable'
 export const ARTICLES_API = '/api/articles'
-export const API_TOKEN = ''
+export const API_TOKEN = 'the_token_should_be_pasted_here'
 ```
 
 Of course, the IP address must be set appropriately so that it is valid.
@@ -191,3 +191,48 @@ npm run dev && npm run preview
 To generate the PDF document starting from the data stored in the database, simply click on the item listed.
 
 ![printable screenshot with article listed](screenshots/quotes_printable_4.png)
+
+## copy the application to the server
+
+Now I edit the `vite.config.js` file once development is finished:
+
+```js
+import { fileURLToPath, URL } from 'node:url'
+
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import VueDevTools from 'vite-plugin-vue-devtools'
+import { OUT_DIR_NAME, URL_BASE } from './env'
+
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => ({
+  plugins: [vue(), VueDevTools()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  define: {
+    __VUE_PROD_DEVTOOLS__: mode !== 'production'
+  }
+  build: {
+    outDir: OUT_DIR_NAME
+  },
+  base: URL_BASE
+}))
+```
+
+At this point I can issue the following commands:
+
+```sh
+cd ~/webapps/vue/printable/
+npm run build
+```
+
+and then move the result into the public directory of the main project:
+
+```sh
+mv printable/ /var/www/html/v3/quotes/public/
+```
+
+Naturally, it will be necessary to create a link on the landing page of the main project that refers to the micro-frontend application just deployed.

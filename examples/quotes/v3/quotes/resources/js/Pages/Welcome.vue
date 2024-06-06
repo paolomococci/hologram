@@ -1,5 +1,8 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3'
+import { BASE } from '@/env.js'
+
+const printable = BASE + 'printable/index.html'
 
 defineProps({
     canLogin: {
@@ -199,7 +202,7 @@ function handleImageError() {
 
                                     <ul class="mt-4 text-sm/relaxed">
                                         <li>
-                                            <a href="#" target="_blank">
+                                            <a :href="printable" target="_blank">
                                                 Printable
                                             </a>
                                         </li>
