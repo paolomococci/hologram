@@ -119,7 +119,7 @@ tail -f /var/log/apache2/quotes_v3_access.log
 
 ## landing page
 
-![landing page](screenshots/quotes_v3_landing_page_view_slim_1.png)
+![landing page](screenshots/quotes_v3_landing_page_view_slim_2.png)
 
 ### database setup
 

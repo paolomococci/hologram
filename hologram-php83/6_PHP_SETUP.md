@@ -1,26 +1,26 @@
-# Apache 2 and PHP 8.3.7
+# Apache 2 and PHP 8.3.8
 
 Below we will explain the steps necessary to ensure that the Apache 2 web server uses PHP-FPM (FastCGI Process Manager) compiled from sources.
 
-## download PHP 8.3.7
+## download PHP 8.3.8
 
 ```bash
 cd ~
 mkdir php && cd php
-wget https://www.php.net/distributions/php-8.3.7.tar.xz
+wget https://www.php.net/distributions/php-8.3.8.tar.xz
 ls -al
-sha256sum php-8.3.7.tar.xz
-tar -xvf php-8.3.7.tar.xz
+sha256sum php-8.3.8.tar.xz
+tar -xvf php-8.3.8.tar.xz
 ls -al
-cd php-8.3.7/
+cd php-8.3.8/
 ```
 
-## settings and compilation from PHP version 8.3.7 sources.
+## settings and compilation from PHP version 8.3.8 sources.
 
 ```bash
 mkdir build_session && cd build_session
 ../configure --help | grep -i "opcache"
-../configure --prefix=/opt/php/8.3.7 --enable-fpm --enable-bcmath --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug --with-ffi
+../configure --prefix=/opt/php/8.3.8 --enable-fpm --enable-bcmath --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug --with-ffi
 make
 make test
 sudo make install
@@ -29,32 +29,32 @@ sudo make install
 ## setup of php-fpm
 
 ```bash
-find ~/php/php-8.3.7 -iname 'php.ini*'
-sudo cp ~/php/php-8.3.7/php.ini-development /opt/php/8.3.7/lib/php.ini
-sudo sed -i 's/;date.timezone =/date.timezone = "Europe\/Rome"/g' /opt/php/8.3.7/lib/php.ini
-sudo sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /opt/php/8.3.7/lib/php.ini
-sudo sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /opt/php/8.3.7/lib/php.ini
-grep -i "max_execution_time" /opt/php/8.3.7/lib/php.ini
-sudo sed -i 's/max_execution_time = 30/max_execution_time = 100/g' /opt/php/8.3.7/lib/php.ini
-grep -i "upload_max_filesize" /opt/php/8.3.7/lib/php.ini
-sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/g' /opt/php/8.3.7/lib/php.ini
-sudo cp /opt/php/8.3.7/etc/php-fpm.conf.default /opt/php/8.3.7/etc/php-fpm.conf
-sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.3.7/etc/php-fpm.conf
+find ~/php/php-8.3.8 -iname 'php.ini*'
+sudo cp ~/php/php-8.3.8/php.ini-development /opt/php/8.3.8/lib/php.ini
+sudo sed -i 's/;date.timezone =/date.timezone = "Europe\/Rome"/g' /opt/php/8.3.8/lib/php.ini
+sudo sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /opt/php/8.3.8/lib/php.ini
+sudo sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /opt/php/8.3.8/lib/php.ini
+grep -i "max_execution_time" /opt/php/8.3.8/lib/php.ini
+sudo sed -i 's/max_execution_time = 30/max_execution_time = 100/g' /opt/php/8.3.8/lib/php.ini
+grep -i "upload_max_filesize" /opt/php/8.3.8/lib/php.ini
+sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/g' /opt/php/8.3.8/lib/php.ini
+sudo cp /opt/php/8.3.8/etc/php-fpm.conf.default /opt/php/8.3.8/etc/php-fpm.conf
+sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.3.8/etc/php-fpm.conf
 ```
 
 Optionally I prefer to set the language option `short_open_tag` to `On`:
 
 ```bash
-grep -i "short_open_tag = Off" /opt/php/8.3.7/lib/php.ini
-sudo sed -i 's/short_open_tag = Off/short_open_tag = On/g' /opt/php/8.3.7/lib/php.ini
+grep -i "short_open_tag = Off" /opt/php/8.3.8/lib/php.ini
+sudo sed -i 's/short_open_tag = Off/short_open_tag = On/g' /opt/php/8.3.8/lib/php.ini
 ```
 
 Obviously the `timezone` must be set in the most appropriate way because it depends on where the server is located.
 
-At the end of the `/opt/php/8.3.7/etc/php-fpm.conf` file
+At the end of the `/opt/php/8.3.8/etc/php-fpm.conf` file
 
 ```bash
-sudo nano /opt/php/8.3.7/etc/php-fpm.conf
+sudo nano /opt/php/8.3.8/etc/php-fpm.conf
 ```
 
 add the following lines:
@@ -68,15 +68,15 @@ group = www-data
 But it is better to modify with sed and then check the result:
 
 ```bash
-sudo sed -i '$auser = www-data' /opt/php/8.3.7/etc/php-fpm.conf
-sudo sed -i '$agroup = www-data' /opt/php/8.3.7/etc/php-fpm.conf
-tail /opt/php/8.3.7/etc/php-fpm.conf
+sudo sed -i '$auser = www-data' /opt/php/8.3.8/etc/php-fpm.conf
+sudo sed -i '$agroup = www-data' /opt/php/8.3.8/etc/php-fpm.conf
+tail /opt/php/8.3.8/etc/php-fpm.conf
 ```
 
 Now copy `www.conf`:
 
 ```bash
-sudo cp /opt/php/8.3.7/etc/php-fpm.d/www.conf.default /opt/php/8.3.7/etc/php-fpm.d/www.conf
+sudo cp /opt/php/8.3.8/etc/php-fpm.d/www.conf.default /opt/php/8.3.8/etc/php-fpm.d/www.conf
 ls -al /usr/lib/systemd/system/ | grep -i "php-fpm.service"
 ```
 
@@ -88,13 +88,13 @@ sudo nano /usr/lib/systemd/system/php-fpm.service
 
 ```text
 [Unit]
-Description=PHP 8.3.7 FastCGI Process Manager
+Description=PHP 8.3.8 FastCGI Process Manager
 After=network.target
 
 [Service]
 Type=simple
-PIDFile=/opt/php/8.3.7/var/run/php-fpm.pid
-ExecStart=/opt/php/8.3.7/sbin/php-fpm --nodaemonize --fpm-config /opt/php/8.3.7/etc/php-fpm.conf
+PIDFile=/opt/php/8.3.8/var/run/php-fpm.pid
+ExecStart=/opt/php/8.3.8/sbin/php-fpm --nodaemonize --fpm-config /opt/php/8.3.8/etc/php-fpm.conf
 ExecReload=/bin/kill -USR2 $MAINPID
 
 [Install]
@@ -104,14 +104,14 @@ WantedBy=multi-user.target
 Or better yet, if the file just needs modifications:
 
 ```bash
-sudo sed -i 's/8.3.6/8.3.7/g' /usr/lib/systemd/system/php-fpm.service
+sudo sed -i 's/8.3.7/8.3.8/g' /usr/lib/systemd/system/php-fpm.service
 ```
 
 Enable Zend OPcache:
 
 ```bash
-grep -i "zend_extension" /opt/php/8.3.7/lib/php.ini
-sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.3.7/lib/php.ini
+grep -i "zend_extension" /opt/php/8.3.8/lib/php.ini
+sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.3.8/lib/php.ini
 ```
 
 ## now I try to start the newly created service:
@@ -141,9 +141,10 @@ journalctl -b -u php-fpm
 ## make Apache work together with PHP-FPM
 
 ```bash
-sudo nano /opt/php/8.3.7/etc/php-fpm.d/www.conf
+sudo nano /opt/php/8.3.8/etc/php-fpm.d/www.conf
 ```
 
+During the next step, I have to be very careful.
 I change the module's listening mode from socket TCP to socket UNIX:
 
 ```text

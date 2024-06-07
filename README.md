@@ -6,7 +6,7 @@ Examples of LAMP stack configuration procedures to be used for local development
 
 Landing page:
 
-![landing page](examples/quotes/v3/quotes/screenshots/quotes_v3_landing_page_view_slim_1.png)
+![landing page](examples/quotes/v3/quotes/screenshots/quotes_v3_landing_page_view_slim_2.png)
 
 Register new user:
 
