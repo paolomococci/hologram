@@ -25,10 +25,10 @@ First, however, it is necessary to make PHP also usable from the command line.
 ## make PHP accessible globally not just from Apache
 
 ```bash
-ln --symbolic --verbose /opt/php/8.1.28/bin/php /usr/bin/php
-ln --symbolic --verbose /opt/php/8.1.28/bin/phar.phar /usr/bin/phar
-ln --symbolic --verbose /opt/php/8.1.28/bin/phpize /usr/bin/phpize
-ln --symbolic --verbose /opt/php/8.1.28/bin/php-config /usr/bin/php-config
+ln --symbolic --verbose /opt/php/8.1.29/bin/php /usr/bin/php
+ln --symbolic --verbose /opt/php/8.1.29/bin/phar.phar /usr/bin/phar
+ln --symbolic --verbose /opt/php/8.1.29/bin/phpize /usr/bin/phpize
+ln --symbolic --verbose /opt/php/8.1.29/bin/php-config /usr/bin/php-config
 ```
 
 Update `locate` cache:
@@ -44,10 +44,10 @@ Be sure to replace the real link of the version you prefer.
 
 ```bash
 mkdir xdebug && cd xdebug
-wget https://xdebug.org/files/xdebug-3.3.1.tgz
-sha256sum xdebug-3.3.1.tgz
-tar -xvzf xdebug-3.3.1.tgz
-cd xdebug-3.3.1/
+wget https://xdebug.org/files/xdebug-3.3.2.tgz
+sha256sum xdebug-3.3.2.tgz
+tar -xvzf xdebug-3.3.2.tgz
+cd xdebug-3.3.2/
 phpize
 mkdir build_session && cd build_session
 ../configure --help
@@ -59,7 +59,7 @@ make install
 Instead, if it is an update:
 
 ```bash
-cd xdebug/xdebug-3.3.1/
+cd xdebug/xdebug-3.3.2/
 phpize
 mkdir build_session_update_n && cd build_session_update_n
 ../configure --help
@@ -74,14 +74,14 @@ make install
 php --ini
 updatedb
 locate xdebug.ini
-rnano /opt/php/8.1.28/lib/php.ini
+rnano /opt/php/8.1.29/lib/php.ini
 ```
 
 First it is a good idea to view the contents of the file without risking causing damage.
-And now I edit `/opt/php/8.1.28/lib/php.ini` configuration file
+And now I edit `/opt/php/8.1.29/lib/php.ini` configuration file
 
 ```bash
-nano /opt/php/8.1.28/lib/php.ini
+nano /opt/php/8.1.29/lib/php.ini
 ```
 
 I add this section:

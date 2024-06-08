@@ -140,12 +140,12 @@ journalctl -b -u php-fpm
 
 ## make Apache work together with PHP-FPM
 
+During the next step, I have to be very careful.
+I change the module's listening mode from socket TCP to socket UNIX:
+
 ```bash
 sudo nano /opt/php/8.3.8/etc/php-fpm.d/www.conf
 ```
-
-During the next step, I have to be very careful.
-I change the module's listening mode from socket TCP to socket UNIX:
 
 ```text
 ...
