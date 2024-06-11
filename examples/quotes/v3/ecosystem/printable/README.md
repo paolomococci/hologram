@@ -4,7 +4,7 @@
 
 On the server, starting from my home directory:
 
-```bash
+```sh
 mkdir -p webapps/vue
 cd webapps/vue/
 npm create vue@latest
@@ -16,7 +16,7 @@ npm i jspdf
 
 ## prepare environment for developing and preview
 
-```bash
+```sh
 sudo ufw status verbose
 sudo ufw status numbered
 sudo ufw allow from 192.168.1.0/24 proto tcp to any port 8080
@@ -38,14 +38,14 @@ to this:
 
 Then, issue the following commands from the server, in the directory of the project under development:
 
-```bash
+```sh
 npm run build
 npm run preview
 ```
 
 Then, to check the connectivity, I will need to move to the client and type the following command from the terminal:
 
-```bash
+```sh
 sudo nmap 192.168.122.103 -Pn -p 8080
 ```
 
