@@ -182,19 +182,13 @@ I edit src/style.css
 "stylize": "npx tailwindcss -i ./src/style.css -o ./src/assets/main.css",
 ```
 
-And now I can run development build.
+Now, to implement the style, compile and serve in development mode:
 
 ```sh
-npm run dev
+npm run stylize && npm run dev && npm run preview
 ```
 
-In another virtual terminal I go back to compiling the style sheet only when I need it with the following command:
-
-```sh
-npm run stylize
-```
-
-## view what has been developed so far
+Otherwise, to compile and serve in development mode:
 
 ```sh
 npm run dev && npm run preview
