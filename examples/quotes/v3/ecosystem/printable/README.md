@@ -60,7 +60,7 @@ npm run preview
 Then, to check the connectivity, I will need to move to the client and type the following command from the terminal:
 
 ```sh
-sudo nmap 192.168.122.103 -Pn -p 8080
+sudo nmap 192.168.1.XXX -Pn -p 8080
 ```
 
 Finally, I can type the following address:
