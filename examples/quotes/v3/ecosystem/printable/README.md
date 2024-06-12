@@ -2,9 +2,23 @@
 
 ## scaffolding
 
-On the server, starting from my home directory:
+To make sure I have the latest versions:
+
+```bash
+node -v
+npm view node version
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+npm -v
+npm view npm version
+sudo npm install -g npm@latest
+```
+
+and then continue with the scaffolding of the application:
 
 ```sh
+cd ~
 mkdir -p webapps/vue
 cd webapps/vue/
 npm create vue@latest
