@@ -29,6 +29,7 @@ lsb_release -a
 sudo apt update
 apt list --upgradable
 sudo apt upgrade
+sudo apt-get autopurge
 ```
 
 ## set up timezone if necessary
