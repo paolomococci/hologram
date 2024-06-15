@@ -206,6 +206,11 @@ function handleImageError() {
                                                 Printable
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#" target="_blank">
+                                                Shape
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
