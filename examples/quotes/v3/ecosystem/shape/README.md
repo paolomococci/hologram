@@ -1,5 +1,7 @@
 # `shape` Vue web application
 
+![shape mobile first](screenshots/shape.png)
+
 ## scaffolding
 
 To make sure I have the latest versions:
@@ -68,7 +70,7 @@ sudo ufw status numbered
 sudo ufw reload
 ```
 
-Edit package.json to the line indicating preview from this:
+Edit `package.json` to the line indicating preview from this:
 
 ```json
 "preview": "vite preview",
@@ -151,7 +153,7 @@ Of course, the IP address must be set appropriately so that it is valid.
 npx tailwindcss init -p
 ```
 
-I edit tailwind.config.js
+I edit `tailwind.config.js`
 
 ```js
 import typography from '@tailwindcss/typography'
@@ -178,17 +180,18 @@ I edit src/style.css
 @tailwind utilities;
 ```
 
-3. I add into .eslintrc.cjs
+3. I add into `.eslintrc.cjs`:
 
 ```js
 ...
-    rules: {
-        "vue/no-multiple-template-root": "off"
-    }
+,
+  rules: {
+    'vue/no-multiple-template-root': 'off'
+  }
 ...
 ```
 
-4. I add into ./vscode/settings.json
+4. I add into `./vscode/settings.json`:
 
 ```json
 ...

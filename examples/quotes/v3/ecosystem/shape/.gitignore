@@ -28,7 +28,6 @@ coverage
 *.sln
 *.sw?
 *.csv
-*.ico
 
 *.tsbuildinfo
 
