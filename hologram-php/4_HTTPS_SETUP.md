@@ -29,7 +29,7 @@ sudo mkdir -p /etc/ssl/self_signed_certs
 sudo openssl req -new -x509 -days 365 -out /etc/ssl/self_signed_certs/hologram-php.pem -keyout /etc/ssl/self_signed_certs/hologram-php.key
 ls -al /etc/ssl/self_signed_certs/
 sudo chmod 600 /etc/ssl/self_signed_certs/hologram-php*
-sudo sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
+sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
 ```
 
 ```text
