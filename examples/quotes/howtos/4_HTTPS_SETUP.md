@@ -30,7 +30,7 @@ sudo rm /etc/ssl/self_signed_certs/landing*
 sudo openssl req -new -x509 -days 365 -out /etc/ssl/self_signed_certs/quotes.pem -keyout /etc/ssl/self_signed_certs/quotes.key
 ls -al /etc/ssl/self_signed_certs/
 sudo chmod 600 /etc/ssl/self_signed_certs/quotes*
-sudo sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
+sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
 ```
 
 ```text
