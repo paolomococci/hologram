@@ -6,7 +6,7 @@
                 Update tool
             </h3>
         </div>
-        <div class="col-span-1 md:col-span-2 light-card dark:dark-card">
+        <div class="col-span-2 sm:col-span-1 light-card dark:dark-card">
             <h3 class="text-lg font-semibold dark:text-slate-300 text-slate-700">
                 Update view!
             </h3>

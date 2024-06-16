@@ -16,7 +16,7 @@ const hamburger = ref(false)
 
           <!-- normal navbar -->
           <div class="flex flex-1 gap-8 justify-end max-sm:hidden">
-            <div class="group">
+            <div class="group hover:scale-125">
               <span class="text-indigo-200 hover:text-purple-400 group-hover:animate-pulse">
                 <RouterLink to="/">Home</RouterLink>
               </span>
@@ -24,7 +24,7 @@ const hamburger = ref(false)
                 class="w-0 h-[0.5px] bg-purple-400 duration-300 ease-linear group-hover:w-full group-hover:animate-pulse">
               </div>
             </div>
-            <div class="group">
+            <div class="group hover:scale-125">
               <span class="text-indigo-200 hover:text-purple-400 group-hover:animate-pulse">
                 <RouterLink to="/more">More</RouterLink>
               </span>
@@ -32,7 +32,7 @@ const hamburger = ref(false)
                 class="w-0 h-[0.5px] bg-purple-400 duration-300 ease-linear group-hover:w-full group-hover:animate-pulse">
               </div>
             </div>
-            <div class="group">
+            <div class="group hover:scale-125">
               <span class="text-indigo-200 hover:text-purple-400 group-hover:animate-pulse">
                 <RouterLink to="/upload">Upload</RouterLink>
               </span>
@@ -40,7 +40,7 @@ const hamburger = ref(false)
                 class="w-0 h-[0.5px] bg-purple-400 duration-300 ease-linear group-hover:w-full group-hover:animate-pulse">
               </div>
             </div>
-            <div class="group">
+            <div class="group hover:scale-125">
               <span class="text-indigo-200 hover:text-purple-400 group-hover:animate-pulse">
                 <RouterLink to="/update">Update</RouterLink>
               </span>
@@ -48,7 +48,7 @@ const hamburger = ref(false)
                 class="w-0 h-[0.5px] bg-purple-400 duration-300 ease-linear group-hover:w-full group-hover:animate-pulse">
               </div>
             </div>
-            <div class="group">
+            <div class="group hover:scale-125">
               <span class="text-indigo-200 hover:text-purple-400 group-hover:animate-pulse">
                 <RouterLink to="/response">Response</RouterLink>
               </span>
