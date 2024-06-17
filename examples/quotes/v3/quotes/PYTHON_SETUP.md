@@ -50,7 +50,6 @@ fi
 and finally, I gave the following commands to make the use of this programming language available:
 
 ```bash
-. ~/.profile
 sudo update-alternatives --install /usr/local/bin/python python /opt/python/3.12.4/bin/python3.12 110
 update-alternatives --display python
 ```
