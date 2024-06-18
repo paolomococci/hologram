@@ -43,5 +43,5 @@ As follows, for example only:
 
 ```bash
 sudo apt update
-sudo apt install libcurl4-openssl-dev libbz2-dev libjpeg-dev libgmp3-dev libxslt1-dev libpng-dev libsqlite3-dev libonig-dev apache2-dev libxml2-dev libffi-dev
+sudo apt install bison re2c pkg-config libssl-dev libcurl4-openssl-dev libbz2-dev libjpeg-dev libgmp3-dev libxslt1-dev libpng-dev libsqlite3-dev libonig-dev apache2-dev libxml2-dev libffi-dev
 ```
