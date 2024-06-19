@@ -10,6 +10,6 @@ And after following the instructions listed on the official Composer website I p
 
 ```bash
 whereis php
-sudo cp composer.phar /usr/bin/composer
+sudo cp composer.phar /usr/local/bin/composer
 composer list
 ```

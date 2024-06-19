@@ -11,7 +11,7 @@ And after following the download instructions listed on the official Composer we
 
 ```bash
 whereis php
-sudo cp composer.phar /usr/bin/composer
+sudo cp composer.phar /usr/local/bin/composer
 composer list
 ```
 
