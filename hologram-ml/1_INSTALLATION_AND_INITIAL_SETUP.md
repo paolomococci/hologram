@@ -42,7 +42,7 @@ sudo tzselect
 
 ```bash
 dpkg -l openssl
-sudo apt install apache2 mariadb-server curl unzip btop
+sudo apt install apache2 mariadb-server postgresql curl unzip btop
 sudo ufw enable
 sudo ufw status
 sudo ufw allow from 192.168.1.0/24 proto tcp to any port 22
@@ -58,6 +58,19 @@ cd /var/www/
 sudo chown --recursive --verbose developer_username:www-data html
 sudo systemctl status apache2 -l --no-pager
 sudo systemctl list-units
+```
+
+If I have second thoughts:
+
+```bash
+sudo ufw status numbered
+```
+
+and once I have the numbered list of open ports, for example, I can type:
+
+```bash
+sudo ufw delete 1
+sudo ufw reload
 ```
 
 Below are some useful commands for maintaining the system:
