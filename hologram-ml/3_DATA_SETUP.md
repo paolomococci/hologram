@@ -18,7 +18,18 @@ with this other one:
 bind-address            = 0.0.0.0
 ```
 
-Otherwise it will not be possible to connect with a SQL IDE.
+But it is better to modify with sed and then check the result:
+
+```bash
+grep -i "bind-address" /etc/mysql/mariadb.conf.d/50-server.cnf
+sudo sed -i 's/bind-address            = 127.0.0.1/bind-address            = 0.0.0.0/g' /etc/mysql/mariadb.conf.d/50-server.cnf
+```
+
+then I can do a quick check:
+
+```bash
+grep -i "bind-address" /etc/mysql/mariadb.conf.d/50-server.cnf
+```
 
 ## finally setup of MariaDB
 
@@ -41,7 +52,7 @@ This last command returns a hash to use later:
 ```sql
 CREATE USER IF NOT EXISTS 'developer_username'@'localhost' IDENTIFIED BY PASSWORD 'database_developer_password_hash';
 CREATE DATABASE IF NOT EXISTS `landing_db`;
-GRANT ALL ON `landing_db`.* TO 'developer_username'@'localhost';
+GRANT ALL ON *.* TO 'developer_username'@'localhost';
 FLUSH PRIVILEGES;
 SELECT `user`, `host`, `Grant_priv`, `Super_priv` FROM `mysql`.`user` ORDER BY `user` DESC;
 ```
