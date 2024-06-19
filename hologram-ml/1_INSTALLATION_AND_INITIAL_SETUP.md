@@ -42,7 +42,7 @@ sudo tzselect
 
 ```bash
 dpkg -l openssl
-sudo apt install ufw apache2 mariadb-server curl unzip
+sudo apt install apache2 mariadb-server curl unzip btop
 sudo ufw enable
 sudo ufw status
 sudo ufw allow from 192.168.1.0/24 proto tcp to any port 22
