@@ -111,6 +111,12 @@ if [ -d "/usr/lib/postgresql/16/bin" ] ; then
 fi
 ```
 
+Now I have to load the new settings without logging in again:
+
+```bash
+. ~/.profile
+```
+
 ## add new user
 
 ```bash
