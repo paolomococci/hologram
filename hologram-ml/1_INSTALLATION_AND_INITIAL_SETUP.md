@@ -42,7 +42,7 @@ sudo tzselect
 
 ```bash
 dpkg -l openssl
-sudo apt install apache2 mariadb-server postgresql curl unzip btop
+sudo apt install apache2 mariadb-server postgresql curl unzip btop plocate net-tools
 sudo ufw enable
 sudo ufw status
 sudo ufw allow from 192.168.1.0/24 proto tcp to any port 22
