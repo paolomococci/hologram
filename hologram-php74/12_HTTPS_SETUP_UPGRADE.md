@@ -142,7 +142,7 @@ that is, something similar to the following text should be added:
 192.168.1.74 hologram-php83.local
 ```
 
-Now you need to edit the `/etc/apache2/apache2.conf` file to suppress strange error messages and run the `/etc/ssl/self_signed_certs/echo_passphrase_vh83.sh` script every time you start the Apache web server:
+Now I need to add two lines to the file `/etc/apache2/apache2.conf` file to suppress strange error messages and run the `/etc/ssl/self_signed_certs/echo_passphrase_vh83.sh` script every time I start the Apache web server:
 
 ```bash
 sudo sed -i '$a#SSLPassPhraseDialog exec:\/etc\/ssl\/self_signed_certs\/echo_passphrase_vh83.sh' /etc/apache2/apache2.conf

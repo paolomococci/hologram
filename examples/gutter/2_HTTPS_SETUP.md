@@ -35,8 +35,19 @@ sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
 echo "long passphrase"
 ```
 
+or, I can use the `cat` command:
+
 ```bash
-sudo chmod +x /etc/ssl/self_signed_certs/echo_passphrase.sh
+sudo bash -c 'cat << EOF > /etc/ssl/self_signed_certs/echo_passphrase.sh
+#!/bin/sh
+echo "long passphrase"
+EOF'
+```
+
+Now it is necessary to make the newly created file executable, as well as readable only by the administrator user:
+
+```bash
+sudo chmod 700 /etc/ssl/self_signed_certs/echo_passphrase.sh
 ```
 
 Change the precedence given to index file types:
@@ -121,10 +132,40 @@ sudo nano /etc/apache2/sites-available/000-default.conf
 </VirtualHost>
 ```
 
+Now I need to add two lines to the file `/etc/apache2/apache2.conf` file to suppress strange error messages and run the `/etc/ssl/self_signed_certs/echo_passphrase.sh` script every time I start the Apache web server:
+
+```bash
+sudo nano /etc/apache2/apache2.conf
+```
+
+```text
+ServerName 127.0.0.1
+SSLPassPhraseDialog exec:/etc/ssl/self_signed_certs/echo_passphrase.sh
+```
+
+But it is better to modify with sed and then check the result:
+
+```bash
+sudo sed -i '$aServerName 127.0.0.1' /etc/apache2/apache2.conf
+sudo sed -i '$aSSLPassPhraseDialog exec:/etc/ssl/self_signed_certs/echo_passphrase.sh' /etc/apache2/apache2.conf
+tail /etc/apache2/apache2.conf
+```
+
+This will avoid having to manually enter the passphrase.
+
 Finally, activate all necessary modules and restart the web server:
 
 ```bash
-apache2ctl configtest
+sudo a2enmod ssl
+a2query -m ssl
+sudo a2enmod rewrite
+a2query -m rewrite
+sudo a2enmod headers
+a2query -m headers
+sudo a2ensite default-ssl
+sudo apache2ctl configtest
+sudo ufw allow from 192.168.1.0/24 proto tcp to any port 443
+sudo ufw reload
+sudo ufw status numbered
 sudo systemctl reload apache2
-sudo systemctl status apache2 --no-pager
 ```
