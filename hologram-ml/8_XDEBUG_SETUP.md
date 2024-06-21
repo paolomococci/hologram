@@ -3,7 +3,7 @@
 Side note, if you don't want to continuously repeat the `sudo` command and like me in this case you need to issue numerous commands from root, the following command might be useful:
 
 ```bash
-cd ~
+sudo -s
 ```
 
 First, however, it is necessary to make PHP also usable from the command line.
@@ -13,6 +13,7 @@ First, however, it is necessary to make PHP also usable from the command line.
 Quick warning, if the following links are already there, you will need to remove them first. To then recreate new ones that point to the newly installed versions.
 
 ```bash
+cd ~
 sudo rm /usr/bin/php
 sudo rm /usr/bin/phar
 sudo rm /usr/bin/phpize
