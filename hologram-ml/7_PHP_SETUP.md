@@ -148,7 +148,6 @@ sudo nano /opt/php/8.3.8/etc/php-fpm.d/www.conf
 ```
 
 ```text
-...
 ;user = nobody
 ;group = nobody
 ;user = www-data
@@ -162,7 +161,22 @@ sudo nano /opt/php/8.3.8/etc/php-fpm.d/www.conf
 listen = /run/php-fpm.sock
 listen.owner = www-data
 listen.group = www-data
-...
+```
+
+Similar to what was done before, it is better to modify with `sed` and then check the result:
+
+```bash
+sudo sed -i 's/^user = nobody/;user = nobody/g' /opt/php/8.3.8/etc/php-fpm.d/www.conf
+grep -i ";user = nobody" /opt/php/8.3.8/etc/php-fpm.d/www.conf
+sudo sed -i 's/^group = nobody/;group = nobody/g' /opt/php/8.3.8/etc/php-fpm.d/www.conf
+grep -i ";group = nobody" /opt/php/8.3.8/etc/php-fpm.d/www.conf
+sudo sed -i 's/^listen = 127.0.0.1:9000/;listen = 127.0.0.1:9000/g' /opt/php/8.3.8/etc/php-fpm.d/www.conf
+grep -i ";listen = 127.0.0.1:9000" /opt/php/8.3.8/etc/php-fpm.d/www.conf
+sudo sed -i '$a; UNIX socket' /opt/php/8.3.8/etc/php-fpm.d/www.conf
+sudo sed -i '$alisten = /run/php-fpm.sock' /opt/php/8.3.8/etc/php-fpm.d/www.conf
+sudo sed -i '$alisten.owner = www-data' /opt/php/8.3.8/etc/php-fpm.d/www.conf
+sudo sed -i '$alisten.group = www-data' /opt/php/8.3.8/etc/php-fpm.d/www.conf
+tail --lines=4 /opt/php/8.3.8/etc/php-fpm.d/www.conf
 ```
 
 ## match FPM with Apache
