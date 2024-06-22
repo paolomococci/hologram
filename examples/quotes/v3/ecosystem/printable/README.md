@@ -222,7 +222,7 @@ export default defineConfig(({ mode }) => ({
   },
   define: {
     __VUE_PROD_DEVTOOLS__: mode !== 'production'
-  }
+  },
   build: {
     outDir: OUT_DIR_NAME
   },
