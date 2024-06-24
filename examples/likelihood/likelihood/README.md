@@ -53,7 +53,7 @@ sudo npm install -g license-checker
 and here are three tips on how to use them:
 
 ```sh
-cd ~/webapps/vue/shape/
+cd ~/webapps/vue/likelihood/
 license-report --output=csv > licenses_report.csv
 nlf --csv > nlf_licenses_report.csv
 license-checker --csv > license_checker_report.csv

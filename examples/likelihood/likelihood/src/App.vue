@@ -5,8 +5,6 @@ import WelcomeView from './components/WelcomeView.vue'
 
 <template>
   <header>
-    <!-- <img alt="Hologram project logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
-
     <div class="wrapper">
       <WelcomeMessage msg="Likelihood" />
     </div>
