@@ -70,8 +70,13 @@ To facilitate the development of the micro-frontend I made the following changes
 Additionally, at the root of the micro-frontend project I added the `env.js` file to set some environment variables:
 
 ```js
-export const URL_BASE = 'https://192.168.1.XXX'
+export const URL_BASE = 'https://192.168.1.XXX/likelihood/deployment'
 export const OUT_DIR_NAME = 'deployment'
+export const FLARES = '/flares/deployment'
+export const JOURNEY = '/journey/deployment'
+export const ESTIMATE = '/estimate/deployment'
+export const CHARADE = '/charade/deployment'
+export const RECOMMENDATION = '/recommendation/deployment'
 ```
 
 ## copy the application to the server
