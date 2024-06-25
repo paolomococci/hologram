@@ -5,6 +5,7 @@ import ToolingIcon from './icons/ToolingIcon.vue'
 import EcosystemIcon from './icons/EcosystemIcon.vue'
 import CommunityIcon from './icons/CommunityIcon.vue'
 import DesiredIcon from './icons/DesiredIcon.vue'
+import { CHARADE, ESTIMATE, FLARES, JOURNEY, RECOMMENDATION } from '../../env'
 </script>
 
 <template>
@@ -35,11 +36,11 @@ import DesiredIcon from './icons/DesiredIcon.vue'
 
     Below is a list of web applications that belong to this ecosystem:
     <ul>
-      <li><a href="#" target="_blank" rel="noopener">flares</a></li>
-      <li><a href="#" target="_blank" rel="noopener">journey</a></li>
-      <li><a href="#" target="_blank" rel="noopener">estimate</a></li>
-      <li><a href="#" target="_blank" rel="noopener">charade</a></li>
-      <li><a href="#" target="_blank" rel="noopener">recommendation</a></li>
+      <li><a :href="FLARES" target="_blank" rel="noopener">flares</a></li>
+      <li><a :href="JOURNEY" target="_blank" rel="noopener">journey</a></li>
+      <li><a :href="ESTIMATE" target="_blank" rel="noopener">estimate</a></li>
+      <li><a :href="CHARADE" target="_blank" rel="noopener">charade</a></li>
+      <li><a :href="RECOMMENDATION" target="_blank" rel="noopener">recommendation</a></li>
     </ul>
   </WelcomeItem>
 

@@ -1,0 +1,13 @@
+Redirect /index.php /likelihood/deployment/index.html
+Redirect /flares/deployment /errors/501.html
+Redirect /journey/deployment /errors/501.html
+Redirect /estimate/deployment /errors/501.html
+Redirect /charade/deployment /errors/501.html
+Redirect /recommendation/deployment /errors/501.html
+ErrorDocument 400 /errors/400.html
+ErrorDocument 401 /errors/401.html
+ErrorDocument 403 /errors/403.html
+ErrorDocument 404 /errors/404.html
+ErrorDocument 408 /errors/408.html
+ErrorDocument 500 /errors/500.html
+ErrorDocument 501 /errors/501.html

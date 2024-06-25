@@ -132,3 +132,21 @@ npm update
 npm run build
 chown --recursive developer_username:www-data .
 ```
+
+To quickly return to the previous configuration:
+
+```sh
+sudo sed -i 's:DocumentRoot /var/www/html/likelihood/deployment:DocumentRoot /var/www/html:g' /etc/apache2/sites-available/default-ssl.conf
+sudo sed -i 's:<Directory /var/www/html/likelihood/deployment>:<Directory /var/www/html>:g' /etc/apache2/sites-available/default-ssl.conf
+sudo sed -i 's:DocumentRoot /var/www/html/likelihood/deployment:DocumentRoot /var/www/html:g' /etc/apache2/sites-available/000-default.conf
+sudo sed -i 's:<Directory /var/www/html/likelihood/deployment>:<Directory /var/www/html>:g' /etc/apache2/sites-available/000-default.conf
+apachectl configtest
+sudo systemctl restart apache2
+sudo systemctl status apache2 --no-pager
+```
+
+Because, at least for now, I prefer the flexibility offered by a specially written `.htaccess` configuration file.
+For example, now I am able to return personalized pages in case of errors.
+In addition to setting predefined pages for applications that I still have to implement.
+
+![likelihood landing page](screenshots/http_error_501.png)
