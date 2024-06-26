@@ -17,7 +17,14 @@ npm view npm version
 sudo npm install -g npm@latest
 ```
 
-and then continue with the scaffolding of the application:
+or maybe it would be better:
+
+```sh
+npm outdated -g
+sudo npm update -g
+```
+
+Now I can continue with the scaffolding of the new web application:
 
 ```sh
 cd /var/www/html/
@@ -134,8 +141,15 @@ npm outdated
 
 ```sh
 npm update
+license-checker --csv > license_checker_report.csv
 npm run build
 chown --recursive developer_username:www-data .
+```
+
+but if, for example, I wanted to update only a specific package it would be better to use the following command:
+
+```text
+npm install <specific_package_name>@latest
 ```
 
 To quickly return to the previous configuration:
