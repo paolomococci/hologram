@@ -1,5 +1,5 @@
 Redirect /index.php /likelihood/deployment/index.html
-Redirect /flares/deployment /errors/501.html
+#Redirect /flares/deployment /errors/501.html
 Redirect /journey/deployment /errors/501.html
 Redirect /estimate/deployment /errors/501.html
 Redirect /charade/deployment /errors/501.html
