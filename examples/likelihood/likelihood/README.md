@@ -1,6 +1,12 @@
 # `likelihood` Vue web application
 
+How it looks on a desktop:
+
 ![likelihood landing page](screenshots/likelihood_landing_page.png)
+
+and on a small screen:
+
+![likelihood mobile first](screenshots/likelihood_mobile_first.png)
 
 ## scaffolding
 

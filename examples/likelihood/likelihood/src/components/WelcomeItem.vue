@@ -30,7 +30,6 @@ i {
   place-content: center;
   width: 32px;
   height: 32px;
-
   color: var(--color-text);
 }
 
@@ -52,8 +51,9 @@ h3 {
     left: -26px;
     position: absolute;
     border: 1px solid var(--color-border);
-    background: var(--color-background);
-    border-radius: 0.25rem;
+    /* background: var(--color-background); */
+    background-color: transparent;
+    border-radius: 0.5rem;
     width: 50px;
     height: 50px;
   }

@@ -62,7 +62,9 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   /* background: var(--color-background); */
-  background-image: linear-gradient(to top right, var(--color-background), #444);
+  /* background-image: linear-gradient(to top right, var(--color-background), #444); */
+  background: radial-gradient(ellipse at bottom, var(--color-background), #444);
+  background-attachment: fixed;
   transition:
     color 0.5s,
     background-color 0.5s;
