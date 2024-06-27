@@ -61,7 +61,7 @@ To facilitate the development of the micro-frontend I made the following changes
 Additionally, at the root of the micro-frontend project I added the `env.js` file to set some environment variables:
 
 ```js
-export const URL_BASE = 'flares/deployment'
+export const URL_BASE = '/flares/deployment'
 export const OUT_DIR_NAME = 'deployment'
 ```
 
