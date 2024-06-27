@@ -1,9 +1,15 @@
 Redirect /index.php /likelihood/deployment/index.html
+
+# Temporary workaround to remedy the reload of the about view.
 Redirect /flares/deployment/about /flares/deployment
+
+# Not implemented, at least for now.
 Redirect /journey/deployment /errors/501.html
 Redirect /estimate/deployment /errors/501.html
 Redirect /charade/deployment /errors/501.html
 Redirect /recommendation/deployment /errors/501.html
+
+# Error pages.
 ErrorDocument 400 /errors/400.html
 ErrorDocument 401 /errors/401.html
 ErrorDocument 403 /errors/403.html
