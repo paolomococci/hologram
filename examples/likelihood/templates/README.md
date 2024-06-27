@@ -20,7 +20,6 @@ ls -al
 mv templates novelty && cd novelty
 sed -i 's/templates/novelty/g' ./package.json
 sed -i 's/templates/novelty/g' ./env.js
-sed -i 's/quantum templates/quantum novelty/g' ./src/components/WelcomeMessage.vue
 sed -i 's/Templates/Novelty/g' ./index.html
 sed -i 's/Templates/Novelty/g' ./src/App.vue
 ```
@@ -109,11 +108,11 @@ npm install eslint@latest
 
 How it looks on a desktop:
 
-![novelty landing page](screenshots/novelty_landing_page.png)
+![novelty desktop layout](screenshots/novelty_desktop_layout.png)
 
 and on a mobile screen:
 
-![novelty mobile first](screenshots/novelty_mobile_first.png)
+![novelty mobile layout](screenshots/novelty_mobile_layout.png)
 
 ## final considerations
 
