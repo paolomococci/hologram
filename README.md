@@ -43,3 +43,13 @@ Extensions tab:
 ## ecosystem micro-frontend
 
 ![printable micro-frontend](examples/quotes/v3/ecosystem/printable/screenshots/quotes_printable.png)
+
+## an example of a micro-frontend template
+
+How it looks on a desktop:
+
+![novelty desktop layout](examples/likelihood/templates/screenshots/novelty_desktop_layout.png)
+
+and on a mobile screen:
+
+![novelty mobile layout](examples/likelihood/templates/screenshots/novelty_mobile_layout.png)
