@@ -31,7 +31,6 @@ I type the name of the web application and continue choosing the options I need 
 
 ```sh
 npm install
-npm run lint
 npm run format
 ```
 
