@@ -2,6 +2,11 @@
 import { RouterView } from 'vue-router'
 import WelcomeMessage from './components/WelcomeMessage.vue'
 import NavView from './components/NavView.vue'
+
+// workaround to avoid a 404 response along with using the redirection set in the .htaccess file
+window.addEventListener('beforeunload', (event) => {
+  event.preventDefault()
+})
 </script>
 
 <template>
