@@ -1,13 +1,5 @@
 # `templates` Vue web application
 
-How it looks on a desktop:
-
-<!-- ![templates landing page](screenshots/templates_landing_page.png) -->
-
-and on a small screen:
-
-<!-- ![templates mobile first](screenshots/templates_mobile_first.png) -->
-
 ## scaffolding
 
 I'll start by assuming that the web application you use as a template is located in a directory under your `/home/your_username_directory/`:

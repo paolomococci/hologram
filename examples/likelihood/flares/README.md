@@ -1,98 +1,42 @@
-# `flares` Vue web application
+# `flares` Vue micro-frontend application
 
 How it looks on a desktop:
 
-![flares landing page](screenshots/flares_landing_page.png)
+![flares help desktop view](screenshots/flares_help_desktop_view.png)
 
 and on a small screen:
 
-![flares mobile first](screenshots/flares_mobile_first.png)
+![flares help mobile view](screenshots/flares_help_mobile_view.png)
 
 ## scaffolding
 
-Scaffolding of the application:
+I'll start by assuming that the web application you use as a template is located in a directory under your `/home/your_username_directory/`:
 
 ```sh
+cd ~/webapps/
+cp --recursive ./templates /var/www/html/
 cd /var/www/html/
-npm create vue@latest
+ls -al
+mv templates flares && cd flares
+sed -i 's/templates/flares/g' ./package.json
+sed -i 's/templates/flares/g' ./env.js
+sed -i 's/Templates/Novelty/g' ./index.html
+sed -i 's/Templates/Novelty/g' ./src/App.vue
 ```
 
 I type the name of the web application and continue choosing the options I need from those offered by the interactive system.
 
-## first start
+## install dependencies
 
 ```sh
-cd flares/
 npm install
 npm run format
-```
-
-Install a set of open source UI components for `Vue.js`:
-
-```sh
-npm i primevue
-npm i primeicons
-```
-
-Then I install the packages that will be used to make the application work:
-
-```sh
-npm i axios
-npm i csv-parse
-npm i gl
-npm i brain.js@1.6.1
 ```
 
 ## check the licenses of the packages used
 
 ```sh
-cd /var/www/html/flares/
 license-checker --csv > license_checker_report.csv
-```
-
-## facilitate the development of the micro-frontend
-
-To facilitate the development of the micro-frontend I made the following changes, file `package.json`:
-
-```json
-"build": "vite build --mode development",
-```
-
-Additionally, at the root of the micro-frontend project I added the `env.js` file to set some environment variables:
-
-```js
-export const URL_BASE = '/flares/deployment'
-export const OUT_DIR_NAME = 'deployment'
-```
-
-## copy the application to the server
-
-Now I edit the `vite.config.js` file once development is finished:
-
-```js
-import { fileURLToPath, URL } from 'node:url'
-
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
-import { OUT_DIR_NAME, URL_BASE } from './env'
-
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  plugins: [vue(), vueDevTools()],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  },
-  define: {
-    __VUE_PROD_DEVTOOLS__: mode !== 'production'
-  },
-  build: {
-    outDir: OUT_DIR_NAME
-  },
-  base: URL_BASE
-}))
 ```
 
 ## build
@@ -105,7 +49,6 @@ chown --recursive developer_username:www-data .
 ## check for updates
 
 ```sh
-cd /var/www/html/flares/
 npm outdated
 ```
 
@@ -123,3 +66,44 @@ but if, for example, I only wanted to update a specific package, it would be bet
 ```sh
 npm install eslint@latest
 ```
+
+## example of sftp.json
+
+```json
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "name": "flares",
+    "username": "your_username",
+    "privateKeyPath": "/home/your_username/.ssh/id_rsa",
+    "passphrase": "your_passphrase",
+    "host": "192.168.1.XXX",
+    "remotePath": "/var/www/html",
+    "port": 22,
+    "connectTimeout": 20000,
+    "uploadOnSave": true,
+    "watcher": {
+        "files": "dist/*.{js,css}",
+        "autoUpload": false,
+        "autoDelete": false
+    },
+    "syncOption": {
+        "delete": true,
+        "update": false
+    },
+    "ignore": [
+        ".vscode",
+        ".howto",
+        ".docs",
+        ".git",
+        ".DS_Store",
+        "screenshots",
+        "TEMP",
+        "nbproject",
+        "probe.http"
+    ]
+}
+```
+
+## final considerations
+
+It is good to remember that a template could be useful, but, considering the evolutionary times of frameworks, any template is subject to rapid obsolescence.

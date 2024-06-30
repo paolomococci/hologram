@@ -32,6 +32,6 @@ coverage
 # more
 .howto/
 deployment/
-.csv
+*.csv
 package-lock.json
 env.js

@@ -1,7 +1,11 @@
 Redirect /index.php /likelihood/deployment/index.html
 
-# Temporary workaround to remedy the reload of the about view.
-Redirect /flares/deployment/about /flares/deployment
+# Temporary workaround to remedy the reload of flares web application.
+Redirect /flares/deployment/upload /flares/deployment
+Redirect /flares/deployment/evaluate /flares/deployment
+Redirect /flares/deployment/feedback /flares/deployment
+Redirect /flares/deployment/post /flares/deployment
+
 
 # Not implemented, at least for now.
 Redirect /journey/deployment /errors/501.html

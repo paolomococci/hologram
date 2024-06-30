@@ -1,19 +1,23 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import WelcomeMessage from './components/WelcomeMessage.vue'
+import NavView from './components/NavView.vue'
+
+// workaround to avoid a 404 response along with using the redirection set in the .htaccess file
+window.addEventListener('beforeunload', (event) => {
+  event.preventDefault()
+})
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <WelcomeMessage msg="Flares" />
+      <WelcomeMessage message="Flares" />
       <nav>
-        <RouterLink to="/">Index</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <NavView />
       </nav>
     </div>
   </header>
-
   <RouterView />
 </template>
 
@@ -53,7 +57,7 @@ nav a:first-of-type {
   border: 0;
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
   header {
     display: flex;
     place-items: center;
@@ -71,10 +75,10 @@ nav a:first-of-type {
   }
 
   nav {
+    display: flex;
     text-align: left;
-    margin-left: -1rem;
+    margin-left: 1rem;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }
