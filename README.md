@@ -44,12 +44,12 @@ Extensions tab:
 
 ![printable micro-frontend](examples/quotes/v3/ecosystem/printable/screenshots/quotes_printable.png)
 
-## an example of a micro-frontend template
+## an example of a micro-frontend
 
 How it looks on a desktop:
 
-![novelty desktop layout](examples/likelihood/templates/screenshots/novelty_desktop_layout.png)
+![flares desktop layout](examples/likelihood/flares/screenshots/flares_help_desktop_view.png)
 
 and on a mobile screen:
 
-![novelty mobile layout](examples/likelihood/templates/screenshots/novelty_mobile_layout.png)
+![flares mobile layout](examples/likelihood/flares/screenshots/flares_help_mobile_view.png)
