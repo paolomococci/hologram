@@ -23,6 +23,7 @@ ssh developer_username@192.168.1.XXX
 sudo apt-get purge cloud-init
 sudo rm -rf /etc/cloud/
 sudo rm -rf /var/lib/cloud/
+sudo apt-get autopurge
 sudo reboot
 ssh developer_username@192.168.1.XXX
 lsb_release -a
