@@ -15,19 +15,24 @@ const router = createRouter({
       component: () => import('../views/UploadView.vue')
     },
     {
-      path: '/evaluate',
-      name: 'evaluate',
-      component: () => import('../views/EvaluateView.vue')
+      path: '/ponder',
+      name: 'ponder',
+      component: () => import('../views/PonderView.vue')
     },
     {
-      path: '/feedback',
-      name: 'feedback',
-      component: () => import('../views/FeedbackView.vue')
+      path: '/clip',
+      name: 'clip',
+      component: () => import('../views/ClipView.vue')
     },
     {
-      path: '/post',
-      name: 'post',
-      component: () => import('../views/PostView.vue')
+      path: '/estimate',
+      name: 'estimate',
+      component: () => import('../views/EstimateView.vue')
+    },
+    {
+      path: '/playground',
+      name: 'playground',
+      component: () => import('../views/PlaygroundView.vue')
     }
   ]
 })

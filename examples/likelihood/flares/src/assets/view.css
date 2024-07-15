@@ -1,0 +1,95 @@
+.headingOne {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--color-heading);
+}
+
+.headingThree {
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: var(--color-heading);
+}
+
+.flaresForm {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.downloadLink {
+  font-size: 3rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  text-align: center;
+  display: none;
+  cursor: pointer;
+}
+
+.submitForm {
+  margin-top: 1rem;
+}
+
+input {
+  padding: 0.5rem;
+  color: #032;
+  background-color: #999;
+  border: thin solid #333;
+  border-radius: 0.5rem;
+  transition: 1s;
+  cursor: pointer;
+}
+
+input:hover,
+input:focus {
+  background-color: #0b7;
+  box-shadow: 0.25rem 0.25rem 0.75rem #003;
+}
+
+input[type='file']::file-selector-button {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .right-view {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.resultMessage {
+  color: #3e0;
+  font-family: monospace;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  display: none;
+}
+
+.alertMessage {
+  color: #fe0;
+  font-family: monospace;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  display: none;
+}
+
+.errorMessage {
+  color: #f00;
+  font-family: monospace;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .errorMessage,
+  .resultMessage {
+    display: inline-flex;
+  }
+}
