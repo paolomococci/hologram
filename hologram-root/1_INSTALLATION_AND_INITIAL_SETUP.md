@@ -35,6 +35,12 @@ sudo apt-get autopurge
 sudo du --human-readable --summarize /var/cache/apt/archives/
 ```
 
+A short command line to see, for example, the license or licenses of package `ufw`:
+
+```bash
+awk '/^License:/ { print $1 $2 }' $(find /usr/share/doc -name copyright -type f -exec grep -l "ufw" '{}' \;)
+```
+
 ## set up timezone if necessary
 
 ```bash
