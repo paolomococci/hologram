@@ -3,7 +3,7 @@
 First I installed the program that will take care of the optical recognition of the characters detectable in an image.
 
 ```bash
-apt-cache search tesseract-ocr
+apt search tesseract-ocr
 sudo -s
 apt install tesseract-ocr tesseract-ocr-eng
 apt install libtesseract-dev

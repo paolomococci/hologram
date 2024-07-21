@@ -33,7 +33,7 @@ Here's how to proceed for installing specific versions of PHP as defined by the 
 From here on I will list the steps that seem to be necessary, limiting myself only to listing them:
 
 ```bash
-apt-cache search software-properties-common
+apt search software-properties-common
 dpkg -l software-properties-common
 ```
 
@@ -61,7 +61,7 @@ sudo apt install libapache2-mod-fcgid
 ## PHP 5.6
 
 ```bash
-apt-cache search php5.6
+apt search php5.6
 ```
 
 ### basic installation
