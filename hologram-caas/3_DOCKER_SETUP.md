@@ -100,6 +100,7 @@ groupadd docker
 Otherwise, I can add the developer user to group `docker`:
 
 ```bash
+su -
 usermod -a -G docker developer_username
 ```
 
