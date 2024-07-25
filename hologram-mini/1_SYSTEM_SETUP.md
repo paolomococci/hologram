@@ -48,9 +48,21 @@ awk '/^License:/ { print $1 $2 }' /usr/share/doc/btop/copyright
 ufw status
 ufw enable
 ufw allow from 192.168.1.0/24 proto tcp to any port 22
+ufw allow from 192.168.1.0/24 proto tcp to any port 80
+ufw allow from 192.168.1.0/24 proto tcp to any port 8080
 ufw reload
 ufw status numbered
 ss -tuna | grep 22
+ss -tuna | grep 80
+ss -tuna | grep 8080
+```
+
+and, if I want to close a previously opened port, I have to issue the following commands:
+
+```bash
+ufw status numbered
+ufw delete 2
+ufw reload
 ```
 
 ## backup VM
