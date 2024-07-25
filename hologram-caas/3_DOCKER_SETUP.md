@@ -34,6 +34,7 @@ Then continue with the following commands:
 ```bash
 curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
 ls -al /etc/apt/keyrings/docker.asc
+stat --format='%a -> %n' /etc/apt/keyrings/docker.asc
 ```
 
 if the file `docker.asc` is not readable by everyone and writable only by root, it will be necessary to issue the following command:
@@ -107,7 +108,7 @@ usermod -a -G docker developer_username
 Now I can do a little check:
 
 ```bash
-grep -i "developer_username" /etc/group
+grep -i "docker" /etc/group
 ```
 
 Try running the docker command issued by a non-root user with `hello-world` image:
