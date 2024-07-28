@@ -21,10 +21,10 @@ and type:
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
-- role: control-plane
-- role: worker
-- role: worker
-- role: worker
+  - role: control-plane
+  - role: worker
+  - role: worker
+  - role: worker
 ```
 
 Or, if you prefer:
@@ -33,10 +33,10 @@ Or, if you prefer:
 cat <<< 'kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
-- role: control-plane
-- role: worker
-- role: worker
-- role: worker' > kind-cluster-first.yaml
+  - role: control-plane
+  - role: worker
+  - role: worker
+  - role: worker' > kind-cluster-first.yaml
 ```
 
 Create and delete cluster named `first`:
