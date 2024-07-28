@@ -27,6 +27,18 @@ nodes:
 - role: worker
 ```
 
+Or, if you prefer:
+
+```bash
+cat <<< 'kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+- role: worker' > kind-cluster-first.yaml
+```
+
 Create and delete cluster named `first`:
 
 ```bash
