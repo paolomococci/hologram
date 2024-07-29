@@ -20,6 +20,7 @@ and type:
 ```yaml
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
+name: first
 nodes:
   - role: control-plane
   - role: worker
@@ -32,6 +33,7 @@ Or, if you prefer:
 ```bash
 cat <<< 'kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
+name: first
 nodes:
   - role: control-plane
   - role: worker
@@ -48,7 +50,7 @@ kind help get
 kind get clusters
 kind get nodes
 kind help create
-kind create cluster --name first --config ./kind-cluster-first.yaml
+kind create cluster --config ./kind-cluster-first.yaml
 kubectl cluster-info --context kind-first
 kubectl get nodes
 kind get clusters
