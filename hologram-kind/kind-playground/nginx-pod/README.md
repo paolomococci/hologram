@@ -49,7 +49,7 @@ kubectl get Pods
 or in wide mode:
 
 ```bash
-kubectl get Pods -o wide
+kubectl get Pods -o wide --show-labels
 ```
 
 Listing the object in yaml format:
