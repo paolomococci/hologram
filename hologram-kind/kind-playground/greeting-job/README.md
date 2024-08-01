@@ -1,11 +1,11 @@
-# `cluster-samples` KinD cluster with a Pod
+# `cluster-samples` KinD cluster for a `greeting-job`
 
 ## first some checks and then I can create a cluster in declarative mode
 
 Typing:
 
 ```bash
-cd ~/kind-playground/nginx-pod/
+cd ~/kind-playground/greeting-job/
 kind version
 kind get clusters
 kind get nodes
@@ -30,70 +30,36 @@ Remember, to access into a cluster, you need to know the location of the cluster
 kubectl config view
 ```
 
-## start pod named `nginx-pod` using declarative syntax
+## start pod named `greeting-job` using declarative syntax
 
 Typing:
 
 ```bash
 kubectl help apply
-ls -l ./nginx-pod.yaml
-kubectl apply --filename=nginx-pod.yaml
+ls -l ./greeting-job.yaml
+kubectl apply -f greeting-job.yaml
 ```
 
-## listing the Pods
-
-Typing:
+Now I can read its log with the following command:
 
 ```bash
-kubectl get Pods
+kubectl logs jobs/greeting-job
 ```
 
-or in wide mode:
+I can use the `watch` flag to update the output of the `kubectl` command:
 
 ```bash
-kubectl get Pods -o wide --show-labels
+kubectl get Pods --watch
 ```
 
-Listing the object in yaml format:
+## delete the pod `greeting-job` manually
+
+But, since I set automatic deletion, this command should not be necessary.
+
+Otherwise, if necessary I can perform the manual deletion with the following command:
 
 ```bash
-kubectl get Pods nginx-pod -o yaml
-```
-
-or, run the following command to get a dump:
-
-```bash
-kubectl get Pods nginx-pod -o yaml > nginx-pod-dump.yaml
-```
-
-## port forwarding
-
-Typing:
-
-```bash
-kubectl port-forward --address 0.0.0.0 Pods/nginx-pod 8080:80
-```
-
-## entering into the container inside `nginx-pod`:
-
-Typing:
-
-```bash
-kubectl exec -ti nginx-pod -- bash
-```
-
-or:
-
-```bash
-kubectl exec -ti nginx-pod -- /bin/bash
-```
-
-## delete the pod `nginx-pod`
-
-Typing:
-
-```bash
-kubectl delete Pods nginx-pod
+kubectl delete jobs greeting-job
 ```
 
 to then check the deletion:

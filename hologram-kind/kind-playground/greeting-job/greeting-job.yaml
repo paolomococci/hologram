@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: greeting-job
+  namespace: default
+spec:
+  completions: 8
+  parallelism: 2
+  backoffLimit: 3
+  activeDeadlineSeconds: 60
+  ttlSecondsAfterFinished: 90
+  template:
+    metadata:
+      name: greeting-job
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: greeting-container
+          image: busybox:latest
+          command: ["/bin/sh", "-c"]
+          args: ["echo 'Hello from the simply job!'; sleep 5"]
