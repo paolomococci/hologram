@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: greeting-cronjob
+  namespace: default
+spec:
+  schedule: "*/2 * * * *" # Runs the job every two minutes.
+  successfulJobsHistoryLimit: 6
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: greeting-cronjob
+              image: busybox:latest
+              resources:
+                requests:
+                  cpu: "100m"
+                  memory: "64Mi"
+                limits:
+                  cpu: "200m"
+                  memory: "128Mi"
+              imagePullPolicy: IfNotPresent
+              command:
+                ["/bin/sh", "-c", "date; echo 'Hello from the simply cronjob!'"]
