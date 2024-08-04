@@ -8,7 +8,6 @@ I give the following commands:
 cd ~/kind-playground/multi-container-with-init-pod/
 kind version
 kind get clusters
-kind get nodes
 ls -l ../kind-cluster-samples.yaml
 kind create cluster --config ../kind-cluster-samples.yaml
 kubectl cluster-info --context kind-cluster-samples
@@ -103,7 +102,7 @@ kubectl port-forward --address 0.0.0.0 pods/multi-container-with-init-pod 8080:8
 
 ## delete the pod `multi-container-with-init-pod`
 
-I give the following command:
+To delete the pod, I give the following command:
 
 ```bash
 kubectl delete pods multi-container-with-init-pod
