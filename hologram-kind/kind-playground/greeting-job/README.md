@@ -82,5 +82,4 @@ and I check its actual success:
 
 ```bash
 kind get clusters
-kind get nodes
 ```
