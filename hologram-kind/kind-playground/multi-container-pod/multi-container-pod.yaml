@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    app: test
+  labels:
+    environment: dev
+    tier: testing
+  name: multi-container-pod
+  namespace: default
+spec:
+  restartPolicy: OnFailure
+  containers:
+    - name: httpd-container
+      image: httpd:latest
+      ports:
+        - containerPort: 80
+          protocol: TCP
+    - name: busybox-container
+      image: busybox:latest
+      command: ["sleep"]
+      args: ["60"]
