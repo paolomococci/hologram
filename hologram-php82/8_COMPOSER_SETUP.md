@@ -31,7 +31,9 @@ If I find that I don't have an updated version of composer, npm and node, just i
 composer -v
 sudo composer self-update
 npm -v
+npm view npm versions
 node -v
+npm view node versions
 sudo npm cache clean -f
 sudo npm install -g n
 sudo n stable
