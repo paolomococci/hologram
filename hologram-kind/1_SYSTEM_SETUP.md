@@ -31,7 +31,7 @@ su -
 apt update
 apt list --upgradable
 apt upgrade
-apt install curl unzip btop plocate net-tools ufw git libltdl7 pigz
+apt install curl unzip btop plocate net-tools ufw git libltdl7 pigz pwgen
 apt autoclean
 apt autopurge
 ```
