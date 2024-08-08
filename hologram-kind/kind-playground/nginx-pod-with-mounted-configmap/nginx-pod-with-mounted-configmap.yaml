@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    app: webserver
+  labels:
+    environment: dev
+    run: nginx-pod-with-mounted-configmap
+    tier: frontend
+  name: nginx-pod-with-mounted-configmap
+  namespace: default
+spec:
+  volumes:
+    - name: mounted-configmap-volume
+      configMap:
+        name: mounted-configmap
+  containers:
+    - name: nginx-pod
+      image: nginx:latest
+      volumeMounts:
+        - name: mounted-configmap-volume
+          mountPath: /etc/conf
+          readOnly: true
