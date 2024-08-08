@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    app: webserver
+  labels:
+    environment: dev
+    run: nginx-pod-with-configmap
+    tier: frontend
+  name: nginx-pod-with-configmap
+  namespace: default
+spec:
+  containers:
+    - name: nginx-pod
+      image: nginx:latest
+      env:
+        - name: GREETING
+          valueFrom:
+            configMapKeyRef:
+              name: nginx-pod-configmap
+              key: greeting
