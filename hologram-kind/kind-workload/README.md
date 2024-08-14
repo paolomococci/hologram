@@ -5,6 +5,7 @@ KinD, (Kubernetes in Docker), cluster with one control-plane and two worker.
 I apply the `cluster-one-two`:
 
 ```bash
+kind version
 kind get clusters
 ls -l ~/kind-workload/kind-cluster-one-two.yaml
 kind create cluster --config ~/kind-workload/kind-cluster-one-two.yaml
@@ -21,11 +22,12 @@ kubectl config view
 kubectl get nodes -o wide
 kubectl describe nodes
 kubectl get sc
+kubectl get ns
 ```
 
 ## finally I proceed to delete the example cluster
 
-I delete the cluster by typing the following commands:
+Finally, I delete the cluster by typing the following commands:
 
 ```bash
 kind delete cluster --name cluster-one-two
