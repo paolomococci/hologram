@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    app: lorem-pod
+  labels:
+    environment: dev
+    run: lorem-pod
+    tier: frontend
+  name: lorem-pod
+  namespace: default
+spec:
+  containers:
+    - name: lorem-pod
+      image: lorem-webserver:1.0
+      # it is important to specify Never as the image pull policy
+      imagePullPolicy: Never
+      ports:
+        - containerPort: 80
+          protocol: TCP
+      ## resource limit settings
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "200m"
+          ## two hundred thousandths of a CPU core, 20%
