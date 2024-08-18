@@ -1,0 +1,10 @@
+# five node cluster configuration with one control-plane and four workers
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: cluster-one-four
+nodes:
+  - role: control-plane
+  - role: worker
+  - role: worker
+  - role: worker
+  - role: worker
