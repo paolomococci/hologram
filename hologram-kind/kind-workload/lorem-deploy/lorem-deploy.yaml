@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lorem-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: lorem
+      environment: dev
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: lorem
+        environment: dev
+    spec:
+      containers:
+        - name: lorem
+          image: lorem-webserver:1.0
+          imagePullPolicy: Never
+          # never tries to fetching the image
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          ## resource limit settings
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+          ## two hundred thousandths of a CPU core, 20%
+          ## Liveness Probe settings
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 1
+            periodSeconds: 1
