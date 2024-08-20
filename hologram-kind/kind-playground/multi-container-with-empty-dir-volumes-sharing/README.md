@@ -1,11 +1,10 @@
-# example of multiple container with a `shared directory`
+# `cluster-samples` KinD cluster with a Pod
 
 ## first some checks and then I can create a cluster in declarative mode
 
-I give the following commands:
+Typing:
 
 ```bash
-cd ~/kind-playground/multi-container-with-empty-dir-volumes-sharing-pod/
 kind version
 kind get clusters
 ls -l ~/kind-playground/kind-cluster-samples.yaml
@@ -15,61 +14,50 @@ kubectl cluster-info --context kind-cluster-samples
 
 ## check the number of nodes in the cluster
 
-I give the following commands:
+Typing:
 
 ```bash
 kind get clusters
+docker container ls
 kubectl get nodes
 ```
 
-Now I can take a look at the cluster configuration:
+Remember, to access into a cluster, you need to know the location of the cluster and have credentials to access it.
 
 ```bash
 kubectl config view
 ```
 
-## start pod named `multi-container-with-empty-dir-volumes-sharing-pod` using declarative syntax
-
-I give the following commands:
-
-```bash
-kubectl help apply
-ls -l ./multi-container-with-empty-dir-volumes-sharing-pod.yaml
-kubectl apply -f multi-container-with-empty-dir-volumes-sharing-pod.yaml
-```
-
 ## listing the Pods
 
-I give the following command:
+I can use the `watch` flag to update the output of the `kubectl` command in another virtual terminal:
 
 ```bash
-kubectl get pods
+kubectl get pods -o wide --show-labels --watch
 ```
 
-or in wide mode:
+It remains to be considered that the pod `busybox-container` remains active for a few minutes.
+
+## start pod named `multi-container-with-empty-dir-volumes-sharing-pod` using declarative syntax
+
+Typing:
 
 ```bash
-kubectl get pods -o wide --show-labels
+ls -l ~/kind-playground/multi-container-with-empty-dir-volumes-sharing-pod/multi-container-with-empty-dir-volumes-sharing-pod.yaml
+kubectl apply -f ~/kind-playground/multi-container-with-empty-dir-volumes-sharing-pod/multi-container-with-empty-dir-volumes-sharing-pod.yaml
 ```
 
-Listing the object in yaml format:
+## describe the objects:
 
 ```bash
-kubectl get pods multi-container-with-empty-dir-volumes-sharing-pod -o yaml
+kubectl describe pods multi-container-with-empty-dir-volumes-sharing-pod
 ```
 
 or, run the following command to get a dump:
 
 ```bash
 kubectl get pods multi-container-with-empty-dir-volumes-sharing-pod -o yaml > multi-container-with-empty-dir-volumes-sharing-pod-dump.yaml
-kubectl describe pods multi-container-with-empty-dir-volumes-sharing-pod
 kubectl describe pods multi-container-with-empty-dir-volumes-sharing-pod > multi-container-with-empty-dir-volumes-sharing-pod-dump.txt
-```
-
-I can use the `watch` flag to update the output of the `kubectl` command:
-
-```bash
-kubectl get pods --watch
 ```
 
 ## check empty dir volumes sharing
@@ -84,11 +72,11 @@ kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container busy
 I try to write and read the contents of a file in the shared directory:
 
 ```bash
-kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container httpd-container -- touch /var/shared/greeting.txt
-kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container httpd-container -- ls /var/shared/
-kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container httpd-container -- bash -c 'echo "Hello from this volume sharing!" >> /var/shared/greeting.txt'
-kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container httpd-container -- cat /var/shared/greeting.txt
-kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container busybox-container -- cat /var/shared/greeting.txt
+kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container httpd-container -- touch /var/empty-dir-vol/greeting.txt
+kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container httpd-container -- ls /var/empty-dir-vol/
+kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container httpd-container -- bash -c 'echo "Hello from this volume sharing!" >> /var/empty-dir-vol/greeting.txt'
+kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container httpd-container -- cat /var/empty-dir-vol/greeting.txt
+kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container busybox-container -- cat /var/empty-dir-vol/greeting.txt
 ```
 
 ## entering into the containers inside `multi-container-with-empty-dir-volumes-sharing-pod`:
@@ -113,7 +101,7 @@ kubectl logs -f pods/multi-container-with-empty-dir-volumes-sharing-pod --contai
 
 ## port forwarding
 
-I give the following commands:
+Typing:
 
 ```bash
 kubectl exec multi-container-with-empty-dir-volumes-sharing-pod --container httpd-container -- cat /usr/local/apache2/htdocs/index.html
@@ -123,25 +111,19 @@ kubectl port-forward --address 0.0.0.0 pods/multi-container-with-empty-dir-volum
 
 ## delete the pod `multi-container-with-empty-dir-volumes-sharing-pod`
 
-To delete the pod, I give the following command:
+Typing:
 
 ```bash
 kubectl delete pods multi-container-with-empty-dir-volumes-sharing-pod
 ```
 
-to then check the deletion:
-
-```bash
-kubectl get pods
-```
+In the other terminal I can see the pods ending their lifecycle.
 
 ## delete the cluster
 
 Finally, I delete the cluster by typing the following commands:
 
 ```bash
-kind get clusters
-kind help delete cluster
 kind delete cluster --name cluster-samples
 ```
 
