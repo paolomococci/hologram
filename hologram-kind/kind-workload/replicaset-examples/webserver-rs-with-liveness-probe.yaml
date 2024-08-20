@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: webserver
-          image: httpd:latest
+          image: httpd:2.4
           imagePullPolicy: IfNotPresent
           # the httpd image is pulled only if it is not already present locally
           ports:

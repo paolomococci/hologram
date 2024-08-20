@@ -12,7 +12,7 @@ spec:
   restartPolicy: OnFailure
   containers:
     - name: httpd-container
-      image: httpd:latest
+      image: httpd:2.4
       imagePullPolicy: IfNotPresent
       ports:
         - containerPort: 80
