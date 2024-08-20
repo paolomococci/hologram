@@ -13,10 +13,20 @@ spec:
   containers:
     - name: httpd-container
       image: httpd:latest
+      imagePullPolicy: IfNotPresent
       ports:
         - containerPort: 80
           protocol: TCP
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "200m"
     - name: busybox-container
       image: busybox:latest
+      imagePullPolicy: IfNotPresent
       command: ["sleep"]
       args: ["60"]
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "200m"

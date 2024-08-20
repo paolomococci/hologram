@@ -17,7 +17,12 @@ spec:
   containers:
     - name: nginx-pod
       image: nginx:latest
+      imagePullPolicy: IfNotPresent
       volumeMounts:
         - name: mounted-configmap-volume
           mountPath: /etc/conf
           readOnly: true
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "200m"

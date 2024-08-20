@@ -13,9 +13,14 @@ spec:
   containers:
     - name: nginx-pod
       image: nginx:latest
+      imagePullPolicy: IfNotPresent
       env:
         - name: GREETING
           valueFrom:
             configMapKeyRef:
               name: nginx-pod-configmap
               key: greeting
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "200m"
