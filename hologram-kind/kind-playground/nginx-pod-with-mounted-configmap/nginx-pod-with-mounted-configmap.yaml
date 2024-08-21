@@ -16,7 +16,7 @@ spec:
         name: mounted-configmap
   containers:
     - name: nginx-pod
-      image: nginx:latest
+      image: nginx:1.27
       imagePullPolicy: IfNotPresent
       volumeMounts:
         - name: mounted-configmap-volume

@@ -12,7 +12,7 @@ metadata:
 spec:
   containers:
     - name: nginx-pod
-      image: nginx:latest
+      image: nginx:1.27
       imagePullPolicy: IfNotPresent
       resources:
         limits:
