@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    app: webserver
+  labels:
+    environment: dev
+    run: nginx-pod
+    tier: frontend
+  name: nginx-pod
+  namespace: default
+spec:
+  containers:
+    - name: nginx-pod
+      image: nginx:1.27
+      imagePullPolicy: IfNotPresent
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "200m"
