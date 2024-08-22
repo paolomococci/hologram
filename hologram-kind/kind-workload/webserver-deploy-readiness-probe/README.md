@@ -1,6 +1,12 @@
 # `webserver-deploy-readiness-probe`
 
-## testing a simple web server pod
+## first, I test a simple web server pod
+
+To monitor the pod, in a separate terminal, I typed the following command:
+
+```bash
+kubectl get pods -o wide --watch
+```
 
 ### start the pod `nginx-pod`
 
@@ -35,33 +41,11 @@ cat > /usr/share/nginx/html/index.html << EOF
     <h1>Hello from Kubernetes in Docker example!</h1>
     <h3>This content is served from a web server hosted in the pod with IP address: <em>$(hostname -i)</h3>
     <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita,
-      blanditiis quam inventore voluptatem quis quisquam temporibus doloremque
-      incidunt corporis laboriosam enim eaque aut veniam quo vel cupiditate
-      consectetur at non sequi voluptates ad beatae rerum cum eius! Soluta
-      magnam dignissimos, aperiam cumque aliquam, dolorum ab consequatur
-      nesciunt dolor doloribus enim itaque animi, quia voluptatem beatae et
-      adipisci quos possimus autem. Assumenda tempora voluptates ad consectetur
-      architecto, expedita dolorem, eaque rem cupiditate sed consequatur
-      aliquam. Autem possimus, ipsam, assumenda ipsa placeat sapiente
-      repellendus, laboriosam repudiandae cupiditate cumque iusto necessitatibus
-      similique! Sequi vel aperiam sunt fuga odit laborum, velit tempora, quis
-      reprehenderit sit cumque, praesentium aliquam nulla soluta. Eveniet
-      ratione nisi facere sed fuga molestias modi similique eaque porro unde
-      temporibus quod repellat, aliquid tempora cupiditate enim facilis illum,
-      ea, quos minima dolor quo repellendus! Nulla eligendi ad, architecto sunt
-      temporibus eveniet beatae ipsa tempora repellendus numquam enim illum, sit
-      aut ab amet quasi debitis pariatur cum velit! Itaque commodi doloribus,
-      repellat nihil hic necessitatibus sint! Debitis, blanditiis cumque
-      repellendus voluptatum perferendis nobis hic accusantium id enim eligendi
-      odit incidunt voluptate cupiditate illo sequi sit recusandae omnis vero
-      magnam! Blanditiis doloremque magnam deserunt temporibus unde error atque
-      laudantium assumenda pariatur. Cumque, provident.
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit...
     </p>
 </body>
 </html>
 EOF
-exit
 ```
 
 Then I apply the `port forwarding`:
@@ -75,8 +59,6 @@ To stop port forwarding, simply type the key combination `ctrl+C` within the sam
 
 ### delete the pod `nginx-pod`
 
-Typing:
-
 ```bash
 kubectl delete pods nginx-pod
 ```
@@ -85,4 +67,67 @@ to then check the deletion:
 
 ```bash
 kubectl get pods
+```
+
+## second, to get to the heart of this example I can use a `kustomization.yaml` file
+
+```bash
+ls -l ~/kind-workload/webserver-deploy-readiness-probe/custom/kustomization.yaml
+kubectl apply -k ~/kind-workload/webserver-deploy-readiness-probe/custom/
+```
+
+By doing this I do nothing more than apply the manifest files listed in `~/kind-workload/webserver-deploy-readiness-probe/custom/kustomization.yaml`.
+
+### test the Deployment object
+
+To monitor the pod, in a separate terminal, I typed the following command:
+
+```bash
+kubectl get pods -o wide --watch
+```
+
+```bash
+kubectl get deploy
+kubectl get svc
+kubectl get nodes -o wide
+```
+
+Now I consider the node names and IP addresses obtained from the last command.
+After choosing one, I type the following commands, remembering that the port number is the one set in the `webserver-svc.yaml` manifest:
+
+```bash
+ping -c 3 <ip_node_address>
+curl http://<ip_node_address>:31001
+```
+
+Well, if for some reason a node should respond to the home page request with an error, it is good to send the same request to another node, which can also be `control-plane`.
+However, it would be good to investigate the return of the above error.
+
+### scaling the Deployment object
+
+```bash
+kubectl scale deploy webserver-deploy --replicas=3
+```
+
+Now I have to simulate a pod failure, choosing the pod previously selected:
+
+```bash
+kubectl exec -ti webserver-deploy-__________-_____ -- ls -l /usr/share/nginx/html/probe
+kubectl exec -ti webserver-deploy-__________-_____ -- rm /usr/share/nginx/html/probe
+```
+
+Here is the following request that returns me an error code:
+
+```bash
+curl http://<ip_node_address>:31001/probe
+```
+
+After a short while, the damaged pod will no longer be available.
+
+### deleting Service and Distribution objects
+
+```bash
+kubectl delete svc webserver-svc
+kubectl delete deploy webserver-deploy
+kubectl get pods,deploy,svc
 ```

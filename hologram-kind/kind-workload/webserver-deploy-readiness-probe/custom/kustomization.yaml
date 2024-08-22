@@ -1,0 +1,3 @@
+resources:
+- webserver-deploy.yaml
+- webserver-svc.yaml
