@@ -93,3 +93,34 @@ ls -al
 cp hologram-kind.qcow2  /var/lib/libvirt/images/
 virsh define hologram-kind.xml
 ```
+
+## network tools setup
+
+It would be helpful to install some network tools:
+
+```bash
+apt install nmap ncat
+```
+
+## development tools and libraries
+
+I will need the following packages:
+
+* build-essential
+* python3
+* python3-pip
+
+With the following command I can check if the package is already installed:
+
+```bash
+dpkg -l build-essential
+```
+
+To then proceed with installing the packages that are not yet present on the system.
+
+As follows, for example only:
+
+```bash
+apt update  
+apt install build-essential python3-pip
+```
