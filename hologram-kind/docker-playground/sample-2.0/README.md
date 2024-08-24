@@ -26,6 +26,7 @@ To develop the sample application, refer to file `README` in directory `sample`.
 Once the sample web application is built I can issue the following command:
 
 ```bash
+cd ~/docker-playground/sample-2.0/
 docker build -t sample:2.0 .
 ```
 
