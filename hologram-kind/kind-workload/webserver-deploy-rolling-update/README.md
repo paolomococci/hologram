@@ -14,9 +14,15 @@ kind get clusters
 ```
 
 I will use the cluster name obtained from the previous command to load the custom image present locally, created with the procedure described in the `~/docker-playground/sample-1.0/README.md` and `~/docker-playground/sample-2.0/README.md` files:
+Anyway, I make sure I have the custom images ready to use:
 
 ```bash
 docker images --all
+```
+
+I upload images to local cluster:
+
+```bash
 kind load docker-image sample:1.0 --name cluster-one-five
 kind load docker-image sample:2.0 --name cluster-one-five
 ```
