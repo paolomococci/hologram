@@ -2,11 +2,30 @@
 
 Below is an example of a custom docker image used locally for testing purposes.
 
+![sample one](./screenshots/sample-one.png)
+
+## create a sample web application
+
 ```bash
 docker version
 docker info
-ls ~/docker-playground/sample-1.0/
-cd ~/docker-playground/sample-1.0/
+cd ~/docker-playground/
+mkdir sample-1.0 && cd sample-1.0
+```
+
+Now I'm going to develop a `sample` Vue application:
+
+```bash
+npm create vue@latest
+```
+
+To develop the sample application, refer to file `README` in directory `sample`.
+
+## image build
+
+Once the sample web application is built I can issue the following command:
+
+```bash
 docker build -t sample:1.0 .
 ```
 
