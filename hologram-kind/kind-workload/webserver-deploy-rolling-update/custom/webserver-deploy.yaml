@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver-deploy
+  labels:
+    app: webserver-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      ## label to which the webserver-svc selector refers
+      app: webserver-deploy
+      environment: dev
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: webserver-deploy
+        environment: dev
+    spec:
+      containers:
+        - name: webserver
+          image: sample:1.0
+          # never tries to fetching the image
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          ## resource limit settings
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+          command:
+            - /bin/bash
+            - -c
+            - |
+              touch /usr/share/nginx/html/probe
+              nginx -g "daemon off;"
+          ## Readiness Probe settings
+          readinessProbe:
+            httpGet:
+              path: /probe
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
