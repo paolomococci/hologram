@@ -85,7 +85,7 @@ kubectl apply -f ~/kind-workload/webserver-deploy-rolling-update/custom/webserve
 Or, in development and testing I could use the imperative command:
 
 ```bash
-kubectl set image deploy webserver-deploy sample=sample:2.0
+kubectl set image deploy webserver-deploy webserver=sample:2.0
 ```
 
 Now I can rollout:
