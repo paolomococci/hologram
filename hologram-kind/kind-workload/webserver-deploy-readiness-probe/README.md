@@ -124,7 +124,7 @@ curl http://<ip_node_address>:31001/probe
 
 After a short while, the damaged pod will no longer be available.
 
-### deleting Service and Distribution objects
+### deleting Service and Deployment objects
 
 ```bash
 kubectl delete svc webserver-svc
