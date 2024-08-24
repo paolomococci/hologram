@@ -13,7 +13,7 @@ With the following command I will get, unequivocally, the name of the cluster:
 kind get clusters
 ```
 
-I will use the cluster name obtained from the previous command to load the custom image present locally, created with the procedure described in the `~/docker-playground/sample-1.0/README.md` and `~/docker-playground/sample-2.0/README.md` files:
+I will use the cluster name obtained from the previous command to load the custom image present locally, created with the procedure described in the `~/docker-playground/sample-1.0/README.md`, `~/docker-playground/sample-2.0/README.md` and `~/docker-playground/sample-3.0/README.md` files.
 Anyway, I make sure I have the custom images ready to use:
 
 ```bash
@@ -25,6 +25,7 @@ I upload images to local cluster:
 ```bash
 kind load docker-image sample:1.0 --name cluster-one-five
 kind load docker-image sample:2.0 --name cluster-one-five
+kind load docker-image sample:3.0 --name cluster-one-five
 ```
 
 Be careful, if you skip this step, when you create the pod you will get an error `ErrImageNeverPull` in column `STATUS` when you request the list of pods.
@@ -82,16 +83,11 @@ ls -l ~/kind-workload/webserver-deploy-rolling-update/custom/webserver-deploy.ya
 kubectl apply -f ~/kind-workload/webserver-deploy-rolling-update/custom/webserver-deploy.yaml
 ```
 
-Or, in development and testing I could use the imperative command:
-
-```bash
-kubectl set image deploy webserver-deploy webserver=sample:2.0
-```
-
 Now I can rollout:
 
 ```bash
-kubectl rollout status deploy webserver-deploy --watch
+kubectl rollout status deploy --help
+kubectl rollout status deploy webserver-deploy
 kubectl describe deploy webserver-deploy | grep -i "Image:"
 kubectl get rs -o wide
 kubectl describe pods | grep -i "Image:"
@@ -105,10 +101,55 @@ curl http://<ip_node_address>:31001
 
 ![sample two](./screenshots/sample-two.png)
 
+In development and testing I could use the imperative command:
+
+```bash
+kubectl set image deploy webserver-deploy webserver=sample:3.0
+```
+
+Now I can roll out to version three:
+
+```bash
+kubectl rollout status deploy webserver-deploy
+kubectl describe deploy webserver-deploy | grep -i "Image:"
+kubectl get rs -o wide
+kubectl describe pods | grep -i "Image:"
+```
+
+I check the version of the application just updated:
+
+```bash
+curl http://<ip_node_address>:31001
+```
+
+![sample three](./screenshots/sample-three.png)
+
 Now I want to test rolling back to previous version of image:
 
 ```bash
 kubectl rollout undo deploy webserver-deploy
+kubectl rollout status deploy webserver-deploy
+kubectl describe deploy webserver-deploy | grep -i "Image:"
+kubectl get rs -o wide
+kubectl describe pods | grep -i "Image:"
+```
+
+I check the application rolling back:
+
+```bash
+curl http://<ip_node_address>:31001
+```
+
+![sample two](./screenshots/sample-two.png)
+
+Now I want to try to roll out back by explicitly indicating the version:
+
+```bash
+kubectl rollout history deploy --help
+kubectl rollout history deploy webserver-deploy
+kubectl rollout undo deploy --help
+kubectl rollout undo deploy webserver-deploy --to-revision=1
+kubectl rollout status deploy webserver-deploy
 kubectl describe deploy webserver-deploy | grep -i "Image:"
 kubectl get rs -o wide
 kubectl describe pods | grep -i "Image:"
