@@ -1,19 +1,13 @@
 # hologram-mini
 
-Procedure for obtaining a basic system.
+Procedure to get a system to customize later.
 
 ## useful commands
 
-Once the installation is complete, you can use the following commands to become familiar with the system.
-With root credentials:
+Once the installation is complete, with root credentials, I can use the following commands to become familiar with the system:
 
 ```bash
-su -
-nmap -sn 192.168.1.0/24
-nmap -sP 192.168.1.0/24
-nmap -sV -O -v 192.168.1.XXX
-exit
-ssh developer_username@192.168.1.XXX
+hostname -I
 ls -al
 uptime
 uname --all
@@ -22,18 +16,20 @@ lspci
 lsblk
 free -h
 df -h
-hostname -I
-ip a
-ip n
-ip r
-ss -tuna
 su -
 apt update
 apt list --upgradable
 apt upgrade
-apt install curl unzip btop plocate net-tools ufw git libltdl7 pigz
+apt install curl unzip btop plocate net-tools ufw git libltdl7 pigz nmap
 apt autoclean
 apt autopurge
+nmap -sn 192.168.1.0/24
+nmap -sP 192.168.1.0/24
+nmap -sV -O -v 192.168.1.XXX
+ip a
+ip n
+ip r
+ss -tuna
 ```
 
 A short command line to see, for example, the license of package `btop`:
