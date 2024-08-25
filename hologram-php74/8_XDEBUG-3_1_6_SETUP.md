@@ -83,7 +83,7 @@ sudo systemctl status php-fpm74 --no-pager
 php -v
 ```
 
-### setup of vscode
+### on client setup of vscode
 
 Now you need to add file `launch.json` to folder `.vscode`.
 Adding the following:

@@ -35,7 +35,7 @@ sudo /etc/init.d/ssh restart
 sudo reboot
 ```
 
-## setup of vscode
+## on client setup of vscode
 
 Edit sftp.json like this:
 

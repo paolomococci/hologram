@@ -45,7 +45,7 @@ Now it's time to restart the ssh service:
 reboot
 ```
 
-## setup of vscode
+## on client setup of vscode
 
 Edit sftp.json like this:
 
