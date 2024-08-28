@@ -124,6 +124,8 @@ apt install nfs-common
 ls -l /mnt/
 mkdir -p /mnt/shared
 mount 192.168.1.XXX:/var/nfs /mnt/shared
+echo "Example of writing simple text to a file hosted in a shared directory using NFS." > /mnt/shared/example.txt
+less /mnt/shared/example.txt
 ```
 
 Finally, to `umount` the shared directory I will have to issue the following command:
