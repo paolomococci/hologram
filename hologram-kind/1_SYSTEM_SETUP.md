@@ -20,7 +20,7 @@ su -
 apt update
 apt list --upgradable
 apt upgrade
-apt install curl unzip btop plocate net-tools ufw git libltdl7 pigz nmap
+apt install curl unzip btop plocate net-tools ufw git libltdl7 pigz nmap ncat
 apt autoclean
 apt autopurge
 nmap -sn 192.168.1.0/24
@@ -88,14 +88,6 @@ cd vm_backup
 ls -al
 cp hologram-kind.qcow2  /var/lib/libvirt/images/
 virsh define hologram-kind.xml
-```
-
-## network tools setup
-
-It would be helpful to install some network tools:
-
-```bash
-apt install nmap ncat
 ```
 
 ## development tools and libraries
