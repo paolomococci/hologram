@@ -1,4 +1,4 @@
-# install and setup Kubernetes
+# install and setup `kubectl`
 
 ## prepare the installation
 
