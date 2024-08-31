@@ -4,12 +4,22 @@
 
 ### on client
 
+This only needs to be done if you haven't already generated a key on the client:
+
 ```bash
 chmod 755 ~/.ssh
 ssh-keygen -b 4096
+```
+
+Now it's time to copy the key to the remote system:
+
+```bash
+ls -l ~/.ssh/
 ssh-copy-id -i ~/.ssh/id_rsa.pub developer_username@192.168.1.XXX
 ssh developer_username@192.168.1.XXX
 ```
+
+I need to replace `id_rsa.pub` with the most appropriate file name found in the directory `~/.ssh/`.
 
 ### on server
 

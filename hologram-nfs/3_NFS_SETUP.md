@@ -53,9 +53,10 @@ ls -l /var/
 mkdir -p /var/nfs
 chown nobody:nogroup /var/nfs
 ls /etc/exports
-less /etc/exports
+cat /etc/exports
 echo "/var/nfs 192.168.1.0/24(rw,sync,no_subtree_check)" >> /etc/exports
 exportfs -a
+exportfs -s
 ```
 
 and then I restart the service `nfs-kernel-server`:
@@ -99,7 +100,7 @@ ls -l /etc/default/nfs-common
 cat /etc/default/nfs-common
 perl -pi -e 's/^NEED_STATD=/NEED_STATD="no"/' /etc/default/nfs-common
 perl -pi -e 's/^NEED_IDMAPD=/NEED_IDMAPD="yes"/' /etc/default/nfs-common
-rnano /etc/default/nfs-common
+cat /etc/default/nfs-common
 ```
 
 To complete the operation I also edited the file `/etc/default/nfs-kernel-server`.

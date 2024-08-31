@@ -17,6 +17,7 @@ lsblk
 free -h
 df -h
 su -
+cat /etc/debian_version
 apt update
 apt list --upgradable
 apt upgrade

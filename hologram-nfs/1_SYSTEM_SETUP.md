@@ -16,12 +16,11 @@ lsblk
 free -h
 df -h
 su -
+cat /etc/debian_version
 apt update
 apt list --upgradable
 apt upgrade
-apt show netcat-openbsd
-apt show netcat-traditional
-apt install curl unzip btop plocate net-tools ufw git pigz nmap netcat-traditional
+apt install curl unzip btop plocate net-tools ufw git pigz nmap ncat
 apt autoclean
 apt autopurge
 uptime

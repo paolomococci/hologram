@@ -14,29 +14,24 @@ ssh-keygen -b 4096
 Now it's time to copy the key to the remote system:
 
 ```bash
+ls -l ~/.ssh/
 ssh-copy-id -i ~/.ssh/id_rsa.pub developer_username@192.168.1.XXX
 ssh developer_username@192.168.1.XXX
 ```
 
-Obviously, the name of the public key depends on the system.
+I need to replace `id_rsa.pub` with the most appropriate file name found in the directory `~/.ssh/`.
 
 ### on server
 
 ```bash
+perl --help
 su -
-ls -l /etc/ssh/sshd_config
-nano /etc/ssh/sshd_config
-```
-
-Edit the file so that the following settings have the values as below:
-
-```text
-HostbasedAuthentication yes
-RSAAuthentication yes
-PubkeyAuthentication yes
-ChallengeResponseAuthentication no
-PasswordAuthentication no
-UsePAM no
+perl -pi -e 's/^#HostbasedAuthentication no/HostbasedAuthentication yes/' /etc/ssh/sshd_config
+perl -pi -e 's/^#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+perl -pi -e 's/^#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
+perl -pi -e 's/^UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
+echo "RSAAuthentication yes" >> /etc/ssh/sshd_config
+echo "ChallengeResponseAuthentication no" >> /etc/ssh/sshd_config
 ```
 
 Now it's time to restart the ssh service:

@@ -14,11 +14,12 @@ ssh-keygen -b 4096
 Now it's time to copy the key to the remote system:
 
 ```bash
+ls -l ~/.ssh/
 ssh-copy-id -i ~/.ssh/id_rsa.pub developer_username@192.168.1.XXX
 ssh developer_username@192.168.1.XXX
 ```
 
-Obviously, the name of the public key depends on the system.
+I need to replace `id_rsa.pub` with the most appropriate file name found in the directory `~/.ssh/`.
 
 ### on server
 
