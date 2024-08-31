@@ -19,7 +19,9 @@ su -
 apt update
 apt list --upgradable
 apt upgrade
-apt install curl unzip btop plocate net-tools ufw git pigz nmap
+apt show netcat-openbsd
+apt show netcat-traditional
+apt install curl unzip btop plocate net-tools ufw git pigz nmap netcat-traditional
 apt autoclean
 apt autopurge
 uptime
