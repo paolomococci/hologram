@@ -19,10 +19,10 @@ Actual installation:
 ```bash
 cd ~
 mkdir linux_x86-64 && cd linux_x86-64
-wget https://go.dev/dl/go1.22.5.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.23.0.linux-amd64.tar.gz
 ls -l
-sha256sum go1.22.5.linux-amd64.tar.gz
-tar --directory /usr/local -xzf go1.22.5.linux-amd64.tar.gz
+sha256sum go1.23.0.linux-amd64.tar.gz
+tar --directory /usr/local -xzf go1.23.0.linux-amd64.tar.gz
 cd ~
 ```
 
