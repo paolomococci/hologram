@@ -1,5 +1,7 @@
 # install Minikube
 
+*However, it is good to remember that it would always be better to obtain information directly from the project website.*
+
 Minikube is a useful tool for testing Kubernetes scenarios without running a multi-node cluster.
 
 ## installation thanks to the Debian package

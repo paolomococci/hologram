@@ -1,5 +1,7 @@
 # install `go` programming language
 
+*However, it is good to remember that it would always be better to obtain information directly from the project website.*
+
 If present, I will first have to remove the previous installation of`go` programming language:
 
 ```bash

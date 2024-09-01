@@ -1,5 +1,7 @@
 # install and setup `kubectl`
 
+*However, it is good to remember that it would always be better to obtain information directly from the project website.*
+
 ## prepare the installation
 
 Verify the installation of the following packages:

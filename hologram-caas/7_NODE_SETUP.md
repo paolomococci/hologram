@@ -1,5 +1,7 @@
 # `node` and `npm` setup
 
+*However, it is good to remember that it would always be better to obtain information directly from the project website.*
+
 Following are the steps I took to install `node` and `npm` from source code, after reading what was specified on the project website:
 
 ```bash

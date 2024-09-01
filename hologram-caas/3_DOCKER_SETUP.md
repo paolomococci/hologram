@@ -1,5 +1,7 @@
 # install and setup Docker Engine
 
+*However, it is good to remember that it would always be better to obtain information directly from the project website.*
+
 Install from `apt` repository:
 
 ```bash
