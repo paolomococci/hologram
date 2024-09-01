@@ -162,7 +162,6 @@ But, to set the mount at client systems boot, I will need to edit the `/etc/fsta
 
 ```bash
 ls -l /etc/fstab
-nano /etc/fstab
 ```
 
 I adding a line similar to the following:
@@ -170,3 +169,33 @@ I adding a line similar to the following:
 ```text
 192.168.1.XXX:/var/nfs  /mnt/shared nfs default 0 0
 ```
+
+With the following command:
+
+```bash
+echo "192.168.1.XXX:/var/nfs	/mnt/shared	nfs	defaults	0	0" >> /etc/fstab
+```
+
+I create the file `/etc/network/if-up.d/fstab`:
+
+
+```bash
+nano /etc/network/if-up.d/fstab
+```
+
+And I edit it as follows:
+
+```bash
+#!/bin/bash
+mount --all
+```
+
+I do a check, make it executable and finally reboot the system:
+
+```bash
+cat /etc/network/if-up.d/fstab
+chmod 755 /etc/network/if-up.d/fstab
+reboot
+```
+
+*It goes without saying that the correct IP address must be entered.*
