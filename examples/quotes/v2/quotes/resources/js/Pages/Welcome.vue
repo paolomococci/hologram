@@ -33,8 +33,8 @@ function handleImageError() {
         <img alt="background" id="background" class="absolute -left-20 top-0 max-w-[877px]" src="img/background.svg" />
         <div
             class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#f22] selection:text-white">
-            <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                <header class="grid items-center grid-cols-2 gap-2 py-10 lg:grid-cols-3">
+            <div class="relative px-6 w-full max-w-2xl lg:max-w-7xl">
+                <header class="grid grid-cols-2 gap-2 items-center py-10 lg:grid-cols-3">
                     <div class="flex lg:justify-center lg:col-start-2">
                         <h1 class="text-3xl uppercase text-slate-600">
                             <span class="p-2 m-2 rounded-full backdrop-blur-sm bg-red-500/10">
@@ -42,7 +42,7 @@ function handleImageError() {
                             </span>
                         </h1>
                     </div>
-                    <nav v-if="canLogin" class="flex justify-end flex-1 -mx-3">
+                    <nav v-if="canLogin" class="flex flex-1 justify-end -mx-3">
                         <Link v-if="$page.props.auth.user" :href="route('dashboard')"
                             class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#f22] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                         Dashboard
@@ -83,8 +83,8 @@ function handleImageError() {
                         <a href="#" id="docs-card"
                             class="flex flex-col items-start gap-6 overflow-hidden rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#f22] md:row-span-3 lg:p-10 lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#f22]">
 
-                            <div class="relative flex items-center gap-6 lg:items-end">
-                                <div id="docs-card-content" class="flex items-start gap-6 lg:flex-col">
+                            <div class="flex relative gap-6 items-center lg:items-end">
+                                <div id="docs-card-content" class="flex gap-6 items-start lg:flex-col">
                                     <div
                                         class="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#f22]/10 sm:size-16">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -181,7 +181,7 @@ function handleImageError() {
 
                                 <ul class="mt-4 text-sm/relaxed">
                                     <li>
-                                        <a href="https://192.168.122.103/retriever/index.html" target="_blank">
+                                        <a href="#" target="_blank">
                                             Retriever
                                         </a>
                                     </li>
