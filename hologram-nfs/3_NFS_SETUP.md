@@ -121,7 +121,7 @@ echo 'RPCNFSDOPTS="-N 2 -N 3"' >> /etc/default/nfs-kernel-server
 cat /etc/default/nfs-kernel-server
 ```
 
-## clients setup
+## test clients setup
 
 The settings required on clients to use the service are as follows:
 

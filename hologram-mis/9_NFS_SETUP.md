@@ -11,13 +11,22 @@ dpkg -l nfs-common
 apt install nfs-common
 ls -l /mnt/
 mkdir -p /mnt/shared
+mkdir -p /mnt/frontend
+mkdir -p /mnt/backend
+mkdir -p /mnt/datastore
 mount 192.168.1.XXX:/var/nfs /mnt/shared
+mount 192.168.1.XXX:/var/frontend /mnt/frontend
+mount 192.168.1.XXX:/var/backend /mnt/backend
+mount 192.168.1.XXX:/var/datastore /mnt/datastore
 ```
 
 To simplify things, just for example, I could allow full access to all users of the system:
 
 ```bash
 chmod 777 /mnt/shared
+chmod 777 /mnt/frontend
+chmod 777 /mnt/backend
+chmod 777 /mnt/datastore
 exit
 ```
 
@@ -54,6 +63,10 @@ With the following command:
 
 ```bash
 echo "192.168.1.XXX:/var/nfs	/mnt/shared	nfs	defaults	0	0" >> /etc/fstab
+echo "192.168.1.XXX:/var/frontend	/mnt/frontend	nfs	defaults	0	0" >> /etc/fstab
+echo "192.168.1.XXX:/var/backend	/mnt/backend	nfs	defaults	0	0" >> /etc/fstab
+echo "192.168.1.XXX:/var/datastore	/mnt/datastore	nfs	defaults	0	0" >> /etc/fstab
+tail /etc/fstab
 ```
 
 I create the file `/etc/network/if-up.d/fstab`:
