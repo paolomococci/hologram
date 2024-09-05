@@ -42,3 +42,17 @@ npm -v
 npm view npm version
 npm install -g npm@latest
 ```
+
+## check the licenses of the packages used
+
+Here is an example of a utility that I can use:
+
+```bash
+npm install -g license-report
+```
+
+and now follows a tip on how to use it in the root of projects:
+
+```bash
+license-report --output=csv > licenses_report.csv
+```
