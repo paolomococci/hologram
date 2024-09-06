@@ -31,7 +31,7 @@ docker volume ls
 docker volume inspect frontend-nfs-volume
 ```
 
-I check that there is not already a container with the name of `frontend-nfs-volume`:
+I check that there is not already a container with the name of `frontend-container-1-0`:
 
 ```bash
 docker container ls --all | grep -i "frontend-container-"
