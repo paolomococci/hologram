@@ -40,6 +40,14 @@ I add a few lines of code to the `vite.config.js` file to set the port and make 
 ...
 ```
 
+## add VueDevTools
+
+```bash
+npm i --save-dev vite-plugin-vue-devtools
+```
+
+Now I need to modify files `vite.config.js` and `package.json`.
+
 ## compile and hot-reload for development
 
 ```bash
