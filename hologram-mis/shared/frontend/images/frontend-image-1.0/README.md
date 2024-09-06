@@ -9,6 +9,8 @@ docker images --all
 Then I proceed to generate the image `frontend-image`:
 
 ```bash
+cd /mnt/shared/frontend/images/frontend-image-1.0/
+ls -l
 cat Dockerfile
 docker build --tag frontend-image:1.0 .
 docker images --no-trunc --quiet frontend-image:1.0
