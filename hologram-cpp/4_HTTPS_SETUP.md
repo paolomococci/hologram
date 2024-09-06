@@ -115,7 +115,7 @@ sudo nano /etc/apache2/sites-available/000-default.conf
         ServerName hologram-cpp.local
         ServerAlias www.hologram-cpp.local
         DocumentRoot /var/www/html/landing
-        Redirect "/" "https://192.168.1.123/"
+        Redirect "/" "https://192.168.1.XXX/"
 
         <Directory /var/www/html>
             Options Indexes FollowSymLinks MultiViews

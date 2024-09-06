@@ -144,5 +144,5 @@ sudo netstat -nlp | grep "5432"
 Here is a command to try on the client workstation with root credentials:
 
 ```bash
-nmap -Pn 192.168.1.123 -p 5432
+nmap -Pn 192.168.1.XXX -p 5432
 ```

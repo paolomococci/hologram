@@ -27,7 +27,7 @@ Edit `hologram-cpp.xml`:
 ...
 <name>hologram-cpp</name>
   <uuid>XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</uuid>
-  <title>hologram-cpp (Ubuntu server 22.04.3 LTS JAMMY JELLYFISH - 192.168.1.123)</title>
+  <title>hologram-cpp (Ubuntu server 22.04.3 LTS JAMMY JELLYFISH - 192.168.1.XXX)</title>
 ...
 <source file='/var/lib/libvirt/images/hologram-cpp.qcow2'/>
 ...
@@ -39,7 +39,7 @@ If you prefer, `sed` can be used, for example:
 
 ```bash
 sed -i 's/hologram-php/hologram-cpp/g' hologram-cpp.xml
-sed -i 's/192.168.1.150/192.168.1.123/g' hologram-cpp.xml
+sed -i 's/192.168.1.150/192.168.1.XXX/g' hologram-cpp.xml
 ```
 
 and so on, also for the other values to be modified.
@@ -56,7 +56,7 @@ Edit:
 ...
 <dhcp>
     <range start='192.168.1.2' end='192.168.1.254'/>
-    <host mac='XX:XX:XX:XX:XX:XX' name='hologram-cpp' ip='192.168.1.123'/>
+    <host mac='XX:XX:XX:XX:XX:XX' name='hologram-cpp' ip='192.168.1.XXX'/>
 </dhcp>
 ...
 ```
