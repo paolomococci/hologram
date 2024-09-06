@@ -10,7 +10,7 @@ Then I proceed to generate the image `frontend-image`:
 
 ```bash
 cat Dockerfile
-docker build -t frontend-image:1.0 .
+docker build --tag frontend-image:1.0 .
 docker images --no-trunc --quiet frontend-image:1.0
 docker images --all
 ```
@@ -52,6 +52,14 @@ exit
 
 Now I can make any changes I want to the content, changes that will be immediately reflected in the web content served by the server.
 
+### a further check
+
+Here is a command to try on the client workstation:
+
+```bash
+nmap -Pn 192.168.1.XXX -p 8080
+```
+
 ## final cleaning
 
 ### stop of a specific container
@@ -61,6 +69,7 @@ Once I have identified the application to stop I can use the ID in the following
 ```bash
 docker container ls
 docker stop container_id
+docker rm container_id
 ```
 
 ### stop all container
@@ -91,6 +100,7 @@ docker image rm image_id
 So if I decide to remove the volume as well, the data and/or code will still be safe in the shared directory.
 
 ```bash
+docker volume ls
 docker volume rm frontend-nfs-volume
 ```
 
