@@ -34,7 +34,7 @@ docker volume inspect frontend-nfs-volume
 I check that there is not already a container with the name of `frontend-nfs-volume`:
 
 ```bash
-docker container ls --all | grep -i "frontend-nfs-volume"
+docker container ls --all | grep -i "frontend-container-"
 ```
 
 Finally, I can create the container that will use the volume `frontend-nfs-volume`, exposing its contents:
