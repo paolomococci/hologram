@@ -15,7 +15,7 @@ Including self-signed certificates, generated, for example, as follows:
 
 ```bash
 mkdir self-signed-certificates && cd self-signed-certificates
-sudo openssl req -new -x509 -days 365 -out hologram-frontend-one.pem -keyout hologram-frontend-one.key
+openssl req -new -x509 -days 365 -out hologram-frontend-one.pem -keyout hologram-frontend-one.key
 ```
 
 Here is just an example of the parameters to keep on hand:
