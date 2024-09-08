@@ -21,6 +21,8 @@ landing.local
 [webmaster@localhost]
 ```
 
+It is obvious that the first four parameters must be appropriately valued.
+
 Therefore I can proceed with the re-generation of the self-signed certificate:
 
 ```bash

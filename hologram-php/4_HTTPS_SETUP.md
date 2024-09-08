@@ -15,6 +15,8 @@ hologram-php.local
 [webmaster@localhost]
 ```
 
+It is obvious that the first four parameters must be appropriately valued.
+
 To generate a good passphrase I could use the following command:
 
 ```bash
