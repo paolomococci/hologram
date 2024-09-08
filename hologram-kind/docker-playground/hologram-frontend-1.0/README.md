@@ -14,7 +14,7 @@ The same files and directories that will be used in the `COPY` commands expresse
 Including self-signed certificates, generated, for example, as follows:
 
 ```bash
-mkdir self_signed_certs && cd self_signed_certs
+mkdir self-signed-certificates && cd self-signed-certificates
 sudo openssl req -new -x509 -days 365 -out hologram-frontend-one.pem -keyout hologram-frontend-one.key
 ```
 
@@ -33,7 +33,7 @@ hologram-frontend-one.local
 
 It is obvious that the first four parameters must be appropriately valued.
 
-A short script `echo_passphrase.sh` similar to the following must be written in directory `self_signed_certs`:
+A short script `echo_passphrase.sh` similar to the following must be written in directory `self-signed-certificates`:
 
 ```text
 #!/bin/sh
