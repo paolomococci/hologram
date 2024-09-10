@@ -58,3 +58,9 @@ How it looks on a desktop:
 and on a mobile screen:
 
 ![flares mobile layout](examples/likelihood/flares/screenshots/flares_help_mobile_view.png)
+
+## an example of landing page
+
+Below is an image of the landing page of an example container called `hologram-cntr-3` developed thanks to `React`.
+
+![landing page](hologram-kind/docker-playground/hologram-3.0/dev/landing/screenshots/hologram-cntr-3_landing_page.png)
