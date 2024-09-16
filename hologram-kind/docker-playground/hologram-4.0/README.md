@@ -1,6 +1,6 @@
 # `hologram-4.0` customized image
 
-*image that serves as a starting point for further developments*
+*image used as a starting point for further developments, as the approach is to proceed step by step towards the final result*
 
 Below is an example of how to customize a Docker image used locally for testing purposes, capable of serving web content over the HTTPS protocol.
 In this case I mean to get an application environment that can execute code written in PHP language.
