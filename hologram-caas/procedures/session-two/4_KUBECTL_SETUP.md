@@ -41,7 +41,7 @@ mkdir -p -m 755 /etc/apt/keyrings
 If the directory is already present I will be able to download the signing key of Kubernetes package repositories with the following command:
 
 ```bash
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 ```
 
 It is necessary to assign the correct privileges to file `kubernetes-apt-keyring.gpg`, which must be readable by everyone and writable only by root:
