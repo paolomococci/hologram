@@ -7,9 +7,7 @@
 Verify the installation of the following packages:
 
 ```bash
-dpkg -l ca-certificates
-dpkg -l curl
-dpkg -l gnupg
+dpkg -l apt-transport-https ca-certificates curl gnupg
 ```
 
 If one of the above packages is missing, it should be installed promptly, for example:
