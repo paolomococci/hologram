@@ -47,12 +47,14 @@ ufw allow from 192.168.1.0/24 proto tcp to any port 22
 ufw allow from 192.168.1.0/24 proto tcp to any port 80
 ufw allow from 192.168.1.0/24 proto tcp to any port 8080
 ufw allow from 192.168.1.0/24 proto tcp to any port 8443
+ufw allow from 192.168.1.0/24 proto tcp to any port 9003
 ufw reload
 ufw status numbered
 ss -tuna | grep 22
 ss -tuna | grep 80
 ss -tuna | grep 8080
 ss -tuna | grep 8443
+ss -tuna | grep 9003
 ```
 
 and, if I want to close a previously opened port, I have to issue the following commands:

@@ -49,8 +49,6 @@ RUN sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.3.11/
 RUN sed -i '$auser = www-data' /opt/php/8.3.11/etc/php-fpm.conf
 RUN sed -i '$agroup = www-data' /opt/php/8.3.11/etc/php-fpm.conf
 ## clean
-RUN apt remove -y build-essential autoconf
-RUN apt autopurge -y
 RUN rm --recursive sources
 
 ## activate all necessary modules and restart the web server
