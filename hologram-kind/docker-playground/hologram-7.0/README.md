@@ -5,8 +5,6 @@
 Below is an example of how to customize a Docker image used locally for testing purposes, capable of serving web content over the HTTPS protocol.
 In this case I mean to get an application environment that can execute a simple info code written in PHP language.
 
-The landing page developed thanks to `React`.
-
 ![landing page](dev/landing/screenshots/hologram-cntr-7_landing_page.png)
 
 ## create an example of container
