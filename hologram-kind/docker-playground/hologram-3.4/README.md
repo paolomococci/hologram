@@ -62,7 +62,7 @@ I can proceed to create a container starting from the above image in privileged 
 
 ```bash
 docker container ls --all
-docker run --volume $(pwd)/data:/var/lib/mysql --detach --name hologram-mariadb-cntr-3-4 --env MARIADB_USER=developer-cntr-3-4 --env MARIADB_PASSWORD=seventy-nine_character_password --env MARIADB_DATABASE=landing-cntr-3-4 --env MARIADB_ROOT_PASSWORD=seventy-nine_character_password --publish 3306:3306 hologram-mariadb-img:3.4
+docker run --volume $(pwd)/data:/var/lib/mysql --detach --name hologram-mariadb-cntr-3-4 --env MARIADB_USER=developer-cntr-3-4 --env MARIADB_PASSWORD=seventy-nine_character_password --env MARIADB_DATABASE=landing-cntr-3-4 --env MARIADB_ROOT_PASSWORD=seventy-nine_character_password --publish 3306:3306 --pull=never hologram-mariadb-img:3.4
 docker container ls --all --size
 docker exec --interactive --tty --privileged hologram-mariadb-cntr-3-4 bash
 ```
