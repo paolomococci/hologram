@@ -24,9 +24,6 @@ apt upgrade
 apt install curl unzip btop plocate net-tools ufw git libltdl7 pigz nmap ncat
 apt autoclean
 apt autopurge
-nmap -sn 192.168.1.0/24
-nmap -sP 192.168.1.0/24
-nmap -sV -O -v 192.168.1.XXX
 ip a
 ip n
 ip r
@@ -60,6 +57,17 @@ and, if I want to close a previously opened port, I have to issue the following 
 ufw status numbered
 ufw delete 2
 ufw reload
+```
+
+## some tests run by another host on the network
+
+```bash
+nmap -sn 192.168.1.0/24
+nmap -sP 192.168.1.0/24
+nmap -sV -O -v 192.168.1.XXX
+nmap 192.168.1.XXX -Pn -p 22
+nmap 192.168.1.XXX -Pn -p 80
+nmap 192.168.1.XXX -Pn -p 8080
 ```
 
 ## backup VM
