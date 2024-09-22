@@ -44,7 +44,7 @@ pwgen -s 79 2
 
 *name of database:*         landing-cntr-3-4
 
-*name of developer user:*   developer-cntr-3-4:
+*name of developer user:*   developer-cntr-3-4
 
 *password of user:*         seventy-nine_character_password
 
