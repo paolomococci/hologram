@@ -136,23 +136,6 @@ composer --version
 composer create-project laravel/laravel landing
 ```
 
-Please note that the following are key steps for the correct functioning of the web application:
-
-```bash
-chown --recursive --verbose 1000:33 landing
-cd landing
-chmod --recursive 775 bootstrap/cache
-chmod --recursive 775 storage
-chmod --recursive 775 database
-php artisan cache:clear
-```
-
-In defining the owner and group of the directory `landing` I used the numeric identifiers obtained from the following command:
-
-```bash
-cat /etc/passwd
-```
-
 ### image build
 
 Once the example web application is built I can issue the following command:
@@ -193,7 +176,6 @@ docker exec --interactive --tty --privileged laravel-landing-cntr-1-0 bash
 Examples of commands typed into container shell:
 
 ```bash
-ping -c 3 192.168.1.XXX
 ip help
 ip link
 ip address
@@ -201,7 +183,24 @@ ip route
 ip neigh
 tail --follow --lines=20 /var/log/apache2/access.log
 tail --follow --lines=20 /var/log/apache2/error.log
+```
+
+Please note that the following are key steps for the correct functioning of the web application:
+
+```bash
+chown --recursive --verbose 1000:33 landing
+cd landing
+chmod --recursive 775 bootstrap/cache
+chmod --recursive 775 storage
+chmod --recursive 775 database
+php artisan cache:clear
 exit
+```
+
+In defining the owner and group of the directory `landing` I used the numeric identifiers obtained from the following command:
+
+```bash
+cat /etc/passwd
 ```
 
 ### stop the container
