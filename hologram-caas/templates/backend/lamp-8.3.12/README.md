@@ -1,5 +1,7 @@
 # `lamp-8.3.12` how to customize an image named `lamp-img:8.3.12`
 
+*image used as a starting point for further developments, as the approach is to proceed step by step towards the final result*
+
 ## PHP version 8.3.12
 
 Open the following link in your favorite browser:
