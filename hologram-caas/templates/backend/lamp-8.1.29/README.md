@@ -5,8 +5,6 @@
 Below is an example of how to customize a Docker image used locally for testing purposes, capable of serving web content over the HTTPS protocol.
 In this case I mean to get an application environment that can execute code written in PHP language.
 
-The info page developed thanks to `React`.
-
 ![info page](screenshots/lamp-cntr-8-1-29_info_page.jpg)
 
 I optimize the screenshot as follows:
