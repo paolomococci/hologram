@@ -1,5 +1,7 @@
 # `laravel-landing-1.0` how to customize an image named `laravel-landing-img:1.0`
 
+*This demo does not use an external database, but simply stores data in a SQLite file.*
+
 ## create an example of container
 
 Below I will use `img` as an abbreviation for image and `cntr` as an abbreviation for container.
