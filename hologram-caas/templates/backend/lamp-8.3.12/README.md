@@ -2,6 +2,22 @@
 
 *image used as a starting point for further developments, as the approach is to proceed step by step towards the final result*
 
+Below is an example of how to customize a Docker image used locally for testing purposes, capable of serving web content over the HTTPS protocol.
+In this case I mean to get an application environment that can execute code written in PHP language.
+
+![info page](screenshots/lamp-cntr-8-3-12_info_page.jpg)
+
+I optimize the screenshot as follows:
+
+```bash
+ls -l lamp-cntr-8-3-12_info_page.png
+convert lamp-cntr-8-3-12_info_page.png lamp-cntr-8-3-12_info_page.jpg
+mogrify -quality 45 lamp-cntr-8-3-12_info_page.jpg
+du -h lamp-cntr-8-3-12_info_page*
+rm lamp-cntr-8-3-12_info_page.png
+identify -verbose lamp-cntr-8-3-12_info_page.jpg
+```
+
 ## PHP version 8.3.12
 
 Open the following link in your favorite browser:
