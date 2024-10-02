@@ -181,11 +181,17 @@ Add file `sample.php` to the project, in directory `/var/www/html`, by typing th
 ```php
 <?php
 
+// example of debugging an iteration that uses a constant
+
+const WELCOME = "Welcome to demo iteration number ";
+$sample = "";
+
 for ($i = 0; $i < 10; $i++) {
-    $show = $i . "<br>";
-    echo $show;
     xdebug_break();
+    $sample = WELCOME . $i . "!<br>";
+    echo $sample;
 }
+
 ```
 
 Start debugging from `vscode` and, at the same time, point to address <https://192.168.1.82/sample.php> from the browser.
