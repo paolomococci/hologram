@@ -28,7 +28,7 @@ RUN ../configure --prefix=/opt/php/7.4.33 --enable-fpm --enable-bcmath --enable-
 RUN mkdir -p ext/opcache
 RUN make && make install
 
-## from root directory
+## from directory of root user
 WORKDIR /root
 ## make symbolic links to php
 RUN ln --symbolic --verbose /opt/php/7.4.33/bin/php /usr/bin/php

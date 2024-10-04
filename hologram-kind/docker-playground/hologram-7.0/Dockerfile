@@ -18,7 +18,7 @@ COPY ./conf/sites-available/000-default.conf /etc/apache2/sites-available/000-de
 ## conf-available
 COPY ./conf/conf-available/php-fpm.conf /etc/apache2/conf-available/php-fpm.conf
 
-## from root directory
+## from directory of root user
 WORKDIR /root
 ## make symbolic links to php
 RUN ln --symbolic --verbose /opt/php/8.3.11/bin/php /usr/bin/php

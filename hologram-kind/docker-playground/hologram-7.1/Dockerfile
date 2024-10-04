@@ -23,7 +23,7 @@ VOLUME ["/var/www/html"]
 ## I expose port 443 TCP
 EXPOSE 443
 
-## from root directory
+## from directory of root user
 WORKDIR /root
 
 ## command written in exec form
