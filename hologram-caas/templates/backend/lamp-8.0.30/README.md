@@ -77,7 +77,7 @@ A directory must be created `mods-available` with a file inside named `dir.conf`
 
 ```xml
 <IfModule mod_dir.c>
-        DirectoryIndex index.html index.cgi index.pl index.xhtml index.htm index.php
+        DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
 </IfModule>
 ```
 
