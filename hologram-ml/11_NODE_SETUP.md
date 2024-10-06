@@ -5,12 +5,12 @@ Following are the steps I took to install `node` and `npm` from source code, aft
 ```bash
 cd ~
 mkdir nodejs && cd nodejs
-wget https://nodejs.org/dist/v20.17.0/node-v20.17.0.tar.gz
-curl -O https://nodejs.org/dist/v20.17.0/SHASUMS256.txt
+wget https://nodejs.org/dist/v20.18.0/node-v20.18.0.tar.gz
+curl -O https://nodejs.org/dist/v20.18.0/SHASUMS256.txt
 ls -al
-grep $(sha256sum node-v20.17.0.tar.gz) SHASUMS256.txt
-tar -xvzf node-v20.17.0.tar.gz
-cd node-v20.17.0/
+grep $(sha256sum node-v20.18.0.tar.gz) SHASUMS256.txt
+tar -xvzf node-v20.18.0.tar.gz
+cd node-v20.18.0/
 ./configure --help
 ./configure --verbose
 make
