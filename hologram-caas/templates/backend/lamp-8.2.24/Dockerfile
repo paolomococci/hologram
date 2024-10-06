@@ -63,7 +63,6 @@ RUN rm --recursive sources
 ## activate all necessary modules and restart the web server
 RUN a2enmod proxy_fcgi
 RUN a2enconf php-fpm
-RUN service apache2 restart
 
 ## volume of web content
 VOLUME ["/var/www/html"]

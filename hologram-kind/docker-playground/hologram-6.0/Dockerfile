@@ -26,9 +26,8 @@ RUN ../configure --prefix=/opt/php/8.3.11 --enable-fpm --enable-bcmath --enable-
 RUN mkdir -p ext/opcache
 RUN make && make install
 
-## activate all necessary modules and restart the web server
+# from directory of root user
 WORKDIR /root
-RUN service apache2 restart
 
 ## default web content
 COPY ./dev/landing/dist/ /var/www/html

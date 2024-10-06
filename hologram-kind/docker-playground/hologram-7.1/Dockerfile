@@ -14,9 +14,6 @@ RUN chmod 700 /etc/ssl/self_signed_certs/echo_passphrase.sh
 COPY ./conf/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
 COPY ./conf/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-## restart the web server
-RUN service apache2 restart
-
 ## default web content
 VOLUME ["/var/www/html"]
 
