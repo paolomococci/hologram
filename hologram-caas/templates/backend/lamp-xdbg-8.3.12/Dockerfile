@@ -78,7 +78,8 @@ RUN sed -i '$axdebug.cli_color=1' /opt/php/8.3.12/lib/php.ini
 RUN sed -i '$axdebug.start_with_request=trigger' /opt/php/8.3.12/lib/php.ini
 RUN sed -i '$axdebug.discover_client_host=1' /opt/php/8.3.12/lib/php.ini
 RUN sed -i '$axdebug.remote_enable=1' /opt/php/8.3.12/lib/php.ini
-RUN sed -i '$axdebug.client_host=192.168.122.1' /opt/php/8.3.12/lib/php.ini
+# Warning, you need to write the correct IP address from which to debug!
+RUN sed -i '$axdebug.client_host=192.168.1.XXX' /opt/php/8.3.12/lib/php.ini
 RUN sed -i '$axdebug.client_port=9003' /opt/php/8.3.12/lib/php.ini
 RUN sed -i '$axdebug.connect_timeout_ms=2000' /opt/php/8.3.12/lib/php.ini
 RUN sed -i '$axdebug.idekey=VSCODE' /opt/php/8.3.12/lib/php.ini
