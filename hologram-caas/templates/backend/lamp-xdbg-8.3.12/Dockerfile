@@ -86,7 +86,7 @@ RUN sed -i '$axdebug.idekey=VSCODE' /opt/php/8.3.12/lib/php.ini
 ## I'm doing a little cleaning
 RUN rm --recursive sources
 
-## activate all necessary modules and restart the web server
+## activate all necessary modules
 RUN a2enmod proxy_fcgi
 RUN a2enconf php-fpm
 

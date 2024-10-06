@@ -60,7 +60,7 @@ RUN sed -i '$agroup = www-data' /opt/php/8.2.24/etc/php-fpm.conf
 ## clean
 RUN rm --recursive sources
 
-## activate all necessary modules and restart the web server
+## activate all necessary modules
 RUN a2enmod proxy_fcgi
 RUN a2enconf php-fpm
 

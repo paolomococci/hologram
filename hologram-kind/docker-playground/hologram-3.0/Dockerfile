@@ -28,7 +28,7 @@ COPY ./conf/sites-available/000-default.conf /etc/apache2/sites-available/000-de
 RUN sed -i '$aServerName 127.0.0.1' /etc/apache2/apache2.conf
 RUN sed -i '$aSSLPassPhraseDialog exec:/etc/ssl/self_signed_certs/echo_passphrase.sh' /etc/apache2/apache2.conf
 
-## activate all necessary modules and restart the web server
+## activate all necessary modules
 RUN a2enmod ssl && a2enmod rewrite && a2enmod headers && a2ensite default-ssl
 
 ## default web content
