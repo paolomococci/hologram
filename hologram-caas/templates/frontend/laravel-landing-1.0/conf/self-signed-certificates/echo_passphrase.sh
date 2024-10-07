@@ -1,3 +1,3 @@
 #!/bin/sh
 
-echo "long passphrase"
+echo "long_passphrase"

@@ -11,7 +11,7 @@ pwgen -s 48 1
 Here is just an example of the parameters to keep on hand:
 
 ```text
-[long passphrase]
+[long_passphrase]
 [national_acronym]
 [state]
 [city]
@@ -33,7 +33,7 @@ sudo nano /etc/ssl/self_signed_certs/echo_passphrase_vh83.sh
 
 ```text
 #!/bin/sh
-echo "long passphrase"
+echo "long_passphrase"
 ```
 
 ```bash

@@ -9,7 +9,7 @@ pwgen -s 48 1
 ```
 
 ```text
-[long passphrase]
+[long_passphrase]
 [national_acronym]
 [state]
 [city]
@@ -34,7 +34,7 @@ sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
 
 ```text
 #!/bin/sh
-echo "long passphrase"
+echo "long_passphrase"
 ```
 
 or, I can use the `cat` command:
@@ -42,7 +42,7 @@ or, I can use the `cat` command:
 ```bash
 sudo bash -c 'cat << EOF > /etc/ssl/self_signed_certs/echo_passphrase.sh
 #!/bin/sh
-echo "long passphrase"
+echo "long_passphrase"
 EOF'
 ```
 

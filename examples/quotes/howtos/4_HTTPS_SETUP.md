@@ -11,7 +11,7 @@ pwgen -s 48 1
 Here is just an example of the parameters to keep on hand:
 
 ```text
-[long passphrase automatically generated]
+[long_passphrase automatically generated]
 [national_acronym]
 [state]
 [city]
@@ -37,7 +37,7 @@ sudo nano /etc/ssl/self_signed_certs/echo_passphrase.sh
 
 ```text
 #!/bin/sh
-echo "long passphrase automatically generated"
+echo "long_passphrase automatically generated"
 ```
 
 or, I can use the `cat` command:
@@ -45,7 +45,7 @@ or, I can use the `cat` command:
 ```bash
 sudo bash -c 'cat << EOF > /etc/ssl/self_signed_certs/echo_passphrase.sh
 #!/bin/sh
-echo "long passphrase automatically generated"
+echo "long_passphrase automatically generated"
 EOF'
 ```
 

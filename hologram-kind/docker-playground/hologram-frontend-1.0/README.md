@@ -22,7 +22,7 @@ cd ..
 Here is just an example of the parameters to keep on hand:
 
 ```text
-[long passphrase]
+[long_passphrase]
 [national_acronym]
 [state]
 [city]
@@ -38,7 +38,7 @@ A short script `echo_passphrase.sh` similar to the following must be written in 
 
 ```text
 #!/bin/sh
-echo "long passphrase"
+echo "long_passphrase"
 ```
 
 A directory must be created `mods-available` with a file inside named `dir.conf` containing text similar to the following:

@@ -46,7 +46,7 @@ hologram.local
 [webmaster@localhost]
 ```
 
-Long passphrase generated with:
+Long_passphrase generated with:
 
 ```bash
 pwgen -s 48 1
