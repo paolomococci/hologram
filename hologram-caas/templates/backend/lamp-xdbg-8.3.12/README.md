@@ -15,6 +15,10 @@ identify -verbose lamp-xdbg-cntr-8-3-12_info_page.jpg
 rm lamp-xdbg-cntr-8-3-12_info_page.png
 ```
 
+## warnings
+
+Be careful, in order to work this procedure also needs a directory `sources` with the sources of `PHP` and `Xdebug` in the desired versions. Of course, the latter must have already been verified.
+
 ## create an example of container
 
 Below I will use `img` as an abbreviation for image and `cntr` as an abbreviation for container.

@@ -2,6 +2,10 @@
 
 *image used as a starting point for further development, as the approach is to proceed step by step towards the final result which in this case is a complete and autonomous development environment, ideal for porting an existing application from a previous version of PHP to a more recent one*
 
+## warnings
+
+Be careful, in order to work this procedure also needs a directory `bin` containing `composer` already verified and a directory `sources` with the sources of `PHP`, `Xdebug` and `Node.js` in the desired versions. Of course, these must also have already been verified.
+
 ## create an example of container
 
 Below I will use `img` as an abbreviation for image and `cntr` as an abbreviation for container.

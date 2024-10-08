@@ -18,6 +18,10 @@ rm lamp-cntr-8-0-30_info_page.png
 identify -verbose lamp-cntr-8-0-30_info_page.jpg
 ```
 
+## warnings
+
+Be careful, in order to work this procedure also needs a directory `sources` with the sources of `PHP` in the desired version. Of course the sources must have already been verified.
+
 ## PHP version 8.0.30
 
 Open the following link in your favorite browser:
