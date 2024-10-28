@@ -1,0 +1,6 @@
+NOTES.md
+*.key
+*.pem
+sources/
+bin/
+html/
