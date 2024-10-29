@@ -2,6 +2,10 @@
 
 *image used as a starting point for further development, as the approach is to proceed step by step towards the final result which in this case is a complete and autonomous development environment, ideal for porting an existing application from a previous version of PHP to a more recent one*
 
+## screenshot obtained with `phpinfo()` function:
+
+![screenshot of info page](./screenshots/lamp-app-cntr-1-1_info_page.png)
+
 ## warnings
 
 Be careful, in order to work this procedure also needs a directory `bin` containing `composer` already verified and a directory `sources` with the sources of `PHP`, `Xdebug` and `Node.js` in the desired versions. These last ones have already been verified.
@@ -175,33 +179,13 @@ podman exec --interactive --tty --privileged lamp-app-cntr-1-1 bash
 Examples of commands typed into container shell:
 
 ```bash
-ping -c 3 192.168.1.XXX
-ip help
-ip link
-ip address
-ip route
-ip neigh
+ps ax
 tail --follow --lines=20 /var/log/apache2/access.log
 tail --follow --lines=20 /var/log/apache2/error.log
 exit
 ```
 
 ### login via OpenSSH
-
-I log in from the system that hosts the containers:
-
-```bash
-nmap 172.17.0.XXX -Pn -p 22
-ssh root@172.17.0.XXX
-```
-
-and I try the following command to see if all the expected processes are running:
-
-```bash
-ps -eo 'tty,pid,comm' | grep ^?
-```
-
-### login from another host
 
 Now I try to log in from the system that hosts the virtual machine that in turn hosts the containers:
 
