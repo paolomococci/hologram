@@ -15,8 +15,8 @@ RUN apt-get install -y apache2 apache2-utils
 ## I install a development environment for Node.js
 RUN apt-get install -y build-essential python3 python3-pip
 
-## I install an editor
-RUN apt-get install -y nano
+## I install an editor and an indispensable tool
+RUN apt-get install -y nano curl
 
 ## I automatically remove all unused packages
 RUN apt autoremove -y
