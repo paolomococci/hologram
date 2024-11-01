@@ -1,6 +1,6 @@
 # `react-flavor-cntr-1.0`
 
-## create react-flavor container
+## create react flavor container
 
 ```bash
 ls ~/projects/apps/agora/agora-1.0/frontend/react-flavor-cntr-1.0

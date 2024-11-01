@@ -1,6 +1,6 @@
 # `svelte-flavor-cntr-1.0`
 
-## create svelte-flavor container
+## create svelte flavor container
 
 ```bash
 ls ~/projects/apps/agora/agora-1.0/frontend/svelte-flavor-cntr-1.0

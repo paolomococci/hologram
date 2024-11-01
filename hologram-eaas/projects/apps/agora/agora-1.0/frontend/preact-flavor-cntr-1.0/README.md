@@ -1,6 +1,6 @@
 # `preact-flavor-cntr-1.0`
 
-## create preact-flavor container
+## create preact flavor container
 
 ```bash
 ls ~/projects/apps/agora/agora-1.0/frontend/preact-flavor-cntr-1.0

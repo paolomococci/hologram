@@ -1,6 +1,6 @@
 # `vue-flavor-cntr-1.0`
 
-## create vue-flavor container
+## create vue flavor container
 
 ```bash
 ls ~/projects/apps/agora/agora-1.0/frontend/vue-flavor-cntr-1.0

@@ -1,6 +1,6 @@
 # `qwik-flavor-cntr-1.0`
 
-## create qwik-flavor container
+## create qwik flavor container
 
 ```bash
 ls ~/projects/apps/agora/agora-1.0/frontend/qwik-flavor-cntr-1.0
