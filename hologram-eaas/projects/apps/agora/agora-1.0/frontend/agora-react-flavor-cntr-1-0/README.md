@@ -1,10 +1,10 @@
-# `agora-preact-flavor-cntr-1.0`
+# `agora-react-flavor-cntr-1-0`
 
-## create preact flavor container
+## create react flavor container
 
 ```bash
-ls ~/projects/apps/agora/agora-1.0/frontend/agora-preact-flavor-cntr-1.0
-cd ~/projects/apps/agora/agora-1.0/frontend/agora-preact-flavor-cntr-1.0
+ls ~/projects/apps/agora/agora-1.0/frontend/agora-react-flavor-cntr-1-0
+cd ~/projects/apps/agora/agora-1.0/frontend/agora-react-flavor-cntr-1-0
 ```
 
 Then I create the directory that will be used to consolidate the volume that will host the container web content and make the source code in it persistent:
@@ -23,9 +23,9 @@ Now I can proceed to create a container starting from the above image in privile
 
 ```bash
 podman container list --all
-podman run --volume $(pwd)/html:/var/www/html --detach --name agora-preact-flavor-cntr-1-0 --publish 5173:5173 --publish 8080:80 --publish 8443:443 --publish 8022:22 --pull=never node-app-img:1.0
+podman run --volume $(pwd)/html:/var/www/html --detach --name agora-react-flavor-cntr-1-0 --publish 5173:5173 --publish 8080:80 --publish 8443:443 --publish 8022:22 --pull=never node-app-img:1.0
 podman container list --size
-podman exec --interactive --tty --privileged agora-preact-flavor-cntr-1-0 bash
+podman exec --interactive --tty --privileged agora-react-flavor-cntr-1-0 bash
 ```
 
 ### open a bash shell in the container
@@ -45,14 +45,17 @@ npm view node version
 If you need to update:
 
 ```bash
-npm cache clean -f && npm install -g n && n stable && npm install -g npm@latest
+npm cache clean -f
+npm install -g n
+n stable
+npm install -g npm@latest
 ```
 
 Scaffolding:
 
 ```bash
 cd /var/www/html/
-npm create vite@latest landing -- --template preact
+npm create vite@latest landing -- --template react
 cd landing
 npm install
 ```
@@ -61,14 +64,14 @@ Edit `vite.config.js` similar to the following:
 
 ```js
 import { defineConfig } from 'vite'
-import preact from '@preact/preset-vite'
+import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
   server: {
     host: true,
   },
-  plugins: [preact()],
+  plugins: [react()],
 })
 ```
 
@@ -92,7 +95,7 @@ ssh root@192.168.1.XXX -p 8022
 ```json
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "name": "agora-preact-flavor-cntr-1-0",
+    "name": "agora-react-flavor-cntr-1-0",
     "username": "root",
     "password": "some_password",
     "host": "192.168.1.XXX",
@@ -127,17 +130,17 @@ ssh root@192.168.1.XXX -p 8022
 I can use the container name like this:
 
 ```bash
-podman stop agora-preact-flavor-cntr-1-0
+podman stop agora-react-flavor-cntr-1-0
 ```
 
 ### restart the container
 
-I can proceed to restarting `agora-preact-flavor-cntr-1-0` in privileged mode:
+I can proceed to restarting `agora-react-flavor-cntr-1-0` in privileged mode:
 
 ```bash
 podman container list --all
-podman start agora-preact-flavor-cntr-1-0
-podman exec --interactive --tty --privileged agora-preact-flavor-cntr-1-0 bash
+podman start agora-react-flavor-cntr-1-0
+podman exec --interactive --tty --privileged agora-react-flavor-cntr-1-0 bash
 ```
 
 ## to clean up
@@ -145,5 +148,5 @@ podman exec --interactive --tty --privileged agora-preact-flavor-cntr-1-0 bash
 ### remove container
 
 ```bash
-podman stop agora-preact-flavor-cntr-1-0 && podman rm agora-preact-flavor-cntr-1-0
+podman stop agora-react-flavor-cntr-1-0 && podman rm agora-react-flavor-cntr-1-0
 ```
