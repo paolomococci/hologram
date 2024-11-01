@@ -1,10 +1,10 @@
-# `react-flavor-cntr-1.0`
+# `agora-react-flavor-cntr-1.0`
 
 ## create react flavor container
 
 ```bash
-ls ~/projects/apps/agora/agora-1.0/frontend/react-flavor-cntr-1.0
-cd ~/projects/apps/agora/agora-1.0/frontend/react-flavor-cntr-1.0
+ls ~/projects/apps/agora/agora-1.0/frontend/agora-react-flavor-cntr-1.0
+cd ~/projects/apps/agora/agora-1.0/frontend/agora-react-flavor-cntr-1.0
 ```
 
 Then I create the directory that will be used to consolidate the volume that will host the container web content and make the source code in it persistent:
@@ -23,9 +23,9 @@ Now I can proceed to create a container starting from the above image in privile
 
 ```bash
 podman container list --all
-podman run --volume $(pwd)/html:/var/www/html --detach --name react-flavor-cntr-1-0 --publish 5173:5173 --publish 8080:80 --publish 8443:443 --publish 8022:22 --pull=never node-app-img:1.0
+podman run --volume $(pwd)/html:/var/www/html --detach --name agora-react-flavor-cntr-1-0 --publish 5173:5173 --publish 8080:80 --publish 8443:443 --publish 8022:22 --pull=never node-app-img:1.0
 podman container list --size
-podman exec --interactive --tty --privileged react-flavor-cntr-1-0 bash
+podman exec --interactive --tty --privileged agora-react-flavor-cntr-1-0 bash
 ```
 
 ### open a bash shell in the container
@@ -95,7 +95,7 @@ ssh root@192.168.1.XXX -p 8022
 ```json
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "name": "react-flavor-cntr-1-0",
+    "name": "agora-react-flavor-cntr-1-0",
     "username": "root",
     "password": "some_password",
     "host": "192.168.1.XXX",
@@ -130,17 +130,17 @@ ssh root@192.168.1.XXX -p 8022
 I can use the container name like this:
 
 ```bash
-podman stop react-flavor-cntr-1-0
+podman stop agora-react-flavor-cntr-1-0
 ```
 
 ### restart the container
 
-I can proceed to restarting `react-flavor-cntr-1-0` in privileged mode:
+I can proceed to restarting `agora-react-flavor-cntr-1-0` in privileged mode:
 
 ```bash
 podman container list --all
-podman start react-flavor-cntr-1-0
-podman exec --interactive --tty --privileged react-flavor-cntr-1-0 bash
+podman start agora-react-flavor-cntr-1-0
+podman exec --interactive --tty --privileged agora-react-flavor-cntr-1-0 bash
 ```
 
 ## to clean up
@@ -148,5 +148,5 @@ podman exec --interactive --tty --privileged react-flavor-cntr-1-0 bash
 ### remove container
 
 ```bash
-podman stop react-flavor-cntr-1-0 && podman rm react-flavor-cntr-1-0
+podman stop agora-react-flavor-cntr-1-0 && podman rm agora-react-flavor-cntr-1-0
 ```

@@ -1,10 +1,10 @@
-# `qwik-flavor-cntr-1.0`
+# `agora-preact-flavor-cntr-1.0`
 
-## create qwik flavor container
+## create preact flavor container
 
 ```bash
-ls ~/projects/apps/agora/agora-1.0/frontend/qwik-flavor-cntr-1.0
-cd ~/projects/apps/agora/agora-1.0/frontend/qwik-flavor-cntr-1.0
+ls ~/projects/apps/agora/agora-1.0/frontend/agora-preact-flavor-cntr-1.0
+cd ~/projects/apps/agora/agora-1.0/frontend/agora-preact-flavor-cntr-1.0
 ```
 
 Then I create the directory that will be used to consolidate the volume that will host the container web content and make the source code in it persistent:
@@ -23,9 +23,9 @@ Now I can proceed to create a container starting from the above image in privile
 
 ```bash
 podman container list --all
-podman run --volume $(pwd)/html:/var/www/html --detach --name qwik-flavor-cntr-1-0 --publish 5173:5173 --publish 8080:80 --publish 8443:443 --publish 8022:22 --pull=never node-app-img:1.0
+podman run --volume $(pwd)/html:/var/www/html --detach --name agora-preact-flavor-cntr-1-0 --publish 5173:5173 --publish 8080:80 --publish 8443:443 --publish 8022:22 --pull=never node-app-img:1.0
 podman container list --size
-podman exec --interactive --tty --privileged qwik-flavor-cntr-1-0 bash
+podman exec --interactive --tty --privileged agora-preact-flavor-cntr-1-0 bash
 ```
 
 ### open a bash shell in the container
@@ -52,7 +52,7 @@ Scaffolding:
 
 ```bash
 cd /var/www/html/
-npm create vite@latest landing -- --template qwik
+npm create vite@latest landing -- --template preact
 cd landing
 npm install
 ```
@@ -61,23 +61,20 @@ Edit `vite.config.js` similar to the following:
 
 ```js
 import { defineConfig } from 'vite'
-import { qwikVite } from '@builder.io/qwik/optimizer'
+import preact from '@preact/preset-vite'
 
 // https://vite.dev/config/
 export default defineConfig({
   server: {
     host: true,
   },
-  plugins: [
-    qwikVite({
-      csr: true,
-    }),
-  ],
+  plugins: [preact()],
 })
 ```
 
 ```bash
 npm run dev
+npm run build
 exit
 ```
 
@@ -95,7 +92,7 @@ ssh root@192.168.1.XXX -p 8022
 ```json
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "name": "qwik-flavor-cntr-1-0",
+    "name": "agora-preact-flavor-cntr-1-0",
     "username": "root",
     "password": "some_password",
     "host": "192.168.1.XXX",
@@ -130,17 +127,17 @@ ssh root@192.168.1.XXX -p 8022
 I can use the container name like this:
 
 ```bash
-podman stop qwik-flavor-cntr-1-0
+podman stop agora-preact-flavor-cntr-1-0
 ```
 
 ### restart the container
 
-I can proceed to restarting `qwik-flavor-cntr-1-0` in privileged mode:
+I can proceed to restarting `agora-preact-flavor-cntr-1-0` in privileged mode:
 
 ```bash
 podman container list --all
-podman start qwik-flavor-cntr-1-0
-podman exec --interactive --tty --privileged qwik-flavor-cntr-1-0 bash
+podman start agora-preact-flavor-cntr-1-0
+podman exec --interactive --tty --privileged agora-preact-flavor-cntr-1-0 bash
 ```
 
 ## to clean up
@@ -148,5 +145,5 @@ podman exec --interactive --tty --privileged qwik-flavor-cntr-1-0 bash
 ### remove container
 
 ```bash
-podman stop qwik-flavor-cntr-1-0 && podman rm qwik-flavor-cntr-1-0
+podman stop agora-preact-flavor-cntr-1-0 && podman rm agora-preact-flavor-cntr-1-0
 ```

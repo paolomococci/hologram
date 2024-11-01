@@ -1,10 +1,10 @@
-# `preact-flavor-cntr-1.0`
+# `agora-angular-flavor-cntr-1.0`
 
-## create preact flavor container
+## create angular flavor container
 
 ```bash
-ls ~/projects/apps/agora/agora-1.0/frontend/preact-flavor-cntr-1.0
-cd ~/projects/apps/agora/agora-1.0/frontend/preact-flavor-cntr-1.0
+ls ~/projects/apps/agora/agora-1.0/frontend/agora-angular-flavor-cntr-1.0
+cd ~/projects/apps/agora/agora-1.0/frontend/agora-angular-flavor-cntr-1.0
 ```
 
 Then I create the directory that will be used to consolidate the volume that will host the container web content and make the source code in it persistent:
@@ -23,9 +23,9 @@ Now I can proceed to create a container starting from the above image in privile
 
 ```bash
 podman container list --all
-podman run --volume $(pwd)/html:/var/www/html --detach --name preact-flavor-cntr-1-0 --publish 5173:5173 --publish 8080:80 --publish 8443:443 --publish 8022:22 --pull=never node-app-img:1.0
+podman run --volume $(pwd)/html:/var/www/html --detach --name agora-angular-flavor-cntr-1-0 --publish 5173:5173 --publish 8080:80 --publish 8443:443 --publish 8022:22 --pull=never node-app-img:1.0
 podman container list --size
-podman exec --interactive --tty --privileged preact-flavor-cntr-1-0 bash
+podman exec --interactive --tty --privileged agora-angular-flavor-cntr-1-0 bash
 ```
 
 ### open a bash shell in the container
@@ -51,30 +51,18 @@ npm cache clean -f && npm install -g n && n stable && npm install -g npm@latest
 Scaffolding:
 
 ```bash
+npm install -g @angular/cli
+ng version
 cd /var/www/html/
-npm create vite@latest landing -- --template preact
-cd landing
-npm install
-```
-
-Edit `vite.config.js` similar to the following:
-
-```js
-import { defineConfig } from 'vite'
-import preact from '@preact/preset-vite'
-
-// https://vite.dev/config/
-export default defineConfig({
-  server: {
-    host: true,
-  },
-  plugins: [preact()],
-})
-```
-
-```bash
-npm run dev
-npm run build
+ng new landing
+cd landing/
+ng serve --help
+ng serve --host 0.0.0.0 --port 5173
+ng build --help
+ng build --output-path build-dir
+mv ./build-dir/browser/ ./dist
+rm --recursive build-dir/
+ls -l dist/
 exit
 ```
 
@@ -92,7 +80,7 @@ ssh root@192.168.1.XXX -p 8022
 ```json
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "name": "preact-flavor-cntr-1-0",
+    "name": "agora-angular-flavor-cntr-1-0",
     "username": "root",
     "password": "some_password",
     "host": "192.168.1.XXX",
@@ -127,17 +115,17 @@ ssh root@192.168.1.XXX -p 8022
 I can use the container name like this:
 
 ```bash
-podman stop preact-flavor-cntr-1-0
+podman stop agora-angular-flavor-cntr-1-0
 ```
 
 ### restart the container
 
-I can proceed to restarting `preact-flavor-cntr-1-0` in privileged mode:
+I can proceed to restarting `agora-angular-flavor-cntr-1-0` in privileged mode:
 
 ```bash
 podman container list --all
-podman start preact-flavor-cntr-1-0
-podman exec --interactive --tty --privileged preact-flavor-cntr-1-0 bash
+podman start agora-angular-flavor-cntr-1-0
+podman exec --interactive --tty --privileged agora-angular-flavor-cntr-1-0 bash
 ```
 
 ## to clean up
@@ -145,5 +133,5 @@ podman exec --interactive --tty --privileged preact-flavor-cntr-1-0 bash
 ### remove container
 
 ```bash
-podman stop preact-flavor-cntr-1-0 && podman rm preact-flavor-cntr-1-0
+podman stop agora-angular-flavor-cntr-1-0 && podman rm agora-angular-flavor-cntr-1-0
 ```

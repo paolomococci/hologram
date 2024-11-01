@@ -1,10 +1,10 @@
-# `vue-flavor-cntr-1.0`
+# `agora-solid-flavor-cntr-1.0`
 
-## create vue flavor container
+## create solid flavor container
 
 ```bash
-ls ~/projects/apps/agora/agora-1.0/frontend/vue-flavor-cntr-1.0
-cd ~/projects/apps/agora/agora-1.0/frontend/vue-flavor-cntr-1.0
+ls ~/projects/apps/agora/agora-1.0/frontend/agora-solid-flavor-cntr-1.0
+cd ~/projects/apps/agora/agora-1.0/frontend/agora-solid-flavor-cntr-1.0
 ```
 
 Then I create the directory that will be used to consolidate the volume that will host the container web content and make the source code in it persistent:
@@ -23,9 +23,9 @@ Now I can proceed to create a container starting from the above image in privile
 
 ```bash
 podman container list --all
-podman run --volume $(pwd)/html:/var/www/html --detach --name vue-flavor-cntr-1-0 --publish 5173:5173 --publish 8080:80 --publish 8443:443 --publish 8022:22 --pull=never node-app-img:1.0
+podman run --volume $(pwd)/html:/var/www/html --detach --name agora-solid-flavor-cntr-1-0 --publish 5173:5173 --publish 8080:80 --publish 8443:443 --publish 8022:22 --pull=never node-app-img:1.0
 podman container list --size
-podman exec --interactive --tty --privileged vue-flavor-cntr-1-0 bash
+podman exec --interactive --tty --privileged agora-solid-flavor-cntr-1-0 bash
 ```
 
 ### open a bash shell in the container
@@ -45,14 +45,17 @@ npm view node version
 If you need to update:
 
 ```bash
-npm cache clean -f && npm install -g n && n stable && npm install -g npm@latest
+npm cache clean -f
+npm install -g n
+n stable
+npm install -g npm@latest
 ```
 
 Scaffolding:
 
 ```bash
 cd /var/www/html/
-npm create vite@latest landing -- --template vue
+npm create vite@latest landing -- --template solid
 cd landing
 npm install
 ```
@@ -61,14 +64,13 @@ Edit `vite.config.js` similar to the following:
 
 ```js
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import solid from 'vite-plugin-solid'
 
-// https://vite.dev/config/
 export default defineConfig({
   server: {
     host: true,
   },
-  plugins: [vue()],
+  plugins: [solid()],
 })
 ```
 
@@ -92,7 +94,7 @@ ssh root@192.168.1.XXX -p 8022
 ```json
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "name": "vue-flavor-cntr-1-0",
+    "name": "agora-solid-flavor-cntr-1-0",
     "username": "root",
     "password": "some_password",
     "host": "192.168.1.XXX",
@@ -127,17 +129,17 @@ ssh root@192.168.1.XXX -p 8022
 I can use the container name like this:
 
 ```bash
-podman stop vue-flavor-cntr-1-0
+podman stop agora-solid-flavor-cntr-1-0
 ```
 
 ### restart the container
 
-I can proceed to restarting `vue-flavor-cntr-1-0` in privileged mode:
+I can proceed to restarting `agora-solid-flavor-cntr-1-0` in privileged mode:
 
 ```bash
 podman container list --all
-podman start vue-flavor-cntr-1-0
-podman exec --interactive --tty --privileged vue-flavor-cntr-1-0 bash
+podman start agora-solid-flavor-cntr-1-0
+podman exec --interactive --tty --privileged agora-solid-flavor-cntr-1-0 bash
 ```
 
 ## to clean up
@@ -145,5 +147,5 @@ podman exec --interactive --tty --privileged vue-flavor-cntr-1-0 bash
 ### remove container
 
 ```bash
-podman stop vue-flavor-cntr-1-0 && podman rm vue-flavor-cntr-1-0
+podman stop agora-solid-flavor-cntr-1-0 && podman rm agora-solid-flavor-cntr-1-0
 ```
