@@ -12,7 +12,7 @@ class AuthorPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -20,7 +20,7 @@ class AuthorPolicy
      */
     public function view(User $user, Author $author): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -28,7 +28,7 @@ class AuthorPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -36,7 +36,7 @@ class AuthorPolicy
      */
     public function update(User $user, Author $author): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -44,7 +44,7 @@ class AuthorPolicy
      */
     public function delete(User $user, Author $author): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -52,7 +52,7 @@ class AuthorPolicy
      */
     public function restore(User $user, Author $author): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -60,6 +60,6 @@ class AuthorPolicy
      */
     public function forceDelete(User $user, Author $author): bool
     {
-        //
+        return true;
     }
 }
