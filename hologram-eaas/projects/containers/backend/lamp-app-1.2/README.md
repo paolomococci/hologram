@@ -158,9 +158,7 @@ The `html` directory can contain either a simple html page or a web application 
 The best solution in my opinion is to act as the owner of the specific directory:
 
 ```bash
-mkdir html
-ls -Z html/
-chcon --recursive --type=container_file_t html/
+mkdir html && chcon --recursive --type=container_file_t html/ && ls -lZ
 ```
 
 ### create the container

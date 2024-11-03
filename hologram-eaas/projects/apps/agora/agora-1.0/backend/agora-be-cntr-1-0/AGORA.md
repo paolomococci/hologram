@@ -243,3 +243,11 @@ php artisan route:list | grep "help"
 composer update --help
 composer update --ignore-platform-reqs
 ```
+
+## examine log files from command line in real time with Laravel `pail`
+
+Well, after creating a new image with `pcntl` enabled and deriving a new container with the associated directory containing the application, I can use the following command to examine the logs in real time:
+
+```bash
+php artisan pail
+```
