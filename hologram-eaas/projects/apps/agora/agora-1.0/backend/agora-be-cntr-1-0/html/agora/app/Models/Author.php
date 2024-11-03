@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
     use HasFactory;
+
     protected $connection = 'agora-db-cntr-1-0';
 
     /**
@@ -37,7 +38,7 @@ class Author extends Model
         foreach ($merits as $merit) {
             $contribution = [
                 'article' => Article::findOrFail($merit['article_id']),
-                'isMain' =>($merit['is_main_author']) ? true : false
+                'isMain' => ($merit['is_main_author']) ? true : false,
             ];
             $contributions[] = $contribution;
         }

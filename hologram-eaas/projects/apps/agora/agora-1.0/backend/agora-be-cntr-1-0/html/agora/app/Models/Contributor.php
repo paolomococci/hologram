@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Author;
-use App\Models\Article;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Contributor extends Pivot
 {

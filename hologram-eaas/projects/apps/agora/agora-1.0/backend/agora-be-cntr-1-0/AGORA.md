@@ -228,3 +228,11 @@ and, if I am examining the presence of a specific route, the following command h
 ```bash
 php artisan route:list | grep "help"
 ```
+
+## fix coding stile with `pint`
+
+```bash
+./vendor/bin/pint --help
+./vendor/bin/pint --test
+./vendor/bin/pint
+```

@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Utils\SanitizerUtil;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
     use HasFactory;
+
     protected $connection = 'agora-db-cntr-1-0';
 
     /**
@@ -36,10 +37,10 @@ class Article extends Model
         $contributors = [];
         $merits = Contributor::where('article_id', $this->id)->get();
         foreach ($merits as $merit) {
-            $contributor = array(
+            $contributor = [
                 'author' => Author::findOrFail($merit['author_id']),
                 'isMain' => ($merit['is_main_author']) ? true : false,
-            );
+            ];
             $contributors[] = $contributor;
         }
 
@@ -49,10 +50,10 @@ class Article extends Model
     /**
      * translates entities into readable characters contained in articles by reference rather than by value
      *
-     * @param mixed $articles
      * @return void
      */
-    public static function rehydrate(mixed &$articles) {
+    public static function rehydrate(mixed &$articles)
+    {
         foreach ($articles as $article) {
             $article['title'] = SanitizerUtil::rehydrate($article['title']);
             $article['subject'] = SanitizerUtil::rehydrate($article['subject']);
@@ -65,10 +66,10 @@ class Article extends Model
     /**
      * translates entities into readable characters contained in articles by reference rather than by value
      *
-     * @param mixed $contributions
      * @return void
      */
-    public static function deeplyRehydrate(mixed &$contributions) {
+    public static function deeplyRehydrate(mixed &$contributions)
+    {
         foreach ($contributions as $contribution) {
             $contribution['article']['title'] = SanitizerUtil::rehydrate($contribution['article']['title']);
             $contribution['article']['subject'] = SanitizerUtil::rehydrate($contribution['article']['subject']);

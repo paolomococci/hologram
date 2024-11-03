@@ -6,9 +6,6 @@ class SanitizerUtil
 {
     /**
      * filtrate user input
-     *
-     * @param string|null $suspicious
-     * @return string
      */
     public static function filtrate(?string $suspicious): string
     {
@@ -38,9 +35,6 @@ class SanitizerUtil
 
     /**
      * sanitize user input
-     *
-     * @param string|null $suspicious
-     * @return string
      */
     public static function sanitize(?string $suspicious): string
     {
@@ -67,9 +61,6 @@ class SanitizerUtil
 
     /**
      * translate from character to html entities
-     *
-     * @param string|null $hazy
-     * @return string
      */
     public static function dehydrate(?string $hazy): string
     {
@@ -86,9 +77,6 @@ class SanitizerUtil
 
     /**
      * translate from html entities to character
-     *
-     * @param string|null $dehydrated
-     * @return string
      */
     public static function rehydrate(?string $dehydrated): string
     {
@@ -105,11 +93,9 @@ class SanitizerUtil
 
     /**
      * permanently removes carriage return, tab, and vertical tab special characters
-     *
-     * @param string|null $dehydrated
-     * @return string
      */
-    private static function removeSpecialCharacters(?string $dehydrated): string {
+    private static function removeSpecialCharacters(?string $dehydrated): string
+    {
         return str_replace(
             ['&#92;r', '&#92;t', '&#92;v'],
             '',

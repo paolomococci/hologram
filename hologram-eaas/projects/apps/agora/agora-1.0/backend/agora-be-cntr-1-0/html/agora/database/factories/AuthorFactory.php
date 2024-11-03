@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Author>
@@ -22,7 +22,7 @@ class AuthorFactory extends Factory
         return [
             'name' => $username,
             'nickname' => fake()->word(),
-            'email' => $username . '.' . fake()->safeEmailDomain(),
+            'email' => $username.'.'.fake()->safeEmailDomain(),
             'email_checked_at' => fake()->dateTimeBetween('-1 week', now()),
             'temporary_token' => Str::ulid()->toBase32(),
             'suspended' => fake()->numberBetween(0, 1),
@@ -32,7 +32,8 @@ class AuthorFactory extends Factory
     /**
      * Indicates which field in the model may not have been verified.
      */
-    public function unverified(): static {
+    public function unverified(): static
+    {
         return $this->state(fn (array $attributes) => [
             'email_checked_at' => null,
         ]);
