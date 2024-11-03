@@ -228,27 +228,3 @@ and, if I am examining the presence of a specific route, the following command h
 ```bash
 php artisan route:list | grep "help"
 ```
-
-## Vue.js devtools
-
-In order to easily develop the application I must remember to modify the files `package.json`:
-
-```json
-        "dev": "vite build --mode development",
-```
-
-and `vite.config.js`:
-
-```js
-export default defineConfig(({mode}) => ({
-...
-    define: {
-        __VUE_PROD_DEVTOOLS__: mode !== 'production'
-    },
-```
-
-So I can issue the following command:
-
-```bash
-npm run dev
-```
