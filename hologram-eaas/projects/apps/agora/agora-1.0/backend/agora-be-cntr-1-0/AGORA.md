@@ -236,3 +236,10 @@ php artisan route:list | grep "help"
 ./vendor/bin/pint --test
 ./vendor/bin/pint
 ```
+
+## update dependencies to the latest version
+
+```bash
+composer update --help
+composer update --ignore-platform-reqs
+```
