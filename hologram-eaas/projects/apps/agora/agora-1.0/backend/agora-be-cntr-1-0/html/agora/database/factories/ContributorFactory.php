@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Author;
+use App\Models\Article;
+use App\Models\Contributor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +19,19 @@ class ContributorFactory extends Factory
      */
     public function definition(): array
     {
+        $exist = true;
+
+        while ($exist) {
+            $randomArticleId = rand(1, Article::all()->count());
+            $randomAuthorId = rand(1, Author::all()->count());
+            $result = Contributor::where('article_id', $randomArticleId)->where('author_id', $randomAuthorId)->first();
+            $exist = ($result != null);
+        }
+
         return [
-            //
+            'is_main_author' => fake()->numberBetween(0, 1),
+            'article_id' => $randomArticleId,
+            'author_id' => $randomAuthorId,
         ];
     }
 }

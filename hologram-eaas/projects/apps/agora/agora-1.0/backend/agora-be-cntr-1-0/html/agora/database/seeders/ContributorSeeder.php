@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
+use App\Models\Contributor;
 use Illuminate\Database\Seeder;
 
 class ContributorSeeder extends Seeder
@@ -11,6 +13,6 @@ class ContributorSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Contributor::factory()->count(Article::all()->count())->create();
     }
 }

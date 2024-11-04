@@ -187,6 +187,7 @@ php artisan model:show Article
 php artisan model:show Contributor
 php artisan make:factory ContributorFactory
 php artisan make:seeder ContributorSeeder
+php artisan migrate:fresh
 php artisan db:seed --class=DatabaseSeeder --verbose
 ```
 
