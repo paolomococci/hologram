@@ -262,3 +262,13 @@ composer show --installed --tree
 composer show --installed | grep laravel
 composer show --installed | grep pest
 ```
+
+## how to check licenses of installed packages
+
+```bash
+composer require --dev dominikb/composer-license-checker
+./vendor/bin/composer-license-checker help
+./vendor/bin/composer-license-checker list
+./vendor/bin/composer-license-checker check
+./vendor/bin/composer-license-checker report
+```
