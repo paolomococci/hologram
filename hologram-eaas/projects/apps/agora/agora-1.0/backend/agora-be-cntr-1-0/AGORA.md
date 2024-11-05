@@ -252,3 +252,13 @@ Well, after creating a new image with `pcntl` enabled and deriving a new contain
 ```bash
 php artisan pail
 ```
+
+## how to check installed packages
+
+```bash
+composer show --help
+composer show --installed
+composer show --installed --tree
+composer show --installed | grep laravel
+composer show --installed | grep pest
+```
