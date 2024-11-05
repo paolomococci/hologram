@@ -307,3 +307,11 @@ test('welcome feature test status is ok', function () {
 ```bash
 php artisan test --filter WelcomeFeatureTest
 ```
+
+### migrate from PHPUnit to Pest
+
+```bash
+composer require --dev pestphp/pest-plugin-drift
+./vendor/bin/pest --help
+./vendor/bin/pest --drift
+```
