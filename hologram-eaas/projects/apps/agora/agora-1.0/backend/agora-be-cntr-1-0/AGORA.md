@@ -272,3 +272,18 @@ composer require --dev dominikb/composer-license-checker
 ./vendor/bin/composer-license-checker check
 ./vendor/bin/composer-license-checker report
 ```
+
+## how to test code with Pest
+
+```bash
+php artisan test --help
+php artisan test
+composer require --dev pestphp/pest
+./vendor/bin/pest --init
+composer require --dev pestphp/pest-plugin-laravel
+php artisan make:test --help
+php artisan make:test --pest Pest/SampleFeatureTest
+php artisan test --filter SampleFeatureTest
+php artisan make:test --unit --pest Pest/SampleUnitTest
+php artisan test --filter SampleUnitTest
+```
