@@ -287,3 +287,23 @@ php artisan test --filter SampleFeatureTest
 php artisan make:test --unit --pest Pest/SampleUnitTest
 php artisan test --filter SampleUnitTest
 ```
+
+### `web` routes example test
+
+```bash
+php artisan make:test --pest Pest/WelcomeFeatureTest
+```
+
+```php
+<?php
+
+test('welcome feature test status is ok', function () {
+    $response = $this->get('/');
+
+    $response->assertStatus(200);
+});
+```
+
+```bash
+php artisan test --filter WelcomeFeatureTest
+```
