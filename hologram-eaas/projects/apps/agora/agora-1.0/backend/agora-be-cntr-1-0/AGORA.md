@@ -319,13 +319,17 @@ composer require --dev pestphp/pest-plugin-drift
 ### testing the `Article` model and its controller
 
 ```bash
-php artisan make:test --pest Article/ArticleControllerIndexUnitTest
-php artisan test --filter ArticleControllerIndexUnitTest
+php artisan make:test --pest Article/ArticleControllerIndexTest
+php artisan test --filter ArticleControllerIndexTest
+php artisan make:test --pest Article/ArticleTest
+php artisan test --filter ArticleTest
 ```
 
 ### testing the `Author` model and its controller
 
 ```bash
-php artisan make:test --pest Author/AuthorControllerIndexUnitTest
-php artisan test --filter AuthorControllerIndexUnitTest
+php artisan make:test --pest Author/AuthorControllerIndexTest
+php artisan test --filter AuthorControllerIndexTest
+php artisan make:test --pest Author/AuthorTest
+php artisan test --filter AuthorTest
 ```
