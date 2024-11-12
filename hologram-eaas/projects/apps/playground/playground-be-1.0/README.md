@@ -3,9 +3,9 @@
 *useful container for testing and highlighting the functioning of web applications*
 
 ```bash
-mkdir -p ~/projects/apps/playground/playground--be-1.0
-ls ~/projects/apps/playground/playground--be-1.0/
-cd ~/projects/apps/playground/playground--be-1.0/
+mkdir -p ~/projects/apps/playground/playground-be-1.0
+ls ~/projects/apps/playground/playground-be-1.0/
+cd ~/projects/apps/playground/playground-be-1.0/
 ```
 
 ### solve problems caused by SELinux
