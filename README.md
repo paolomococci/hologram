@@ -7,6 +7,12 @@ The procedures themselves may change or there may be more convenient ones.
 Therefore, it is always necessary to refer to the official documentation hosted on the sites of the programming languages, servers and tools mentioned from time to time.
 Thank you.
 
+## `remark` 
+
+An example of a social media that hosts the opinions of its users.
+
+![An example of a social media that hosts the opinions of its users.](hologram-eaas/projects/apps/remark/remark-1.0/screenshots/remark-1.0_landing_page.png)
+
 ## `quotes` version 3
 
 Landing page:
