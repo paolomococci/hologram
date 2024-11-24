@@ -43,7 +43,7 @@ Additionally, it would be a good idea to make sure you have the following useful
 With the following command I can check if the package is already installed:
 
 ```bash
-dpkg -l build-essential
+dpkg -l libzip-dev libgd-dev sqlite3
 ```
 
 To then proceed with installing the packages that are not yet present on the system.
@@ -52,5 +52,5 @@ As follows, for example only:
 
 ```bash
 sudo apt update
-sudo apt install libcurl4-openssl-dev libbz2-dev libjpeg-dev libgmp3-dev libxslt1-dev libpng-dev libsqlite3-dev libonig-dev apache2-dev libxml2-dev libffi-dev libzip-dev libgd-dev
+sudo apt install libcurl4-openssl-dev libbz2-dev libjpeg-dev libgmp3-dev libxslt1-dev libpng-dev libsqlite3-dev libonig-dev apache2-dev libxml2-dev libffi-dev libzip-dev libgd-dev sqlite3
 ```
