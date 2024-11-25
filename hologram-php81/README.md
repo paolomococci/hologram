@@ -4,4 +4,4 @@ Based on some statistics, it seems that PHP version 8.1, together with 7.4 and 8
 
 Here are the procedures for obtaining a LAMP server stack with version 8.1 of PHP.
 
-![info page](screenshots/phpinfo.jpg)
+![info page](screenshots/hologram-php81_info_page.png)
