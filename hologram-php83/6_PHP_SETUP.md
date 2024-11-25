@@ -7,7 +7,18 @@ Below we will explain the steps necessary to ensure that the Apache 2 web server
 ```bash
 cd ~
 mkdir php && cd php
-wget https://www.php.net/distributions/php-8.3.14.tar.xz
+```
+
+First I can check the existence of the archive:
+
+```bash
+wget --spider --https-only https://www.php.net/distributions/php-8.3.14.tar.xz
+```
+
+After that I can download the archive containing the sources:
+
+```bash
+wget --https-only https://www.php.net/distributions/php-8.3.14.tar.xz
 ls -l
 sha256sum php-8.3.14.tar.xz
 tar -xf php-8.3.14.tar.xz
