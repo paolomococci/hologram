@@ -23,10 +23,10 @@ rm /usr/bin/php-config
 Otherwise, if this is the first installation from sources, we immediately move on to the following instructions:
 
 ```bash
-ln --symbolic --verbose /opt/php/8.2.25/bin/php /usr/bin/php
-ln --symbolic --verbose /opt/php/8.2.25/bin/phar.phar /usr/bin/phar
-ln --symbolic --verbose /opt/php/8.2.25/bin/phpize /usr/bin/phpize
-ln --symbolic --verbose /opt/php/8.2.25/bin/php-config /usr/bin/php-config
+ln --symbolic --verbose /opt/php/8.2.26/bin/php /usr/bin/php
+ln --symbolic --verbose /opt/php/8.2.26/bin/phar.phar /usr/bin/phar
+ln --symbolic --verbose /opt/php/8.2.26/bin/phpize /usr/bin/phpize
+ln --symbolic --verbose /opt/php/8.2.26/bin/php-config /usr/bin/php-config
 ```
 
 Update `locate` cache:
@@ -34,6 +34,7 @@ Update `locate` cache:
 ```bash
 updatedb
 locate php.ini
+exit
 ```
 
 ## install Xdebug from source
@@ -51,35 +52,36 @@ mkdir build_session && cd build_session
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make
-make install
+sudo make install
 ```
 
-Instead, if it is an update:
+Instead, if it is a PHP version update:
 
 ```bash
-cd xdebug/xdebug-3.3.2/
+cd ~/xdebug/xdebug-3.3.2/
 phpize
 mkdir build_session_update_n && cd build_session_update_n
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make
-make install
+sudo make install
 ```
 
 ## setup of Xdebug
 
 ```bash
 php --ini
+sudo -s
 updatedb
 locate xdebug.ini
-rnano /opt/php/8.2.25/lib/php.ini
+rnano /opt/php/8.2.26/lib/php.ini
 ```
 
 First it is a good idea to view the contents of the file without risking causing damage.
-And now I edit `/opt/php/8.2.25/lib/php.ini` configuration file
+And now I edit `/opt/php/8.2.26/lib/php.ini` configuration file
 
 ```bash
-nano /opt/php/8.2.25/lib/php.ini
+nano /opt/php/8.2.26/lib/php.ini
 ```
 
 I add this section:
@@ -93,7 +95,7 @@ I add this section:
 zend_extension=xdebug
 
 ; xdebug.mode=[off,develop,coverage,debug,gcstats,profile,trace]
-xdebug.mode=develop,debug,trace
+xdebug.mode=develop,debug,trace,coverage
 xdebug.cli_color=1
 xdebug.start_with_request=trigger
 xdebug.discover_client_host=1
@@ -119,6 +121,7 @@ Then I have to restart the `PHP-FPM` service
 systemctl reload php-fpm
 systemctl status php-fpm --no-pager
 php -v
+exit
 ```
 
 ### on client setup of vscode
