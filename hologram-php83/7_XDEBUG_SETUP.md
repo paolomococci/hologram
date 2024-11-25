@@ -52,10 +52,10 @@ mkdir build_session && cd build_session
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make
-make install
+sudo make install
 ```
 
-Instead, if it is an update:
+Instead, if it is a PHP version update:
 
 ```bash
 cd xdebug/xdebug-3.3.2/
@@ -121,6 +121,7 @@ Then I have to restart the `PHP-FPM` service
 systemctl reload php-fpm
 systemctl status php-fpm --no-pager
 php -v
+exit
 ```
 
 ### on client setup of vscode

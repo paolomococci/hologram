@@ -36,6 +36,7 @@ Update `locate` cache:
 ```bash
 updatedb
 locate php.ini
+exit
 ```
 
 ## install Xdebug from source
@@ -53,19 +54,19 @@ mkdir build_session && cd build_session
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make
-make install
+sudo make install
 ```
 
-Instead, if it is an update:
+Instead, if it is a PHP version update:
 
 ```bash
-cd xdebug/xdebug-3.3.2/
+cd ~/xdebug/xdebug-3.3.2/
 phpize
 mkdir build_session_update_n && cd build_session_update_n
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make
-make install
+sudo make install
 ```
 
 ## setup of Xdebug
@@ -94,7 +95,7 @@ I add this section:
 zend_extension=xdebug
 
 ; xdebug.mode=[off,develop,coverage,debug,gcstats,profile,trace]
-xdebug.mode=debug,trace
+xdebug.mode=develop,debug,trace,coverage
 xdebug.start_with_request=trigger
 xdebug.discover_client_host=1
 xdebug.remote_enable=1
@@ -118,6 +119,7 @@ Then I have to restart the `PHP-FPM` service
 systemctl reload php-fpm
 systemctl status php-fpm --no-pager
 php -v
+exit
 ```
 
 ### on client setup of vscode

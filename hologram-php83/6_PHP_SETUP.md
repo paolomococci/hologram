@@ -80,7 +80,7 @@ sudo cp /opt/php/8.3.14/etc/php-fpm.d/www.conf.default /opt/php/8.3.14/etc/php-f
 ls -al /usr/lib/systemd/system/ | grep -i "php-fpm.service"
 ```
 
-I create the configuration file `php-fpm.service`:
+If it doesn't exist yet, I create the configuration file `php-fpm.service`:
 
 ```bash
 sudo nano /usr/lib/systemd/system/php-fpm.service
