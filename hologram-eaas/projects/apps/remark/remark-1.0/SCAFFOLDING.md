@@ -155,7 +155,7 @@ php artisan make:test --pest WelcomeFeatureTest
 ```php
 <?php
 
-test('welcome feature test status is ok', function () {
+test('welcome feature test', function () {
     $response = $this->get('/');
 
     $response->assertStatus(200);
