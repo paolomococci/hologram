@@ -35,5 +35,5 @@ As follows, for example only:
 
 ```bash
 dnf check-update --refresh
-dnf libxml2-devel sqlite-devel bzip2-devel libcurl-devel libffi-devel libpng-devel libjpeg-turbo-devel gmp-devel libicu-devel oniguruma-devel libxslt-devel libzip libzip-tools libzip-devel
+dnf install libxml2-devel sqlite-devel bzip2-devel libcurl-devel libffi-devel libpng-devel libjpeg-turbo-devel gmp-devel libicu-devel oniguruma-devel libxslt-devel libzip libzip-tools libzip-devel
 ```
