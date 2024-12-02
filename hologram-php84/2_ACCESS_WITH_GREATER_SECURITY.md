@@ -52,7 +52,7 @@ Edit sftp.json like this:
     "privateKeyPath": "/home/developer_username/.ssh/id_rsa",
     "passphrase": "developer_passphrase",
     "host": "192.168.1.XXX",
-    "remotePath": "/home/developer_username",
+    "remotePath": "/var/www/html",
     "port": 22,
     "connectTimeout": 20000,
     "uploadOnSave": true,
@@ -68,6 +68,7 @@ Edit sftp.json like this:
     "ignore": [
         ".vscode",
         ".howto",
+        ".setup",
         ".git",
         ".DS_Store",
         "TEMP",
