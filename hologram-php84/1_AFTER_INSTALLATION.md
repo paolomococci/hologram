@@ -4,20 +4,22 @@
 
 ```bash
 dnf repolist
+dnf config-manager --set-enabled crb
 dnf check-update --refresh
 dnf install nano wget mlocate
 dnf upgrade
 dnf search cockpit
 dnf list installed | grep cockpit
 dnf list available
-dnf install cockpit cockpit-storaged cockpit-files
+dnf install cockpit cockpit-storaged cockpit-files cockpit-pcp
 systemctl status cockpit
 systemctl enable --now cockpit.socket
 systemctl start cockpit
-systemctl status cockpit
+systemctl status cockpit --no-pager
+systemctl enable --now pmlogger
+systemctl start pmlogger
+systemctl status pmlogger --no-pager
 dnf install yum-utils
-dnf config-manager --set-enabled crb
-dnf repolist
 ```
 
 Add an existing user to administrators group:
