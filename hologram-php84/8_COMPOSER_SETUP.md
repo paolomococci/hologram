@@ -3,7 +3,7 @@
 First I issued the following commands:
 
 ```bash
-su -
+cd ~
 mkdir composer && cd composer
 ```
 
@@ -11,7 +11,7 @@ And after following the instructions listed on the official Composer website I p
 
 ```bash
 whereis php
-cp composer.phar /usr/local/bin/composer
+sudo cp composer.phar /usr/local/bin/composer
 composer list
 ```
 
