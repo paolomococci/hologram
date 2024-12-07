@@ -7,6 +7,12 @@ The procedures themselves may change or there may be more convenient ones.
 Therefore, it is always necessary to refer to the official documentation hosted on the sites of the programming languages, servers and tools mentioned from time to time.
 Thank you.
 
+## `chatbot`
+
+An example of a chatbot web application.
+
+![An example of a chatbot web application.](hologram-php84/screenshots/Chatbot_landing_page.png)
+
 ## `remark` 
 
 An example of a social media that hosts the opinions of its users.
