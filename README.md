@@ -7,6 +7,12 @@ The procedures themselves may change or there may be more convenient ones.
 Therefore, it is always necessary to refer to the official documentation hosted on the sites of the programming languages, servers and tools mentioned from time to time.
 Thank you.
 
+## `recode`
+
+An example of an assistant application.
+
+![An example of a chatbot web application.](hologram-php84/screenshots/Recode_query_SelectFromEmployeesWhereRadiologist.png)
+
 ## `chatbot`
 
 An example of a chatbot web application.
