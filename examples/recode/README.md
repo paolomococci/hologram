@@ -1,5 +1,9 @@
 # development of `recode` web application
 
+A screenshot that gives an idea of ​​the finished application:
+
+![example of query](../../hologram-php84/screenshots/Recode_query_SelectFromEmployeesWhereRadiologist.png)
+
 ## first scaffold
 
 ```bash
