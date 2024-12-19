@@ -57,7 +57,7 @@ php artisan tinker
 
 and now:
 
-```tinker
+```sh
 App\Models\Article::all()
 App\Models\Team::all()
 App\Models\User::all()
