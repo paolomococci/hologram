@@ -23,10 +23,10 @@ rm /usr/bin/php-config
 Otherwise, if this is the first installation from sources, we immediately move on to the following instructions:
 
 ```bash
-ln --symbolic --verbose /opt/php/8.3.14/bin/php /usr/bin/php
-ln --symbolic --verbose /opt/php/8.3.14/bin/phar.phar /usr/bin/phar
-ln --symbolic --verbose /opt/php/8.3.14/bin/phpize /usr/bin/phpize
-ln --symbolic --verbose /opt/php/8.3.14/bin/php-config /usr/bin/php-config
+ln --symbolic --verbose /opt/php/8.3.15/bin/php /usr/bin/php
+ln --symbolic --verbose /opt/php/8.3.15/bin/phar.phar /usr/bin/phar
+ln --symbolic --verbose /opt/php/8.3.15/bin/phpize /usr/bin/phpize
+ln --symbolic --verbose /opt/php/8.3.15/bin/php-config /usr/bin/php-config
 ```
 
 Update `locate` cache:
@@ -43,10 +43,11 @@ Be sure to replace the real link of the version you prefer.
 
 ```bash
 mkdir xdebug && cd xdebug
-wget https://xdebug.org/files/xdebug-3.3.2.tgz
-sha256sum xdebug-3.3.2.tgz
-tar -xvzf xdebug-3.3.2.tgz
-cd xdebug-3.3.2/
+wget --spider --https-only https://xdebug.org/files/xdebug-3.4.0.tgz
+wget --https-only https://xdebug.org/files/xdebug-3.4.0.tgz
+sha256sum xdebug-3.4.0.tgz
+tar -xzf xdebug-3.4.0.tgz
+cd xdebug-3.4.0/
 phpize
 mkdir build_session && cd build_session
 ../configure --help
@@ -58,7 +59,7 @@ sudo make install
 Instead, if it is a PHP version update:
 
 ```bash
-cd xdebug/xdebug-3.3.2/
+cd xdebug/xdebug-3.4.0/
 phpize
 mkdir build_session_update_n && cd build_session_update_n
 ../configure --help
@@ -74,14 +75,14 @@ php --ini
 sudo -s
 updatedb
 locate xdebug.ini
-rnano /opt/php/8.3.14/lib/php.ini
+rnano /opt/php/8.3.15/lib/php.ini
 ```
 
 First it is a good idea to view the contents of the file without risking causing damage.
-And now I edit `/opt/php/8.3.14/lib/php.ini` configuration file
+And now I edit `/opt/php/8.3.15/lib/php.ini` configuration file
 
 ```bash
-nano /opt/php/8.3.14/lib/php.ini
+nano /opt/php/8.3.15/lib/php.ini
 ```
 
 I add this section:
