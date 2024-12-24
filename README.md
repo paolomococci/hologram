@@ -7,6 +7,12 @@ The procedures themselves may change or there may be more convenient ones.
 Therefore, it is always necessary to refer to the official documentation hosted on the sites of the programming languages, servers and tools mentioned from time to time.
 Thank you.
 
+## `thesis`
+
+Web application demo:
+
+![A management demo.](examples/thesis/screenshots/Thesis_editor_landscape.png)
+
 ## `recode`
 
 An example of an assistant application.
