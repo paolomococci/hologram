@@ -3,9 +3,9 @@
 namespace App\Livewire\View;
 
 use App\Models\Article;
-use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Filter extends Component
 {
@@ -20,7 +20,7 @@ class Filter extends Component
 
     public function toggle()
     {
-        $this->deprecated = !($this->deprecated);
+        $this->deprecated = ! ($this->deprecated);
         $this->updatedFilterText($this->filterText);
     }
 

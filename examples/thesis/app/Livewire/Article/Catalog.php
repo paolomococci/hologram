@@ -3,8 +3,8 @@
 namespace App\Livewire\Article;
 
 use App\Models\Article;
-use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 class Catalog extends Component
@@ -37,7 +37,7 @@ class Catalog extends Component
     public function deprecate(Article $article)
     {
         $article->update([
-            'deprecated' => !$this->deprecated,
+            'deprecated' => ! $this->deprecated,
         ]);
         $this->resetArticles();
     }
@@ -45,12 +45,12 @@ class Catalog extends Component
     public function render()
     {
         return view('livewire.article.catalog', [
-            'articles' => Article::where('title', 'LIKE', '%' . $this->filterText . '%')
+            'articles' => Article::where('title', 'LIKE', '%'.$this->filterText.'%')
                 ->where('deprecated', $this->deprecated)
                 ->cursorPaginate(self::ARTICLES_PER_PAGE),
-            'numberOfArticles' => Article::where('title', 'LIKE', '%' . $this->filterText . '%')
-            ->where('deprecated', $this->deprecated)
-            ->get(),
+            'numberOfArticles' => Article::where('title', 'LIKE', '%'.$this->filterText.'%')
+                ->where('deprecated', $this->deprecated)
+                ->get(),
         ]);
     }
 }

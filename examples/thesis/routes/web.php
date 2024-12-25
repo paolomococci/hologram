@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Livewire\Article\Read as ReadArticle;
-use App\Livewire\Article\Index as IndexOfArticles;
 use App\Livewire\Article\Create as CreateArticle;
 use App\Livewire\Article\Edit as EditArticle;
+use App\Livewire\Article\Index as IndexOfArticles;
+use App\Livewire\Article\Read as ReadArticle;
 use App\Livewire\View\Dashboard;
+use Illuminate\Support\Facades\Route;
 
 // consolidated links
 Route::get('/', IndexOfArticles::class);

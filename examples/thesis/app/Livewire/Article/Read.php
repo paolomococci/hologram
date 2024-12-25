@@ -9,7 +9,8 @@ class Read extends Component
 {
     public ?Article $article;
 
-    public function mount(Article $article) {
+    public function mount(Article $article)
+    {
         $this->article = $article;
     }
 

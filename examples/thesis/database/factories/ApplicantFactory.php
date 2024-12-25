@@ -20,8 +20,8 @@ class ApplicantFactory extends Factory
     {
         $name = fake()->name();
         $username = Str::replace(['. ', ' ', '\'', '`', '"'], ['.', '.', '.', '.', '.'], Str::lower($name));
-        $username .= (string)mt_rand(0, 9);
-        $email = $username . (fake()->boolean(50) ? '@thesis.local' : '@example.local');
+        $username .= (string) mt_rand(0, 9);
+        $email = $username.(fake()->boolean(50) ? '@thesis.local' : '@example.local');
 
         return [
             'name' => $name,

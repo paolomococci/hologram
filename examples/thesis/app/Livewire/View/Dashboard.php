@@ -2,8 +2,8 @@
 
 namespace App\Livewire\View;
 
-use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Livewire\Component;
 
 #[Layout('components.layouts.admin')]
 class Dashboard extends Component

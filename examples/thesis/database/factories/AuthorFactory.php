@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Author>
@@ -19,13 +19,13 @@ class AuthorFactory extends Factory
     {
         $name = Str::lower(fake()->firstName());
         $surname = Str::lower(fake()->lastName());
-        $username = $name . '.' . $surname . (string)mt_rand(0, 9);
+        $username = $name.'.'.$surname.(string) mt_rand(0, 9);
 
         return [
             'name' => $name,
             'surname' => $surname,
             'nickname' => fake()->word(),
-            'email' => $username . '.' . fake()->safeEmailDomain(),
+            'email' => $username.'.'.fake()->safeEmailDomain(),
             'email_checked_at' => fake()->boolean(50) ? fake()->date() : null,
             'temporary_token' => Str::ulid()->toBase32(),
             'suspended' => fake()->numberBetween(0, 1),

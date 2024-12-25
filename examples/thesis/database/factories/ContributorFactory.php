@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Author;
 use App\Models\Article;
+use App\Models\Author;
 use App\Models\Contributor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

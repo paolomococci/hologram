@@ -2,8 +2,8 @@
 
 namespace App\Livewire\View;
 
-use Livewire\Component;
 use Livewire\Attributes\Reactive;
+use Livewire\Component;
 
 class Filtered extends Component
 {

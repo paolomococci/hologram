@@ -16,7 +16,8 @@ class Search extends Component
 
     public $placeholder = '';
 
-    public function updatedSearchText($searchText) {
+    public function updatedSearchText($searchText)
+    {
         $this->reset('results');
         $this->validate();
         $searchTerm = "%{$searchText}%";
@@ -24,7 +25,8 @@ class Search extends Component
     }
 
     #[On('search:clear-results')]
-    public function clear() {
+    public function clear()
+    {
         $this->reset(
             'results',
             'searchText',

@@ -20,7 +20,7 @@ class ScannedDocumentFactory extends Factory
 
         return [
             'title' => $title,
-            'name' => $title . '.png',
+            'name' => $title.'.png',
             'content' => fake()->paragraph(20),
         ];
     }
