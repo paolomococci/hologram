@@ -1,35 +1,46 @@
 <div class="mx-4">
+    <p class="mt-4 text-sm/relaxed">
+        You are about to edit the article identified by the number: {{ $articleForm->article['id'] }}
+    </p>
     <form wire:submit="update()">
         <div class="mb-3">
-            <label class="block text-slate-600" for="article-title">Title</label>
+            <label class="block text-slate-600" for="article-title">
+                Title <span wire:dirty.class="text-orange-400" wire:dirty wire:target="articleForm.title">modified</span>
+            </label>
             <input type="text" spellcheck="false"
                 class="p-2 w-full h-full align-text-top rounded-sm border text-start text-slate-300 bg-slate-600"
-                wire:model="articleForm.title">
+                wire:model.live.debounce="articleForm.title" wire:dirty wire:dirty.class="border-orange-400">
             <div>
                 @error('articleForm.title')
-                    <span class="mt-1 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
+                    <span class="mt-2 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
                 @enderror
             </div>
         </div>
         <div class="mb-3">
-            <label class="block text-slate-600" for="article-subject">Subject</label>
+            <label class="block text-slate-600" for="article-subject">
+                Subject <span wire:dirty.class="text-orange-400" wire:dirty
+                    wire:target="articleForm.subject">modified</span>
+            </label>
             <input type="text" spellcheck="false"
                 class="p-2 w-full h-full align-text-top rounded-sm border text-start text-slate-300 bg-slate-600"
-                wire:model="articleForm.subject">
+                wire:model.live.debounce="articleForm.subject" wire:dirty wire:dirty.class="border-orange-400">
         </div>
         <div>
             @error('articleForm.subject')
-                <span class="mt-1 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
+                <span class="mt-2 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
             @enderror
         </div>
         <div class="mb-3">
-            <label class="block text-slate-600" for="article-content">Content</label>
+            <label class="block text-slate-600" for="article-content">
+                Content <span wire:dirty.class="text-orange-400" wire:dirty
+                    wire:target="articleForm.content">modified</span>
+            </label>
             <textarea id="article-content" spellcheck="false"
                 class="p-2 w-full h-full align-text-top rounded-sm border sm:min-h-64 md:min-h-48 lg:min-h-36 peer text-start text-slate-300 bg-slate-600"
-                wire:model="articleForm.content"></textarea>
+                wire:model.live.debounce="articleForm.content" wire:dirty wire:dirty.class="border-orange-400"></textarea>
             <div>
                 @error('articleForm.content')
-                    <span class="mt-1 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
+                    <span class="mt-2 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
                 @enderror
             </div>
         </div>
@@ -47,5 +58,6 @@
                 </svg>
             </button>
         </div>
+        <div wire:dirty wire:dirty.class="text-orange-400">Please don't forget to save your changes.</div>
     </form>
 </div>

@@ -1,13 +1,22 @@
 <div class="mx-4">
     <form wire:submit="save()">
         <div class="mb-3">
-            <label class="block text-slate-600" for="article-title">Title</label>
+            <label class="block text-slate-600" for="article-title">Title <span class="inline-flex text-orange-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="opacity-25 lucide lucide-circle-alert size-4 sm:size-3lg:size-5">
+                        <title>required</title>
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" x2="12" y1="8" y2="12" />
+                        <line x1="12" x2="12.01" y1="16" y2="16" />
+                    </svg>
+                </span></label>
             <input type="text" spellcheck="false"
-                class="p-2 w-full h-full align-text-top rounded-sm border text-start text-slate-300 bg-slate-600"
-                wire:model="articleForm.title">
+                class="p-2 w-full h-full align-text-top rounded-sm border border-orange-400 text-start text-slate-300 bg-slate-600"
+                wire:model.live.debounce="articleForm.title">
             <div>
                 @error('articleForm.title')
-                    <span class="mt-1 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
+                    <span class="mt-2 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
                 @enderror
             </div>
         </div>
@@ -15,21 +24,30 @@
             <label class="block text-slate-600" for="article-subject">Subject</label>
             <input type="text" spellcheck="false"
                 class="p-2 w-full h-full align-text-top rounded-sm border text-start text-slate-300 bg-slate-600"
-                wire:model="articleForm.subject">
+                wire:model.live.debounce="articleForm.subject">
         </div>
         <div>
             @error('articleForm.subject')
-                <span class="mt-1 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
+                <span class="mt-2 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
             @enderror
         </div>
         <div class="mb-3">
-            <label class="block text-slate-600" for="article-content">Content</label>
+            <label class="block text-slate-600" for="article-content">Content <span class="inline-flex text-orange-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="opacity-25 lucide lucide-circle-alert size-4 sm:size-3lg:size-5">
+                        <title>required</title>
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" x2="12" y1="8" y2="12" />
+                        <line x1="12" x2="12.01" y1="16" y2="16" />
+                    </svg>
+                </span></label>
             <textarea id="article-content" spellcheck="false"
-                class="p-2 w-full h-full align-text-top rounded-sm border sm:min-h-64 md:min-h-48 lg:min-h-36 peer text-start text-slate-300 bg-slate-600"
-                wire:model="articleForm.content"></textarea>
+                class="p-2 w-full h-full align-text-top rounded-sm border border-orange-400 sm:min-h-64 md:min-h-48 lg:min-h-36 peer text-start text-slate-300 bg-slate-600"
+                wire:model.live.debounce="articleForm.content"></textarea>
             <div>
                 @error('articleForm.content')
-                    <span class="mt-1 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
+                    <span class="mt-2 text-red-500 delay-500 transition--opacity">{{ $message }}</span>
                 @enderror
             </div>
         </div>
@@ -47,5 +65,6 @@
                 </svg>
             </button>
         </div>
+        <div wire:dirty wire:dirty.class="text-orange-400">Please don't forget to save this new article.</div>
     </form>
 </div>
