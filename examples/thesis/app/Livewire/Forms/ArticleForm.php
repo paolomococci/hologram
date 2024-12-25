@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Form;
 use App\Models\Article;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Validate;
+use Livewire\Form;
 
 class ArticleForm extends Form
 {
@@ -26,11 +26,9 @@ class ArticleForm extends Form
 
     public bool $allowNotifications = false;
 
-    // field image_path
-    public string $imagePath = '';
+    public string $image_path = '';
 
-    // field sortable_token
-    public string $sortableToken = '';
+    public string $sortable_token = '';
 
     public function set(Article $article)
     {
@@ -51,7 +49,7 @@ class ArticleForm extends Form
             $this->notifications = [];
         }
 
-        $this->sortableToken = Str::ulid()->toBase32();
+        $this->sortable_token = Str::ulid()->toBase32();
 
         try {
             Article::create($this->only(
