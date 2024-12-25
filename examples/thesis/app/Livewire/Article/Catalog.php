@@ -15,14 +15,18 @@ class Catalog extends Component
 
     public bool $deprecated = false;
 
+    public bool $onlyDeprecated = false;
+
     public string $filterText = '';
 
     #[On('retrieveArticles')]
     public function showArticles(
         $deprecated,
+        $onlyDeprecated,
         $filterText
     ) {
         $this->deprecated = $deprecated;
+        $this->onlyDeprecated = $onlyDeprecated;
         $this->filterText = $filterText;
     }
 
@@ -30,6 +34,7 @@ class Catalog extends Component
     {
         $this->reset(
             'deprecated',
+            'onlyDeprecated',
             'filterText',
         );
     }
@@ -45,10 +50,10 @@ class Catalog extends Component
     public function render()
     {
         return view('livewire.article.catalog', [
-            'articles' => Article::where('title', 'LIKE', '%'.$this->filterText.'%')
+            'articles' => Article::where('title', 'LIKE', '%' . $this->filterText . '%')
                 ->where('deprecated', $this->deprecated)
                 ->cursorPaginate(self::ARTICLES_PER_PAGE),
-            'numberOfArticles' => Article::where('title', 'LIKE', '%'.$this->filterText.'%')
+            'numberOfArticles' => Article::where('title', 'LIKE', '%' . $this->filterText . '%')
                 ->where('deprecated', $this->deprecated)
                 ->get(),
         ]);

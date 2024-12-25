@@ -14,6 +14,8 @@ class Filter extends Component
 
     public bool $deprecated = false;
 
+    public bool $onlyDeprecated = false;
+
     public $articles = [];
 
     public $placeholder = '';
@@ -32,10 +34,15 @@ class Filter extends Component
         $this->articles = Article::where('title', 'LIKE', $filterTerm)
             ->where('deprecated', $this->deprecated)
             ->get();
+        $onlyDeprecatedArticles = Article::where('title', 'LIKE', $filterTerm)
+            ->where('deprecated', !$this->deprecated)
+            ->get();
+        $this->onlyDeprecated = (count($this->articles) < 1 && count($onlyDeprecatedArticles) > 0) ? true : false;
         $this->dispatch(
             'retrieveArticles',
             articles: $this->articles,
             deprecated: $this->deprecated,
+            onlyDeprecated: $this->onlyDeprecated,
             filterText: $this->filterText,
         );
     }

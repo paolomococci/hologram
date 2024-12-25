@@ -16,7 +16,13 @@
     @endphp
     <table class="mt-4">
         <thead class="text-xs text-gray-400 uppercase bg-gray-700">
-            @if (!empty($articles))
+            @if (!empty($articles) && $onlyDeprecated)
+                <tr id="deprecated-message" class="text-slate-800 dark:text-slate-300">
+                    <th class="px-6 py-3" colspan="3">
+                        There are only deprecated articles! Try switching to these.
+                    </th>
+                </tr>
+            @elseif (!empty($articles))
                 <tr class="text-slate-800 dark:text-slate-300">
                     <th class="px-6 py-3">{{ $deprecated ? 'Deprecated' : 'Approved' }}</th>
                     <th class="px-6 py-3">Edit</th>
