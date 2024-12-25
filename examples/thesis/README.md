@@ -820,3 +820,9 @@ and here are three tips on how to use them:
 license-report --output=csv > licenses_report.csv
 ./vendor/bin/composer-license-checker report
 ```
+
+### I added CleaningUtility class
+
+```bash
+php artisan make:class Utils/CleaningUtility
+```

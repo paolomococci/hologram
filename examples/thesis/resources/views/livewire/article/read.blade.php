@@ -1,6 +1,9 @@
+@php
+use App\Utils\CleaningUtility;
+@endphp
 <div class="mt-4">
     <h3 class="font-semibold text-black text-md-center dark:text-white">
-        {{ $article->title }}
+        {{ CleaningUtility::cleanTitle($article->title) }}
     </h3>
     <h5 class="mt-2 text-xs text-black dark:text-white">
         {{ $article->subject }}

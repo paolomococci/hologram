@@ -1,3 +1,6 @@
+@php
+use App\Utils\CleaningUtility;
+@endphp
 <div class="{{ $show ? 'block' : 'hidden' }} mt-4">
     <div class="absolute z-50 p-4 mt-4 bg-gray-700 rounded-b-md border border-green-600">
 
@@ -20,7 +23,7 @@
 
         @foreach ($results as $result)
             <p class="mr-8 text-sm/relaxed" wire:key="{{$result->id}}">
-                <a wire:navigate.hover href="/articles/{{ $result->id }}">{{ $result->title }}</a>
+                <a wire:navigate.hover href="/articles/{{ $result->id }}">{{ CleaningUtility::cleanTitle($result->title) }}</a>
             </p>
         @endforeach
     </div>

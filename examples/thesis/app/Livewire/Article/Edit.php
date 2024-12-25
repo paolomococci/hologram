@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Article;
 
-use App\Livewire\Forms\ArticleForm;
 use App\Models\Article;
-use Livewire\Attributes\Layout;
 use Livewire\Component;
+use App\Utils\CleaningUtility;
+use Livewire\Attributes\Layout;
+use App\Livewire\Forms\ArticleForm;
 
 #[Layout('components.layouts.editor')]
 class Edit extends Component
@@ -14,6 +15,7 @@ class Edit extends Component
 
     public function mount(Article $article)
     {
+        $article->title = CleaningUtility::cleanTitle($article->title);
         $this->articleForm->setArticleFields($article);
     }
 

@@ -1,3 +1,6 @@
+@php
+use App\Utils\CleaningUtility;
+@endphp
 <div class="mb-4 w-11/12">
     @php
         if (isset($filterText) && $filterText === '') {
@@ -36,7 +39,7 @@
                     <td class="px-6 py-3">
                         <h3
                             class="font-semibold text-md-center {{ $deprecated ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}">
-                            {{ $article['title'] }}
+                            {{ CleaningUtility::cleanTitle($article['title']) }}
                         </h3>
                     </td>
                     <td class="px-6 py-3">

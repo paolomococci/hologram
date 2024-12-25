@@ -41,6 +41,7 @@ class ArticleForm extends Form
         }
 
         $this->sortable_token = Str::ulid()->toBase32();
+        $this->title .= ' (' . $this->sortable_token . ')';
 
         try {
             Article::create($this->only(
@@ -65,6 +66,7 @@ class ArticleForm extends Form
         $this->published = $article->published;
         $this->deprecated = $article->deprecated;
         $this->notifications = $article->notifications;
+        $this->sortable_token = $article->sortable_token;
 
         $this->article = $article;
     }
@@ -76,6 +78,8 @@ class ArticleForm extends Form
         if ($this->allowNotifications == false) {
             $this->notifications = [];
         }
+
+        $this->title .= ' (' . $this->sortable_token . ')';
 
         try {
             $this->article->update($this->only(
