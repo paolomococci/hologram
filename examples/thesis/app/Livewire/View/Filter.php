@@ -52,12 +52,14 @@ class Filter extends Component
     {
         $this->reset(
             'articles',
+            'onlyDeprecated',
             'filterText',
         );
         $this->dispatch(
             'retrieveArticles',
             articles: $this->articles,
             deprecated: $this->deprecated,
+            onlyDeprecated: $this->onlyDeprecated,
             filterText: $this->filterText,
         );
     }

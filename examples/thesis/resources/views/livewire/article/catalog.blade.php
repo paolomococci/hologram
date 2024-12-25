@@ -17,7 +17,7 @@
     <table class="mt-4">
         <thead class="text-xs text-gray-400 uppercase bg-gray-700">
             @if (!empty($articles) && $onlyDeprecated)
-                <tr id="deprecated-message" class="text-slate-800 dark:text-slate-300">
+                <tr class="text-slate-800 dark:text-slate-300">
                     <th class="px-6 py-3" colspan="3">
                         There are only deprecated articles! Try switching to these.
                     </th>
