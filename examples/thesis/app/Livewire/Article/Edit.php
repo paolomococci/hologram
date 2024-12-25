@@ -14,7 +14,7 @@ class Edit extends Component
 
     public function mount(Article $article)
     {
-        $this->articleForm->set($article);
+        $this->articleForm->setArticleFields($article);
     }
 
     public function update()

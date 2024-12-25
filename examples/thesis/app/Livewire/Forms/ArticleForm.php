@@ -22,6 +22,8 @@ class ArticleForm extends Form
 
     public bool $published = false;
 
+    public bool $deprecated = false;
+
     public $notifications = [];
 
     public bool $allowNotifications = false;
@@ -29,17 +31,6 @@ class ArticleForm extends Form
     public string $image_path = '';
 
     public string $sortable_token = '';
-
-    public function set(Article $article)
-    {
-        $this->title = $article->title;
-        $this->subject = $article->subject;
-        $this->content = $article->content;
-        $this->published = $article->published;
-        $this->notifications = $article->notifications;
-
-        $this->article = $article;
-    }
 
     public function save()
     {
@@ -57,12 +48,25 @@ class ArticleForm extends Form
                 'subject',
                 'content',
                 'published',
+                'deprecated',
                 'notifications',
                 'sortable_token',
             ));
         } catch (\Exception $e) {
             //throw $e;
         }
+    }
+
+    public function setArticleFields(Article $article)
+    {
+        $this->title = $article->title;
+        $this->subject = $article->subject;
+        $this->content = $article->content;
+        $this->published = $article->published;
+        $this->deprecated = $article->deprecated;
+        $this->notifications = $article->notifications;
+
+        $this->article = $article;
     }
 
     public function update()
@@ -79,6 +83,7 @@ class ArticleForm extends Form
                 'subject',
                 'content',
                 'published',
+                'deprecated',
                 'notifications',
             ));
         } catch (\Exception $e) {

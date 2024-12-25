@@ -120,12 +120,11 @@
                                 {{ $slot }}
 
                                 <p class="mt-4 text-sm/relaxed">
-                                    <a href="{{ URL::previous() }}">
+                                    <a href="{{ URL::previous() }}" title="go back" class="inline-block">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                             class="text-green-300 lucide lucide-circle-chevron-left size-5 sm:size-4 lg:size-6">
-                                            <title>back</title>
                                             <circle cx="12" cy="12" r="10" />
                                             <path d="m14 16-4-4 4-4" />
                                         </svg>
