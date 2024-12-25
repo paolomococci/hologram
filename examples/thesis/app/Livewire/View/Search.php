@@ -3,10 +3,12 @@
 namespace App\Livewire\View;
 
 use App\Models\Article;
-use Livewire\Attributes\On;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Lazy;
+use Livewire\Attributes\Validate;
 
+#[Lazy]
 class Search extends Component
 {
     #[Validate('required')]

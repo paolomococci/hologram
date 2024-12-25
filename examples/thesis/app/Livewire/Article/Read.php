@@ -4,7 +4,9 @@ namespace App\Livewire\Article;
 
 use App\Models\Article;
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
 
+#[Lazy]
 class Read extends Component
 {
     public ?Article $article;
