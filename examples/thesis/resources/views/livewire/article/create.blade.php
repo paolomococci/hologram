@@ -87,8 +87,8 @@
                         Bulletin board
                     </label>
                     <label class="flex items-center text-slate-600">
-                        <input type="checkbox" value="none" class="mr-2" wire:model="articleForm.notifications">
-                        None
+                        <input type="checkbox" value="phone" class="mr-2" wire:model="articleForm.notifications">
+                        Phone
                     </label>
                 </div>
             </div>

@@ -17,13 +17,24 @@ class ArticleFactory extends Factory
      */
     public function definition(): array
     {
+        $sortableToken = Str::ulid()->toBase32();
+        $notifications = [];
+        array_push(
+            $notifications,
+            fake()->randomElement([
+                'email',
+                'bulletin_board',
+                'phone',
+            ])
+        );
         return [
-            'title' => fake()->sentence(3),
-            'subject' => fake()->words(5, true),
-            'content' => fake()->paragraph(20),
-            'deprecated' => fake()->numberBetween(0, 1),
+            'title' => fake()->realText(35) . ' (' . $sortableToken . ')',
+            'subject' => fake()->realText(100),
+            'content' => fake()->realText(1500),
             'published' => fake()->numberBetween(0, 1),
-            'sortable_token' => Str::ulid()->toBase32(),
+            'deprecated' => fake()->numberBetween(0, 1),
+            'notifications' => $notifications,
+            'sortable_token' => $sortableToken,
         ];
     }
 }
