@@ -6,10 +6,16 @@ use App\Models\Article;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Lazy;
+use Livewire\Attributes\Url;
 
 #[Lazy]
 class Search extends Component
 {
+    #[Url(
+        as: 'q',
+        history: true,
+        except: ''
+    )]
     public $searchText = '';
 
     public $placeholder = '';
@@ -20,17 +26,6 @@ class Search extends Component
         $this->reset(
             'searchText',
         );
-    }
-
-    protected function queryString()
-    {
-        return [
-            'searchText' => [
-                'as' => 'q',
-                'history' => true,
-                'except' => '',
-            ],
-        ];
     }
 
     public function render()
