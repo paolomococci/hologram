@@ -14,7 +14,7 @@ class Create extends Component
     public function save()
     {
         $this->articleForm->save();
-        $this->redirect('/dashboard', navigate: true);
+        $this->redirectRoute('dashboard.articles', navigate: true);
     }
 
     public function render()

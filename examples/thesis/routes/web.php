@@ -12,6 +12,6 @@ Route::get('/', IndexOfArticles::class);
 Route::get('/articles/{article}', ReadArticle::class);
 
 // TODO: link to be confirmed, I need to make the authentication logic to log in
-Route::get('/dashboard', Dashboard::class);
+Route::get('/dashboard', Dashboard::class)->name('dashboard.articles');
 Route::get('/dashboard/article/create', CreateArticle::class);
 Route::get('/dashboard/article/{article}/edit', EditArticle::class);
