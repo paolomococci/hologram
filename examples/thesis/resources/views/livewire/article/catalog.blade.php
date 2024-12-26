@@ -7,11 +7,9 @@
             $articles = [];
         } else {
             try {
-                if (count($numberOfArticles) > self::ARTICLES_PER_PAGE) {
-                    echo "<div class='mt-4 w-full text-slate-400'>";
-                    echo $articles->links();
-                    echo '</div>';
-                }
+                echo "<div class='mt-4 w-full text-slate-400'>";
+                echo $articles->onEachSide(0)->links();
+                echo '</div>';
             } catch (\Exception $e) {
                 $articles = [];
             }
@@ -20,7 +18,7 @@
     <table class="mt-4">
         <thead class="text-xs text-gray-400 uppercase bg-gray-700">
             @if (!empty($articles) && $onlyDeprecated)
-                <tr class="text-slate-800 dark:text-slate-300">
+                <tr class="uppercase rounded-sm text-slate-800 dark:text-slate-300 text-nowrap">
                     <th class="px-6 py-3" colspan="3">
                         There are only deprecated articles! Try switching to these.
                     </th>
@@ -38,7 +36,7 @@
                 <tr wire:key="{{ $article['id'] }}" class="border-b-2 border-green-100 bg-slate-800">
                     <td class="px-6 py-3">
                         <h3
-                            class="font-semibold text-md-center {{ $deprecated ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}">
+                            class="font-semibold text-xs uppercase lg:text-nowrap {{ $deprecated ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}">
                             {{ CleaningUtility::cleanTitle($article['title']) }}
                         </h3>
                     </td>
