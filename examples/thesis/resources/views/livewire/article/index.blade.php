@@ -1,10 +1,7 @@
 @php
-use App\Utils\CleaningUtility;
+    use App\Utils\CleaningUtility;
 @endphp
 <div class="m-auto w-5/6">
-    <div class="mt-4 w-full text-slate-400">
-        {{ $articles->links() }}
-    </div>
     @foreach ($articles as $article)
         <div class="p-3 mt-5" wire:key="{{ $article->id }}">
             <h3 class="font-semibold text-green-900 text-md-center dark:text-green-400">
@@ -18,4 +15,14 @@ use App\Utils\CleaningUtility;
             </p>
         </div>
     @endforeach
+    <div class="mt-4 w-full text-slate-400">
+        {{ $articles->links() }}
+    </div>
+    <div class="mt-4 w-full text-slate-400">
+        <p>
+            The total number of items present is {{ $numberOfArticles }}, distributed on
+            {{ ($numberOfArticles / self::ARTICLES_PER_PAGE) % 2 ? round($numberOfArticles / self::ARTICLES_PER_PAGE) : round($numberOfArticles / self::ARTICLES_PER_PAGE) + 1 }}
+            pages.
+        </p>
+    </div>
 </div>

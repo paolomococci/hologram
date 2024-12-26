@@ -1,5 +1,5 @@
 @php
-use App\Utils\CleaningUtility;
+    use App\Utils\CleaningUtility;
 @endphp
 <div class="mb-4 w-11/12">
     @php
@@ -77,8 +77,8 @@ use App\Utils\CleaningUtility;
         </tbody>
     </table>
     @if (empty($articles))
-        <div class="p-3 mt-5 rounded-sm border-1 bg-slate-800">
+        <p class="px-6 py-3 mt-3 text-xs uppercase rounded-sm text-nowrap border-1 text-slate-300 bg-slate-800">
             filter by title
-        </div>
+        </p>
     @endif
 </div>
