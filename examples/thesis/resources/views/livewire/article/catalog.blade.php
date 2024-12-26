@@ -3,7 +3,6 @@
 @endphp
 <div class="mb-4 w-11/12">
     @php
-        // dd($this->numberOfArticles);
         if (isset($filterText) && $filterText === '') {
             $this->articles = [];
         } else {
@@ -30,13 +29,11 @@
                     <th class="px-6 py-3">Edit</th>
                     <th class="px-6 py-3">Set</th>
                 </tr>
-            @endif
-            @if (!$this->numberOfArticles)
+            @elseif (!$this->numberOfArticles)
                 <p class="px-6 py-3 mt-3 text-xs uppercase rounded-sm text-nowrap border-1 text-slate-300 bg-slate-800">
                     There are no matches.
                 </p>
-            @endif
-            @if (empty($this->articles))
+            @else
                 <p class="px-6 py-3 mt-3 text-xs uppercase rounded-sm text-nowrap border-1 text-slate-300 bg-slate-800">
                     Please, try filtering some text.
                 </p>
