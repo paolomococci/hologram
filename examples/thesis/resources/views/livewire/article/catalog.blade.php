@@ -4,26 +4,26 @@
 <div class="mb-4 w-11/12">
     @php
         if (isset($filterText) && $filterText === '') {
-            $articles = [];
+            $this->articles = [];
         } else {
             try {
                 echo "<div class='mt-4 w-full text-slate-400'>";
-                echo $articles->onEachSide(0)->links();
+                echo $this->articles->onEachSide(0)->links();
                 echo '</div>';
             } catch (\Exception $e) {
-                $articles = [];
+                $this->articles = [];
             }
         }
     @endphp
     <table class="mt-4">
         <thead class="text-xs text-gray-400 uppercase bg-gray-700">
-            @if (!empty($articles) && $onlyDeprecated)
+            @if (!empty($this->articles) && ($onlyDeprecated || $this->numberOfArticles < 1))
                 <tr class="uppercase rounded-sm text-slate-800 dark:text-slate-300 text-nowrap">
                     <th class="px-6 py-3" colspan="3">
                         There are only deprecated articles! Try switching to these.
                     </th>
                 </tr>
-            @elseif (!empty($articles))
+            @elseif (!empty($this->articles) && $this->numberOfArticles > 0)
                 <tr class="text-slate-800 dark:text-slate-300">
                     <th class="px-6 py-3">{{ $deprecated ? 'Deprecated' : 'Approved' }}</th>
                     <th class="px-6 py-3">Edit</th>
@@ -32,7 +32,7 @@
             @endif
         </thead>
         <tbody>
-            @foreach ($articles as $article)
+            @foreach ($this->articles as $article)
                 <tr wire:key="{{ $article['id'] }}" class="border-b-2 border-green-100 bg-slate-800">
                     <td class="px-6 py-3">
                         <h3
@@ -74,7 +74,7 @@
             @endforeach
         </tbody>
     </table>
-    @if (empty($articles))
+    @if (empty($this->articles))
         <p class="px-6 py-3 mt-3 text-xs uppercase rounded-sm text-nowrap border-1 text-slate-300 bg-slate-800">
             filter by title
         </p>

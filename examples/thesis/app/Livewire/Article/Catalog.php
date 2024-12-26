@@ -3,6 +3,7 @@
 namespace App\Livewire\Article;
 
 use App\Models\Article;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -32,6 +33,21 @@ class Catalog extends Component
         $this->filterText = $filterText;
     }
 
+    #[Computed]
+    public function articles()
+    {
+        $articleQuery = Article::query();
+        return $articleQuery->where('title', 'LIKE', "%{$this->filterText}%")
+            ->where('deprecated', $this->deprecated)
+            ->paginate(self::ARTICLES_PER_PAGE);
+    }
+
+    #[Computed]
+    public function numberOfArticles()
+    {
+        return Article::where('title', 'LIKE', $this->filterText)->count();
+    }
+
     public function resetArticles()
     {
         $this->reset(
@@ -51,13 +67,6 @@ class Catalog extends Component
 
     public function render()
     {
-        return view('livewire.article.catalog', [
-            'articles' => Article::where('title', 'LIKE', '%' . $this->filterText . '%')
-                ->where('deprecated', $this->deprecated)
-                ->cursorPaginate(self::ARTICLES_PER_PAGE),
-            'numberOfArticles' => Article::where('title', 'LIKE', '%' . $this->filterText . '%')
-                ->where('deprecated', $this->deprecated)
-                ->get(),
-        ]);
+        return view('livewire.article.catalog');
     }
 }
