@@ -3,6 +3,7 @@
 @endphp
 <div class="mb-4 w-11/12">
     @php
+        // dd($this->numberOfArticles);
         if (isset($filterText) && $filterText === '') {
             $this->articles = [];
         } else {
@@ -17,7 +18,7 @@
     @endphp
     <table class="mt-4">
         <thead class="text-xs text-gray-400 uppercase bg-gray-700">
-            @if (!empty($this->articles) && ($onlyDeprecated || $this->numberOfArticles < 1))
+            @if (!empty($this->articles) && $onlyDeprecated)
                 <tr class="uppercase rounded-sm text-slate-800 dark:text-slate-300 text-nowrap">
                     <th class="px-6 py-3" colspan="3">
                         There are only deprecated articles! Try switching to these.
@@ -29,6 +30,16 @@
                     <th class="px-6 py-3">Edit</th>
                     <th class="px-6 py-3">Set</th>
                 </tr>
+            @endif
+            @if (!$this->numberOfArticles)
+                <p class="px-6 py-3 mt-3 text-xs uppercase rounded-sm text-nowrap border-1 text-slate-300 bg-slate-800">
+                    There are no matches.
+                </p>
+            @endif
+            @if (empty($this->articles))
+                <p class="px-6 py-3 mt-3 text-xs uppercase rounded-sm text-nowrap border-1 text-slate-300 bg-slate-800">
+                    Please, try filtering some text.
+                </p>
             @endif
         </thead>
         <tbody>
@@ -74,9 +85,4 @@
             @endforeach
         </tbody>
     </table>
-    @if (empty($this->articles))
-        <p class="px-6 py-3 mt-3 text-xs uppercase rounded-sm text-nowrap border-1 text-slate-300 bg-slate-800">
-            filter by title
-        </p>
-    @endif
 </div>

@@ -6,6 +6,7 @@ use App\Models\Article;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Session;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -20,6 +21,7 @@ class Catalog extends Component
 
     public bool $onlyDeprecated = false;
 
+    #[Session]
     public string $filterText = '';
 
     #[On('retrieveArticles')]
@@ -45,7 +47,7 @@ class Catalog extends Component
     #[Computed]
     public function numberOfArticles()
     {
-        return Article::where('title', 'LIKE', $this->filterText)->count();
+        return Article::where('title', 'LIKE', "%{$this->filterText}%")->count();
     }
 
     public function resetArticles()
