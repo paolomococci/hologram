@@ -1,12 +1,12 @@
 <div class="m-4">
     <form class="flex justify-center w-9/12">
         <button
-            class="p-4 my-0 text-white rounded-l-md border disabled:bg-slate-400 {{ $deprecated ? 'bg-green-600 hover:bg-green-800' : 'bg-red-600 hover:bg-red-800' }}"
+            class="p-4 my-0 text-white rounded-l-md border disabled:bg-slate-400 {{ $articleToggle ? 'bg-green-600 hover:bg-green-800' : 'bg-red-600 hover:bg-red-800' }}"
             wire:click.prevent="toggle()" {{ empty($filterText) ? 'disabled' : '' }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="text-red-300 lucide lucide-circle-minus size-5 sm:size-4 lg:size-6">
-                <title>{{ !$deprecated ? 'toggle deprecated' : 'toggle approved' }}</title>
+                <title>{{ !$articleToggle ? 'toggle deprecated' : 'toggle approved' }}</title>
                 <circle cx="12" cy="12" r="10" />
                 <path d="M8 12h8" />
             </svg>
@@ -25,5 +25,4 @@
             </svg>
         </button>
     </form>
-    {{-- <livewire:view.filtered :results="$results" :show="!empty($filterText)" /> --}}
 </div>

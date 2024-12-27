@@ -110,7 +110,7 @@
                             <div class="pt-3 sm:pt-5">
                                 <h2 class="text-xl font-semibold text-black dark:text-white">Filter</h2>
 
-                                <livewire:view.filter placeholder="text to filter for" />
+                                <livewire:article.filter placeholder="text to filter between titles" />
                             </div>
                         </div>
                         <div

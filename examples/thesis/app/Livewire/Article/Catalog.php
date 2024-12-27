@@ -15,54 +15,85 @@ class Catalog extends Component
 {
     use WithPagination;
 
+    public const TEST_PHASE = true;
+
     public const ARTICLES_PER_PAGE = 5;
-
-    public bool $deprecated = false;
-
-    public bool $onlyDeprecated = false;
 
     #[Session]
     public string $filterText = '';
 
+    public $approved = [];
+
+    public $deprecated = [];
+
+    public bool $articleToggle = false;
+
     #[On('retrieveArticles')]
     public function showArticles(
+        $filterText,
+        $approved,
         $deprecated,
-        $onlyDeprecated,
-        $filterText
+        $articleToggle
     ) {
-        $this->deprecated = $deprecated;
-        $this->onlyDeprecated = $onlyDeprecated;
         $this->filterText = $filterText;
+        $this->approved = $approved;
+        $this->deprecated = $deprecated;
+        $this->articleToggle = $articleToggle;
     }
 
     #[Computed]
-    public function articles()
+    public function approvedArticles()
     {
         $articleQuery = Article::query();
         return $articleQuery->where('title', 'LIKE', "%{$this->filterText}%")
-            ->where('deprecated', $this->deprecated)
+            ->where('deprecated', false)
             ->paginate(self::ARTICLES_PER_PAGE);
     }
 
     #[Computed]
-    public function numberOfArticles()
+    public function deprecatedArticles()
+    {
+        $articleQuery = Article::query();
+        return $articleQuery->where('title', 'LIKE', "%{$this->filterText}%")
+            ->where('deprecated', true)
+            ->paginate(self::ARTICLES_PER_PAGE);
+    }
+
+    #[Computed]
+    public function totalNumberOfRetrievedArticles()
     {
         return Article::where('title', 'LIKE', "%{$this->filterText}%")->count();
+    }
+
+    #[Computed]
+    public function totalNumberOfApprovedArticles()
+    {
+        return Article::where('title', 'LIKE', "%{$this->filterText}%")
+            ->where('deprecated', false)
+            ->count();
+    }
+
+    #[Computed]
+    public function totalNumberOfDeprecatedArticles()
+    {
+        return Article::where('title', 'LIKE', "%{$this->filterText}%")
+            ->where('deprecated', true)
+            ->count();
     }
 
     public function resetArticles()
     {
         $this->reset(
-            'deprecated',
-            'onlyDeprecated',
             'filterText',
+            'approved',
+            'deprecated',
         );
     }
 
     public function deprecate(Article $article)
     {
         $article->update([
-            'deprecated' => ! $this->deprecated,
+            'deprecated' => ! $this->articleToggle,
         ]);
         $this->resetArticles();
     }

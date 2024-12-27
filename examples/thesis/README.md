@@ -481,6 +481,7 @@ php artisan migrate:rollback
 
 ```bash
 php artisan make:livewire Article/index
+php artisan make:livewire Article/filter
 php artisan make:livewire Article/catalog
 php artisan make:livewire Article/create
 php artisan make:livewire Article/read
@@ -546,7 +547,6 @@ php artisan make:livewire User/edit
 php artisan make:livewire View/greeter
 php artisan make:livewire View/dashboard
 php artisan make:livewire View/admin
-php artisan make:livewire View/filter
 php artisan make:livewire View/filtered
 php artisan make:livewire View/search
 php artisan make:livewire View/results
@@ -747,13 +747,13 @@ App\Models\User::all()
 quit
 ```
 
-Now I can delete the contents of the database I just seeded in one go:
+Adesso io posso cancellare in un sol colpo il contenuto del database appena seminato:
 
 ```bash
 php artisan migrate:fresh
 ```
 
-or I can truncate the contents of a single table:
+oppure posso troncare il contenuto di una singola tabella:
 
 ```bash
 php artisan tinker
@@ -825,4 +825,15 @@ license-report --output=csv > licenses_report.csv
 
 ```bash
 php artisan make:class Utils/CleaningUtility
+```
+
+## routes
+
+If, after having appropriately edited all files Blade and file `routes/web.php`, the routes defined there do not appear or an error indicating an undefined route is returned, the following commands may be useful:
+
+```bash
+php artisan route:list
+php artisan route:clear
+php artisan route:cache
+php artisan route:list
 ```
