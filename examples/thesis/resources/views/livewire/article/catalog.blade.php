@@ -1,6 +1,14 @@
 {{-- refactoring --}}
 @php
     use App\Utils\CleaningUtility;
+
+    if (isset($filterText) && $filterText === '') {
+        $approved = [];
+        $deprecated = [];
+        $this->totalNumberOfRetrievedArticles = 0;
+        $this->totalNumberOfApprovedArticles = 0;
+        $this->totalNumberOfDeprecatedArticles = 0;
+    }
 @endphp
 
 <div>
@@ -29,8 +37,33 @@
             <h6>$this->totalNumberOfDeprecatedArticles:</h6>
             <p>{{ var_dump($this->totalNumberOfDeprecatedArticles) }}</p>
         </div>
-    {{-- follows the actual view --}}
+        {{-- follows the actual view --}}
     @elseif (!self::TEST_PHASE)
-        <p>livewire:article.catalog</p>
+        <div>
+            <p>livewire:article.catalog</p>
+        </div>
+        <div>
+            @if (isset($filterText) && $filterText != '' && $this->totalNumberOfApprovedArticles && !$articleToggle)
+                {{-- pagination of approved articles --}}
+                <div class='mt-4 w-full text-slate-400'>
+                    {{ $this->approvedArticles->onEachSide(0)->links() }}
+                </div>
+            @elseif (isset($filterText) && $filterText != '' && $this->totalNumberOfDeprecatedArticles && $articleToggle)
+                {{-- pagination of deprecated articles --}}
+                <div class='mt-4 w-full text-slate-400'>
+                    {{ $this->deprecatedArticles->onEachSide(0)->links() }}
+                </div>
+            @elseif (isset($filterText) && $filterText === '')
+                {{-- no results available --}}
+                <p class='mt-4 w-full text-xs uppercase text-slate-400'>
+                    No results available.
+                </p>
+            @else
+                {{-- unexpected situation --}}
+                <p class='mt-4 w-full text-xs uppercase text-slate-400'>
+                    I'm sorry, an unexpected situation has arisen.
+                </p>
+            @endif
+        </div>
     @endif
 </div>
