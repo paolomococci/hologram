@@ -22,6 +22,11 @@ class Edit extends Component
     public function update()
     {
         $this->articleForm->update();
+
+        // status of feedback
+        session()->flash('status', 'The article has been successfully updated.');
+
+        // redirection
         $this->redirect('/dashboard', navigate: true);
     }
 

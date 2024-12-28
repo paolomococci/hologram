@@ -14,6 +14,11 @@ class Create extends Component
     public function save()
     {
         $this->articleForm->save();
+
+        // status of feedback
+        session()->flash('status', 'The article was created successfully.');
+
+        // redirection by route name
         $this->redirectRoute('dashboard.articles', navigate: true);
     }
 

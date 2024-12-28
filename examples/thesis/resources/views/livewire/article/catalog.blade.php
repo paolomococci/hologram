@@ -30,7 +30,7 @@
             <p>{{ var_dump($this->totalNumberOfDeprecatedArticles) }}</p>
         </div>
         {{-- follows the actual view --}}
-    @elseif (!self::TEST_PHASE)
+    @else
         <div>
             @if (isset($filterText) && $filterText != '' && $this->totalNumberOfApprovedArticles && !$articleToggle)
                 {{-- pagination of approved articles --}}
@@ -51,7 +51,7 @@
                                 <tr wire:key="{{ $article['id'] }}" class="border-b-2 border-green-100 bg-slate-800">
                                     <td class="px-6 py-3">
                                         <h3
-                                            class="font-semibold text-xs uppercase lg:text-nowrap {{ $articleToggle ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}">
+                                            class="font-semibold text-xs uppercase {{ $articleToggle ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}">
                                             {{ CleaningUtility::cleanTitle($article['title']) }}
                                         </h3>
                                     </td>
@@ -110,7 +110,7 @@
                                 <tr wire:key="{{ $article['id'] }}" class="border-b-2 border-green-100 bg-slate-800">
                                     <td class="px-6 py-3">
                                         <h3
-                                            class="font-semibold text-xs uppercase lg:text-nowrap {{ $articleToggle ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}">
+                                            class="font-semibold text-xs uppercase {{ $articleToggle ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}">
                                             {{ CleaningUtility::cleanTitle($article['title']) }}
                                         </h3>
                                     </td>
