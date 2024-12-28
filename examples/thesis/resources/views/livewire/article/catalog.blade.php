@@ -150,10 +150,6 @@
                         </tbody>
                     </table>
                 </div>
-                {{-- @elseif (isset($filterText) && $filterText != '' && $this->totalNumberOfApprovedArticles && $articleToggle) --}}
-                {{-- TODO: approved articles equal or less than self::ARTICLES_PER_PAGE --}}
-                {{-- @elseif (isset($filterText) && $filterText != '' && $this->totalNumberOfDeprecatedArticles && $articleToggle) --}}
-                {{-- TODO: deprecate articles equal or less than self::ARTICLES_PER_PAGE --}}
             @elseif (isset($filterText) &&
                     $filterText != '' &&
                     $this->totalNumberOfApprovedArticles > 0 &&
