@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('surname');
             $table->string('nickname')->nullable();
             $table->string('email')->unique();
-            $table->boolean('suspended')->default(0);
+            $table->boolean('isSuspended')->default(0);
             $table->timestamps();
         });
     }

@@ -14,15 +14,16 @@ class Article extends Model
         'title',
         'subject',
         'content',
-        'deprecated',
-        'published',
+        'isDeprecated',
+        'isPublished',
         'notifications',
         'image_path',
         'sortable_token',
     ];
 
     protected $casts = [
-        'published' => 'boolean',
+        'isDeprecated' => 'boolean',
+        'isPublished' => 'boolean',
         'notifications' => 'array',
     ];
 

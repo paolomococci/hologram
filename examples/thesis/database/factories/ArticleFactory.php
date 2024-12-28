@@ -31,8 +31,8 @@ class ArticleFactory extends Factory
             'title' => fake()->realText(35) . ' (' . $sortableToken . ')',
             'subject' => fake()->realText(100),
             'content' => fake()->realText(1500),
-            'published' => fake()->numberBetween(0, 1),
-            'deprecated' => fake()->numberBetween(0, 1),
+            'isPublished' => fake()->numberBetween(0, 1),
+            'isDeprecated' => fake()->numberBetween(0, 1),
             'notifications' => $notifications,
             'sortable_token' => $sortableToken,
         ];

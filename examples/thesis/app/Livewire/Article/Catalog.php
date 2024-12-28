@@ -15,47 +15,47 @@ class Catalog extends Component
 {
     use WithPagination;
 
-    public const TEST_PHASE = true;
+    public const TEST_PHASE = false;
 
     public const ARTICLES_PER_PAGE = 5;
 
     #[Session]
     public string $filterText = '';
 
-    public $approved = [];
+    public $approvedArticlesDispatched = [];
 
-    public $deprecated = [];
+    public $deprecatedArticlesDispatched = [];
 
     public bool $articleToggle = false;
 
     #[On('retrieveArticles')]
     public function showArticles(
         $filterText,
-        $approved,
-        $deprecated,
+        $approvedArticlesDispatched,
+        $deprecatedArticlesDispatched,
         $articleToggle
     ) {
         $this->filterText = $filterText;
-        $this->approved = $approved;
-        $this->deprecated = $deprecated;
+        $this->approvedArticlesDispatched = $approvedArticlesDispatched;
+        $this->deprecatedArticlesDispatched = $deprecatedArticlesDispatched;
         $this->articleToggle = $articleToggle;
     }
 
     #[Computed]
-    public function approvedArticles()
+    public function approvedArticlesComputed()
     {
         $articleQuery = Article::query();
         return $articleQuery->where('title', 'LIKE', "%{$this->filterText}%")
-            ->where('deprecated', false)
+            ->where('isDeprecated', false)
             ->paginate(self::ARTICLES_PER_PAGE);
     }
 
     #[Computed]
-    public function deprecatedArticles()
+    public function deprecatedArticlesComputed()
     {
         $articleQuery = Article::query();
         return $articleQuery->where('title', 'LIKE', "%{$this->filterText}%")
-            ->where('deprecated', true)
+            ->where('isDeprecated', true)
             ->paginate(self::ARTICLES_PER_PAGE);
     }
 
@@ -69,7 +69,7 @@ class Catalog extends Component
     public function totalNumberOfApprovedArticles()
     {
         return Article::where('title', 'LIKE', "%{$this->filterText}%")
-            ->where('deprecated', false)
+            ->where('isDeprecated', false)
             ->count();
     }
 
@@ -77,7 +77,7 @@ class Catalog extends Component
     public function totalNumberOfDeprecatedArticles()
     {
         return Article::where('title', 'LIKE', "%{$this->filterText}%")
-            ->where('deprecated', true)
+            ->where('isDeprecated', true)
             ->count();
     }
 
@@ -85,15 +85,15 @@ class Catalog extends Component
     {
         $this->reset(
             'filterText',
-            'approved',
-            'deprecated',
+            'approvedArticlesDispatched',
+            'deprecatedArticlesDispatched',
         );
     }
 
     public function deprecate(Article $article)
     {
         $article->update([
-            'deprecated' => ! $this->articleToggle,
+            'isDeprecated' => ! $this->articleToggle,
         ]);
         $this->resetArticles();
     }

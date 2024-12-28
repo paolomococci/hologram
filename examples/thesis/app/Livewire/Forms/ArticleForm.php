@@ -20,9 +20,9 @@ class ArticleForm extends Form
     #[Validate('required')]
     public string $content = '';
 
-    public bool $published = false;
+    public bool $isPublished = false;
 
-    public bool $deprecated = false;
+    public bool $isDeprecated = false;
 
     public $notifications = [];
 
@@ -48,8 +48,8 @@ class ArticleForm extends Form
                 'title',
                 'subject',
                 'content',
-                'published',
-                'deprecated',
+                'isPublished',
+                'isDeprecated',
                 'notifications',
                 'sortable_token',
             ));
@@ -63,8 +63,8 @@ class ArticleForm extends Form
         $this->title = $article->title;
         $this->subject = $article->subject;
         $this->content = $article->content;
-        $this->published = $article->published;
-        $this->deprecated = $article->deprecated;
+        $this->isPublished = $article->isPublished;
+        $this->isDeprecated = $article->isDeprecated;
         $this->notifications = $article->notifications;
         $this->sortable_token = $article->sortable_token;
 
@@ -86,8 +86,8 @@ class ArticleForm extends Form
                 'title',
                 'subject',
                 'content',
-                'published',
-                'deprecated',
+                'isPublished',
+                'isDeprecated',
                 'notifications',
             ));
         } catch (\Exception $e) {

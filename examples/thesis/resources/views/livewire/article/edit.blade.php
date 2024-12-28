@@ -46,11 +46,11 @@
         </div>
         <div class="mb-3">
             <label class="flex items-center text-slate-600">
-                <input type="checkbox" name="published" class="mr-2" wire:model.boolean="articleForm.published">
+                <input type="checkbox" name="isPublished" class="mr-2" wire:model.boolean="articleForm.isPublished">
                 Published
             </label>
             <label class="flex items-center text-slate-600">
-                <input type="checkbox" name="deprecated" class="mr-2" wire:model.boolean="articleForm.deprecated">
+                <input type="checkbox" name="isDeprecated" class="mr-2" wire:model.boolean="articleForm.isDeprecated">
                 Deprecated
             </label>
         </div>

@@ -24,7 +24,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.article.index', [
-            'articles' => Article::where('deprecated', false)->simplePaginate(self::ARTICLES_PER_PAGE),
+            'articles' => Article::where('isDeprecated', false)->simplePaginate(self::ARTICLES_PER_PAGE),
         ]);
     }
 }

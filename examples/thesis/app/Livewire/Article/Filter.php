@@ -18,9 +18,9 @@ class Filter extends Component
 
     public string $placeholder = '';
 
-    public $approved = [];
+    public $approvedArticlesDispatched = [];
 
-    public $deprecated = [];
+    public $deprecatedArticlesDispatched = [];
 
     public bool $articleToggle = false;
 
@@ -29,20 +29,20 @@ class Filter extends Component
         $this->validate();
         $this->filterTerm = "%{$filterText}%";
         // dd($this->filterTerm);
-        $approvedArticle = Article::where('title', 'LIKE', "%{$this->filterTerm}%")
-            ->where('deprecated', false)
+        $approvedArticles = Article::where('title', 'LIKE', "%{$this->filterTerm}%")
+            ->where('isDeprecated', false)
             ->get();
-        // dd($approvedArticle);
-        $this->approved = $approvedArticle;
-        $deprecatedArticle = Article::where('title', 'LIKE', "%{$this->filterTerm}%")
-            ->where('deprecated', true)
+        // dd($approvedArticles);
+        $this->approvedArticlesDispatched = $approvedArticles;
+        $deprecatedArticles = Article::where('title', 'LIKE', "%{$this->filterTerm}%")
+            ->where('isDeprecated', true)
             ->get();
-        // dd($deprecatedArticle);
-        $this->deprecated = $deprecatedArticle;
+        // dd($deprecatedArticles);
+        $this->deprecatedArticlesDispatched = $deprecatedArticles;
         $this->dispatch(
             'retrieveArticles',
-            approved: $this->approved,
-            deprecated: $this->deprecated,
+            approvedArticlesDispatched: $this->approvedArticlesDispatched,
+            deprecatedArticlesDispatched: $this->deprecatedArticlesDispatched,
             articleToggle: $this->articleToggle,
             filterText: $this->filterText,
         );
@@ -53,8 +53,8 @@ class Filter extends Component
         $this->articleToggle = !$this->articleToggle;
         $this->dispatch(
             'retrieveArticles',
-            approved: $this->approved,
-            deprecated: $this->deprecated,
+            approvedArticlesDispatched: $this->approvedArticlesDispatched,
+            deprecatedArticlesDispatched: $this->deprecatedArticlesDispatched,
             articleToggle: $this->articleToggle,
             filterText: $this->filterText,
         );
@@ -64,15 +64,15 @@ class Filter extends Component
     public function clear()
     {
         $this->reset(
-            'approved',
-            'deprecated',
+            'approvedArticlesDispatched',
+            'deprecatedArticlesDispatched',
             'articleToggle',
             'filterText',
         );
         $this->dispatch(
             'retrieveArticles',
-            approved: $this->approved,
-            deprecated: $this->deprecated,
+            approvedArticlesDispatched: $this->approvedArticlesDispatched,
+            deprecatedArticlesDispatched: $this->deprecatedArticlesDispatched,
             articleToggle: $this->articleToggle,
             filterText: $this->filterText,
         );

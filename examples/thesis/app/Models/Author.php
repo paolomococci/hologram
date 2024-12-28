@@ -15,9 +15,13 @@ class Author extends Model
         'surname',
         'nickname',
         'email',
-        'suspended',
+        'isSuspended',
         'email_checked_at',
         'temporary_token',
+    ];
+
+    protected $casts = [
+        'isSuspended' => 'boolean',
     ];
 
     /**

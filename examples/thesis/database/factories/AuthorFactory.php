@@ -28,7 +28,7 @@ class AuthorFactory extends Factory
             'email' => $username.'.'.fake()->safeEmailDomain(),
             'email_checked_at' => fake()->boolean(50) ? fake()->date() : null,
             'temporary_token' => Str::ulid()->toBase32(),
-            'suspended' => fake()->numberBetween(0, 1),
+            'isSuspended' => fake()->numberBetween(0, 1),
         ];
     }
 }

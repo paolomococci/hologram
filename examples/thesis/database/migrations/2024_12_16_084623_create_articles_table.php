@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title')->unique();
             $table->string('subject');
             $table->text('content');
-            $table->boolean('deprecated')->default(0);
+            $table->boolean('isDeprecated')->default(0);
             $table->timestamps();
         });
     }

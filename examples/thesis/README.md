@@ -711,6 +711,12 @@ and, if I have already prepared what is needed to generate the test data, I can 
 php artisan db:seed
 ```
 
+or, for a complete reset of the test data:
+
+```bash
+php artisan db:wipe && php artisan migrate:fresh && php artisan db:seed
+```
+
 and check:
 
 ```bash
@@ -747,13 +753,13 @@ App\Models\User::all()
 quit
 ```
 
-Adesso io posso cancellare in un sol colpo il contenuto del database appena seminato:
+Now I can delete the contents of the database I just seeded in one go:
 
 ```bash
 php artisan migrate:fresh
 ```
 
-oppure posso troncare il contenuto di una singola tabella:
+or I can truncate the contents of a single table:
 
 ```bash
 php artisan tinker
