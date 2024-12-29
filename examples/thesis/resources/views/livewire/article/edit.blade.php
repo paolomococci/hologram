@@ -2,7 +2,7 @@
     <p class="mt-4 text-sm/relaxed">
         You are about to edit the article identified by the ID number: {{ $articleForm->article->id }}
     </p>
-    <form>
+    <form wire:submit.prevent="update()">
         {{-- title field --}}
         <div class="mb-3">
             <label class="block text-slate-600" for="article-title">
@@ -145,8 +145,9 @@
             </div>
         </div>
         <div class="flex mb-3 w-full">
-            <button class="flex justify-center items-center p-2 w-1/2 bg-green-600 rounded-sm" wire:click="update()"
-                wire:dirty.class="hover:bg-gray-800" wire:dirty.remove.attr="disabled" disabled>
+            <button class="flex justify-center items-center p-2 w-full bg-green-600 rounded-sm" type="submit"
+                {{-- wire:dirty.class="hover:bg-gray-800" wire:dirty.remove.attr="disabled" disabled --}}
+                >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="text-green-300 lucide lucide-save">
@@ -157,8 +158,7 @@
                     <path d="M7 3v4a1 1 0 0 0 1 1h7" />
                 </svg>
             </button>
-            <button class="flex justify-center items-center p-2 w-1/2 bg-blue-600 rounded-r-sm" wire:click="cancel()"
-                wire:dirty.class="hover:bg-gray-800" wire:dirty.remove.attr="disabled" disabled>
+            {{-- <button class="flex justify-center items-center p-2 w-1/2 bg-blue-600 rounded-r-sm" wire:click="cancel()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="text-blue-300 lucide lucide-eraser">
@@ -167,7 +167,7 @@
                     <path d="M22 21H7" />
                     <path d="m5 11 9 9" />
                 </svg>
-            </button>
+            </button> --}}
         </div>
         <div wire:dirty.live.debounce.500ms wire:dirty.class="text-orange-400" wire:dirty.remove.attr="hidden" hidden>
             Please, don't forget to save your

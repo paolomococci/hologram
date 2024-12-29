@@ -52,11 +52,13 @@ class ArticleForm extends Form
         $this->title .= ' (' . $this->sortable_token . ')';
 
         // multiple image upload
+        $lastAssignedId = Article::orderBy('id', 'DESC')->first()->id;
+        $lastAssignedIdIncremented = $lastAssignedId + 1;
         if ($this->imageObject) {
             foreach ($this->imageObject as $imgObj) {
                 $this->image_path[] = $imgObj->storePublicly(
                     // path: /var/www/html/thesis/storage/app/public/article_images/{id}
-                    'article_images/' . $this->article->id,
+                    'article_images/' . $lastAssignedIdIncremented,
                     ['disk' => 'public']
                 );
             }
