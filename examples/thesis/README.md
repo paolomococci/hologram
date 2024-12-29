@@ -486,6 +486,8 @@ php artisan make:livewire Article/catalog
 php artisan make:livewire Article/create
 php artisan make:livewire Article/read
 php artisan make:livewire Article/edit
+php artisan make:livewire Article/upload-images
+php artisan make:livewire Article/download-images
 ```
 
 ### `Author` components
@@ -839,6 +841,7 @@ If, after having appropriately edited all files Blade and file `routes/web.php`,
 
 ```bash
 php artisan route:list
+php artisan route:list | grep "upload-image"
 php artisan route:clear
 php artisan route:cache
 php artisan route:list

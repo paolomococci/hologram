@@ -130,4 +130,28 @@ class ArticleForm extends Form
             //throw $e;
         }
     }
+
+    public function uploadImages()
+    {
+        $this->validate();
+
+        // multiple image upload
+        if ($this->imageObject) {
+            foreach ($this->imageObject as $imgObj) {
+                $this->image_path[] = $imgObj->storePublicly(
+                    // path: /var/www/html/thesis/storage/app/public/article_images/{id}
+                    "article_images/{$this->article->id}",
+                    ['disk' => 'public']
+                );
+            }
+        }
+
+        try {
+            $this->article->update($this->only(
+                'image_path',
+            ));
+        } catch (\Exception $e) {
+            //throw $e;
+        }
+    }
 }

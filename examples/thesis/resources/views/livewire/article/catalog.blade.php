@@ -43,6 +43,7 @@
                             <tr class="text-slate-800 dark:text-slate-300">
                                 <th class="px-6 py-3">Approved</th>
                                 <th class="px-6 py-3">Edit</th>
+                                <th class="px-6 py-3">Images</th>
                                 <th class="px-6 py-3">Set</th>
                             </tr>
                         </thead>
@@ -55,6 +56,7 @@
                                             {{ CleaningUtility::cleanTitle($article['title']) }}
                                         </h3>
                                     </td>
+                                    {{-- edit button --}}
                                     <td class="px-6 py-3">
                                         <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-800">
                                             <a href="/dashboard/article/{{ $article['id'] }}/edit" wire:navigate>
@@ -70,7 +72,27 @@
                                             </a>
                                         </button>
                                     </td>
+                                    {{-- upload images button --}}
                                     <td class="px-6 py-3">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-800">
+                                            <a href="/dashboard/article/{{ $article['id'] }}/upload-image"
+                                                wire:navigate>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="text-cyan-300 lucide lucide-image-up size-4 sm:size-3 lg:size-5">
+                                                    <title>upload images</title>
+                                                    <path
+                                                        d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21" />
+                                                    <path d="m14 19.5 3-3 3 3" />
+                                                    <path d="M17 22v-5.5" />
+                                                    <circle cx="9" cy="9" r="2" />
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </td>
+                                    <td class="px-6 py-3">
+                                        {{-- set button --}}
                                         <button
                                             class="p-2 rounded-md {{ $articleToggle ? 'text-green-200 bg-green-600 hover:bg-green-800' : 'text-red-200 bg-red-600 hover:bg-red-800' }}"
                                             wire:click="deprecate({{ $article['id'] }})"
@@ -102,6 +124,7 @@
                             <tr class="text-slate-800 dark:text-slate-300">
                                 <th class="px-6 py-3">Deprecated</th>
                                 <th class="px-6 py-3">Edit</th>
+                                <th class="px-6 py-3">Images</th>
                                 <th class="px-6 py-3">Set</th>
                             </tr>
                         </thead>
@@ -114,6 +137,7 @@
                                             {{ CleaningUtility::cleanTitle($article['title']) }}
                                         </h3>
                                     </td>
+                                    {{-- edit button --}}
                                     <td class="px-6 py-3">
                                         <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-800">
                                             <a href="/dashboard/article/{{ $article['id'] }}/edit" wire:navigate>
@@ -129,6 +153,26 @@
                                             </a>
                                         </button>
                                     </td>
+                                    {{-- upload images button --}}
+                                    <td class="px-6 py-3">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-800">
+                                            <a href="/dashboard/article/{{ $article['id'] }}/upload-image"
+                                                wire:navigate>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="text-cyan-300 lucide lucide-image-up size-4 sm:size-3 lg:size-5">
+                                                    <title>upload images</title>
+                                                    <path
+                                                        d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21" />
+                                                    <path d="m14 19.5 3-3 3 3" />
+                                                    <path d="M17 22v-5.5" />
+                                                    <circle cx="9" cy="9" r="2" />
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </td>
+                                    {{-- set button --}}
                                     <td class="px-6 py-3">
                                         <button
                                             class="p-2 rounded-md {{ $articleToggle ? 'text-green-200 bg-green-600 hover:bg-green-800' : 'text-red-200 bg-red-600 hover:bg-red-800' }}"

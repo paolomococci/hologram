@@ -4,6 +4,7 @@ use App\Livewire\Article\Create as CreateArticle;
 use App\Livewire\Article\Edit as EditArticle;
 use App\Livewire\Article\Index as IndexOfArticles;
 use App\Livewire\Article\Read as ReadArticle;
+use App\Livewire\Article\UploadImages;
 use App\Livewire\View\Dashboard;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,4 @@ Route::get('/articles/{article}', ReadArticle::class);
 Route::get('/dashboard', Dashboard::class)->name('dashboard.articles');
 Route::get('/dashboard/article/create', CreateArticle::class);
 Route::get('/dashboard/article/{article}/edit', EditArticle::class);
+Route::get('/dashboard/article/{article}/upload-image', UploadImages::class);

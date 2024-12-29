@@ -2,7 +2,7 @@
     <p class="mt-4 text-sm/relaxed">
         You are about to edit the article identified by the ID number: {{ $articleForm->article->id }}
     </p>
-    <form wire:submit.prevent="update()">
+    <div>
         {{-- title field --}}
         <div class="mb-3">
             <label class="block text-slate-600" for="article-title">
@@ -47,59 +47,7 @@
                 @enderror
             </div>
         </div>
-        {{-- image_path field, array of values --}}
-        <div class="mb3">
-            <label for="article-image-path" class="block text-slate-600">You can upload an image</label>
-            <div class="flex item-center">
-                {{-- support multiple image upload --}}
-                <input type="file" id="article-image-path" multiple class="p-2 w-1/2"
-                    wire:model="articleForm.imageObject">
-            </div>
-            <div class="flex m-4">
-                @if ($articleForm->imageObject)
-                    <div class="pr-4 mr-4">
-                        <p class="text-slate-600">
-                            These are the
-                            <em class="uppercase">
-                                {{ count($articleForm->imageObject) > 1 ? 'images' : 'image' }}
-                            </em>
-                            that are about to load:
-                        </p>
-                    </div>
-                    <div>
-                        @foreach ($articleForm->imageObject as $imgObj)
-                            <span class="my-3">
-                                <img src="{{ $imgObj->temporaryUrl() }}" alt="{{ $imgObj->temporaryUrl() }}"
-                                    class="w-1/2">
-                            </span>
-                        @endforeach
-                    </div>
-                @elseif ($articleForm->image_path)
-                    <div class="pr-4 mr-4">
-                        <p class="text-slate-600">
-                            These are the
-                            <em class="uppercase">
-                                {{ count($articleForm->image_path) > 1 ? 'images' : 'image' }}
-                            </em>
-                            already uploaded:
-                        </p>
-                    </div>
-                    <div>
-                        @foreach ($articleForm->image_path as $imgPath)
-                            <span class="my-3">
-                                <img src="{{ Storage::url($imgPath) }}" alt="{{ Storage::url($imgPath) }}"
-                                    class="w-1/2">
-                            </span>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
-            <div>
-                @error('articleForm.imageObject')
-                    <span class="mt-2 text-red-500 transition-opacity delay-500">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
+        {{--  I removed the image_path field to move it to a separate view --}}
         {{-- isPublished and isDeprecated fields --}}
         <div class="mb-3">
             <label class="flex items-center text-slate-600">
@@ -145,9 +93,8 @@
             </div>
         </div>
         <div class="flex mb-3 w-full">
-            <button class="flex justify-center items-center p-2 w-full bg-green-600 rounded-sm" type="submit"
-                {{-- wire:dirty.class="hover:bg-gray-800" wire:dirty.remove.attr="disabled" disabled --}}
-                >
+            <button class="flex justify-center items-center p-2 w-1/2 bg-green-600 rounded-sm" wire:click="update()"
+                wire:confirm="Are you sure you want to save all the changes you just made?" {{-- wire:dirty.class="hover:bg-gray-800" wire:dirty.remove.attr="disabled" disabled --}}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="text-green-300 lucide lucide-save">
@@ -158,7 +105,8 @@
                     <path d="M7 3v4a1 1 0 0 0 1 1h7" />
                 </svg>
             </button>
-            {{-- <button class="flex justify-center items-center p-2 w-1/2 bg-blue-600 rounded-r-sm" wire:click="cancel()">
+            <button class="flex justify-center items-center p-2 w-1/2 bg-blue-600 rounded-r-sm" wire:click="cancel()"
+                wire:confirm="Are you sure you want to undo all the changes you just made?">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="text-blue-300 lucide lucide-eraser">
@@ -167,11 +115,11 @@
                     <path d="M22 21H7" />
                     <path d="m5 11 9 9" />
                 </svg>
-            </button> --}}
+            </button>
         </div>
         <div wire:dirty.live.debounce.500ms wire:dirty.class="text-orange-400" wire:dirty.remove.attr="hidden" hidden>
             Please, don't forget to save your
             changes.
         </div>
-    </form>
+    </div>
 </div>
