@@ -10,8 +10,8 @@ Apply the mobile first paradigm:
 cd /var/www/html/
 composer create-project laravel/laravel thesis
 cd thesis/
+sudo chown --recursive developer_username:apache .
 chmod --recursive 775 bootstrap/cache && chmod --recursive 775 storage && chmod --recursive 775 database
-chown --recursive developer_username:apache .
 ```
 
 ### parameter for generate keys:
@@ -842,4 +842,35 @@ php artisan route:list
 php artisan route:clear
 php artisan route:cache
 php artisan route:list
+```
+
+## to fix error 403 caused by directory `storage`
+
+After having appropriately edited the file `config/filesystem.php`
+
+```php
+    'links' => [
+        public_path('storage') => storage_path('app/public'),
+        public_path('article_images') => storage_path('app/public/article_images'),
+    ],
+```
+
+I should send the following commands:
+
+```bash
+php artisan storage --help
+php artisan storage:link --help
+php artisan storage:unlink --help
+```
+
+Create the symbolic links configured for the application:
+
+```bash
+php artisan storage:link
+```
+
+Create the symbolic link using relative paths:
+
+```bash
+php artisan storage:link --relative
 ```
