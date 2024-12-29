@@ -24,6 +24,7 @@ class Article extends Model
     protected $casts = [
         'isDeprecated' => 'boolean',
         'isPublished' => 'boolean',
+        'image_path' => 'array',
         'notifications' => 'array',
     ];
 

@@ -7,10 +7,13 @@ use Livewire\Component;
 use App\Utils\CleaningUtility;
 use Livewire\Attributes\Layout;
 use App\Livewire\Forms\ArticleForm;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 #[Layout('components.layouts.editor')]
 class Edit extends Component
 {
+    use WithFileUploads;
+
     public ArticleForm $articleForm;
 
     public function mount(Article $article)
@@ -23,11 +26,20 @@ class Edit extends Component
     {
         $this->articleForm->update();
 
-        // status of feedback
+        // status of feedback send to `resources/views/livewire/view/dashboard.blade.php`
         session()->flash('status', 'The article has been successfully updated.');
 
         // redirection
         $this->redirect('/dashboard', navigate: true);
+    }
+
+    public function cancel()
+    {
+        // status of feedback send to `resources/views/livewire/view/dashboard.blade.php`
+        session()->flash('status', 'All changes have been canceled.');
+
+        // redirection
+        $this->redirect('/dashboard', navigate: false);
     }
 
     public function render()

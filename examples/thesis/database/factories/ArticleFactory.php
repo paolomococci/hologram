@@ -27,6 +27,8 @@ class ArticleFactory extends Factory
                 'phone',
             ])
         );
+        $imagePath = [];
+
         return [
             'title' => fake()->realText(35) . ' (' . $sortableToken . ')',
             'subject' => fake()->realText(100),
@@ -34,6 +36,7 @@ class ArticleFactory extends Factory
             'isPublished' => fake()->numberBetween(0, 1),
             'isDeprecated' => fake()->numberBetween(0, 1),
             'notifications' => $notifications,
+            'image_path' => $imagePath,
             'sortable_token' => $sortableToken,
         ];
     }
