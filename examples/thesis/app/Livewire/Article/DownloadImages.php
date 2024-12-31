@@ -6,9 +6,10 @@ use App\Models\Article;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use App\Livewire\Forms\ArticleForm;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
-#[Layout('components.layouts.editor')]
+#[Layout('components.layouts.download')]
 class DownloadImages extends Component
 {
     use WithFileUploads;
@@ -20,24 +21,18 @@ class DownloadImages extends Component
     public function mount(Article $article)
     {
         $this->articleForm->setArticleFields($article);
+        $this->uriImages = $this->articleForm->image_path;
     }
 
-    public function downloadImages()
+    public function downloadImages($path)
     {
         // TODO: download directly
-
-        // status of feedback send to `resources/views/livewire/view/dashboard.blade.php`
-        $feedback = count($this->articleForm->imageObject) > 1 ? 'Some related images have been downloaded.' : 'A related image has been downloaded.';
-        session()->flash('status', $feedback);
-
-        // redirection
-        $this->redirect('/dashboard', navigate: true);
     }
 
     public function cancel()
     {
         // status of feedback send to `resources/views/livewire/view/dashboard.blade.php`
-        session()->flash('status', 'No images have been downloaded.');
+        session()->flash('status', 'You are back to the dashboard.');
 
         // redirection
         $this->redirect('/dashboard', navigate: false);

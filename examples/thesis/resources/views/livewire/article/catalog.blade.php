@@ -1,4 +1,3 @@
-{{-- refactoring --}}
 @php
     use App\Utils\CleaningUtility;
 @endphp
