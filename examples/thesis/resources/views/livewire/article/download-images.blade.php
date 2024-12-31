@@ -4,30 +4,36 @@
 
 <div class="mx-4">
     @if (count($uriImages) < 1)
-        <dl class="text-sm/relaxed text-slate-300/40 dark:text-slate-300">
-            Sorry, there are no images associated with the article titled:</dl>
-        <dt class="mb-4 text-md/relaxed text-green-300/40 dark:text-green-300">
-            {{ CleaningUtility::cleanTitle($articleForm->article->title) }}
-        </dt>
+        <div>
+            <dl class="text-sm/relaxed text-slate-300/40 dark:text-slate-300">
+                Sorry, there are no images associated with the article titled:</dl>
+            <dt class="mb-4 text-md/relaxed text-green-300/40 dark:text-green-300">
+                {{ CleaningUtility::cleanTitle($articleForm->article->title) }}
+            </dt>
+        </div>
     @else
-        <dl class="text-sm/relaxed text-slate-300/40 dark:text-slate-300">
-            From here you can download the images related to the article entitled:</dl>
-        <dt class="mb-4 text-md/relaxed text-green-300/40 dark:text-green-300">
-            {{ CleaningUtility::cleanTitle($articleForm->article->title) }}
-        </dt>
-        <table class="mt-4">
-            <thead class="text-xs text-gray-400 uppercase bg-gray-700">
-                <tr class="text-slate-800 dark:text-slate-300">
-                    <th class="py-2 pr-3">Image</th>
-                    <th class="py-2 pr-3">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($uriImages as $uriImage)
-                    <x-forms.downloadable-image uriImage="{{ $uriImage }}" />
-                @endforeach
-            </tbody>
-        </table>
+        <div>
+            <dl class="text-sm/relaxed text-slate-300/40 dark:text-slate-300">
+                From here you can download the images related to the article entitled:</dl>
+            <dt class="mb-4 text-md/relaxed text-green-300/40 dark:text-green-300">
+                {{ CleaningUtility::cleanTitle($articleForm->article->title) }}
+            </dt>
+        </div>
+        <div>
+            <table class="mt-4">
+                <thead class="text-xs text-gray-400 uppercase bg-gray-700">
+                    <tr class="text-slate-800 dark:text-slate-300">
+                        <th class="px-3 py-2">Image</th>
+                        <th class="px-3 py-2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($uriImages as $uriImage)
+                        <x-forms.downloadable-image uriImage="{{ $uriImage }}" />
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     @endif
     <div class="m-4">
         <button type="button" class="inline p-2 text-cyan-200 bg-green-600 rounded-md hover:bg-green-600/50"

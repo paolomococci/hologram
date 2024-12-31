@@ -1,11 +1,12 @@
 @props(['uriImage'])
 
 <tr class="border-b-2 border-green-100 bg-slate-800">
-    <td class="px-2 py-2">
-        <img src="{{ $uriImage }}" alt="{{ $uriImage }}">
+    <td class="py-2 pl-2">
+        <img src="/storage/{{ $uriImage }}" alt="/storage/{{ $uriImage }}">
     </td>
-    <td class="py-2 pr-3">
-        <button type="button" class="inline p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50" wire:click="downloadImages('{{ $uriImage }}')">
+    <td class="py-2 pl-3">
+        <button type="button" class="inline p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
+            wire:click="downloadImages('{{ $uriImage }}')" wire:confirm="Do you really want to download this image?">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="text-cyan-300 lucide lucide-download size-4 sm:size-3 lg:size-5">

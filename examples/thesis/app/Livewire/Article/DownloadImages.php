@@ -18,6 +18,23 @@ class DownloadImages extends Component
 
     public $uriImages = [];
 
+    private function extractFileName(string $path): string
+    {
+        $reversedFilename = [];
+        $splitted = str_split($path);
+        $reversed = array_reverse($splitted);
+        foreach ($reversed as $char) {
+            if ($char != '/') {
+                $reversedFilename[] = $char;
+            } else {
+                break;
+            }
+        }
+        $filename = array_reverse($reversedFilename);
+        $implodedFilename = implode($filename);
+        return $implodedFilename;
+    }
+
     public function mount(Article $article)
     {
         $this->articleForm->setArticleFields($article);
@@ -26,7 +43,25 @@ class DownloadImages extends Component
 
     public function downloadImages($path)
     {
-        // TODO: download directly
+        $publicStoragePath = Storage::disk('public')->path($path);
+        $downloadCoordinates = [
+            'pathToFile' => $publicStoragePath,
+            'filename' => self::extractFileName($path),
+            'headers' => array('Content-Type: ' . mime_content_type($publicStoragePath)),
+        ];
+        try {
+            if (file_exists($downloadCoordinates['pathToFile'])) {
+                // FIXME: download the resource without reporting anything from the browser
+                // session()->flash('status', 'You should have just downloaded the required image.');
+                return response()->download(
+                    $downloadCoordinates['pathToFile'],
+                    $downloadCoordinates['filename'],
+                    $downloadCoordinates['headers']
+                );
+            }
+        } catch (\Exception $e) {
+            //throw $th;
+        }
     }
 
     public function cancel()
