@@ -877,3 +877,11 @@ Create the symbolic link using relative paths:
 ```bash
 php artisan storage:link --relative
 ```
+
+## to create anonymous components
+
+```bash
+php artisan make:component forms.input-text-required --view
+php artisan make:component forms.input-text-optional --view
+php artisan make:component forms.downloadable-image --view
+```

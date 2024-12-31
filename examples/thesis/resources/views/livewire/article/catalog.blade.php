@@ -41,24 +41,25 @@
                     <table class="mt-4">
                         <thead class="text-xs text-gray-400 uppercase bg-gray-700">
                             <tr class="text-slate-800 dark:text-slate-300">
-                                <th class="px-6 py-3">Approved</th>
-                                <th class="px-6 py-3">Edit</th>
-                                <th class="px-6 py-3">Images</th>
-                                <th class="px-6 py-3">Set</th>
+                                <th class="py-2 pr-3">Approved</th>
+                                <th class="py-2 pr-3">Edit</th>
+                                <th class="py-2 pr-3">Up</th>
+                                <th class="py-2 pr-3">Down</th>
+                                <th class="py-2 pr-3">Set</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($this->approvedArticlesComputed as $article)
                                 <tr wire:key="{{ $article['id'] }}" class="border-b-2 border-green-100 bg-slate-800">
-                                    <td class="px-6 py-3">
+                                    <td class="px-2 py-2">
                                         <h3
                                             class="font-semibold text-xs uppercase {{ $articleToggle ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}">
                                             {{ CleaningUtility::cleanTitle($article['title']) }}
                                         </h3>
                                     </td>
                                     {{-- edit button --}}
-                                    <td class="px-6 py-3">
-                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-800">
+                                    <td class="py-2 pr-3">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
                                             <a href="/dashboard/article/{{ $article['id'] }}/edit" wire:navigate>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -73,9 +74,9 @@
                                         </button>
                                     </td>
                                     {{-- upload images button --}}
-                                    <td class="px-6 py-3">
-                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-800">
-                                            <a href="/dashboard/article/{{ $article['id'] }}/upload-image"
+                                    <td class="py-2 pr-3">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
+                                            <a href="/dashboard/article/{{ $article['id'] }}/upload-images"
                                                 wire:navigate>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -91,10 +92,29 @@
                                             </a>
                                         </button>
                                     </td>
-                                    <td class="px-6 py-3">
+                                    {{-- download images button --}}
+                                    <td class="py-2 pr-3">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
+                                            <a href="/dashboard/article/{{ $article['id'] }}/download-images"
+                                                wire:navigate>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="text-cyan-300 lucide lucide-image-down size-4 sm:size-3 lg:size-5">
+                                                    <title>download images</title>
+                                                    <path
+                                                        d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21" />
+                                                    <path d="m14 19 3 3v-5.5" />
+                                                    <path d="m17 22 3-3" />
+                                                    <circle cx="9" cy="9" r="2" />
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </td>
+                                    <td class="py-2 pr-3">
                                         {{-- set button --}}
                                         <button
-                                            class="p-2 rounded-md {{ $articleToggle ? 'text-green-200 bg-green-600 hover:bg-green-800' : 'text-red-200 bg-red-600 hover:bg-red-800' }}"
+                                            class="p-2 rounded-md {{ $articleToggle ? 'text-green-200 bg-green-600 hover:bg-green-600/50' : 'text-red-200 bg-red-600 hover:bg-red-800' }}"
                                             wire:click="deprecate({{ $article['id'] }})"
                                             wire:confirm="Do you really want to {{ $articleToggle ? 'approve' : 'deprecate' }} this article?">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -122,24 +142,25 @@
                     <table class="mt-4">
                         <thead class="text-xs text-gray-400 uppercase bg-gray-700">
                             <tr class="text-slate-800 dark:text-slate-300">
-                                <th class="px-6 py-3">Deprecated</th>
-                                <th class="px-6 py-3">Edit</th>
-                                <th class="px-6 py-3">Images</th>
-                                <th class="px-6 py-3">Set</th>
+                                <th class="py-2 pr-3">Deprecated</th>
+                                <th class="py-2 pr-3">Edit</th>
+                                <th class="py-2 pr-3">Up</th>
+                                <th class="py-2 pr-3">Down</th>
+                                <th class="py-2 pr-3">Set</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($this->deprecatedArticlesComputed as $article)
                                 <tr wire:key="{{ $article['id'] }}" class="border-b-2 border-green-100 bg-slate-800">
-                                    <td class="px-6 py-3">
+                                    <td class="px-2 py-2">
                                         <h3
                                             class="font-semibold text-xs uppercase {{ $articleToggle ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}">
                                             {{ CleaningUtility::cleanTitle($article['title']) }}
                                         </h3>
                                     </td>
                                     {{-- edit button --}}
-                                    <td class="px-6 py-3">
-                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-800">
+                                    <td class="py-2 pr-3">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
                                             <a href="/dashboard/article/{{ $article['id'] }}/edit" wire:navigate>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -154,9 +175,9 @@
                                         </button>
                                     </td>
                                     {{-- upload images button --}}
-                                    <td class="px-6 py-3">
-                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-800">
-                                            <a href="/dashboard/article/{{ $article['id'] }}/upload-image"
+                                    <td class="py-2 pr-3">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
+                                            <a href="/dashboard/article/{{ $article['id'] }}/upload-images"
                                                 wire:navigate>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -172,10 +193,29 @@
                                             </a>
                                         </button>
                                     </td>
+                                    {{-- download images button --}}
+                                    <td class="py-2 pr-3">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
+                                            <a href="/dashboard/article/{{ $article['id'] }}/download-images"
+                                                wire:navigate>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="text-cyan-300 lucide lucide-image-down size-4 sm:size-3 lg:size-5">
+                                                    <title>download images</title>
+                                                    <path
+                                                        d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21" />
+                                                    <path d="m14 19 3 3v-5.5" />
+                                                    <path d="m17 22 3-3" />
+                                                    <circle cx="9" cy="9" r="2" />
+                                                </svg>
+                                            </a>
+                                        </button>
+                                    </td>
                                     {{-- set button --}}
-                                    <td class="px-6 py-3">
+                                    <td class="py-2 pr-3">
                                         <button
-                                            class="p-2 rounded-md {{ $articleToggle ? 'text-green-200 bg-green-600 hover:bg-green-800' : 'text-red-200 bg-red-600 hover:bg-red-800' }}"
+                                            class="p-2 rounded-md {{ $articleToggle ? 'text-green-200 bg-green-600 hover:bg-green-600/50' : 'text-red-200 bg-red-600 hover:bg-red-800' }}"
                                             wire:click="deprecate({{ $article['id'] }})"
                                             wire:confirm="Do you really want to {{ $articleToggle ? 'approve' : 'deprecate' }} this article?">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
