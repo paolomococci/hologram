@@ -6,6 +6,7 @@ use App\Livewire\Article\Edit as EditArticle;
 use App\Livewire\Article\Index as IndexOfArticles;
 use App\Livewire\Article\Read as ReadArticle;
 use App\Livewire\Article\UploadImages;
+use App\Livewire\Playground\Message as PlaygroundSlotMessage;
 use App\Livewire\View\Dashboard;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,6 @@ Route::get('/dashboard/article/create', CreateArticle::class);
 Route::get('/dashboard/article/{article}/edit', EditArticle::class);
 Route::get('/dashboard/article/{article}/upload-images', UploadImages::class);
 Route::get('/dashboard/article/{article}/download-images', DownloadImages::class);
+
+// Playground layout
+Route::get('/playground', PlaygroundSlotMessage::class)->name('playground');

@@ -885,3 +885,59 @@ php artisan make:component forms.input-text-required --view
 php artisan make:component forms.input-text-optional --view
 php artisan make:component forms.downloadable-image --view
 ```
+
+## `Playground` layout and views
+
+I created this layout to exemplify the use of Alpine.js:
+
+```bash
+php artisan make:livewire Playground/message
+php artisan make:livewire Playground/canvas
+php artisan make:livewire Playground/binding
+php artisan make:livewire Playground/toggle
+php artisan make:livewire Playground/two-way-binding
+php artisan make:livewire Playground/something
+```
+
+After creating a layout and adding an `playground` route, I can issue the following commands:
+
+```bash
+php artisan route:clear && php artisan route:cache && php artisan route:list | grep "playground"
+```
+
+### example of test on browser console
+
+First the code:
+
+```php
+        {{-- feedback message --}}
+        <div x-data="{ show: false, message: '' }"
+            x-on:feedback.window="
+                message = $event.detail.message;
+                console.log(message);
+                show = true;
+                setTimeout(() => show = false, 2000);
+            ">
+            {{-- feedback message view --}}
+            <p x-show="show" x-text="message" class="w-full h-10 dark:text-green-300 text-green-300/30"></p>
+        </div>
+```
+
+Now I load the page in the browser and move to its console:
+
+```javascript
+let event = new CustomEvent('feedback', {detail: {message: "Hello world!"}});
+window.dispatchEvent(event);
+```
+
+now I type:
+
+```javascript
+event.detail.message
+```
+
+and getting:
+
+```javascript
+"Hello world!"
+```
