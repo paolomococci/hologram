@@ -3,12 +3,12 @@
 namespace App\Livewire\View;
 
 use App\Models\Article;
+use Livewire\Attributes\Isolate;
 use Livewire\Component;
 use Livewire\Attributes\On;
-use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Url;
 
-#[Lazy]
+#[Isolate]
 class Search extends Component
 {
     #[Url(
