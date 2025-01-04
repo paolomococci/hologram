@@ -841,7 +841,7 @@ If, after having appropriately edited all files Blade and file `routes/web.php`,
 
 ```bash
 php artisan route:list
-php artisan route:list | grep "upload-image"
+php artisan route:list | grep "upload-images"
 php artisan route:clear
 php artisan route:cache
 php artisan route:list
@@ -926,18 +926,28 @@ First the code:
 Now I load the page in the browser and move to its console:
 
 ```javascript
-let event = new CustomEvent('feedback', {detail: {message: "Hello world!"}});
+let event = new CustomEvent("feedback", {
+    detail: { message: "Hello world!" },
+});
 window.dispatchEvent(event);
 ```
 
 now I type:
 
 ```javascript
-event.detail.message
+event.detail.message;
 ```
 
 and getting:
 
 ```javascript
-"Hello world!"
+"Hello world!";
+```
+
+## install Alpine.js plugin `@alpinejs/persist`
+
+Optionally I can choose to install some plugins, according to my needs:
+
+```bash
+npm i @alpinejs/persist
 ```
