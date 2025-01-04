@@ -2,7 +2,8 @@
     use App\Utils\CleaningUtility;
 @endphp
 <div class="{{ $show ? 'block' : 'hidden' }} mt-4">
-    <div class="absolute z-50 p-4 mt-4 bg-gray-700 rounded-b-md border border-green-600">
+    <div
+        class="absolute z-50 p-4 mt-4 bg-gray-400 rounded-b-md border border-green-300 dark:bg-gray-700 dark:border-green-600">
 
         <div class="absolute top-0 right-0 pt-1 pr-3 mt-2 ml-4">
             <button type="button" wire:click="dispatch('search:clear-results')">

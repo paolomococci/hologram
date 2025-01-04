@@ -48,3 +48,15 @@ php artisan make:component accordions.icon-toggle --view
 ```bash
 php artisan make:component alerts.offline --view
 ```
+
+## login
+
+```bash
+php artisan make:component login.simply --view
+```
+
+## register
+
+```bash
+php artisan make:component register.simply --view
+```

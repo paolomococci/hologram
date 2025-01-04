@@ -60,7 +60,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
-                                        class="text-green-300 lucide lucide-layout-dashboard size-8 lg:size-10 sm:size-4">
+                                        class="text-green-600 dark:text-green-300 lucide lucide-layout-dashboard size-8 lg:size-10 sm:size-4">
                                         <title>dashboard</title>
                                         <rect width="7" height="9" x="3" y="3" rx="1" />
                                         <rect width="7" height="5" x="14" y="3" rx="1" />
@@ -74,7 +74,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
-                                        class="text-green-300 lucide lucide-log-in size-8 lg:size-10 sm:size-4">
+                                        class="text-green-600 dark:text-green-300 lucide lucide-log-in size-8 lg:size-10 sm:size-4">
                                         <title>login</title>
                                         <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                                         <polyline points="10 17 15 12 10 7" />
@@ -88,7 +88,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
-                                            class="text-green-300 lucide lucide-notebook-pen size-8 lg:size-10 sm:size-4">
+                                            class="text-green-600 dark:text-green-300 lucide lucide-notebook-pen size-8 lg:size-10 sm:size-4">
                                             <title>register</title>
                                             <path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" />
                                             <path d="M2 6h4" />
@@ -115,7 +115,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
-                                    class="text-green-300 lucide lucide-messages-square size-5 sm:size-4 lg:size-6">
+                                    class="text-green-600 dark:text-green-300 lucide lucide-messages-square size-5 sm:size-4 lg:size-6">
                                     <title>messages</title>
                                     <path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z" />
                                     <path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1" />
@@ -145,7 +145,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
-                                    class="text-green-300 lucide lucide-clipboard-x size-5 sm:size-4 lg:size-6">
+                                    class="text-green-600 dark:text-green-300 lucide lucide-clipboard-x size-5 sm:size-4 lg:size-6">
                                     <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
                                     <path
                                         d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
@@ -172,7 +172,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
-                                    class="text-green-300 lucide lucide-plus size-5 sm:size-4 lg:size-6">
+                                    class="text-green-600 dark:text-green-300 lucide lucide-plus size-5 sm:size-4 lg:size-6">
                                     <path d="M5 12h14" />
                                     <path d="M12 5v14" />
                                 </svg>
@@ -194,7 +194,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
-                                    class="text-green-300 lucide lucide-toggle-left size-5 sm:size-4 lg:size-6">
+                                    class="text-green-600 dark:text-green-300 lucide lucide-toggle-left size-5 sm:size-4 lg:size-6">
                                     <rect width="20" height="12" x="2" y="6" rx="6" ry="6" />
                                     <circle cx="8" cy="12" r="2" />
                                 </svg>
@@ -218,7 +218,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
-                                    class="text-green-300 lucide lucide-database-backup size-5 sm:size-4 lg:size-6">
+                                    class="text-green-600 dark:text-green-300 lucide lucide-database-backup size-5 sm:size-4 lg:size-6">
                                     <ellipse cx="12" cy="5" rx="9" ry="3" />
                                     <path d="M3 12a9 3 0 0 0 5 2.69" />
                                     <path d="M21 9.3V5" />
@@ -245,7 +245,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
-                                    class="text-green-300 lucide lucide-box size-5 sm:size-4 lg:size-6">
+                                    class="text-green-600 dark:text-green-300 lucide lucide-box size-5 sm:size-4 lg:size-6">
                                     <path
                                         d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
                                     <path d="m3.3 7 8.7 5 8.7-5" />

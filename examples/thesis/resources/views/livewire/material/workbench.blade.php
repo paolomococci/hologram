@@ -9,7 +9,7 @@
     </p>
 
     <div class="p-4 m-4">
-        <x-accordions.icon-toggle jsonDataItems="{{ $jsonDataItems }}" />
+        <x-login.simply />
     </div>
 
 </div>

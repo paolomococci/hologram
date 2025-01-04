@@ -3,7 +3,8 @@
     <x-alerts.offline />
 
     <form class="flex justify-center w-9/12">
-        <input type="text" class="p-4 my-0 text-lg rounded-l-md border bg-slate-700 text-slate-50"
+        <input type="text"
+            class="p-4 my-0 text-lg rounded-l-md border dark:bg-slate-700 dark:text-slate-50 bg-slate-50 text-slate-700"
             wire:model.live.debounce="searchText" placeholder="{{ $placeholder }}" wire:keydown.escape="clear()"
             wire:offline.attr="disabled">
         <button class="p-4 my-0 text-white bg-green-600 rounded-r-md border disabled:bg-slate-400 hover:bg-red-600"

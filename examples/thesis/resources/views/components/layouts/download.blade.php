@@ -51,7 +51,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
-                                        class="text-green-300 lucide lucide-layout-dashboard size-8 lg:size-10 sm:size-4">
+                                        class="text-green-600 dark:text-green-300 lucide lucide-layout-dashboard size-8 lg:size-10 sm:size-4">
                                         <title>dashboard</title>
                                         <rect width="7" height="9" x="3" y="3" rx="1" />
                                         <rect width="7" height="5" x="14" y="3" rx="1" />
@@ -65,7 +65,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
-                                        class="text-green-300 lucide lucide-log-in size-8 lg:size-10 sm:size-4">
+                                        class="text-green-600 dark:text-green-300 lucide lucide-log-in size-8 lg:size-10 sm:size-4">
                                         <title>login</title>
                                         <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
                                         <polyline points="10 17 15 12 10 7" />
@@ -79,7 +79,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
-                                            class="text-green-300 lucide lucide-notebook-pen size-8 lg:size-10 sm:size-4">
+                                            class="text-green-600 dark:text-green-300 lucide lucide-notebook-pen size-8 lg:size-10 sm:size-4">
                                             <title>register</title>
                                             <path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" />
                                             <path d="M2 6h4" />
@@ -105,7 +105,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
-                                    class="text-green-300 lucide lucide-file-down size-5 sm:size-4 lg:size-6">
+                                    class="text-green-600 dark:text-green-300 lucide lucide-file-down size-5 sm:size-4 lg:size-6">
                                     <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
                                     <path d="M14 2v4a2 2 0 0 0 2 2h4" />
                                     <path d="M12 18v-6" />
