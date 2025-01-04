@@ -1,5 +1,5 @@
 @php
-use App\Utils\CleaningUtility;
+    use App\Utils\CleaningUtility;
 @endphp
 <div class="{{ $show ? 'block' : 'hidden' }} mt-4">
     <div class="absolute z-50 p-4 mt-4 bg-gray-700 rounded-b-md border border-green-600">
@@ -16,15 +16,18 @@ use App\Utils\CleaningUtility;
         </div>
 
         @if (count($results) == 0)
-            <p class="mr-8 text-sm/relaxed">
-                no results were found
-            </p>
+            <div wire:transition.delay.100ms.duration.1000ms.opacity.duration.500ms>
+                <p class="mr-8 text-sm/relaxed">
+                    no results were found
+                </p>
+            </div>
+        @else
+            @foreach ($results as $result)
+                <p class="mr-8 text-sm/relaxed" wire:key="{{ $result->id }}">
+                    <a wire:navigate.hover
+                        href="/articles/{{ $result->id }}">{{ CleaningUtility::cleanTitle($result->title) }}</a>
+                </p>
+            @endforeach
         @endif
-
-        @foreach ($results as $result)
-            <p class="mr-8 text-sm/relaxed" wire:key="{{$result->id}}">
-                <a wire:navigate.hover href="/articles/{{ $result->id }}">{{ CleaningUtility::cleanTitle($result->title) }}</a>
-            </p>
-        @endforeach
     </div>
 </div>
