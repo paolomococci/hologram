@@ -42,3 +42,9 @@ php artisan make:component accordions.icon-toggle --view
 ```
 
 ![accordions.simply-toggle](./screenshots/components/screenshot_x-accordions.icon-toggle_thesis.png)
+
+## alerts
+
+```bash
+php artisan make:component alerts.offline --view
+```

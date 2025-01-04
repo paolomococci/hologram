@@ -1,4 +1,7 @@
 <div class="mx-4">
+
+    <x-alerts.offline />
+
     <p class="mt-4 text-sm/relaxed">
         You are about to edit the article identified by the ID number: {{ $articleForm->article->id }}
     </p>
@@ -94,10 +97,11 @@
         </div>
         <div class="flex mb-3 w-full">
             <button class="flex justify-center items-center p-2 w-1/2 bg-green-600 rounded-sm" wire:click="update()"
-                wire:confirm="Are you sure you want to save all the changes you just made?" {{-- wire:dirty.class="hover:bg-gray-800" wire:dirty.remove.attr="disabled" disabled --}}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="text-green-300 lucide lucide-save">
+                wire:confirm="Are you sure you want to save all the changes you just made?" wire:offline.attr="disabled"
+                {{-- wire:dirty.class="hover:bg-gray-800" wire:dirty.remove.attr="disabled" disabled --}}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="text-green-300 lucide lucide-save">
                     <title>update</title>
                     <path
                         d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
@@ -106,10 +110,11 @@
                 </svg>
             </button>
             <button class="flex justify-center items-center p-2 w-1/2 bg-blue-600 rounded-r-sm" wire:click="cancel()"
-                wire:confirm="Are you sure you want to undo all the changes you just made?">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="text-blue-300 lucide lucide-eraser">
+                wire:confirm="Are you sure you want to undo all the changes you just made?"
+                wire:offline.attr="disabled">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="text-blue-300 lucide lucide-eraser">
                     <title>cancel</title>
                     <path d="m7 21-4.3-4.3c-1-1-1-2.5 0-3.4l9.6-9.6c1-1 2.5-1 3.4 0l5.6 5.6c1 1 1 2.5 0 3.4L13 21" />
                     <path d="M22 21H7" />

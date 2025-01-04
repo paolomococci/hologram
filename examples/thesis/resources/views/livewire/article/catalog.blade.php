@@ -31,9 +31,12 @@
         {{-- follows the actual view --}}
     @else
         <div>
+
+            <x-alerts.offline />
+
             @if (isset($filterText) && $filterText != '' && $this->totalNumberOfApprovedArticles && !$articleToggle)
                 {{-- pagination of approved articles --}}
-                <div class='mt-4 w-full text-slate-400'>
+                <div class='mt-4 w-full text-slate-400' wire:offline.attr="hidden">
                     {{ $this->approvedArticlesComputed->onEachSide(0)->links() }}
                 </div>
                 <div>
@@ -51,15 +54,17 @@
                             @foreach ($this->approvedArticlesComputed as $article)
                                 <tr wire:key="{{ $article['id'] }}" class="border-b-2 border-green-100 bg-slate-800">
                                     <td class="px-2 py-2">
-                                        <h3
-                                            class="font-semibold text-xs uppercase {{ $articleToggle ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}">
+                                        <h3 class="font-semibold text-xs uppercase {{ $articleToggle ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}"
+                                            wire:offline.class="rounded-sm dark:bg-orange-300 bg-orange-300/50">
                                             {{ CleaningUtility::cleanTitle($article['title']) }}
                                         </h3>
                                     </td>
                                     {{-- edit button --}}
                                     <td class="py-2 pr-3">
-                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
-                                            <a href="/dashboard/article/{{ $article['id'] }}/edit" wire:navigate>
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
+                                            wire:offline.attr="hidden">
+                                            <a href="/dashboard/article/{{ $article['id'] }}/edit" wire:navigate
+                                                wire:offline.attr="hidden">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -74,9 +79,10 @@
                                     </td>
                                     {{-- upload images button --}}
                                     <td class="py-2 pr-3">
-                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
+                                            wire:offline.attr="hidden">
                                             <a href="/dashboard/article/{{ $article['id'] }}/upload-images"
-                                                wire:navigate>
+                                                wire:navigate wire:offline.attr="hidden">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -93,9 +99,10 @@
                                     </td>
                                     {{-- download images button --}}
                                     <td class="py-2 pr-3">
-                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
+                                            wire:offline.attr="hidden">
                                             <a href="/dashboard/article/{{ $article['id'] }}/download-images"
-                                                wire:navigate>
+                                                wire:navigate wire:offline.attr="hidden">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -115,7 +122,8 @@
                                         <button
                                             class="p-2 rounded-md {{ $articleToggle ? 'text-green-200 bg-green-600 hover:bg-green-600/50' : 'text-red-200 bg-red-600 hover:bg-red-800' }}"
                                             wire:click="deprecate({{ $article['id'] }})"
-                                            wire:confirm="Do you really want to {{ $articleToggle ? 'approve' : 'deprecate' }} this article?">
+                                            wire:confirm="Do you really want to {{ $articleToggle ? 'approve' : 'deprecate' }} this article?"
+                                            wire:offline.attr="hidden">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -152,15 +160,17 @@
                             @foreach ($this->deprecatedArticlesComputed as $article)
                                 <tr wire:key="{{ $article['id'] }}" class="border-b-2 border-green-100 bg-slate-800">
                                     <td class="px-2 py-2">
-                                        <h3
-                                            class="font-semibold text-xs uppercase {{ $articleToggle ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}">
+                                        <h3 class="font-semibold text-xs uppercase {{ $articleToggle ? 'text-red-900 dark:text-red-400' : 'text-green-900 dark:text-green-400' }}"
+                                            wire:offline.class="rounded-sm dark:bg-orange-300 bg-orange-300/50">
                                             {{ CleaningUtility::cleanTitle($article['title']) }}
                                         </h3>
                                     </td>
                                     {{-- edit button --}}
                                     <td class="py-2 pr-3">
-                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
-                                            <a href="/dashboard/article/{{ $article['id'] }}/edit" wire:navigate>
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
+                                            wire:offline.attr="hidden">
+                                            <a href="/dashboard/article/{{ $article['id'] }}/edit" wire:navigate
+                                                wire:offline.attr="hidden">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -175,9 +185,10 @@
                                     </td>
                                     {{-- upload images button --}}
                                     <td class="py-2 pr-3">
-                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
+                                            wire:offline.attr="hidden">
                                             <a href="/dashboard/article/{{ $article['id'] }}/upload-images"
-                                                wire:navigate>
+                                                wire:navigate wire:offline.attr="hidden">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -194,9 +205,10 @@
                                     </td>
                                     {{-- download images button --}}
                                     <td class="py-2 pr-3">
-                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50">
+                                        <button class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
+                                            wire:offline.attr="hidden">
                                             <a href="/dashboard/article/{{ $article['id'] }}/download-images"
-                                                wire:navigate>
+                                                wire:navigate wire:offline.attr="hidden">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -216,7 +228,8 @@
                                         <button
                                             class="p-2 rounded-md {{ $articleToggle ? 'text-green-200 bg-green-600 hover:bg-green-600/50' : 'text-red-200 bg-red-600 hover:bg-red-800' }}"
                                             wire:click="deprecate({{ $article['id'] }})"
-                                            wire:confirm="Do you really want to {{ $articleToggle ? 'approve' : 'deprecate' }} this article?">
+                                            wire:confirm="Do you really want to {{ $articleToggle ? 'approve' : 'deprecate' }} this article?"
+                                            wire:offline.attr="hidden">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
