@@ -951,3 +951,17 @@ Optionally I can choose to install some plugins, according to my needs:
 ```bash
 npm i @alpinejs/persist
 ```
+
+## implement authentication
+
+First I create the components that can be used both in registration and login:
+
+```bash
+php artisan make:component Input/InputName --view
+php artisan make:component Input/InputEmail --view
+php artisan make:component Input/InputPassword --view
+php artisan make:component Checkbox/CheckboxRememberMe --view
+php artisan make:component Button/ButtonRegistration --view
+php artisan make:component Button/ButtonLogin --view
+php artisan make:component Button/ButtonLogout --view
+```
