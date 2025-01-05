@@ -17,19 +17,19 @@ Web application demo:
 
 An example of an assistant application.
 
-![An example of a chatbot web application.](hologram-php84/screenshots/Recode_query_SelectFromEmployeesWhereRadiologist.png)
+![An example of a chatbot web application.](environments/hologram-php84/screenshots/Recode_query_SelectFromEmployeesWhereRadiologist.png)
 
 ## `chatbot`
 
 An example of a chatbot web application.
 
-![An example of a chatbot web application.](hologram-php84/screenshots/Chatbot_landing_page.png)
+![An example of a chatbot web application.](environments/hologram-php84/screenshots/Chatbot_landing_page.png)
 
 ## `remark` 
 
 An example of a social media that hosts the opinions of its users.
 
-![An example of a social media that hosts the opinions of its users.](hologram-eaas/projects/apps/remark/remark-1.0/screenshots/remark-1.0_landing_page.png)
+![An example of a social media that hosts the opinions of its users.](environments/hologram-eaas/projects/apps/remark/remark-1.0/screenshots/remark-1.0_landing_page.png)
 
 ## `quotes` version 3
 
@@ -87,4 +87,4 @@ and on a mobile screen:
 
 Below is an image of the landing page of an example container called `hologram-cntr-3` developed thanks to `React`.
 
-![landing page](hologram-kind/docker-playground/hologram-3.0/dev/landing/screenshots/hologram-cntr-3_landing_page.png)
+![landing page](environments/hologram-kind/docker-playground/hologram-3.0/dev/landing/screenshots/hologram-cntr-3_landing_page.png)
