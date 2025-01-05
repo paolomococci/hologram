@@ -27,7 +27,7 @@ php artisan route:clear && php artisan route:cache && php artisan route:list | g
 
 ## accordions
 
-### `<x-accordions.simply-toggle jsonDataItems="{{ $jsonDataItems }}" />`
+### `<x-accordions.simply-toggle jsonDataItems="{{ $jsonDataItems }}" />` alias tag
 
 ```bash
 php artisan make:component accordions.simply-toggle --view
@@ -35,7 +35,7 @@ php artisan make:component accordions.simply-toggle --view
 
 ![accordions.simply-toggle](./screenshots/components/screenshot_x-accordions.simply-toggle_thesis.png)
 
-### `<x-accordions.icon-toggle jsonDataItems="{{ $jsonDataItems }}" />`
+### `<x-accordions.icon-toggle jsonDataItems="{{ $jsonDataItems }}" />` alias tag
 
 ```bash
 php artisan make:component accordions.icon-toggle --view
@@ -51,20 +51,48 @@ php artisan make:component alerts.offline --view
 
 ## login
 
+### login anonymous component:
+
 ```bash
 php artisan make:component login.simply --view
+```
+
+or:
+
+```bash
+php artisan make:component login.login-anonymous --view
 ```
 
 ![x-login.simply light](./screenshots/components/screenshot_x-login_simply_light.png)
 
 ![x-login.simply dark](./screenshots/components/screenshot_x-login_simply_dark.png)
 
+### login component with class:
+
+```bash
+php artisan make:component Login/LoginComplete
+```
+
 ## register
+
+### register anonymous component:
 
 ```bash
 php artisan make:component register.simply --view
 ```
 
+or:
+
+```bash
+php artisan make:component register.simply-anonymous --view
+```
+
 ![x-register.simply light](./screenshots/components/screenshot_x-register_simply_light.png)
 
 ![x-register.simply dark](./screenshots/components/screenshot_x-register_simply_dark.png)
+
+### register component with class:
+
+```bash
+php artisan make:component Register/RegisterComplete
+```
