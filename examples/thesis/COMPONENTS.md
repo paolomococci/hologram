@@ -55,8 +55,16 @@ php artisan make:component alerts.offline --view
 php artisan make:component login.simply --view
 ```
 
+![x-login.simply light](./screenshots/components/screenshot_x-login_simply_light.png)
+
+![x-login.simply dark](./screenshots/components/screenshot_x-login_simply_dark.png)
+
 ## register
 
 ```bash
 php artisan make:component register.simply --view
 ```
+
+![x-register.simply light](./screenshots/components/screenshot_x-register_simply_light.png)
+
+![x-register.simply dark](./screenshots/components/screenshot_x-register_simply_dark.png)
