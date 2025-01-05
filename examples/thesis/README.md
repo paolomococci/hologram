@@ -965,3 +965,24 @@ php artisan make:component Button/ButtonRegistration --view
 php artisan make:component Button/ButtonLogin --view
 php artisan make:component Button/ButtonLogout --view
 ```
+
+### `Authentication` components
+
+```bash
+php artisan make:livewire Authentication/login
+php artisan make:livewire Authentication/register
+```
+
+After creating a layout dedicated to authentication, I can issue the following commands:
+
+```bash
+php artisan route:clear && php artisan route:cache && php artisan route:list
+```
+
+Authentication login dark:
+
+![authentication login dark](./screenshots/Thesis_authentication_login_dark.png)
+
+and light theme:
+
+![authentication login dark](./screenshots/Thesis_authentication_login_light.png)

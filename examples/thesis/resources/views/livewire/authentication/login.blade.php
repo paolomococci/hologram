@@ -1,15 +1,3 @@
-<?php
-
-use function Livewire\Volt\{state};
-
-state([
-    'email' => '',
-    'password' => '',
-    'remember_me' => '',
-]);
-
-?>
-
 <div>
     <div class="flex relative flex-col bg-transparent rounded-xl">
         <h4 class="block text-xl font-medium text-green-600 dark:text-green-300">
