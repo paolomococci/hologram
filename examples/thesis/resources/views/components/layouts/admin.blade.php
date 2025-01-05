@@ -43,19 +43,7 @@
                     @if (Route::has('login'))
                         <nav class="flex flex-1 justify-end -mx-3">
                             @auth
-                                <a href="{{ url('/dashboard') }}"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#bfa] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="text-green-600 dark:text-green-300 lucide lucide-layout-dashboard size-8 lg:size-10 sm:size-4">
-                                        <title>dashboard</title>
-                                        <rect width="7" height="9" x="3" y="3" rx="1" />
-                                        <rect width="7" height="5" x="14" y="3" rx="1" />
-                                        <rect width="7" height="9" x="14" y="12" rx="1" />
-                                        <rect width="7" height="5" x="3" y="16" rx="1" />
-                                    </svg>
-                                </a>
+                            <x-link.link-logout />
                             @else
                                 <a href="{{ route('login') }}"
                                     class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#bfa] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">

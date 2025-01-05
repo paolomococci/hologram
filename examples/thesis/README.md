@@ -964,6 +964,7 @@ php artisan make:component Checkbox/CheckboxRememberMe --view
 php artisan make:component Button/ButtonRegistration --view
 php artisan make:component Button/ButtonLogin --view
 php artisan make:component Button/ButtonLogout --view
+php artisan make:component Link/LinkLogout --view
 ```
 
 ### `Authentication` components
