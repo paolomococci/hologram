@@ -1,6 +1,7 @@
 {{-- refer to it like this alias tag: <x-button.button-registration /> --}}
 <div>
-    <button class="flex justify-center items-center p-2 w-full h-12 bg-green-300 rounded-md dark:bg-green-600"
+    <button
+        class="flex justify-center items-center p-2 w-full h-12 bg-green-300 rounded-md dark:bg-green-600 hover:bg-green-300/50 hover:dark:bg-green-600/50"
         type="submit">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
