@@ -15,11 +15,11 @@ class Applicant extends Model
         'email',
         'password',
         'email_verified_at',
+        'remember_token',
     ];
 
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**

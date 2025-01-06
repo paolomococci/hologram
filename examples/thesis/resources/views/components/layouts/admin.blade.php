@@ -43,7 +43,13 @@
                     @if (Route::has('login'))
                         <nav class="flex flex-1 justify-end -mx-3">
                             @auth
-                            <x-link.link-logout />
+                                {{-- name of logged user --}}
+                                <div>
+                                    <span class="inline-block px-4 mx-4">
+                                        {{ Auth::user()->name }}
+                                    </span>
+                                    <x-link.link-logout />
+                                </div>
                             @else
                                 <a href="{{ route('login') }}"
                                     class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#bfa] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
