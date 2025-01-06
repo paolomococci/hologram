@@ -957,6 +957,8 @@ npm i @alpinejs/persist
 First I create the components that can be used both in registration and login:
 
 ```bash
+php artisan make:component Samp/ShowErrors --view
+php artisan make:component Label/InputLabel --view
 php artisan make:component Input/InputName --view
 php artisan make:component Input/InputEmail --view
 php artisan make:component Input/InputPassword --view

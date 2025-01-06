@@ -1,4 +1,6 @@
 {{-- refer to it like this alias tag: <x-checkbox.checkbox-remember-me /> --}}
+@props(['rememberMe' => false])
+
 <div>
     <label class="mr-4 mb-3 text-sm cursor-pointer text-slate-600 dark:text-slate-300" for="remember-me">
         <input id="remember-me" type="checkbox" value="bulletin_board"
