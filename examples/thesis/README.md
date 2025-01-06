@@ -988,4 +988,16 @@ Authentication login dark:
 
 and light theme:
 
-![authentication login dark](./screenshots/Thesis_authentication_login_light.png)
+![authentication login light](./screenshots/Thesis_authentication_login_light.png)
+
+Registration of a new user in dark theme:
+
+![registration of a new user in dark theme](./screenshots/Thesis_registration_dark.png)
+
+and light theme:
+
+![registration of a new user in light theme](./screenshots/Thesis_registration_light.png)
+
+Finally, here is a screenshot of the dashboard:
+
+![dashboard](./screenshots/Thesis_dashboard_dark.png)

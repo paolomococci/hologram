@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
+use ReflectionClass;
 
 #[Lazy]
 #[Layout('components.layouts.authentication')]
@@ -25,6 +26,10 @@ class Login extends Component
 
     public function authentication()
     {
+        // $reflector = new ReflectionClass(Auth::class);
+        // dd($reflector);
+        // dd($this->email, $this->password, $this->rememberMe);
+
         $this->validate();
         try {
             $isValid = Auth::attempt([

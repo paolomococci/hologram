@@ -29,7 +29,9 @@ class Register extends Component
 
     public string $registerMessage = '';
 
-    public function registerAnApplicant() {
+    public function registerAnApplicant()
+    {
+        // dd($this->name, $this->email, $this->password, $this->rememberMe);
         $this->validate();
         try {
             $this->applicantForm->save(
