@@ -2,9 +2,9 @@
 
 namespace App\Livewire\View;
 
-use Livewire\Component;
 use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Reactive;
+use Livewire\Component;
 
 #[Lazy]
 class Results extends Component

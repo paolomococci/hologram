@@ -45,6 +45,7 @@ class Catalog extends Component
     public function approvedArticlesComputed()
     {
         $articleQuery = Article::query();
+
         return $articleQuery->where('title', 'LIKE', "%{$this->filterText}%")
             ->where('isDeprecated', false)
             ->paginate(self::ARTICLES_PER_PAGE);
@@ -54,6 +55,7 @@ class Catalog extends Component
     public function deprecatedArticlesComputed()
     {
         $articleQuery = Article::query();
+
         return $articleQuery->where('title', 'LIKE', "%{$this->filterText}%")
             ->where('isDeprecated', true)
             ->paginate(self::ARTICLES_PER_PAGE);

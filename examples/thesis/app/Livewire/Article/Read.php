@@ -3,8 +3,8 @@
 namespace App\Livewire\Article;
 
 use App\Models\Article;
-use Livewire\Component;
 use Livewire\Attributes\Lazy;
+use Livewire\Component;
 
 #[Lazy]
 class Read extends Component

@@ -3,9 +3,9 @@
 namespace App\Livewire\Article;
 
 use App\Models\Article;
+use Livewire\Attributes\Lazy;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\Attributes\Lazy;
 
 #[Lazy]
 class Index extends Component

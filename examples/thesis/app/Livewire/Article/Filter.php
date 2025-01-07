@@ -3,10 +3,10 @@
 namespace App\Livewire\Article;
 
 use App\Models\Article;
-use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Session;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 class Filter extends Component
 {
@@ -50,7 +50,7 @@ class Filter extends Component
 
     public function toggle()
     {
-        $this->articleToggle = !$this->articleToggle;
+        $this->articleToggle = ! $this->articleToggle;
         $this->dispatch(
             'retrieveArticles',
             approvedArticlesDispatched: $this->approvedArticlesDispatched,

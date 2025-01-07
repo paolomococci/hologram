@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Playground;
 
-use Livewire\Component;
 use Livewire\Attributes\Layout;
+use Livewire\Component;
 
 #[Layout('components.layouts.playground')]
 class Message extends Component

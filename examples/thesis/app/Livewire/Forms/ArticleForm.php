@@ -49,7 +49,7 @@ class ArticleForm extends Form
         }
 
         $this->sortable_token = Str::ulid()->toBase32();
-        $this->title .= ' (' . $this->sortable_token . ')';
+        $this->title .= ' ('.$this->sortable_token.')';
 
         // multiple image upload
         $lastAssignedId = Article::orderBy('id', 'DESC')->first()->id;
@@ -58,7 +58,7 @@ class ArticleForm extends Form
             foreach ($this->imageObject as $imgObj) {
                 $this->image_path[] = $imgObj->storePublicly(
                     // path: /var/www/html/thesis/storage/app/public/article_images/{id}
-                    'article_images/' . $lastAssignedIdIncremented,
+                    'article_images/'.$lastAssignedIdIncremented,
                     ['disk' => 'public']
                 );
             }
@@ -103,7 +103,7 @@ class ArticleForm extends Form
             $this->notifications = [];
         }
 
-        $this->title .= ' (' . $this->sortable_token . ')';
+        $this->title .= ' ('.$this->sortable_token.')';
 
         // multiple image upload
         if ($this->imageObject) {

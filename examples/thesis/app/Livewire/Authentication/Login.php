@@ -3,10 +3,10 @@
 namespace App\Livewire\Authentication;
 
 use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
-use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 use ReflectionClass;
 
 #[Lazy]
@@ -34,7 +34,7 @@ class Login extends Component
         try {
             $isValid = Auth::attempt([
                 'email' => $this->email,
-                'password' => $this->password
+                'password' => $this->password,
             ]);
             // use credential verification
             if ($isValid) {

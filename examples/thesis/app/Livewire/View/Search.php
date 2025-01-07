@@ -4,9 +4,9 @@ namespace App\Livewire\View;
 
 use App\Models\Article;
 use Livewire\Attributes\Isolate;
-use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
+use Livewire\Component;
 
 #[Isolate]
 class Search extends Component

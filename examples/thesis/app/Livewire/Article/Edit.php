@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Article;
 
+use App\Livewire\Forms\ArticleForm;
 use App\Models\Article;
-use Livewire\Component;
 use App\Utils\CleaningUtility;
 use Livewire\Attributes\Layout;
-use App\Livewire\Forms\ArticleForm;
+use Livewire\Component;
 
 #[Layout('components.layouts.editor')]
 class Edit extends Component

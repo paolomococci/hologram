@@ -4,10 +4,9 @@ namespace App\Livewire\Material;
 
 use App\Models\Article;
 use App\Utils\CleaningUtility;
-use Illuminate\Database\Eloquent\Collection;
-use Livewire\Component;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Lazy;
+use Livewire\Component;
 
 #[Lazy]
 #[Layout('components.layouts.material')]

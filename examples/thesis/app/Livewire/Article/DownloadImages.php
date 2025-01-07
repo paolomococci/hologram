@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Article;
 
-use App\Models\Article;
-use Livewire\Component;
-use Livewire\Attributes\Layout;
 use App\Livewire\Forms\ArticleForm;
+use App\Models\Article;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 #[Layout('components.layouts.download')]
@@ -32,6 +32,7 @@ class DownloadImages extends Component
         }
         $filename = array_reverse($reversedFilename);
         $implodedFilename = implode($filename);
+
         return $implodedFilename;
     }
 
@@ -47,7 +48,7 @@ class DownloadImages extends Component
         $downloadCoordinates = [
             'pathToFile' => $publicStoragePath,
             'filename' => self::extractFileName($path),
-            'headers' => array('Content-Type: ' . mime_content_type($publicStoragePath)),
+            'headers' => ['Content-Type: '.mime_content_type($publicStoragePath)],
         ];
         try {
             if (file_exists($downloadCoordinates['pathToFile'])) {

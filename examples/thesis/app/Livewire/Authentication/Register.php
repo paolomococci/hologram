@@ -3,11 +3,10 @@
 namespace App\Livewire\Authentication;
 
 use App\Livewire\Forms\ApplicantForm;
-use App\Models\Applicant;
-use Livewire\Component;
-use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Validate;
+use Livewire\Component;
 
 #[Lazy]
 #[Layout('components.layouts.authentication')]

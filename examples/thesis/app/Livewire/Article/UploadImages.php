@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Article;
 
-use App\Models\Article;
-use Livewire\Component;
-use Livewire\Attributes\Layout;
 use App\Livewire\Forms\ArticleForm;
+use App\Models\Article;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 #[Layout('components.layouts.editor')]
