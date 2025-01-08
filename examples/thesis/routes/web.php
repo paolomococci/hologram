@@ -45,10 +45,10 @@ Route::middleware([
 ])->group(
     function () {
         Route::get('/dashboard', Dashboard::class)->name('dashboard.articles');
-        Route::get('/dashboard/article/create', CreateArticle::class);
-        Route::get('/dashboard/article/{article}/edit', EditArticle::class);
-        Route::get('/dashboard/article/{article}/upload-images', UploadImages::class);
-        Route::get('/dashboard/article/{article}/download-images', DownloadImages::class);
+        Route::get('/dashboard/article/create', CreateArticle::class)->name('dashboard.article.create');
+        Route::get('/dashboard/article/{article}/edit', EditArticle::class)->name('dashboard.article.edit');
+        Route::get('/dashboard/article/{article}/upload-images', UploadImages::class)->name('dashboard.article.upload-images');
+        Route::get('/dashboard/article/{article}/download-images', DownloadImages::class)->name('dashboard.article.download-images');
     }
 );
 

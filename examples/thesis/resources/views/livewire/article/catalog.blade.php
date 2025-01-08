@@ -66,8 +66,9 @@
                                             <button
                                                 class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
                                                 wire:offline.attr="hidden">
-                                                <a href="/dashboard/article/{{ $article['id'] }}/edit" wire:navigate
-                                                    wire:offline.attr="hidden">
+                                                <a {{-- href="/dashboard/article/{{ $article['id'] }}/edit"  --}}
+                                                    href="{{ route('dashboard.article.edit', $article) }}"
+                                                    wire:navigate wire:offline.attr="hidden">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                         height="24" viewBox="0 0 24 24" fill="none"
                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -86,7 +87,8 @@
                                             <button
                                                 class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
                                                 wire:offline.attr="hidden">
-                                                <a href="/dashboard/article/{{ $article['id'] }}/upload-images"
+                                                <a {{-- href="/dashboard/article/{{ $article['id'] }}/upload-images" --}}
+                                                    href="{{ route('dashboard.article.upload-images', $article) }}"
                                                     wire:navigate wire:offline.attr="hidden">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                         height="24" viewBox="0 0 24 24" fill="none"
@@ -108,7 +110,8 @@
                                             <button
                                                 class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
                                                 wire:offline.attr="hidden">
-                                                <a href="/dashboard/article/{{ $article['id'] }}/download-images"
+                                                <a {{-- href="/dashboard/article/{{ $article['id'] }}/download-images" --}}
+                                                    href="{{ route('dashboard.article.download-images', $article) }}"
                                                     wire:navigate wire:offline.attr="hidden">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                         height="24" viewBox="0 0 24 24" fill="none"
@@ -180,7 +183,7 @@
                                             <button
                                                 class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
                                                 wire:offline.attr="hidden">
-                                                <a href="/dashboard/article/{{ $article['id'] }}/edit" wire:navigate
+                                                <a href="{{ route('dashboard.article.edit', $article) }}" wire:navigate
                                                     wire:offline.attr="hidden">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                         height="24" viewBox="0 0 24 24" fill="none"
@@ -200,7 +203,7 @@
                                             <button
                                                 class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
                                                 wire:offline.attr="hidden">
-                                                <a href="/dashboard/article/{{ $article['id'] }}/upload-images"
+                                                <a href="{{ route('dashboard.article.upload-images', $article) }}"
                                                     wire:navigate wire:offline.attr="hidden">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                         height="24" viewBox="0 0 24 24" fill="none"
@@ -222,7 +225,7 @@
                                             <button
                                                 class="p-2 text-cyan-200 bg-cyan-600 rounded-md hover:bg-cyan-600/50"
                                                 wire:offline.attr="hidden">
-                                                <a href="/dashboard/article/{{ $article['id'] }}/download-images"
+                                                <a href="{{ route('dashboard.article.download-images', $article) }}"
                                                     wire:navigate wire:offline.attr="hidden">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                         height="24" viewBox="0 0 24 24" fill="none"

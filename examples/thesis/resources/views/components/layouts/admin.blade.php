@@ -21,6 +21,9 @@
     x-on:click="$dispatch('search:clear-results')">
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
         {{-- TODO: svg background image --}}
+        <pre>
+            {{-- {{ var_dump($_SERVER) }} --}}
+        </pre>
         <div
             class="flex relative flex-col justify-center items-center min-h-screen selection:bg-green-500 selection:text-white">
             <div class="relative px-6 w-full max-w-2xl lg:max-w-7xl">
@@ -109,7 +112,8 @@
                         </div>
                         <div
                             class="flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 hover:ring-black/20 focus:outline-none focus-visible:ring-[#bfa] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#bfa]">
-                            <a href="/dashboard/article/create" title="create a new article" wire:navigate
+                            <a {{-- href="/dashboard/article/create"  --}} href="{{ route('dashboard.article.create') }}" title="create a new article"
+                                wire:navigate
                                 class="flex justify-center items-center rounded-full size-12 shrink-0 bg-green-600/30 sm:size-16">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -152,7 +156,8 @@
                 </main>
 
                 <footer class="py-16 text-sm text-center text-black dark:text-white/70">
-                    Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                    Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }}) - logged user:
+                    <?= Auth::user()->name ?>
                 </footer>
             </div>
         </div>
