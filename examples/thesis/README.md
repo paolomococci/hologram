@@ -835,6 +835,12 @@ license-report --output=csv > licenses_report.csv
 php artisan make:class Utils/CleaningUtility
 ```
 
+### I added LogoutController class
+
+```bash
+php artisan make:controller User/LogoutController
+```
+
 ## routes
 
 If, after having appropriately edited all files Blade and file `routes/web.php`, the routes defined there do not appear or an error indicating an undefined route is returned, the following commands may be useful:
