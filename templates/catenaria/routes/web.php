@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\UserInterface\Catenaria\Welcome;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', Welcome::class)->name('welcome');
