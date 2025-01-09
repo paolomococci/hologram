@@ -76,7 +76,7 @@ class ArticleForm extends Form
                 'sortable_token',
             ));
         } catch (\Exception $e) {
-            //throw $e;
+            // throw $e;
         }
     }
 
@@ -127,7 +127,7 @@ class ArticleForm extends Form
                 'image_path',
             ));
         } catch (\Exception $e) {
-            //throw $e;
+            // throw $e;
         }
     }
 
@@ -151,7 +151,7 @@ class ArticleForm extends Form
                 'image_path',
             ));
         } catch (\Exception $e) {
-            //throw $e;
+            // throw $e;
         }
     }
 }

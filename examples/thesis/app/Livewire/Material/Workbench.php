@@ -21,7 +21,7 @@ class Workbench extends Component
     public function mount()
     {
         $items = [];
-        //in testing phase: to limit the tuples obtained by the query
+        // in testing phase: to limit the tuples obtained by the query
         $approvedArticles = Article::where('isDeprecated', false)->take(5)->get();
         // $approvedArticles = Article::where('isDeprecated', false)->get();
         foreach ($approvedArticles as $approvedArticle) {

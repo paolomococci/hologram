@@ -61,7 +61,7 @@ class DownloadImages extends Component
                 );
             }
         } catch (\Exception $e) {
-            //throw $th;
+            // throw $th;
         }
     }
 

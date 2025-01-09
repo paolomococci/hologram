@@ -1,19 +1,19 @@
 <?php
 
+use App\Http\Controllers\User\LogoutController;
+use App\Livewire\Article\Create as CreateArticle;
+use App\Livewire\Article\DownloadImages;
+use App\Livewire\Article\Edit as EditArticle;
+use App\Livewire\Article\Index as IndexOfArticles;
+use App\Livewire\Article\Read as ReadArticle;
+use App\Livewire\Article\UploadImages;
+use App\Livewire\Authentication\Login;
+use App\Livewire\Authentication\Register;
+use App\Livewire\Material\Workbench as MaterialDesignWorkbench;
+use App\Livewire\Playground\Message as PlaygroundSlotMessage;
 use App\Livewire\View\Dashboard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Article\UploadImages;
-use App\Livewire\Authentication\Login;
-use App\Livewire\Article\DownloadImages;
-use App\Livewire\Authentication\Register;
-use App\Livewire\Article\Edit as EditArticle;
-use App\Livewire\Article\Read as ReadArticle;
-use App\Http\Controllers\User\LogoutController;
-use App\Livewire\Article\Create as CreateArticle;
-use App\Livewire\Article\Index as IndexOfArticles;
-use App\Livewire\Playground\Message as PlaygroundSlotMessage;
-use App\Livewire\Material\Workbench as MaterialDesignWorkbench;
 
 // `home`
 Route::get('/', IndexOfArticles::class)->name('home');
