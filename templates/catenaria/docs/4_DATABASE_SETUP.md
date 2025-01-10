@@ -9,7 +9,7 @@ Edit `.env`:
 ```env
 # DB_CONNECTION=sqlite
 
-# thesis_db_v1
+# catenaria_db
 DB_CONNECTION=mariadb
 DB_HOST=127.0.0.1
 DB_PORT=3306
