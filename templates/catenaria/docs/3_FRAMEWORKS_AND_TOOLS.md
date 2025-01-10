@@ -146,7 +146,7 @@ composer require --dev phpstan/phpstan
 And use:
 
 ```bash
-./vendor/bin/phpstan analyse src tests
+./vendor/bin/phpstan analyse app tests
 ```
 
 Finally, a further check on the licenses of the packages installed in the web application:
