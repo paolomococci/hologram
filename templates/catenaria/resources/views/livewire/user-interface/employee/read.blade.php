@@ -1,3 +1,3 @@
 <div>
-    {{-- Be like water. --}}
+    livewire.user-interface.employee.read
 </div>

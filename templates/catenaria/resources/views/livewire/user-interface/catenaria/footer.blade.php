@@ -1,3 +1,3 @@
 <div>
-    {{-- Stop trying to control. --}}
+    livewire.user-interface.catenaria.footer
 </div>

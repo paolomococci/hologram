@@ -1,3 +1,3 @@
 <div>
-    {{-- Close your eyes. Count to one. That is how long forever feels. --}}
+    livewire.user-interface.privilege.index
 </div>

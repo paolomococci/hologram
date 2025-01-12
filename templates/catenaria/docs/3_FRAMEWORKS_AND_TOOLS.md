@@ -149,12 +149,6 @@ And use:
 ./vendor/bin/phpstan analyse app tests
 ```
 
-## Laravel `sanctum`
-
-```bash
-php artisan install:api
-```
-
 Finally, a further check on the licenses of the packages installed in the web application:
 
 ```bash

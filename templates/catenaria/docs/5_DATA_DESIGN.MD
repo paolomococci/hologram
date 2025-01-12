@@ -22,6 +22,12 @@ php artisan make:livewire UserInterface/Candidate/read
 php artisan make:livewire UserInterface/Candidate/edit
 ```
 
+and register:
+
+```bash
+php artisan make:livewire UserInterface/Candidate/register
+```
+
 ### model `Role`
 
 Here too, the model comes first:
@@ -92,6 +98,12 @@ php artisan make:livewire UserInterface/Employee/index
 php artisan make:livewire UserInterface/Employee/create
 php artisan make:livewire UserInterface/Employee/read
 php artisan make:livewire UserInterface/Employee/edit
+```
+
+and login:
+
+```bash
+php artisan make:livewire UserInterface/Employee/login
 ```
 
 ### model `User`

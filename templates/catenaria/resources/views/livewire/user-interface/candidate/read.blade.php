@@ -1,4 +1,4 @@
 {{-- <livewire:user-interface.candidate.read /> --}}
 <div>
-    {{-- Success is as dangerous as failure. --}}
+    livewire.user-interface.candidate.read
 </div>

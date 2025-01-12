@@ -10,3 +10,9 @@ php artisan migrate --pretend
 php artisan migrate
 ./vendor/bin/composer-license-checker report
 ```
+
+## Laravel `sanctum`
+
+```bash
+php artisan install:api
+```

@@ -7,7 +7,7 @@ After having appropriately edited the file `config/filesystem.php`
 ```php
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        public_path('article_images') => storage_path('app/public/article_images'),
+        public_path('item_images') => storage_path('app/public/item_images'),
     ],
 ```
 
