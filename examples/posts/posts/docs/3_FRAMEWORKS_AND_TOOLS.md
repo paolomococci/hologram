@@ -76,6 +76,12 @@ And use:
 ./vendor/bin/phpstan analyse app database tests
 ```
 
+## Laravel `sanctum`
+
+```bash
+php artisan install:api
+```
+
 ## how to check licenses of installed packages
 
 ```bash
