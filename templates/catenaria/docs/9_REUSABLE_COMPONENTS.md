@@ -10,3 +10,9 @@ php artisan make:component Elements/Input/InputOptional --view
 php artisan make:component Elements/Textarea/TextareaRequired --view
 php artisan make:component Elements/Textarea/TextareaOptional --view
 ```
+
+## component used for development the other components
+
+```bash
+php artisan make:component Elements/Scaffold/Scaffold --view
+```
