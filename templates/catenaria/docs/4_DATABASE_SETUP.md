@@ -21,9 +21,7 @@ DB_PASSWORD=developer_password
 Now type:
 
 ```bash
-php artisan db:wipe
-php artisan migrate:fresh
-php artisan migrate:status
+php artisan db:wipe && php artisan migrate:fresh && php artisan migrate:status
 ```
 
 ### only if I need to go back to the previous migration

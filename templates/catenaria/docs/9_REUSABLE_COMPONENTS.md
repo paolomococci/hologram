@@ -10,6 +10,7 @@ php artisan make:component Elements/Input/InputOptional --view
 php artisan make:component Elements/Input/Name --view
 php artisan make:component Elements/Input/Email --view
 php artisan make:component Elements/Input/Password --view
+php artisan make:component Elements/Input/Generic --view
 php artisan make:component Elements/Textarea/TextareaRequired --view
 php artisan make:component Elements/Textarea/TextareaOptional --view
 php artisan make:component Elements/Button/TextButton --view
