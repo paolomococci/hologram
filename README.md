@@ -7,6 +7,22 @@ The procedures themselves may change or there may be more convenient ones.
 Therefore, it is always necessary to refer to the official documentation hosted on the sites of the programming languages, servers and tools mentioned from time to time.
 Thank you.
 
+## `catenaria`
+
+Web application template:
+
+Welcome
+
+![welcome](templates/catenaria/docs/screenshots/catenaria-php84.local_welcome.png)
+
+Login
+
+![welcome](templates/catenaria/docs/screenshots/catenaria-php84.local_login.png)
+
+Register
+
+![welcome](templates/catenaria/docs/screenshots/catenaria-php84.local_register.png)
+
 ## `thesis`
 
 Web application demo:

@@ -4,7 +4,9 @@
             catenaria
         </h3>
     </div>
-    <form action="" method="POST">
+    <x-elements.samp.show-errors />
+    <form wire:submit="registration" method="POST">
+        @csrf
         <fieldset class="flex flex-col gap-4 p-6">
             <legend class="text-sm text-slate-400">
                 <span class="block">The name, email and password fields are mandatory.</span>
@@ -19,13 +21,13 @@
                 <x-carbon-user-profile class="size-12 text-slate-800" />
             </div>
             <div class="w-full">
-                <x-elements.input.name />
+                <x-elements.input.name wire:model="name" />
             </div>
             <div class="w-full">
-                <x-elements.input.email />
+                <x-elements.input.email wire:model="email" />
             </div>
             <div class="w-full">
-                <x-elements.input.password />
+                <x-elements.input.password wire:model="password" />
             </div>
             <div class="p-6 pt-0">
                 <x-elements.button.text-button textLabel="login" />
