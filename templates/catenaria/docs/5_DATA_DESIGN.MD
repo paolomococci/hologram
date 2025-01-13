@@ -166,8 +166,22 @@ App\Models\User::all()
 quit
 ```
 
-## rollback
+Now type:
+
+```bash
+php artisan db:wipe && php artisan migrate:fresh && php artisan migrate:status
+```
+
+### only if I need to go back to the previous migration
 
 ```bash
 php artisan migrate:rollback
+```
+
+## seed
+
+Once classes `factories` and `seeders` are ready, you can send the following command:
+
+```bash
+php artisan db:seed
 ```
