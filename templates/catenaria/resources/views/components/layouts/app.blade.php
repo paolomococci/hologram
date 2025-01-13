@@ -18,7 +18,12 @@
 </head>
 
 <body>
-    {{ $slot }}
+    <header></header>
+    <main
+        class="flex relative flex-col justify-center items-center p-2 my-6 w-full min-h-screen rounded-lg border shadow-sm transition-shadow duration-500 bg-slate-50 border-slate-200 hover:shadow-lg">
+        {{ $slot }}
+    </main>
+    <footer></footer>
 </body>
 
 </html>
