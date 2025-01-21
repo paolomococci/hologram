@@ -46,11 +46,12 @@ And more is needed to compile PHP:
 * libzip-tools
 * libzip-devel
 * openssl-devel
+* autoconf
 
 To then proceed with installing the packages that are not yet present on the system.
 
 As follows, for example only:
 
 ```bash
-dnf install libxml2-devel sqlite-devel bzip2-devel libcurl-devel libffi-devel libpng-devel libjpeg-turbo-devel gmp-devel libicu-devel oniguruma-devel libxslt-devel libzip libzip-tools libzip-devel openssl-devel
+dnf install libxml2-devel sqlite-devel bzip2-devel libcurl-devel libffi-devel libpng-devel libjpeg-turbo-devel gmp-devel libicu-devel oniguruma-devel libxslt-devel libzip libzip-tools libzip-devel openssl-devel autoconf
 ```
