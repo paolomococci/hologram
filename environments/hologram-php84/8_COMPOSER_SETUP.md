@@ -3,8 +3,7 @@
 First I issued the following commands:
 
 ```bash
-cd ~
-mkdir composer && cd composer
+cd ~ && mkdir composer && cd composer
 ```
 
 And after following the instructions listed on the official Composer website I performed the actual global installation:
