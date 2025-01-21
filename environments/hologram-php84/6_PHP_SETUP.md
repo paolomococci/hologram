@@ -229,7 +229,6 @@ Finally, I can do one last check and enable module `php-fpm`:
 
 ```bash
 apachectl configtest
-a2enconf php-fpm
 systemctl restart httpd
 systemctl restart php-fpm
 systemctl status httpd --no-pager
@@ -261,7 +260,9 @@ ls -l /var/www/html/
 
 ### SELinux
 
-Useful commands for SELinux:
+Be careful, it is important to remember that `SELinux` interferes with the normal functioning of `php-fpm`.
+
+Once you have verified what has just been written:
 
 ```bash
 setenforce 0
