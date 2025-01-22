@@ -44,6 +44,7 @@ firewall-cmd --permanent --zone=public --add-rich-rule 'rule family="ipv4" sourc
 firewall-cmd --permanent --zone=public --add-rich-rule 'rule family="ipv4" source address="192.168.1.0/24" port port=443 protocol="tcp" accept'
 firewall-cmd --permanent --zone=public --add-rich-rule 'rule family="ipv4" source address="192.168.1.0/24" port port=3306 protocol="tcp" accept'
 firewall-cmd --permanent --zone=public --add-rich-rule 'rule family="ipv4" source address="192.168.1.0/24" port port=5173 protocol="tcp" accept'
+firewall-cmd --permanent --zone=public --add-rich-rule 'rule family="ipv4" source address="192.168.1.0/24" port port=5432 protocol="tcp" accept'
 firewall-cmd --permanent --zone=public --add-rich-rule 'rule family="ipv4" source address="192.168.1.0/24" port port=9003 protocol="tcp" accept'
 firewall-cmd --reload
 ```
@@ -55,6 +56,7 @@ firewall-cmd --permanent --zone=public --remove-rich-rule 'rule family="ipv4" so
 firewall-cmd --permanent --zone=public --remove-rich-rule 'rule family="ipv4" source address="192.168.1.0/24" port port=443 protocol="tcp" accept'
 firewall-cmd --permanent --zone=public --remove-rich-rule 'rule family="ipv4" source address="192.168.1.0/24" port port=3306 protocol="tcp" accept'
 firewall-cmd --permanent --zone=public --remove-rich-rule 'rule family="ipv4" source address="192.168.1.0/24" port port=5173 protocol="tcp" accept'
+firewall-cmd --permanent --zone=public --remove-rich-rule 'rule family="ipv4" source address="192.168.1.0/24" port port=5432 protocol="tcp" accept'
 firewall-cmd --permanent --zone=public --remove-rich-rule 'rule family="ipv4" source address="192.168.1.0/24" port port=9003 protocol="tcp" accept'
 firewall-cmd --reload
 ```
