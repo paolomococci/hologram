@@ -206,7 +206,7 @@ Edit as follows to complete the `TCP socket` approach:
 </FilesMatch>
 ```
 
-or:
+and type:
 
 ```bash
 systemctl restart httpd
@@ -265,8 +265,31 @@ Be careful, it is important to remember that `SELinux` interferes with the norma
 Once you have verified what has just been written:
 
 ```bash
+su -
 setenforce 0
 getenforce
 setenforce 1
 getenforce
+```
+
+I will have to proceed to solve the problem without compromising the security of the system:
+
+```bash
+su -
+ls -lZ /var/www/html/
+restorecon -r /var/www/html/
+sestatus
+setsebool -P httpd_can_network_connect on
+```
+
+Now I restart the affected services again and check that they are working correctly:
+
+```bash
+systemctl restart httpd
+systemctl restart php-fpm
+systemctl status httpd --no-pager
+systemctl status php-fpm --no-pager
+tail -f /opt/php/8.4.3/var/log/php-fpm.log
+tail -f /var/log/httpd/error_log
+exit
 ```
