@@ -60,3 +60,19 @@ firewall-cmd --permanent --zone=public --remove-rich-rule 'rule family="ipv4" so
 firewall-cmd --permanent --zone=public --remove-rich-rule 'rule family="ipv4" source address="192.168.1.0/24" port port=9003 protocol="tcp" accept'
 firewall-cmd --reload
 ```
+
+## SELinux (Security-Enhanced Linux)
+
+```bash
+rnano /etc/sysconfig/selinux
+dnf list available | grep -i policycoreutils-devel
+dnf install policycoreutils-devel
+cd /usr/share/man/
+ls -al
+man sepolicy
+man sepolicy-manpage
+sepolicy manpage -a -p /usr/share/man/man8
+man apropos
+man -k _selinux
+man httpd_selinux
+```
