@@ -5,6 +5,16 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostsController;
 use App\Http\Middleware\CheckTokenVersion;
 use App\Http\Controllers\RefusalController;
+use Illuminate\Http\Response;
+
+// This first route, being simply a test route, can be checked for functionality with the following command:
+// curl --insecure --verbose https://chirps-hologram-srv.local/api/ping
+Route::get('ping', function () {
+    return response()->json([
+        'status' => 'success',
+        'response' => 'At work!',
+    ], Response::HTTP_OK);
+});
 
 // List of routes for user management with reduced functionality on bones.
 Route::post('login', [AuthController::class, 'login']);
@@ -26,4 +36,7 @@ Route::get('refusals', [RefusalController::class, 'index'])->middleware(CheckTok
 Route::get('refusal/{id}', [RefusalController::class, 'show'])->middleware(CheckTokenVersion::class);
 
 // When necessary, I can send the following command:
-// php artisan route:cache && php artisan route:clear
+// php artisan route:clear
+// Or alternatively the following command to generate a route cache:
+// php artisan route:clear && php artisan route:cache
+// to significantly reduce response times.
