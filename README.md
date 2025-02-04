@@ -13,15 +13,15 @@ Web application template:
 
 Welcome
 
-![welcome](templates/catenaria/docs/screenshots/catenaria-php84.local_welcome.png)
+![welcome](templates/catenaria/catenaria/docs/screenshots/catenaria-php84.local_welcome.png)
 
 Login
 
-![welcome](templates/catenaria/docs/screenshots/catenaria-php84.local_login.png)
+![login](templates/catenaria/catenaria/docs/screenshots/catenaria-php84.local_login.png)
 
 Register
 
-![welcome](templates/catenaria/docs/screenshots/catenaria-php84.local_register.png)
+![register](templates/catenaria/catenaria/docs/screenshots/catenaria-php84.local_register.png)
 
 ## `thesis`
 
