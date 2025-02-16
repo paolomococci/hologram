@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Rest;
 
+use App\Http\Controllers\Controller;
 use App\Models\Posts;
 use App\Models\Refusal;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class PostsController extends Controller
+class PostsRestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,21 +20,21 @@ class PostsController extends Controller
 
             // If there are no resources, return an HTTP response of type HTTP_NOT_FOUND.
             if (count($posts) < 1) {
-                return response()->json([
-                    'status' => 'failure',
+                return json_encode([
+                    'status' => Response::HTTP_NOT_FOUND,
                     'message' => 'No post elements found!',
-                ], Response::HTTP_NOT_FOUND);
+                ]);
             }
 
-            return response()->json([
-                'status' => 'success',
+            return json_encode([
+                'status' => Response::HTTP_OK,
                 'posts' => $posts,
-            ], Response::HTTP_OK);
+            ]);
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'failure',
+            return json_encode([
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
                 'message' => $e->getMessage(),
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            ]);
         }
     }
 
@@ -50,17 +51,17 @@ class PostsController extends Controller
 
             $post = $request->user()->posts()->create($fields);
 
-            return response()->json([
-                'status' => 'success',
+            return json_encode([
+                'status' => Response::HTTP_CREATED,
                 'message' => 'Post successfully registered!',
                 'post' => $post,
                 'user' => $post->user,
-            ], Response::HTTP_CREATED);
+            ]);
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'failure',
+            return json_encode([
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
                 'message' => $e->getMessage(),
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            ]);
         }
     }
 
@@ -74,24 +75,24 @@ class PostsController extends Controller
 
             // If the resource does not exist, return an HTTP response of type HTTP_NOT_FOUND.
             if ($post === null) {
-                return response()->json([
-                    'status' => 'failure',
+                return json_encode([
+                    'status' => Response::HTTP_NOT_FOUND,
                     'message' => "Post id: $id either never existed or has been deprecated!",
-                ], Response::HTTP_NOT_FOUND);
+                ]);
             }
 
-            return response()->json([
-                'status' => 'success',
+            return json_encode([
+                'status' => Response::HTTP_OK,
                 'title' => $post->title,
                 'content' => $post->content,
-                'username' => $post->user['name'],
+                'user' => $post->user['name'],
                 'email' => $post->user['email'],
-            ], Response::HTTP_OK);
+            ]);
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'failure',
+            return json_encode([
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
                 'message' => $e->getMessage(),
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            ]);
         }
     }
 
@@ -105,19 +106,19 @@ class PostsController extends Controller
 
         // If the resource does not exist, return an HTTP response of type HTTP_NOT_FOUND.
         if ($post === null) {
-            return response()->json([
-                'status' => 'failure',
+            return json_encode([
+                'status' => Response::HTTP_NOT_FOUND,
                 'message' => "Post id: $id either never existed or has been deprecated!",
-            ], Response::HTTP_NOT_FOUND);
+            ]);
         }
 
         // If the user who is trying to edit the resource does not match the creator of the resource,
         // return an HTTP response of type HTTP_UNAUTHORIZED.
         if ($post->user_id != $user->id) {
-            return response()->json([
-                'status' => 'failure',
+            return json_encode([
+                'status' => Response::HTTP_UNAUTHORIZED,
                 'message' => 'Warning: only the user who created the post can edit it!',
-            ], Response::HTTP_UNAUTHORIZED);
+            ]);
         }
 
         try {
@@ -128,17 +129,17 @@ class PostsController extends Controller
 
             $post->update($fields);
 
-            return response()->json([
-                'status' => 'success',
+            return json_encode([
+                'status' => Response::HTTP_OK,
                 'message' => 'Post updated successfully',
                 'post' => $post,
                 'user' => $post->user,
-            ], Response::HTTP_OK);
+            ]);
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'failure',
+            return json_encode([
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
                 'message' => $e->getMessage(),
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            ]);
         }
     }
 
@@ -154,19 +155,19 @@ class PostsController extends Controller
 
             // If the resource does not exist, return an HTTP response of type HTTP_NOT_FOUND.
             if ($post === null) {
-                return response()->json([
-                    'status' => 'failure',
+                return json_encode([
+                    'status' => Response::HTTP_NOT_FOUND,
                     'message' => "Post id: $id either never existed or has already been deprecated!",
-                ], Response::HTTP_NOT_FOUND);
+                ]);
             }
 
             // If the user who is trying to deprecate the resource does not match the creator of the resource,
             // return an HTTP response of type HTTP_UNAUTHORIZED.
             if ($post->user_id != $user->id) {
-                return response()->json([
-                    'status' => 'failure',
+                return json_encode([
+                    'status' => Response::HTTP_UNAUTHORIZED,
                     'message' => 'Warning: only the user who created the post can deprecate it!',
-                ], Response::HTTP_UNAUTHORIZED);
+                ]);
             }
 
             // Create a refusal object to store data from post object
@@ -184,14 +185,15 @@ class PostsController extends Controller
             // Delete the original post object from posts table
             $post->delete();
 
-            return response()->json([
+            return json_encode([
+                'status' => Response::HTTP_NO_CONTENT,
                 'message' => "Post id: $post->id with title: $post->title was treated as a refusal!",
-            ], Response::HTTP_NO_CONTENT);
+            ]);
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'failure',
+            return json_encode([
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
                 'message' => $e->getMessage(),
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            ]);
         }
     }
 }

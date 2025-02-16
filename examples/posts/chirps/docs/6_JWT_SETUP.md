@@ -5,11 +5,19 @@ composer require php-open-source-saver/jwt-auth
 php artisan vendor:publish --provider="PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider"
 ```
 
+Note:
+
+`Copying file [vendor/php-open-source-saver/jwt-auth/config/config.php] to [config/jwt.php]`
+
 Now I generate a secret key to handle the token encryption:
 
 ```bash
 php artisan jwt:secret
 ```
+
+Note:
+
+`jwt-auth secret [...] set successfully.`
 
 ## configuration of `config/auth.php`
 
@@ -47,6 +55,17 @@ class User extends Authenticatable implements JWTSubject
 
 ```bash
 php artisan make:controller AuthController
+php artisan make:controller Rest/AuthRestController
+```
+
+Note:
+
+`Controller [app/Http/Controllers/AuthController.php] created successfully.`
+
+and edit like this:
+
+```php
+
 ```
 
 ## make middleware `CheckTokenVersion`
@@ -55,11 +74,19 @@ php artisan make:controller AuthController
 php artisan make:middleware CheckTokenVersion
 ```
 
+Note:
+
+`Middleware [app/Http/Middleware/CheckTokenVersion.php] created successfully.`
+
 ## make `token` migration
 
 ```bash
 php artisan make:migration add_token_version_to_users_table
 ```
+
+Note:
+
+`Migration [database/migrations/2025_02_01_040352_add_token_version_to_user_table.php] created successfully.`
 
 ## add API routes
 
@@ -85,21 +112,4 @@ Then you need to check the routes with the following command:
 
 ```bash
 php artisan route:list
-```
-
-Getting something similar to the following:
-
-```bash
-  GET|HEAD  / ........................................................................................................................................................ 
-  POST      api/login ........................................................................................................................... AuthController@login
-  POST      api/logout ......................................................................................................................... AuthController@logout
-  POST      api/post ........................................................................................................................... PostsController@store
-  GET|HEAD  api/post/{id} ....................................................................................................................... PostsController@show
-  PUT       api/post/{id} ..................................................................................................................... PostsController@update
-  DELETE    api/post/{id} .................................................................................................................... PostsController@destroy
-  GET|HEAD  api/posts .......................................................................................................................... PostsController@index
-  POST      api/refresh ....................................................................................................................... AuthController@refresh
-  POST      api/register ..................................................................................................................... AuthController@register
-  GET|HEAD  storage/{path} ............................................................................................................................. storage.local
-  GET|HEAD  up ....................................................................................................................................................... 
 ```

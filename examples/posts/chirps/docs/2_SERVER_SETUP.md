@@ -32,7 +32,7 @@ ls -al /etc/ssl/certs/ | grep chirps
 nano /etc/httpd/conf.d/chirps-hologram-srv.local.conf
 ```
 
-```xml
+```conf
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
         ServerName chirps-hologram-srv.local
@@ -51,6 +51,8 @@ nano /etc/httpd/conf.d/chirps-hologram-srv.local.conf
                 Options Indexes FollowSymLinks MultiViews
                 AllowOverride All
                 Require all granted
+                Header set Access-Control-Allow-Origin 'https://www.posts-cheddar-hologram-srv.local'
+                #Header set Access-Control-Allow-Origin 'https://www.posts-tofu-hologram-srv.local'
         </Directory>
 
         SSLEngine on

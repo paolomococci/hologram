@@ -8,12 +8,14 @@ Database design.
 
 ```bash
 php artisan make:model Posts --all --api --pest
+php artisan make:controller Rest/PostsRestController
 ```
 
 ### model `Refusal`
 
 ```bash
 php artisan make:model Refusal --all --api --pest
+php artisan make:controller Rest/RefusalRestController
 ```
 
 ### data model definition, factories, seeders and migration
@@ -66,4 +68,10 @@ or, for a complete reset of the test data:
 
 ```bash
 php artisan db:wipe && php artisan migrate:fresh && php artisan db:seed
+```
+
+## dump of database
+
+```bash
+php artisan schema:dump
 ```
