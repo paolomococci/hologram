@@ -1,0 +1,37 @@
+@API-AGORA01_HostAddress = https://api-agora01.hologram-srv.local
+
+## curl --insecure --verbose --header "Accept: application/json" --header "Origin: https://ui-agora01.hologram-srv.local" --request GET https://api-agora01.hologram-srv.local/api/ping
+
+GET {{API-AGORA01_HostAddress}}/api/ping
+Accept: application/json
+Origin: https://ui-agora01.hologram-srv.local
+
+###
+
+## to get the post with id 1
+## curl --insecure --verbose --request GET https://api-agora01.hologram-srv.local/api/posts/1
+
+GET {{API-AGORA01_HostAddress}}/api/posts/1
+Accept: application/json
+
+###
+
+## to get the post with id 1
+## curl --insecure --verbose --header "Origin: https://ui-agora01.hologram-srv.local" --request GET https://api-agora01.hologram-srv.local/api/posts/1
+
+GET {{API-AGORA01_HostAddress}}/api/posts/1
+Accept: application/json
+Origin: https://ui-agora01.hologram-srv.local
+
+###
+
+## to get the post with id 1
+## curl --insecure --verbose --header "Origin: https://www.anyone.local" --request GET https://api-agora01.hologram-srv.local/api/posts/1
+## preflight request
+## curl --insecure --verbose --header "Origin: https://www.anyone.local" --header "Access-Control-Request-Method: POST" --header "Access-Control-Request-Headers: X-Requested-With" --request OPTIONS https://api-agora01.hologram-srv.local/api/posts
+
+GET {{API-AGORA01_HostAddress}}/api/posts/1
+Accept: application/json
+Origin: https://www.anyone.local
+
+###
