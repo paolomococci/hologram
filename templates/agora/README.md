@@ -15,3 +15,7 @@ Furthermore, to achieve this goal I can separate the applications into backend a
 ### UI (User Interface)
 
 * ui-agora01.hologram-srv.local     # UI developed thanks to React
+
+### UI (Fake User Interface)
+
+* ui-fake.local                     # UI developed thanks to React for further testing purposes
