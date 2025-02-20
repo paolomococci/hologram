@@ -8,7 +8,7 @@ interface Response {
 }
 
 interface PingTestResponse {
-  status: Int16Array,
+  status: number,
   message: string
 }
 
