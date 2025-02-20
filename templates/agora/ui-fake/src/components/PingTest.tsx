@@ -13,9 +13,9 @@ interface PingTestResponse {
 }
 
 const PingTest = () => {
-  const [message, setMessage] = useState('')
-  const [errorMessage, setErrorMessage] = useState("")
-  const [loading, setLoading] = useState(true)
+  const [message, setMessage] = useState<string>('')
+  const [errorMessage, setErrorMessage] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(true)
 
   axios.create({
     httpsAgent: {
