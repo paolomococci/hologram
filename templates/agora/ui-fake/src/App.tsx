@@ -1,5 +1,5 @@
 import './App.css'
-import CsrfCookie from './components/CsrfCookie'
+import PingTest from './components/PingTest'
 
 function App() {
 
@@ -7,7 +7,7 @@ function App() {
     <>
       <h1>Fake</h1>
       <div className="card">
-        <CsrfCookie />
+        <PingTest />
       </div>
     </>
   )
