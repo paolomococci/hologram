@@ -1,7 +1,6 @@
-import axios from 'axios'
 import { useState, useEffect } from 'react'
-
-const BASE_URL = 'https://api-agora01.hologram-srv.local/'
+import axios from 'axios'
+import ENV from '../env'
 
 interface Response {
   data: unknown
@@ -11,6 +10,8 @@ interface PingTestResponse {
   status: number,
   message: string
 }
+
+const BASE_URL = ENV.baseUrl
 
 const PingTest = () => {
   const [message, setMessage] = useState<string>('')
