@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ENV from "../env";
 
 const PostRead = () => {
-  const BASE_URL="https://api-agora01.hologram-srv.local/";
+  const BASE_URL = ENV.baseUrl;
   const [post, setPost] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
