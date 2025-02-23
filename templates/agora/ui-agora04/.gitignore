@@ -1,0 +1,6 @@
+.vscode/
+.notes/
+assets/
+*.ico
+*.svg
+env.js
