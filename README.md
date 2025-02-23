@@ -7,6 +7,12 @@ The procedures themselves may change or there may be more convenient ones.
 Therefore, it is always necessary to refer to the official documentation hosted on the sites of the programming languages, servers and tools mentioned from time to time.
 Thank you.
 
+## `agora`
+
+The `Agora` project is a starting point for developing web applications that leave open as many alternatives as possible:
+
+![an example of a front end application](templates/agora/ui-agora01/screenshots/screenshot_ui-agora01_mobile_first.png)
+
 ## `catenaria`
 
 Web application template:
