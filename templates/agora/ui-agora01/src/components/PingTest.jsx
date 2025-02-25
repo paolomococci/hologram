@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Loader } from 'lucide-react';
 import axios from "axios";
 import ENV from "../env";
 
@@ -41,12 +42,12 @@ const PingTest = () => {
   return (
     <div className="p-3 m-3">
       {loading ? (
-        <p>Please wait for the data loading…</p>
+        <p><Loader className="w-20 h-20 text-orange-400 animate-[spin_1s_ease-in-out_infinite]" /></p>
       ) : error ? (
-        <p>{error}</p>
+        <p className="text-red-400">{error}</p>
       ) : (
         <div>
-          <p>{message}</p>
+          <p className="text-slate-400">{message}</p>
         </div>
       )}
     </div>
