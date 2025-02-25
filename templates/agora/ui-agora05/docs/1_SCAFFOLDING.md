@@ -58,6 +58,12 @@ export default defineConfig({
 })
 ```
 
+## install the icons `lucide`
+
+```bash
+npm i lucide
+```
+
 ## build
 
 ```bash
