@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Loader } from 'lucide-react';
+import { LoaderCircle } from "lucide-react";
 import axios from "axios";
 import ENV from "../env";
 
@@ -42,7 +42,9 @@ const PingTest = () => {
   return (
     <div className="p-3 m-3">
       {loading ? (
-        <p><Loader className="w-20 h-20 text-orange-400 animate-[spin_1s_ease-in-out_infinite]" /></p>
+        <p>
+          <LoaderCircle className="w-20 h-20 text-orange-400 animate-[spin_1s_ease-in-out_infinite]" />
+        </p>
       ) : error ? (
         <p className="text-red-400">{error}</p>
       ) : (
