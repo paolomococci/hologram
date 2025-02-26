@@ -1,10 +1,7 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import PingTest from './components/PingTest.vue'
 </script>
 
 <template>
-  <div>
-    <!-- TODO -->
-  </div>
-  <HelloWorld msg="Agora" />
+    <PingTest title="Agora" />
 </template>
