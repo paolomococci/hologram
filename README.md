@@ -11,7 +11,7 @@ Thank you.
 
 The `Agora` project is a starting point for developing web applications that leave open as many alternatives as possible:
 
-![an example of a front end application](templates/agora/ui-agora01/screenshots/screenshot_ui-agora01_mobile_first.png)
+![an example of a front end application](templates/agora/ui-agora01/screenshots/screenshot_ui-agora01_mobile_first_loaded.png)
 
 ## `catenaria`
 
