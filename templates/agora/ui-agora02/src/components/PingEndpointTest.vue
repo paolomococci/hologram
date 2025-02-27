@@ -37,7 +37,7 @@ retrieve("api/ping")
 
 <template>
     <div v-if="!pingResult">
-        <h5 class="items-center py-4">
+        <h5 class="flex items-center">
             <Loader class="ml-8 text-center w-20 h-20 text-orange-400 animate-[spin_1s_ease-in-out_infinite]" />
         </h5>
     </div>
