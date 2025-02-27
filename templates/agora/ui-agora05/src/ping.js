@@ -1,6 +1,7 @@
 export async function setupPing(
     uriCookie,
     uriApi,
+    elementLoader,
     elementOutput
 ) {
 
@@ -34,5 +35,6 @@ export async function setupPing(
         }
     }
 
+    elementLoader.remove()
     elementOutput.innerHTML = (jsonResApi === null) ? 'No data to return!' : `${jsonResApi.message}`
 }
