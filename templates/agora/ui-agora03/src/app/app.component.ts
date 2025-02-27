@@ -27,9 +27,9 @@ interface ApiResponse {
 
     <div class="mt-4 rounded-lg border shadow-sm bg-slate-600 border-slate-400">
       @if (apiResponse.status != 200) {
-      <p class="my-4 text-orange-400">Loading…</p>
+      <p class="mx-6 my-4 text-orange-400">Loading…</p>
       } @if (apiResponse.status === 200) {
-      <p class="my-2 text-slate-400">{{ apiResponse.message }}</p>
+      <p class="mx-4 my-2 text-slate-400">{{ apiResponse.message }}</p>
       }
     </div>
 
