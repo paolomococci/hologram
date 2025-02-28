@@ -1,14 +1,6 @@
 @API-AGORA01_HostAddress = https://api-agora01.hologram-srv.local
 
-### access must be allowed
-
-## curl --insecure --verbose --header "Accept: application/json" --header "Origin: https://ui-agora01.hologram-srv.local" --request GET https://api-agora01.hologram-srv.local/api/ping
-
-GET {{API-AGORA01_HostAddress}}/api/ping
-Accept: application/json
-Origin: https://ui-agora01.hologram-srv.local
-
-### access must not be allowed
+### access must not be allowed from https://ui-fake.local
 
 ## curl --insecure --verbose --header "Accept: application/json" --header "Origin: https://ui-fake.local" --request GET https://api-agora01.hologram-srv.local/api/ping
 
@@ -27,11 +19,11 @@ Accept: application/json
 ### access must be allowed
 
 ## to get the post with id 1
-## curl --insecure --verbose --header "Origin: https://ui-agora01.hologram-srv.local" --request GET https://api-agora01.hologram-srv.local/api/posts/1
+## curl --insecure --verbose --header "Origin: https://ui-agora04.hologram-srv.local" --request GET https://api-agora01.hologram-srv.local/api/posts/1
 
 GET {{API-AGORA01_HostAddress}}/api/posts/1
 Accept: application/json
-Origin: https://ui-agora01.hologram-srv.local
+Origin: https://ui-agora04.hologram-srv.local
 
 ### access must not be allowed
 
@@ -44,4 +36,18 @@ GET {{API-AGORA01_HostAddress}}/api/posts/1
 Accept: application/json
 Origin: https://ui-fake.local
 
-###
+### sanctum/csrf-cookie
+
+GET {{API-AGORA01_HostAddress}}/sanctum/csrf-cookie
+Accept: application/json
+Origin: https://ui-agora04.hologram-srv.local
+
+### api/ping
+
+## curl --insecure --verbose --header "Accept: application/json" --header "Origin: https://ui-agora04.hologram-srv.local" --request GET https://api-agora01.hologram-srv.local/api/ping
+
+GET {{API-AGORA01_HostAddress}}/api/ping
+Accept: application/json
+Origin: https://ui-agora04.hologram-srv.local
+
+### 
