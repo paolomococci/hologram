@@ -9,9 +9,30 @@ Thank you.
 
 ## `agora`
 
-The `Agora` project is a starting point for developing web applications that leave open as many alternatives as possible:
+The `Agora` project is a starting point for developing web applications that leave open as many alternatives as possible.
+In fact, you can see that there are five different declinations of the same front end application whose development has been approached in five different ways.
 
-![an example of a front end application](templates/agora/ui-agora01/screenshots/screenshot_ui-agora01_mobile_first_loaded.png)
+Thanks to the React library:
+
+![developed thanks to the React library](templates/agora/ui-agora01/screenshots/screenshot_ui-agora01_mobile_first_loaded.png)
+
+Thanks to the Vue framework:
+
+![developed thanks to the Vue framework](templates/agora/ui-agora02/screenshots/screenshot_ui-agora02_mobile_first_loaded.png)
+
+Thanks to the Angular framework:
+
+![developed thanks to the Angular framework](templates/agora/ui-agora03/screenshots/screenshot_ui-agora03_mobile_first_loaded.png)
+
+Thanks to the jQuery library:
+
+![developed thanks to the jQuery library](templates/agora/ui-agora04/screenshots/screenshot_ui-agora04_mobile_first_loaded.png)
+
+Thanks to the vanilla JavaScript:
+
+![developed thanks to the vanilla JavaScript](templates/agora/ui-agora05/screenshots/screenshot_ui-agora05_mobile_first_loaded.png)
+
+While they may differ slightly, all applications converge toward the same premise: the flexibility to use similar technologies to achieve results efficiently.
 
 ## `catenaria`
 
