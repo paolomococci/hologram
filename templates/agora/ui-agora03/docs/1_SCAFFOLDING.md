@@ -20,7 +20,28 @@ ng new --skip-git --skip-install --strict --style=css --minimal --routing --ssr=
 cd ui-agora03/
 npm install
 ng add ngx-tailwind
+```
+
+## install the icons `lucide-angular`
+
+```bash
+npm i lucide-angular
+```
+
+## check the licenses of the packages used
+
+```bash
 license-report --output=csv > licenses_report.csv
-chown --recursive developer_username:apache .
+```
+
+## build
+
+```bash
 npm run build
+```
+
+Now it's time to fix the permissions:
+
+```bash
+chown --recursive developer_username:apache .
 ```
