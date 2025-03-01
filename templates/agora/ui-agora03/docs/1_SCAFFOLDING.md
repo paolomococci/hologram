@@ -16,6 +16,7 @@ exit
 after which I typed the following:
 
 ```bash
+cd /var/www/html/agora-project/
 ng new --skip-git --skip-install --strict --style=css --minimal --routing --ssr=false --dry-run ui-agora03
 cd ui-agora03/
 npm install

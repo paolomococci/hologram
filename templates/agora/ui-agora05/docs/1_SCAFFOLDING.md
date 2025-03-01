@@ -1,6 +1,7 @@
 # scaffolding
 
 ```bash
+cd /var/www/html/agora-project/
 npm create vite@latest
 cd ui-agora05/
 npm install
