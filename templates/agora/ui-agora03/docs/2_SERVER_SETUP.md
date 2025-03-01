@@ -31,7 +31,7 @@ ls -al /etc/ssl/certs/ | grep ui-agora03
 ```bash
 nano /etc/httpd/conf.d/ui-agora03.hologram-srv.local.conf
 ```
-dist/ui-agora03/browser
+
 ```xml
 <VirtualHost *:80>
         ServerAdmin webmaster@localhost
