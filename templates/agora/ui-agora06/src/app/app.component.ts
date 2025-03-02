@@ -1,16 +1,13 @@
 import { Component } from "@angular/core"
 import { RouterOutlet } from "@angular/router"
-import { MatSlideToggleModule } from "@angular/material/slide-toggle"
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet, MatSlideToggleModule],
+  imports: [RouterOutlet],
   template: `
-    <header>
-      <h1>{{ title }}</h1>
-
-      <mat-slide-toggle> material toggle view test </mat-slide-toggle>
+    <header class="flex p-4 m-4">
+      <h1 class="text-5xl font-thin text-purple-400">{{ title }}</h1>
     </header>
 
     <router-outlet />

@@ -21,36 +21,18 @@ ng new --skip-git --skip-install --strict --style=css --minimal --routing --ssr=
 ng new --skip-git --skip-install --strict --style=css --minimal --routing --ssr=false ui-agora06
 cd ui-agora06/
 npm install
-ng add @angular/material
 ```
 
-## to check the correct functioning of Angular material
+## installation of `ngx-tailwind`
 
-Edit the `src/app/app.component.ts` file as follows:
+```bash
+ng add ngx-tailwind
+```
 
-```typescript
-import { Component } from "@angular/core"
-import { RouterOutlet } from "@angular/router"
-import { MatSlideToggleModule } from "@angular/material/slide-toggle" // insert this line
+## installation of the icons `lucide-angular`
 
-@Component({
-  selector: "app-root",
-  standalone: true,
-  imports: [RouterOutlet, MatSlideToggleModule], // add MatSlideToggleModule
-  template: `
-    <header>
-      <h1>{{ title }}</h1>
-
-      <mat-slide-toggle> material toggle view test </mat-slide-toggle> <!-- insert this line -->
-    </header>
-
-    <router-outlet />
-  `,
-  styles: [],
-})
-export class AppComponent {
-  title = "Agora"
-}
+```bash
+npm i lucide-angular
 ```
 
 ## check the licenses of the packages used

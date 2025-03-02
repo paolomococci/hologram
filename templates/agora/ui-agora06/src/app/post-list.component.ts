@@ -1,33 +1,30 @@
-import { Component } from '@angular/core'
+import { Component } from "@angular/core"
 import { NgFor } from "@angular/common"
-import { PostsService } from './posts.service'
+import { PostsService } from "./posts.service"
+import { PostCardComponent } from "./post-card.component"
 
 @Component({
-  selector: 'app-post-list',
+  selector: "app-post-list",
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, PostCardComponent],
   template: `
-    <section class="app-card">
+    <section class="items-center app-card">
       <div>
-        <h3>post list</h3>
+        <h3 class="text-2xl text-slate-400">post list</h3>
       </div>
       <article>
-        <ul>
-          <li *ngFor="let post of postsService.posts">
-            {{ post.title }}
-            <ul>
-              <li>{{ post.content }}</li>
-              <li>{{ post.author }}</li>
-            </ul>
-          </li>
-        </ul>
+        <div>
+          <div class="p-4 m4" *ngFor="let post of postsService.posts">
+            <h5 class="font-serif text-lg text-cyan-600">{{ post.title }}</h5>
+            <app-post-card [post]="post"></app-post-card>
+          </div>
+        </div>
       </article>
     </section>
   `,
-  styles: ``
+  styles: ``,
 })
 export class PostListComponent {
-
   constructor(readonly postsService: PostsService) {}
 
   ngOnInit(): void {}
