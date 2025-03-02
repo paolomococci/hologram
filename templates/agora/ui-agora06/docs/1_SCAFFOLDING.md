@@ -36,7 +36,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle" // insert 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet, MatSlideToggleModule],
+  imports: [RouterOutlet, MatSlideToggleModule], // add MatSlideToggleModule
   template: `
     <header>
       <h1>{{ title }}</h1>
