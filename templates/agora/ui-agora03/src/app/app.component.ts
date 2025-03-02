@@ -1,10 +1,6 @@
 import { Component, Injectable, resource } from "@angular/core"
 import { RouterOutlet } from "@angular/router"
-import { 
-  LucideAngularModule, 
-  Loader, 
-  Plus
- } from "lucide-angular"
+import { LucideAngularModule, Loader, Plus } from "lucide-angular"
 import ENV from "../env"
 
 interface ApiResponse {
@@ -15,10 +11,7 @@ interface ApiResponse {
 @Component({
   standalone: true,
   selector: "app-root",
-  imports: [
-    RouterOutlet, 
-    LucideAngularModule
-  ],
+  imports: [RouterOutlet, LucideAngularModule],
   template: `
     <div class="rounded-lg border shadow-sm bg-slate-600 border-slate-400">
       <div class="p-4">
@@ -35,16 +28,19 @@ interface ApiResponse {
       </div>
     </div>
 
-      @if (apiResponse.status != 200) {
-        <div class="flex items-center mt-4 ml-24">
-          <lucide-angular [img]="Loader" class="w-20 h-20 text-orange-400 animate-[spin_1s_ease-in-out_infinite]"></lucide-angular>
-        </div>
-      } @if (apiResponse.status === 200) {
-        <div class="mt-4 rounded-lg border shadow-sm bg-slate-600 border-slate-400">
-          <p class="mx-4 my-2 text-slate-400">{{ apiResponse.message }}</p>
-        </div>
-      }
-    
+    @if (apiResponse.status != 200) {
+    <div class="flex justify-center items-center mt-4">
+      <lucide-angular
+        [img]="Loader"
+        class="w-20 h-20 text-orange-400 animate-[spin_1s_ease-in-out_infinite]"
+      ></lucide-angular>
+    </div>
+    } @if (apiResponse.status === 200) {
+    <div class="mt-4 rounded-lg border shadow-sm bg-slate-600 border-slate-400">
+      <p class="mx-4 my-2 text-slate-400">{{ apiResponse.message }}</p>
+    </div>
+    }
+
     <router-outlet />
   `,
   styles: [],

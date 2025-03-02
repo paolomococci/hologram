@@ -47,3 +47,41 @@ Now it's time to fix the permissions:
 ```bash
 chown --recursive developer_username:apache .
 ```
+
+## some tips
+
+### to prevent the final semicolon from being automatically inserted
+
+Edit the `.prettierrc` file as follows:
+
+```conf
+{
+    "semi": false
+}
+```
+
+### how to insert arbitrary file into build directory
+
+Just put the file of interest in the `public` directory.
+Run the build and verify the inclusion with the following command:
+
+```bash
+ls -al /var/www/html/agora-project/ui-agora03/dist/ui-agora03/browser/
+```
+
+### how to prevent `Not Found` error when the application is served by a real web server
+
+To prevent 404 error given by the routing mechanism provided by the framework when the application is running on a real web server just insert a properly edited `.htaccess` file into the `public` directory.
+
+For example something like the following `.htaccess` file:
+
+```conf
+DirectoryIndex index.html
+
+RewriteEngine On
+
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.html [L]
+```
