@@ -36,6 +36,16 @@ npm i lucide-angular
 license-report --output=csv > licenses_report.csv
 ```
 
+## generate interface, service and components
+
+```bash
+ng generate interface ApiResponse
+ng generate interface Post
+ng generate service Posts --flat
+ng generate component PostList --flat --standalone --inline-template --inline-style
+ng generate component PostCard --flat --standalone --inline-template --inline-style
+```
+
 ## build
 
 ```bash

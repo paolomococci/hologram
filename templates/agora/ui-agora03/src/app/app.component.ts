@@ -1,12 +1,8 @@
-import { Component, Injectable, resource } from "@angular/core"
+import { Component, resource } from "@angular/core"
 import { RouterOutlet } from "@angular/router"
 import { LucideAngularModule, Loader, Plus } from "lucide-angular"
 import ENV from "../env"
-
-interface ApiResponse {
-  status: number
-  message: string
-}
+import { ApiResponse } from "./api-response"
 
 @Component({
   standalone: true,
