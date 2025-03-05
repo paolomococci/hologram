@@ -40,6 +40,9 @@ license-report --output=csv > licenses_report.csv
 
 ```bash
 ng generate interface ApiResponse
+ng generate service Endpoint --flat
+ng generate component EndpointCard --flat --standalone --inline-template --inline-style
+ng generate component CountCard --flat --standalone --inline-template --inline-style
 ng generate interface Post
 ng generate service Posts --flat
 ng generate component PostList --flat --standalone --inline-template --inline-style

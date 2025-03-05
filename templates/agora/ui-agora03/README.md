@@ -2,6 +2,10 @@
 
 This is a frontend web application developed using Angular and Tailwind CSS framework written in TypeScript programming language.
 
+Cover:
+
+![ui-agora03](./screenshots/screenshot_ui-agora03_mobile_first_cover.png)
+
 Screenshot taken during loading:
 
 ![ui-agora03](./screenshots/screenshot_ui-agora03_mobile_first_loading.png)
