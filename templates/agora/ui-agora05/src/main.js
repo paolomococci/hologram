@@ -10,7 +10,7 @@ const uriApi = ENV.baseUrl + 'api/ping'
 
 const plusIconElement = createElement(Plus)
 const loaderIconElement = createElement(Loader, {
-  class: ['w-20 h-20 text-orange-400 animate-[spin_1s_ease-in-out_infinite]'],
+  class: ['w-20 h-20 stroke-1 stroke-orange-400 animate-[spin_1s_ease-in-out_infinite]'],
   'stroke-width': 1
 })
 

@@ -43,7 +43,7 @@ const PingTest = () => {
     <div className="p-3 m-3">
       {loading ? (
         <p>
-          <LoaderCircle className="w-20 h-20 text-orange-400 animate-[spin_1s_ease-in-out_infinite]" />
+          <LoaderCircle className="w-20 h-20 stroke-1 stroke-orange-400 animate-[spin_1s_ease-in-out_infinite]" />
         </p>
       ) : error ? (
         <p className="text-red-400">{error}</p>

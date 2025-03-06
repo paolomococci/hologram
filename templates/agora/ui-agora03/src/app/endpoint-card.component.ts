@@ -12,7 +12,7 @@ import { EndpointService } from "./endpoint.service"
       <div class="mt-4">
         <lucide-angular
           [img]="Loader"
-          class="w-20 h-20 text-orange-400 animate-[spin_1s_ease-in-out_infinite]"
+          class="w-20 h-20 stroke-1 stroke-orange-400 animate-[spin_1s_ease-in-out_infinite]"
         ></lucide-angular>
       </div>
       } @if (endpointService.apiResponse?.status === 200) {
