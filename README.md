@@ -32,6 +32,10 @@ Thanks to the vanilla JavaScript:
 
 ![developed thanks to the vanilla JavaScript](templates/agora/ui-agora05/screenshots/screenshot_ui-agora05_mobile_first_loaded.png)
 
+The same application, but this time developed using the Svelte framework:
+
+![developed thanks to the Svelte framework](templates/agora/ui-agora07/screenshots/screenshot_ui-agora07_mobile_first_loaded.png)
+
 While they may differ slightly, all applications converge toward the same premise: the flexibility to use similar technologies to achieve results efficiently.
 
 ## `catenaria`

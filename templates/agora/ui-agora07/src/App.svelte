@@ -1,5 +1,6 @@
 <script lang="ts">
-  import Counter from "./lib/Counter.svelte"
+  // import Counter from "./lib/Counter.svelte"
+    import ApiTestCall from "./lib/ApiTestCall.svelte"
 </script>
 
 <main>
@@ -8,6 +9,7 @@
   </div>
 
   <div class="card">
-    <Counter />
+    <!-- <Counter /> -->
+     <ApiTestCall />
   </div>
 </main>
