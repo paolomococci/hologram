@@ -90,3 +90,21 @@ Edit the `.prettierrc` file as follows:
     "semi": false
 }
 ```
+
+### how to center elements horizontally and vertically with Tailwind
+
+```html
+<div class="flex justify-center items-center h-screen"></div>
+```
+
+### how to center elements vertically with Tailwind
+
+```html
+<div class="flex items-center h-screen"></div>
+```
+
+### how to center elements horizontally with Tailwind
+
+```html
+<div class="flex justify-center items-center"></div>
+```

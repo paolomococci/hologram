@@ -78,3 +78,33 @@ Now it's time to fix the permissions:
 ```bash
 chown --recursive developer_username:apache .
 ```
+
+## some tips
+
+### to prevent the final semicolon from being automatically inserted
+
+Edit the `.prettierrc` file as follows:
+
+```conf
+{
+    "semi": false
+}
+```
+
+### how to center elements horizontally and vertically with Tailwind
+
+```html
+<div class="flex justify-center items-center h-screen"></div>
+```
+
+### how to center elements vertically with Tailwind
+
+```html
+<div class="flex items-center h-screen"></div>
+```
+
+### how to center elements horizontally with Tailwind
+
+```html
+<div class="flex justify-center items-center"></div>
+```

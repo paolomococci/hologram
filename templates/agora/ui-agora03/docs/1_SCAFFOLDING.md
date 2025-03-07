@@ -98,3 +98,21 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . index.html [L]
 ```
+
+### how to center elements horizontally and vertically with Tailwind
+
+```html
+<div class="flex justify-center items-center h-screen"></div>
+```
+
+### how to center elements vertically with Tailwind
+
+```html
+<div class="flex items-center h-screen"></div>
+```
+
+### how to center elements horizontally with Tailwind
+
+```html
+<div class="flex justify-center items-center"></div>
+```
