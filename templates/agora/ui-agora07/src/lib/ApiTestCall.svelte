@@ -9,15 +9,6 @@
     message: "Service Unavailable",
   }
 
-  async function retrieveCookie() {
-    try {
-      const response = await axios.get(`${ENV.baseUrl}sanctum/csrf-cookie`)
-      console.log(response)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
   async function retrieveApiResponse() {
     try {
       const response = await axios.get<ApiResponse>(`${ENV.baseUrl}api/ping`)
@@ -28,12 +19,11 @@
     }
   }
 
-  retrieveCookie()
   retrieveApiResponse()
 </script>
 
 <main>
-  <div class="flex justify-center items-center mt-4">
+  <div class="flex z-20 justify-center items-center mt-4">
     {#if apiResponse?.status != 200}
       <div>
         <LoaderPinwheel
