@@ -4,7 +4,7 @@
 </script>
 
 <main>
-  <header class="container sticky top-0 z-40 shadow-xl rounded-md max-w-dvw bg-[242424]/95">
+  <header class="container sticky top-0 z-40 shadow-xl rounded-md max-w-dvw bg-[242424]/95 backdrop-blur-sm">
     <div class="flex justify-center items-center">
       <h3 class="m-4 font-thin text-cyan-400 uppercase">Agora</h3>
     </div>
