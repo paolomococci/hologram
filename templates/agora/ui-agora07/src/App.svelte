@@ -1,15 +1,17 @@
 <script lang="ts">
-  // import Counter from "./lib/Counter.svelte"
-  import ApiTestCall from "./lib/ApiTestCall.svelte"
+  import ApiPostsCall from "./lib/ApiPostsCall.svelte"
+  import ApiSanctumCsrfCookieCall from "./lib/ApiSanctumCsrfCookieCall.svelte"
 </script>
 
 <main>
-  <div class="flex justify-center items-center m-4">
-    <h3 class="font-thin text-cyan-400 uppercase">Agora</h3>
-  </div>
+  <header class="container sticky top-0 z-40 max-w-dvw">
+    <div class="flex justify-center items-center">
+      <h3 class="m-4 font-thin text-cyan-400 uppercase">Agora</h3>
+    </div>
+  </header>
 
   <div class="card">
-    <!-- <Counter /> -->
-    <ApiTestCall />
+    <ApiSanctumCsrfCookieCall />
+    <ApiPostsCall />
   </div>
 </main>
