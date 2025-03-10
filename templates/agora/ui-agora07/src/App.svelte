@@ -1,17 +1,24 @@
 <script lang="ts">
-  import ApiPostsCall from "./lib/ApiPostsCall.svelte"
+  import ApiPostsFetch from "./lib/ApiPostsFetch.svelte"
   import ApiSanctumCsrfCookieCall from "./lib/ApiSanctumCsrfCookieCall.svelte"
+  import Paginator from "./lib/Paginator.svelte"
 </script>
 
 <main>
-  <header class="container sticky top-0 z-40 shadow-xl rounded-md max-w-dvw bg-[242424]/95 backdrop-blur-sm mx-0 px-0">
+  <header
+    class="container sticky top-0 z-40 shadow-xl rounded-md max-w-dvw bg-[242424]/95 backdrop-blur-sm mx-0 px-0"
+  >
     <div class="flex justify-center items-center">
       <h3 class="m-4 font-thin text-cyan-400 uppercase">Agora</h3>
+    </div>
+    <div class="justify-center items-center pb-2 mb-2">
+      <!-- TODO: paginator -->
+      <Paginator />
     </div>
   </header>
 
   <div class="card">
     <ApiSanctumCsrfCookieCall />
-    <ApiPostsCall />
+    <ApiPostsFetch />
   </div>
 </main>
