@@ -3,19 +3,23 @@ import type { FetchedResponse } from "./interface-fetch-response"
 import ENV from "../env"
 
 export class FetchPostsService {
-  // private uriApi = ENV.baseUrl + "api/posts"
-  private urlApi = ENV.baseUrl + "api/filtered"
+  // API filtered
+  // private urlApi = ENV.baseUrl + "api/filtered"
+  // API paginator
+  private urlApi = ENV.baseUrl + "api/paginator"
   private numOfPostsUrlApi = ENV.baseUrl + "api/num-of-posts"
 
   async fetchPosts(
-    filter: string = 'none', 
+    filter: string = '', 
     current: number = 1
   ): Promise<FetchedResponse> {
     try {
       // const resNumberOfPosts = await fetch(this.numOfPostsUrlApi)
       const resListOfPosts = await fetch(
-        // `${this.urlApi}/${current}?filter=${filter}`
-        `${this.urlApi}/${filter}/${current}`
+        // API paginator
+        `${this.urlApi}/${current}?filter=${filter}`
+        // API filtered
+        // `${this.urlApi}/${filter}/${current}`
       )
       if (!resListOfPosts.ok) {
         throw new Error(

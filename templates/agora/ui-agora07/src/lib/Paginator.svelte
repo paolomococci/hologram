@@ -8,21 +8,15 @@
   const fetchPostsService = new FetchPostsService()
   const postsPerPage = 10
   const currentPage = writable(1)
-  let textOfFilter = $state("none")
+  let textOfFilter = $state("")
   let fetchResponse: FetchedResponse
   let posts: Post[] = []
   let totalNumberOfPosts: number = 0
   let totalNumberOfPages = $state(0)
 
-  const retrievePosts = async (
-    filter?: string,
-    current?: number
-  ) => {
+  const retrievePosts = async (filter?: string, current?: number) => {
     try {
-      fetchResponse = await fetchPostsService.fetchPosts(
-        filter,
-        current
-      )
+      fetchResponse = await fetchPostsService.fetchPosts(filter, current)
       console.log(`FetchedResponse: `, fetchResponse)
       posts = fetchResponse.posts
       postStore.set(posts)
@@ -40,7 +34,7 @@
     }
   }
 
-  retrievePosts("none", 1)
+  retrievePosts("", 1)
 </script>
 
 <main>
@@ -63,7 +57,10 @@
       id="filter-posts"
       name="filter-posts"
       bind:value={textOfFilter}
-      onblur={() => retrievePosts(textOfFilter, 1)}
+      onblur={() => {
+        retrievePosts(textOfFilter, 1)
+        $currentPage = 1
+      }}
       class="p-1.5 bg-cyan-900 disabled:cursor-not-allowed md:p-2 lg:p-3.5 text-slate-400"
     />
     <button
