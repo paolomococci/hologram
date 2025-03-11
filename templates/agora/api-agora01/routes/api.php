@@ -26,11 +26,47 @@ Route::get('num-of-posts', function (): string {
     ]);
 });
 
-// TODO: `filtered` API
-// curl --insecure --verbose https://api-agora01.hologram-srv.local/api/filtered?starting=0&until=100&filter=alice
-Route::get('filtered', function (int $starting = 0, int $until = 100, string $filter = ""): string {
+// `filtered` API
+// curl --insecure --verbose https://api-agora01.hologram-srv.local/api/filtered/caterpillar/1
+Route::get('filtered/{filter?}/{current?}', function (
+    string $filter = "none",
+    int $current = 1
+): string {
+    $offset = 10 * ($current - 1);
+    if ($filter != 'none') {
+        $totalNumberOfPosts = Posts::where('title', 'like', "%$filter%")->with('user')->get()->count();
+        $posts = Posts::where('title', 'like', "%$filter%")->with('user')->latest()->offset($offset)->limit(10)->get();
+    } else {
+        $totalNumberOfPosts = Posts::with('user')->get()->count();
+        $posts = Posts::with('user')->latest()->offset($offset)->limit(10)->get();
+    }
+
     return json_encode([
-        'status' => Response::HTTP_NOT_IMPLEMENTED
+        'status' => Response::HTTP_OK,
+        'num' => $totalNumberOfPosts,
+        'posts' => $posts
+    ]);
+});
+
+// `paginator` API
+// curl --insecure --verbose https://api-agora01.hologram-srv.local/api/paginator/1?filter=caterpillar
+Route::get('paginator/{current?}', function (
+    int $current = 1
+): string {
+    $offset = 10 * ($current - 1);
+    $filter = isset($_GET['filter']) ? $_GET['filter'] : '';
+    if ($filter != '') {
+        $totalNumberOfPosts = Posts::where('title', 'like', "%$filter%")->with('user')->get()->count();
+        $posts = Posts::where('title', 'like', "%$filter%")->with('user')->latest()->offset($offset)->limit(10)->get();
+    } else {
+        $totalNumberOfPosts = Posts::with('user')->get()->count();
+        $posts = Posts::with('user')->latest()->offset($offset)->limit(10)->get();
+    }
+
+    return json_encode([
+        'status' => Response::HTTP_OK,
+        'num' => $totalNumberOfPosts,
+        'posts' => $posts
     ]);
 });
 

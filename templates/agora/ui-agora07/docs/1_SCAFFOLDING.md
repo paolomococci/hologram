@@ -108,3 +108,20 @@ Edit the `.prettierrc` file as follows:
 ```html
 <div class="flex justify-center items-center"></div>
 ```
+
+## check for updates
+
+When I need to update to the latest release:
+
+```bash
+su -
+node -v
+npm view node version
+npm cache clean -f
+npm install -g n
+n stable
+npm -v
+npm view npm version
+npm install -g npm@latest
+exit
+```

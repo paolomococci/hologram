@@ -3,27 +3,31 @@ import type { FetchedResponse } from "./interface-fetch-response"
 import ENV from "../env"
 
 export class FetchPostsService {
-  private urlApi = ENV.baseUrl + "api/posts"
+  // private uriApi = ENV.baseUrl + "api/posts"
+  private urlApi = ENV.baseUrl + "api/filtered"
   private numOfPostsUrlApi = ENV.baseUrl + "api/num-of-posts"
 
-  async fetchPosts(starting?: number, until?:number, filter?: string): Promise<FetchedResponse> {
+  async fetchPosts(
+    filter: string = 'none', 
+    current: number = 1
+  ): Promise<FetchedResponse> {
     try {
-      const resNumberOfPosts = await fetch(this.numOfPostsUrlApi)
+      // const resNumberOfPosts = await fetch(this.numOfPostsUrlApi)
       const resListOfPosts = await fetch(
-        // `${this.urlApi}?starting=${starting}&until=${until}&filter=${filter}`
-        this.urlApi
+        // `${this.urlApi}/${current}?filter=${filter}`
+        `${this.urlApi}/${filter}/${current}`
       )
-      if (!resNumberOfPosts.ok && !resListOfPosts.ok) {
+      if (!resListOfPosts.ok) {
         throw new Error(
-          `HTTP errors status: ${resNumberOfPosts.status} and ${resListOfPosts.status}`
+          `HTTP errors status: ${resListOfPosts.status}`
         )
       }
-      const num = await resNumberOfPosts.json()
+      // const num = await resNumberOfPosts.json()
       const posts = await resListOfPosts.json()
 
       return {
-        num: num.num,
-        posts: posts,
+        num: posts.num,
+        posts: posts.posts,
       }
     } catch (error) {
       console.error(
