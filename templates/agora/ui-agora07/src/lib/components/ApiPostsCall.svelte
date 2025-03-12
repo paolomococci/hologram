@@ -1,8 +1,8 @@
 <script lang="ts">
   import axios from "axios"
-  import ENV from "../env"
+  import ENV from "../../env"
   import { LoaderPinwheel } from "lucide-svelte"
-  import type Post from "./api-post"
+  import type Post from "../apis/api-post"
 
   let response: any = false
   let posts: Post[]
@@ -30,7 +30,7 @@
         />
       </div>
     {:else if response.status === 200}
-      <div class="p-2">
+      <div class="gap-8 items-center">
         {#each posts as post}
           <div class="py-2 my-2 rounded-lg bg-stone-800">
             <h5 class="m-1 font-serif text-xs text-cyan-600 sm:text-sm md:text-base lg:text-lg">

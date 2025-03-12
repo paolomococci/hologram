@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { FetchPostsService } from "./service-fetch-posts"
-  import type Post from "./api-post"
-  import type { FetchedResponse } from "./interface-fetch-response"
-  import { postStore } from "./store-posts"
+  import { FetchPostsService } from "../services/service-fetch-posts"
+  import type Post from "../apis/api-post"
+  import type { FetchedResponse } from "../interfaces/interface-fetch-response"
+  import { postStore } from "../stores/store-posts"
   import { writable } from "svelte/store"
 
   const fetchPostsService = new FetchPostsService()
@@ -61,7 +61,7 @@
         retrievePosts(textOfFilter, 1)
         $currentPage = 1
       }}
-      class="p-1.5 bg-cyan-900 disabled:cursor-not-allowed md:p-2 lg:p-3.5 text-slate-400"
+      class="p-1.5 text-center bg-cyan-900 disabled:cursor-not-allowed md:p-2 lg:p-3.5 text-slate-400"
     />
     <button
       id="next"

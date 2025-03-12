@@ -1,8 +1,8 @@
 <script lang="ts">
   import axios from "axios"
-  import ENV from "../env"
+  import ENV from "../../env"
   import { LoaderPinwheel } from "lucide-svelte"
-  import type ApiResponse from "./api-response"
+  import type ApiResponse from "../apis/api-response"
 
   let apiResponse: ApiResponse = {
     status: 503,

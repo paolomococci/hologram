@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type Post from "./api-post"
+  import type Post from "../apis/api-post"
   import { LoaderPinwheel } from "lucide-svelte"
-  import { postStore } from "./store-posts"
+  import { postStore } from "../stores/store-posts"
   import PostView from "./PostView.svelte"
 
   let posts: Post[] | unknown

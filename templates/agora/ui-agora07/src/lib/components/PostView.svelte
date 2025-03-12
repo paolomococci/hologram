@@ -9,7 +9,7 @@
         <h5
           class="m-1 font-serif text-xs text-cyan-600 sm:text-sm md:text-base lg:text-lg"
         >
-          {post.title}
+          <a href="https://api-agora01.hologram-srv.local/api/posts/{post.id}">{post.title}</a>
         </h5>
         <p
           class="m-1 font-serif text-xs text-justify sm:text-sm md:text-base lg:text-lg line-clamp-2 text-stone-400"

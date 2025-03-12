@@ -7,7 +7,7 @@
   }
 </script>
 
-<button class="text-cyan-400" onclick={increment}>
+<button class="text-cyan-400 count-button" onclick={increment}>
   <Plus />
 </button>
 

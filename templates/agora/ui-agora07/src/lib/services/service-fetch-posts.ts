@@ -1,6 +1,6 @@
-import type Post from "./api-post"
-import type { FetchedResponse } from "./interface-fetch-response"
-import ENV from "../env"
+import type Post from "../apis/api-post"
+import type { FetchedResponse } from "../interfaces/interface-fetch-response"
+import ENV from "../../env"
 
 export class FetchPostsService {
   // API filtered
