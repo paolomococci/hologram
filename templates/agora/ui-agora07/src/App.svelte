@@ -1,7 +1,7 @@
 <script lang="ts">
-  import ApiPostsFetch from "./lib/ApiPostsFetch.svelte"
-  import ApiSanctumCsrfCookieCall from "./lib/ApiSanctumCsrfCookieCall.svelte"
-  import Paginator from "./lib/Paginator.svelte"
+  import ApiPostsFetch from "./lib/components/ApiPostsFetch.svelte"
+  import ApiSanctumCsrfCookieCall from "./lib/components/ApiSanctumCsrfCookieCall.svelte"
+  import Paginator from "./lib/components/Paginator.svelte"
 </script>
 
 <main>
@@ -12,7 +12,6 @@
       <h3 class="m-4 font-thin text-cyan-400 uppercase">Agora</h3>
     </div>
     <div class="justify-center items-center pb-2 mb-2">
-      <!-- TODO: paginator -->
       <Paginator />
     </div>
   </header>

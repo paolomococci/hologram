@@ -5,8 +5,8 @@ import ENV from "../../env"
 export class FetchPostsService {
   // API filtered
   // private urlApi = ENV.baseUrl + "api/filtered"
-  // API paginator
-  private urlApi = ENV.baseUrl + "api/paginator"
+  // API paginate
+  private urlApi = ENV.baseUrl + "api/paginate"
   private numOfPostsUrlApi = ENV.baseUrl + "api/num-of-posts"
 
   async fetchPosts(
@@ -14,9 +14,8 @@ export class FetchPostsService {
     current: number = 1
   ): Promise<FetchedResponse> {
     try {
-      // const resNumberOfPosts = await fetch(this.numOfPostsUrlApi)
       const resListOfPosts = await fetch(
-        // API paginator
+        // API paginate
         `${this.urlApi}/${current}?filter=${filter}`
         // API filtered
         // `${this.urlApi}/${filter}/${current}`
@@ -26,7 +25,6 @@ export class FetchPostsService {
           `HTTP errors status: ${resListOfPosts.status}`
         )
       }
-      // const num = await resNumberOfPosts.json()
       const posts = await resListOfPosts.json()
 
       return {
