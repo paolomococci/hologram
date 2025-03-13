@@ -6,6 +6,9 @@
 
   let posts: Post[] | unknown
 
+  /**
+   * Retrieve posts from the store.
+   */
   async function retrieve() {
     postStore.subscribe((postSub) => {
       posts = postSub

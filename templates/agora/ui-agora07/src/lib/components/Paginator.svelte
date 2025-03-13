@@ -2,7 +2,7 @@
   import { FetchPostsService } from "../services/service-fetch-posts"
   import type Post from "../apis/api-post"
   import type { FetchedResponse } from "../interfaces/interface-fetch-response"
-  import { postStore } from "../stores/store-posts"
+  import { postStore, isDetails } from "../stores/store-posts"
   import { writable } from "svelte/store"
 
   const fetchPostsService = new FetchPostsService()
@@ -14,12 +14,19 @@
   let totalNumberOfPosts: number = 0
   let totalNumberOfPages = $state(0)
 
+  /**
+   * It is used to filter the content of post titles.
+   * 
+   * @param filter
+   * @param current
+   */
   const retrievePosts = async (filter?: string, current?: number) => {
     try {
       fetchResponse = await fetchPostsService.fetchPosts(filter, current)
       console.log(`FetchedResponse: `, fetchResponse)
       posts = fetchResponse.posts
       postStore.set(posts)
+      isDetails.set(false)
       totalNumberOfPosts = fetchResponse.num
       totalNumberOfPages = Math.ceil(totalNumberOfPosts / postsPerPage)
     } catch (error) {
@@ -28,6 +35,11 @@
     }
   }
 
+  /**
+   * To navigate through the post pagination.
+   *
+   * @param pageNumber
+   */
   function moveToPageNumber(pageNumber: number) {
     if (pageNumber >= 1 && pageNumber <= totalNumberOfPages) {
       currentPage.set(pageNumber)

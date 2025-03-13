@@ -2,6 +2,10 @@
   import { Plus } from "lucide-svelte"
 
   let count: number = $state(0)
+
+  /**
+   * Simple demo.
+   */
   const increment = () => {
     count += 1
   }

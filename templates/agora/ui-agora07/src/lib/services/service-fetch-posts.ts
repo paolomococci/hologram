@@ -7,10 +7,16 @@ export class FetchPostsService {
   // private urlApi = ENV.baseUrl + "api/filtered"
   // API paginate
   private urlApi = ENV.baseUrl + "api/paginate"
-  private numOfPostsUrlApi = ENV.baseUrl + "api/num-of-posts"
 
+  /**
+   * This function retrieves posts.
+   *
+   * @param filter
+   * @param current
+   * @returns Promise<FetchedResponse>
+   */
   async fetchPosts(
-    filter: string = '', 
+    filter: string = "",
     current: number = 1
   ): Promise<FetchedResponse> {
     try {
@@ -21,9 +27,7 @@ export class FetchPostsService {
         // `${this.urlApi}/${filter}/${current}`
       )
       if (!resListOfPosts.ok) {
-        throw new Error(
-          `HTTP errors status: ${resListOfPosts.status}`
-        )
+        throw new Error(`HTTP errors status: ${resListOfPosts.status}`)
       }
       const posts = await resListOfPosts.json()
 
@@ -40,6 +44,12 @@ export class FetchPostsService {
     }
   }
 
+  /**
+   * To retrieve a post by identifier.
+   *
+   * @param id
+   * @returns Promise<Post>
+   */
   async fetchPostById(id: number): Promise<Post> {
     try {
       const response = await fetch(`${this.urlApi}/${id}`)

@@ -9,6 +9,9 @@
     message: "Service Unavailable",
   }
 
+  /**
+   * Query the test API.
+   */
   async function retrieveApiResponse() {
     try {
       const response = await axios.get<ApiResponse>(`${ENV.baseUrl}api/ping`)
