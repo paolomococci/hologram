@@ -23,10 +23,10 @@ rm --force /usr/bin/php-config
 Otherwise, if this is the first installation from sources, we immediately move on to the following instructions:
 
 ```bash
-ln --symbolic --verbose /opt/php/8.4.4/bin/php /usr/bin/php
-ln --symbolic --verbose /opt/php/8.4.4/bin/phar.phar /usr/bin/phar
-ln --symbolic --verbose /opt/php/8.4.4/bin/phpize /usr/bin/phpize
-ln --symbolic --verbose /opt/php/8.4.4/bin/php-config /usr/bin/php-config
+ln --symbolic --verbose /opt/php/8.4.5/bin/php /usr/bin/php
+ln --symbolic --verbose /opt/php/8.4.5/bin/phar.phar /usr/bin/phar
+ln --symbolic --verbose /opt/php/8.4.5/bin/phpize /usr/bin/phpize
+ln --symbolic --verbose /opt/php/8.4.5/bin/php-config /usr/bin/php-config
 exit
 ```
 
@@ -36,12 +36,12 @@ Be sure to replace the real link of the version you prefer.
 
 ```bash
 mkdir xdebug && cd xdebug
-wget --spider --https-only https://xdebug.org/files/xdebug-3.4.1.tgz
-wget --https-only https://xdebug.org/files/xdebug-3.4.1.tgz
-sha256sum xdebug-3.4.1.tgz
-tar -xzf xdebug-3.4.1.tgz
+wget --spider --https-only https://xdebug.org/files/xdebug-3.4.2.tgz
+wget --https-only https://xdebug.org/files/xdebug-3.4.2.tgz
+sha256sum xdebug-3.4.2.tgz
+tar -xzf xdebug-3.4.2.tgz
 ls -l
-cd xdebug-3.4.1/
+cd xdebug-3.4.2/
 phpize
 mkdir build_session_date && cd build_session_date
 ../configure --help
@@ -53,7 +53,7 @@ sudo make install
 Instead, if it is a PHP version update:
 
 ```bash
-cd ~/xdebug/xdebug-3.4.1/
+cd ~/xdebug/xdebug-3.4.2/
 phpize
 mkdir build_session_update_n && cd build_session_update_n
 ../configure --help
@@ -68,14 +68,14 @@ sudo make install
 php --ini
 sudo updatedb
 locate xdebug.ini
-rnano /opt/php/8.4.4/lib/php.ini
+rnano /opt/php/8.4.5/lib/php.ini
 ```
 
 First it is a good idea to view the contents of the file without risking causing damage.
-And now I edit `/opt/php/8.4.4/lib/php.ini` configuration file
+And now I edit `/opt/php/8.4.5/lib/php.ini` configuration file
 
 ```bash
-sudo nano /opt/php/8.4.4/lib/php.ini
+sudo nano /opt/php/8.4.5/lib/php.ini
 ```
 
 I add this section:
@@ -114,7 +114,7 @@ Then I have to restart the `PHP-FPM` service
 ```bash
 sudo systemctl reload php-fpm
 systemctl status php-fpm --no-pager
-php -v
+php --version
 ```
 
 ### on client setup of vscode
