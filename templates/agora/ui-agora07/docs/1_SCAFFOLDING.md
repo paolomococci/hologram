@@ -123,5 +123,7 @@ n stable
 npm -v
 npm view npm version
 npm install -g npm@latest
+tsc --version
+npm install -g typescript@latest
 exit
 ```
