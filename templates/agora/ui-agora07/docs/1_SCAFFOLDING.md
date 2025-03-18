@@ -109,6 +109,24 @@ Edit the `.prettierrc` file as follows:
 <div class="flex justify-center items-center"></div>
 ```
 
+### to ignore the favicon image
+
+Edit head of `index.html` replacing, for example, the following:
+
+```html
+...
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+...
+```
+
+with this:
+
+```html
+...
+<link rel="icon" href="data:," />
+...
+```
+
 ## check for updates
 
 When I need to update to the latest release:

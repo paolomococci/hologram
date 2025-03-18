@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fade } from "svelte/transition"
   import type Post from "../apis/api-post"
   import { isDetails } from "../stores/store-posts"
   import ENV from "../../env"
@@ -38,8 +39,15 @@
 </script>
 
 <main>
+  <!-- partial index of posts -->
   {#snippet postCard(post: Post, index?: number)}
-    <div class="py-2 my-2 rounded-lg bg-stone-800">
+    <div
+      class="py-2 my-2 rounded-lg bg-stone-800"
+      transition:fade={{
+        delay: 250,
+        duration: 750,
+      }}
+    >
       <h5
         class="m-1 font-serif text-xs text-cyan-600 sm:text-sm md:text-base lg:text-lg"
       >
@@ -76,8 +84,14 @@
     </div>
   {/snippet}
 
+  <!-- detail view of the selected post -->
   {#snippet detailCard(details: Post)}
-    <div>
+    <div
+      transition:fade={{
+        delay: 250,
+        duration: 750,
+      }}
+    >
       <button
         onclick={() => {
           console.log("Go back!")
