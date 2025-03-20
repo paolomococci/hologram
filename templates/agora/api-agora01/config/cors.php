@@ -32,6 +32,7 @@ return [
         'https://ui-agora04.hologram-srv.local',
         'https://ui-agora05.hologram-srv.local',
         'https://ui-agora07.hologram-srv.local',
+        'https://ui-agora08.hologram-srv.local',
     ],
 
     'allowed_origins_patterns' => [],
