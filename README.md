@@ -36,6 +36,10 @@ The same application, but this time developed using the Svelte framework:
 
 ![developed thanks to the Svelte framework](templates/agora/ui-agora07/screenshots/screenshot_ui-agora07_mobile_first_loaded.png)
 
+The same application, but this time developed using the SvelteKit framework:
+
+![developed thanks to the SvelteKit framework](templates/agora/ui-agora08/screenshots/screenshot_ui-agora08_mobile_first_test_example_loading.png)
+
 While they may differ slightly, all applications converge toward the same premise: the flexibility to use similar technologies to achieve results efficiently.
 
 ## `catenaria`
