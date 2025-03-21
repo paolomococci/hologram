@@ -38,6 +38,19 @@
 	</dl>
 {/snippet}
 
+{#snippet navCard()}
+	<nav class="m-1">
+		<ul class="p-1">
+			<li class="m-1 decoration-0">
+				<a href="/info">info</a>
+			</li>
+			<li class="m-1 decoration-0">
+				<a href="/posts">posts</a>
+			</li>
+		</ul>
+	</nav>
+{/snippet}
+
 <!-- end snippets -->
 
 <main id="app">
@@ -52,7 +65,7 @@
 			{#if !ping.status}
 				{@render awaitCard()}
 			{:else}
-				{@render pingCard(ping)}
+				{@render navCard()}
 			{/if}
 		</article>
 	</section>

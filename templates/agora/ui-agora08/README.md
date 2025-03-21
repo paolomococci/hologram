@@ -13,3 +13,15 @@ Screenshot obtained while the micro-frontend application is waiting for a respon
 Screenshot obtained when the micro-frontend application received a response from the API:
 
 ![ui-agora08](./screenshots/screenshot_ui-agora08_mobile_first_test_example_loaded.png)
+
+With navigation bar:
+
+![ui-agora08](./screenshots/screenshot_ui-agora08_mobile_first_test_example_nav.png)
+
+Route: `info`
+
+![ui-agora08](./screenshots/screenshot_ui-agora08_mobile_first_test_example_info.png)
+
+Route: `posts`
+
+![ui-agora08](./screenshots/screenshot_ui-agora08_mobile_first_test_example_posts.png)
