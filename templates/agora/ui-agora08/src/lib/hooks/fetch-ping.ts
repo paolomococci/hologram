@@ -1,5 +1,12 @@
 import ENV from '$lib/environments/env'
 
+/**
+ * 
+ * test API connectivity
+ * 
+ * @param event 
+ * @returns 
+ */
 export const getPing = async (event?: any): Promise<any> => {
 	try {
 		const response = await fetch(`${ENV.baseUrl}api/ping`)

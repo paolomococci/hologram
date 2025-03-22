@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { getContext } from 'svelte'
-	import { getCsrfCookie } from '$lib/services/fetch-csrf-cookie'
-	import { getPing } from '$lib/services/fetch-ping'
+	import { getCsrfCookie } from '$lib/hooks/fetch-csrf-cookie'
+	import { getPing } from '$lib/hooks/fetch-ping'
 	import type Ping from '$lib/interfaces/ping'
-	import starImage from '../../static/favicon.png'
+	import StarIcon from '$lib/components/StarIcon.svelte'
 
 	// declaration present in the layout
 	const username = getContext('username')
@@ -24,9 +24,9 @@
 <!-- begin snippets -->
 
 {#snippet awaitCard()}
-	<p class="p-1">
-		<img class="p-2 m-2 animate-ping" src={starImage} alt="logo" />
-	</p>
+	<div class="flex items-center justify-center">
+		<StarIcon />
+	</div>
 {/snippet}
 
 {#snippet pingCard(ping: Ping)}
@@ -39,8 +39,8 @@
 {/snippet}
 
 {#snippet navCard()}
-	<nav class="m-1">
-		<ul class="p-1">
+	<div class="m-2">
+		<ul class="rounded-xl bg-stone-800 p-1">
 			<li class="m-1 decoration-0">
 				<a href="/info">info</a>
 			</li>
@@ -48,25 +48,29 @@
 				<a href="/posts">posts</a>
 			</li>
 		</ul>
-	</nav>
+	</div>
 {/snippet}
 
 <!-- end snippets -->
 
-<main id="app">
-	<section id="title" class="flex justify-center items-center">
-		<h3 class="m-4 font-thin text-cyan-400 uppercase">agora</h3>
-	</section>
-	<section id="username-context" class="flex justify-center items-center">
-		<h5 class="m-4 font-bold text-cyan-200 lowercase">{username}</h5>
-	</section>
-	<section id="ping-test" class="flex justify-center items-center">
-		<article>
+<div id="app" class="flex items-center justify-center">
+	<header id="title" class="m-4">
+		<h3 class="p-1 font-thin text-cyan-400 uppercase">agora</h3>
+		<nav id="nav-card" class="m-0.5">
 			{#if !ping.status}
 				{@render awaitCard()}
 			{:else}
 				{@render navCard()}
 			{/if}
-		</article>
-	</section>
-</main>
+		</nav>
+	</header>
+	<main>
+		<!-- TODO -->
+	</main>
+	<footer id="username-context" class="fixed bottom-0 items-center justify-center">
+		<h6 class="m-4 font-bold text-cyan-200 lowercase">
+			<span class="mr-1 text-sm font-extralight text-stone-400">guest:</span>
+			{username}
+		</h6>
+	</footer>
+</div>

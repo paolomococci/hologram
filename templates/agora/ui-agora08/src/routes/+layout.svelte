@@ -4,6 +4,7 @@
 
 	let { children } = $props()
 
+	// Set context of username
 	const username = 'John Doe'
 	setContext('username', username)
 </script>
