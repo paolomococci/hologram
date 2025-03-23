@@ -18,7 +18,6 @@ function App() {
 						/>
 					</a>
 				</nav>
-				{/* prose-base md:prose-lg lg:prose-xl */}
 				<h1 className="text-sm font-light text-purple-600 uppercase md:text-xl lg:text-2xl">
 					agora
 				</h1>
