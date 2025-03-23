@@ -22,7 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-*.svg
 *.csv
 package-lock.json
 .env

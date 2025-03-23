@@ -2,27 +2,15 @@
 
 ```bash
 cd /var/www/html/agora-project/
-npm create vite@latest
-cd ui-agora01
+npm create vite@latest ui-agora01 -- --template react-swc-ts
+cd ui-agora01/
 npm install
 ```
 
 ## add Tailwind 4
 
 ```bash
-npm install tailwindcss @tailwindcss/vite
-```
-
-### setup of `tailwind.config.js` like this:
-
-```js
-import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite'
-export default defineConfig({
-  plugins: [
-    tailwindcss(),
-  ],
-})
+npm install tailwindcss @tailwindcss/vite @tailwindcss/typography
 ```
 
 ### import Tailwind CSS
@@ -30,41 +18,27 @@ export default defineConfig({
 Add `@import` into `/src/index.css` file like this:
 
 ```css
-@import "tailwindcss";
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 ```
 
 At this point, it is necessary to edit file `vite.config.js` in the following manner:
 
 ```js
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite' // add this line
+import react from '@vitejs/plugin-react-swc'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(), // add this line
-  ],
+	plugins: [react(), tailwindcss()],
 })
-```
-
-## install React router dom
-
-```bash
-npm i react-router-dom
-```
-
-## install Axios
-
-```bash
-npm i axios
 ```
 
 ## install the icons `lucide-react`
 
 ```bash
-npm i lucide-react
+npm install lucide-react
 ```
 
 ## check the licenses of the packages used
@@ -83,36 +57,6 @@ Now it's time to fix the permissions:
 
 ```bash
 chown --recursive developer_username:apache .
-```
-
-## some tips
-
-### to prevent the final semicolon from being automatically inserted
-
-Edit the `.prettierrc` file as follows:
-
-```conf
-{
-    "semi": false
-}
-```
-
-### how to center elements horizontally and vertically with Tailwind
-
-```html
-<div class="flex justify-center items-center h-screen"></div>
-```
-
-### how to center elements vertically with Tailwind
-
-```html
-<div class="flex items-center h-screen"></div>
-```
-
-### how to center elements horizontally with Tailwind
-
-```html
-<div class="flex justify-center items-center"></div>
 ```
 
 ### how to insert arbitrary file into build directory

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="100"
+   height="100"
+   viewBox="-64 -64 100 100"
+   version="1.1"
+   id="star"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs9">
+    <radialGradient
+       id="radial1"
+       cx="0"
+       y1="0%"
+       cy="0"
+       r="4000"
+       fx="0"
+       fy="0"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0%"
+         style="stop-color:#fc0;stop-opacity:0.55"
+         id="stop2" />
+      <stop
+         offset="10%"
+         style="stop-color:#fff;stop-opacity:0.35"
+         id="stop4" />
+      <stop
+         offset="20%"
+         style="stop-color:#000;stop-opacity:0.25"
+         id="stop6" />
+    </radialGradient>
+  </defs>
+  <polygon
+     points="0,-50 -20,-20 -50,0 -20,20 0,50 20,20 50,0 20,-20 "
+     fill="url(#radial1)"
+     id="polygon11"
+     style="fill:url(#radial1)"
+     transform="translate(-14,-14)" />
+</svg>
