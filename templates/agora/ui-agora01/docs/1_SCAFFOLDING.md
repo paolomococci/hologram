@@ -114,3 +114,43 @@ Edit the `.prettierrc` file as follows:
 ```html
 <div class="flex justify-center items-center"></div>
 ```
+
+### how to insert arbitrary file into build directory
+
+Just put the file of interest in the `static` directory.
+
+### how to prevent `Not Found` error when the application is served by a real web server
+
+To prevent 404 error given by the routing mechanism provided by the framework when the application is running on a real web server just insert a properly edited `.htaccess` file into the `static` directory.
+
+For example something like the following `.htaccess` file:
+
+```conf
+DirectoryIndex index.html
+
+RewriteEngine On
+
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.html [L]
+```
+
+### check for updates
+
+When I need to update to the latest release:
+
+```bash
+su -
+node -v
+npm view node version
+npm cache clean -f
+npm install -g n
+n stable
+npm -v
+npm view npm version
+npm install -g npm@latest
+tsc --version
+npm install -g typescript@latest
+exit
+```
