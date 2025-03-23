@@ -36,7 +36,7 @@ Origin: https://ui-agora08.hologram-srv.local
 ## to get the post with id 1
 ## curl --insecure --verbose --header "Origin: https://ui-fake.local" --request GET https://api-agora01.hologram-srv.local/api/posts/1
 ## preflight request
-## curl --insecure --verbose --header "Origin: https://ui-fake.local" --header "Access-Control-Request-Method: POST" --header "Access-Control-Request-Headers: X-Requested-With" --request OPTIONS https://api-agora01.hologram-srv.local/api/posts
+## curl --insecure --verbose --header "Origin: https://ui-fake.local" --header "Access-Control-Request-Method: POST" --header "Access-Control-Request-Headers: X-Requested-With" --request OPTIONS https://api-agora01.hologram-srv.local/api/posts/1
 
 GET {{API-AGORA01_HostAddress}}/api/posts/1
 Accept: application/json
@@ -47,7 +47,7 @@ Origin: https://ui-agora08.hologram-srv.local
 ## to get the post with id 1
 ## curl --insecure --verbose --header "Origin: https://ui-fake.local" --request GET https://api-agora01.hologram-srv.local/api/posts/1
 ## preflight request
-## curl --insecure --verbose --header "Origin: https://ui-fake.local" --header "Access-Control-Request-Method: POST" --header "Access-Control-Request-Headers: X-Requested-With" --request OPTIONS https://api-agora01.hologram-srv.local/api/posts
+## curl --insecure --verbose --header "Origin: https://ui-fake.local" --header "Access-Control-Request-Method: POST" --header "Access-Control-Request-Headers: X-Requested-With" --request OPTIONS https://api-agora01.hologram-srv.local/api/posts/1
 
 GET {{API-AGORA01_HostAddress}}/api/posts/1
 Accept: application/json
@@ -64,6 +64,14 @@ Origin: https://ui-agora08.hologram-srv.local
 ## curl --insecure --verbose --header "Accept: application/json" --header "Origin: https://ui-agora08.hologram-srv.local" --request GET https://api-agora01.hologram-srv.local/api/ping
 
 GET {{API-AGORA01_HostAddress}}/api/ping
+Accept: application/json
+Origin: https://ui-agora08.hologram-srv.local
+
+### api/paginate
+
+## curl --insecure --verbose --header "Accept: application/json" --header "Origin: https://ui-agora08.hologram-srv.local" --request GET https://api-agora01.hologram-srv.local/api/paginate/1?filter=alice
+
+GET {{API-AGORA01_HostAddress}}/api/paginate/1?filter=alice
 Accept: application/json
 Origin: https://ui-agora08.hologram-srv.local
 
