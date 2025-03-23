@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import agoraLogo from './assets/star.svg'
 import { Plus } from 'lucide-react'
 import './App.css'
+import AgoraLogo from './lib/components/AgoraLogo'
 
 function App() {
 	const [count, setCount] = useState(0)
@@ -11,11 +11,7 @@ function App() {
 			<header>
 				<nav className="flex justify-center items-center">
 					<a href="#" target="_blank">
-						<img
-							src={agoraLogo}
-							className="scale-150 hover:scale-200 animate-[spin_3s_ease-in-out_infinite] logo"
-							alt="agora"
-						/>
+						<AgoraLogo />
 					</a>
 				</nav>
 				<h1 className="text-sm font-light text-purple-600 uppercase md:text-xl lg:text-2xl">
@@ -36,7 +32,7 @@ function App() {
 			</main>
 
 			<footer className="card" id="info-note">
-				<div className="fixed right-0 bottom-0 left-0 justify-center items-center">
+				<div className="fixed right-0 left-0 bottom-2 justify-center items-center">
 					<p className="m-2 text-xs font-semibold text-purple-400 md:text-base lg:text-xl">
 						For changes to this view the first file to edit is almost always:{' '}
 						<code className="font-mono text-purple-300">src/App.tsx</code>.
