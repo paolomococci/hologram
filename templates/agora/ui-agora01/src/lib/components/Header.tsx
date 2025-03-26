@@ -11,9 +11,9 @@ import { Navbar } from "./Navbar"
 function Header({title = ""}) {
     return (
         <>
-            <header>
+            <header className="navbar">
                 <Navbar />
-                <h3 className="text-xs font-light text-purple-200 uppercase md:text-sm lg:text-lg">
+                <h3 className="text-sm font-light text-purple-200 uppercase md:text-lg lg:text-xl">
                     {title}
                 </h3>
             </header>

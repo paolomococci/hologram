@@ -6,7 +6,7 @@ export const Landing = () => {
 
     return (
         <>
-            <header>
+            <header className="navbar">
                 <Navbar />
                 {/* title */}
                 <h1 className="text-sm font-light text-purple-600 uppercase md:text-xl lg:text-2xl">

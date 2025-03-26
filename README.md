@@ -14,7 +14,7 @@ In fact, you can see that there are five different declinations of the same fron
 
 Thanks to the React library:
 
-![developed thanks to the React library](templates/agora/ui-agora01/screenshots/screenshot_ui-agora01_mobile_first_loaded.png)
+![developed thanks to the React library](templates/agora/ui-agora01/screenshots/screenshot_ui-agora01_mobile_first_landing.png)
 
 Thanks to the Vue framework:
 
