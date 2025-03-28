@@ -38,6 +38,9 @@ Origin: https://ui-agora01.hologram-srv.local
 ## preflight request
 ## curl --insecure --verbose --header "Origin: https://ui-fake.local" --header "Access-Control-Request-Method: POST" --header "Access-Control-Request-Headers: X-Requested-With" --request OPTIONS https://api-agora01.hologram-srv.local/api/posts/1
 
+## browser console example
+## fetch("https://api-agora01.hologram-srv.local/api/posts/1").then(response => response.json()).then(data => console.log('Data: ', data))
+
 GET {{API-AGORA01_HostAddress}}/api/posts/1
 Accept: application/json
 Origin: https://ui-agora01.hologram-srv.local
@@ -55,13 +58,20 @@ Origin: https://ui-fake.local
 
 ### sanctum/csrf-cookie
 
+## browser console example
+## fetch("https://api-agora01.hologram-srv.local/sanctum/csrf-cookie").then(response => console.log(response))
+
 GET {{API-AGORA01_HostAddress}}/sanctum/csrf-cookie
 Accept: application/json
 Origin: https://ui-agora01.hologram-srv.local
 
 ### api/ping
 
+## terminal example
 ## curl --insecure --verbose --header "Accept: application/json" --header "Origin: https://ui-agora01.hologram-srv.local" --request GET https://api-agora01.hologram-srv.local/api/ping
+
+## browser console example
+## fetch("https://api-agora01.hologram-srv.local/api/ping").then(response => response.json()).then(data => console.log('Data: ', data))
 
 GET {{API-AGORA01_HostAddress}}/api/ping
 Accept: application/json
@@ -69,7 +79,13 @@ Origin: https://ui-agora01.hologram-srv.local
 
 ### api/paginate
 
+## terminal example
 ## curl --insecure --verbose --header "Accept: application/json" --header "Origin: https://ui-agora01.hologram-srv.local" --request GET https://api-agora01.hologram-srv.local/api/paginate/1?filter=alice
+
+## browser console example
+## fetch("https://api-agora01.hologram-srv.local/api/posts").then(response => response.json()).then(data => console.log('Data: ', data))
+## fetch("https://api-agora01.hologram-srv.local/api/paginate/1?filter=alice").then(response => response.json()).then(data => console.log('Data: ', data))
+## fetch("https://api-agora01.hologram-srv.local/api/paginate/1?filter=alice").then(response => response.json()).then(data => console.log('Data: ', data)).catch(error => console.error(error))
 
 GET {{API-AGORA01_HostAddress}}/api/paginate/1?filter=alice
 Accept: application/json

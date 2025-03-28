@@ -1,8 +1,8 @@
 const ENV = {
     baseUrl: "https://api-agora01.hologram-srv.local/",
+    baseApiUrl: "https://api-agora01.hologram-srv.local/api/",
     paginateUrl: "https://api-agora01.hologram-srv.local/api/paginate/",
-    postsUrl: "https://api-agora01.hologram-srv.local/api/posts",
-    cardUriBase: "https://api-agora01.hologram-srv.local/api/posts/"
+    baseCsrfCookieUrl: "https://api-agora01.hologram-srv.local/sanctum/",
 }
 
 export default ENV

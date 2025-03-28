@@ -1,6 +1,6 @@
 # `ui-agora01` web user interface application
 
-This is a frontend web application developed using Vite, React and Tailwind CSS written in TypeScript programming language.
+This is a frontend web application developed using Vite, React and Tailwind CSS written primarily in programming language TypeScript and, pragmatically, something in language JavaScript.
 
 A screenshot of what my starting code produces:
 

@@ -19,18 +19,18 @@ To begin, I edit `src/main.tsx` as follows:
 import "./index.css"
 import ReactDOM from "react-dom/client"
 import { BrowserRouter, Routes, Route } from "react-router"
-import { Landing } from "./lib/components/Landing.tsx"
-import { Info } from "./lib/components/Info.tsx"
-import { Posts } from "./lib/components/Posts.tsx"
+import { LandingView } from "./lib/components/views/LandingView.tsx"
+import { InfoView } from "./lib/components/views/InfoView.tsx"
+import { PostsView } from "./lib/components/views/PostsView.tsx"
 
 const root = document.getElementById("root")
 
 ReactDOM.createRoot(root!).render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Landing />} />
-      <Route path="info" element={<Info />} />
-      <Route path="posts" element={<Posts />} />
+      <Route path="/" element={<LandingView />} />
+      <Route path="info" element={<InfoView />} />
+      <Route path="posts" element={<PostsView />} />
     </Routes>
   </BrowserRouter>
 )
@@ -68,6 +68,18 @@ export default defineConfig({
 
 ```bash
 npm install lucide-react
+```
+
+## add `Redux Toolkit`
+
+```bash
+npm install @reduxjs/toolkit
+```
+
+## add `react-redux`
+
+```bash
+npm install react-redux
 ```
 
 ## check the licenses of the packages used

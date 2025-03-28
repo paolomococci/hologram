@@ -13,7 +13,7 @@ function Header({title = ""}) {
         <>
             <header className="navbar">
                 <Navbar />
-                <h3 className="text-sm font-light text-purple-200 uppercase md:text-lg lg:text-xl">
+                <h3 className="mb-2 text-sm font-light text-purple-200 uppercase md:text-lg lg:text-xl">
                     {title}
                 </h3>
             </header>

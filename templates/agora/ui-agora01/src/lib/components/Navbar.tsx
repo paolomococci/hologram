@@ -6,7 +6,7 @@ export const Navbar = () => {
 
     return (
         <>
-            <nav className="flex justify-center items-center">
+            <nav className="mt-2 flex justify-center items-center">
                 <To path="/" inner="landing" onSite={onSite} />
                 <To path="/info" inner="info" onSite={onSite} />
                 <To path="/posts" inner="posts" onSite={onSite} />
