@@ -10,6 +10,10 @@ A screenshot of info page:
 
 ![ui-agora01](./screenshots/screenshot_ui-agora01_mobile_first_info.png)
 
-First screenshot of posts:
+First screenshot of loading posts:
 
-![ui-agora01](./screenshots/screenshot_ui-agora01_mobile_first_posts.png)
+![ui-agora01](./screenshots/screenshot_ui-agora01_mobile_first_posts_loading.png)
+
+First screenshot of loaded posts:
+
+![ui-agora01](./screenshots/screenshot_ui-agora01_mobile_first_posts_loaded.png)

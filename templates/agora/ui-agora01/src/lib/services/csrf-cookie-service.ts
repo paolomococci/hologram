@@ -6,9 +6,9 @@ export const csrfCookieApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: ENV.baseCsrfCookieUrl
     }),
-    endpoints: (builder) => ({
+    endpoints: (build) => ({
         // This query requires csrf-cookie:
-        getCsrfCookie: builder.query({
+        getCsrfCookie: build.query<void, void>({
             query: () => "csrf-cookie"
         }),
     })

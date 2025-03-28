@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { setupListeners } from "@reduxjs/toolkit/query"
-import { jsonApiPosts } from "../services/posts-service.js"
+import { jsonApiPosts } from "../services/posts-service.ts"
 
 export const postsStore = configureStore({
   reducer: {

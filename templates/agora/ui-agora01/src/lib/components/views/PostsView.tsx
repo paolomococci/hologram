@@ -1,5 +1,5 @@
 import Header from '../Header'
-import { postsStore } from '../../stores/posts-store.js'
+import { postsStore } from '../../stores/posts-store.ts'
 import { Provider } from 'react-redux'
 import { PostsPaginatorView } from './PostsPaginatorView'
 
