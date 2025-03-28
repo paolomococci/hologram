@@ -47,20 +47,20 @@ npm install tailwindcss @tailwindcss/vite @tailwindcss/typography
 Add `@import` into `/src/index.css` file like this:
 
 ```css
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin '@tailwindcss/typography';
 ```
 
 At this point, it is necessary to edit file `vite.config.js` in the following manner:
 
 ```js
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react-swc"
+import tailwindcss from "@tailwindcss/vite"
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss()]
 })
 ```
 

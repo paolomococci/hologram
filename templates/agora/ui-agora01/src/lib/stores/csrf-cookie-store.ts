@@ -4,9 +4,10 @@ import { csrfCookieApi } from "../services/csrf-cookie-service.ts"
 
 export const csrfCookieStore = configureStore({
   reducer: {
-    [csrfCookieApi.reducerPath]: csrfCookieApi.reducer,
+    [csrfCookieApi.reducerPath]: csrfCookieApi.reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(csrfCookieApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(csrfCookieApi.middleware)
 })
 
 setupListeners(csrfCookieStore.dispatch)
