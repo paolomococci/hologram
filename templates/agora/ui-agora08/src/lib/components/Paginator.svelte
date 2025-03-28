@@ -4,7 +4,6 @@
 	import { writable } from 'svelte/store'
 	import { getPosts } from '$lib/hooks/fetch-posts'
 	import { postStore, isDetails } from '$lib/stores/posts-store'
-	import Dice_1 from 'lucide-svelte/icons/dice-1'
 
 	const postsPerPage = 10
 	const currentPage = writable(1)
@@ -66,7 +65,7 @@
 				console.log('Posts: ', posts)
 				console.log('Current page: ', $currentPage)
 			}}
-			class="my-1.5 mr-0 ml-1.5 cursor-pointer rounded-l-lg bg-cyan-900 p-1.5 text-xs text-slate-400 disabled:cursor-not-allowed sm:text-sm md:my-2 md:ml-2 md:p-2 md:text-base lg:my-3.5 lg:ml-3.5 lg:p-3.5 lg:text-lg"
+			class="p-1.5 my-1.5 mr-0 ml-1.5 text-xs bg-cyan-900 rounded-l-lg cursor-pointer text-slate-400 disabled:cursor-not-allowed sm:text-sm md:my-2 md:ml-2 md:p-2 md:text-base lg:my-3.5 lg:ml-3.5 lg:p-3.5 lg:text-lg"
 			>Prev</button
 		>
 		<input
@@ -78,7 +77,7 @@
 				retrievePosts(1, textOfFilter)
 				$currentPage = 1
 			}}
-			class="bg-cyan-900 p-1.5 text-center text-xs text-slate-400 disabled:cursor-not-allowed sm:text-sm md:p-2 md:text-base lg:p-3.5 lg:text-lg"
+			class="p-1.5 text-xs text-center bg-cyan-900 text-slate-400 disabled:cursor-not-allowed sm:text-sm md:p-2 md:text-base lg:p-3.5 lg:text-lg"
 		/>
 		<button
 			id="next"
@@ -90,7 +89,7 @@
 				console.log('Posts: ', posts)
 				console.log('Current page: ', $currentPage)
 			}}
-			class="my-1.5 mr-1.5 ml-0 cursor-pointer rounded-r-lg bg-cyan-900 p-1.5 text-xs text-slate-400 disabled:cursor-not-allowed sm:text-sm md:my-2 md:mr-2 md:p-2 md:text-base lg:my-3.5 lg:mr-3.5 lg:p-3.5 lg:text-lg"
+			class="p-1.5 my-1.5 mr-1.5 ml-0 text-xs bg-cyan-900 rounded-r-lg cursor-pointer text-slate-400 disabled:cursor-not-allowed sm:text-sm md:my-2 md:mr-2 md:p-2 md:text-base lg:my-3.5 lg:mr-3.5 lg:p-3.5 lg:text-lg"
 			>Next</button
 		>
 	</section>
