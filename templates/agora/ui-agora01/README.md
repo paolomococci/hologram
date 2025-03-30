@@ -17,3 +17,7 @@ First screenshot of loading posts:
 First screenshot of loaded posts:
 
 ![ui-agora01](./screenshots/screenshot_ui-agora01_mobile_first_posts_loaded.png)
+
+Screenshot of a focused post:
+
+![ui-agora01](./screenshots/screenshot_ui-agora01_mobile_first_post_focused.png)

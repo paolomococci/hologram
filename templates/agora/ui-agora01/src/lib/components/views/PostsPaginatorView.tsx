@@ -23,11 +23,7 @@ export const PostsPaginatorView = () => {
   } else {
     return (
       <>
-        <div className="mt-32">
-          {data?.map((post) => (
-            <div key={post.id}>{post.title}</div>
-          ))}
-        </div>
+        {/* TODO */}
       </>
     )
   }

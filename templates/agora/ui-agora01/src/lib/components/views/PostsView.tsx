@@ -1,7 +1,7 @@
 import Header from "../Header"
 import { postsStore } from "../../stores/posts-store.ts"
 import { Provider } from "react-redux"
-import { PostsPaginatorView } from "./PostsPaginatorView"
+import { AllPostsView } from "../views/AllPostsView.tsx"
 
 export const PostsView = () => {
   return (
@@ -11,7 +11,7 @@ export const PostsView = () => {
       </header>
 
       <Provider store={postsStore}>
-        <PostsPaginatorView />
+        <AllPostsView />
       </Provider>
     </>
   )
