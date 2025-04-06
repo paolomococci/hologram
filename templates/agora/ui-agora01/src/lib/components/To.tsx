@@ -1,9 +1,15 @@
+import { FC } from "react"
 import { Link } from "react-router"
+import Anchor from "../interfaces/anchor"
 
-export const To = ({ path = "/", query = "", onSite = "", inner = "" }) => {
-  const isOnSite: boolean = path.split("/").pop() === onSite
+export const To: FC<Anchor> = ({
+  path = "/",
+  query = "",
+  onSite = "",
+  inner = ""
+}) => {
+  const isOnSite: boolean = path?.split("/").pop() === onSite
   const url: string = isOnSite ? "" : path
-  // console.log(`path: ${path}, onSite: ${onSite}, isOnSite: ${isOnSite}`)
 
   if (!isOnSite) {
     return (

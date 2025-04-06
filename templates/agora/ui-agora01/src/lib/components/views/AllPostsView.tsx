@@ -1,12 +1,12 @@
 import { useGetPostsQuery } from "../../services/posts-service.ts"
 import { Loader } from "lucide-react"
 import type Article from "../../interfaces/post.ts"
-import { useState } from "react"
+import { FC, useState } from "react"
 import Post from "../../interfaces/post.ts"
 
-export const AllPostsView = () => {
+export const AllPostsView: FC = () => {
   const { data, error, isLoading } = useGetPostsQuery()
-  const [isPostSelected, setIsPostSelected] = useState(true)
+  const [isPostSelected, setIsPostSelected] = useState<boolean>(true)
 
   const tempPost: Post = {
     id: 0,
@@ -16,12 +16,17 @@ export const AllPostsView = () => {
     updated_at: new Date()
   }
 
-  const [focusedPost, setFocusedPost] = useState(tempPost)
+  const [focusedPost, setFocusedPost] = useState<Post>(tempPost)
 
   console.log("Is Loading: ", isLoading)
   console.log("Error: ", error)
-  // console.dir("Data: ", data)
+  console.dir("Data: ", data)
 
+  /**
+   * to view the single post
+   * 
+   * @param post 
+   */
   function handleClick(post: Article) {
     console.log("Handle click over a title of post: ", post)
     setFocusedPost(post)
@@ -63,7 +68,7 @@ export const AllPostsView = () => {
             </h6>
           </article>
         </section>
-        <section id="posts-view" hidden={!isPostSelected} className="mt-36 z-10">
+        <section id="posts-view" hidden={!isPostSelected} className="mt-36 mb-36 z-10">
           {data?.map((post) => (
             <article
               key={post.id}

@@ -4,8 +4,9 @@ import { Navbar } from "../Navbar"
 import { Provider } from "react-redux"
 import { csrfCookieStore } from "../../stores/csrf-cookie-store.ts"
 import { CsrfCookieConsole } from "../console/CsrfCookieConsole.tsx"
+import { FC } from "react"
 
-export const LandingView = () => {
+export const LandingView: FC = () => {
   return (
     <>
       <Provider store={csrfCookieStore}>

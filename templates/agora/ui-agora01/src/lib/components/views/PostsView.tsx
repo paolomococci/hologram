@@ -1,9 +1,10 @@
 import Header from "../Header"
 import { postsStore } from "../../stores/posts-store.ts"
 import { Provider } from "react-redux"
-import { AllPostsView } from "../views/AllPostsView.tsx"
+import { PaginatorView } from "./PaginatorView.tsx"
+import { FC } from "react"
 
-export const PostsView = () => {
+export const PostsView: FC = () => {
   return (
     <>
       <header className="mb-2">
@@ -11,7 +12,7 @@ export const PostsView = () => {
       </header>
 
       <Provider store={postsStore}>
-        <AllPostsView />
+        <PaginatorView />
       </Provider>
     </>
   )

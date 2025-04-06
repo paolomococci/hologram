@@ -1,7 +1,8 @@
 // import { Link } from 'react-router'
+import { FC } from "react"
 import { To } from "./To"
 
-export const Navbar = () => {
+export const Navbar: FC = () => {
   const onSite = document.documentURI.split("/").pop()
 
   return (

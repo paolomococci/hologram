@@ -1,6 +1,7 @@
+import { FC } from "react"
 import Header from "../Header"
 
-export const InfoView = () => {
+export const InfoView: FC = () => {
   return (
     <>
       <header className="mb-2">

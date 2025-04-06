@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { FC, useState } from "react"
 import { Plus } from "lucide-react"
 
-export const Counter = () => {
-  const [count, setCount] = useState(0)
+export const Counter: FC = () => {
+  const [count, setCount] = useState<number>(0)
 
   return (
     <>
