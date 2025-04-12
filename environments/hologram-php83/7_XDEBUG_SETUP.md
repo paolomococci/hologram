@@ -23,10 +23,10 @@ rm /usr/bin/php-config
 Otherwise, if this is the first installation from sources, we immediately move on to the following instructions:
 
 ```bash
-ln --symbolic --verbose /opt/php/8.3.19/bin/php /usr/bin/php
-ln --symbolic --verbose /opt/php/8.3.19/bin/phar.phar /usr/bin/phar
-ln --symbolic --verbose /opt/php/8.3.19/bin/phpize /usr/bin/phpize
-ln --symbolic --verbose /opt/php/8.3.19/bin/php-config /usr/bin/php-config
+ln --symbolic --verbose /opt/php/8.3.20/bin/php /usr/bin/php
+ln --symbolic --verbose /opt/php/8.3.20/bin/phar.phar /usr/bin/phar
+ln --symbolic --verbose /opt/php/8.3.20/bin/phpize /usr/bin/phpize
+ln --symbolic --verbose /opt/php/8.3.20/bin/php-config /usr/bin/php-config
 ```
 
 Update `locate` cache:
@@ -75,14 +75,14 @@ php --ini
 sudo -s
 updatedb
 locate xdebug.ini
-rnano /opt/php/8.3.19/lib/php.ini
+rnano /opt/php/8.3.20/lib/php.ini
 ```
 
 First it is a good idea to view the contents of the file without risking causing damage.
-And now I edit `/opt/php/8.3.19/lib/php.ini` configuration file
+And now I edit `/opt/php/8.3.20/lib/php.ini` configuration file
 
 ```bash
-nano /opt/php/8.3.19/lib/php.ini
+nano /opt/php/8.3.20/lib/php.ini
 ```
 
 I add this section:
