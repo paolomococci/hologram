@@ -85,7 +85,10 @@ Adding the following:
             "name": "Listen for Xdebug",
             "type": "php",
             "request": "launch",
-            "port": 9004
+            "port": 9004,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}/html",
+            }
         },
         {
             "name": "Launch currently open script",
