@@ -32,6 +32,8 @@ And if I want to compile PHP from source, if not previously installed, I will ne
 * libffi-dev
 * libzip-dev
 * libgd-dev
+* libpq-dev
+* libsodium-dev
 
 Additionally, it would be a good idea to make sure you have the following useful tools installed:
 
@@ -52,5 +54,7 @@ As follows, for example only:
 
 ```bash
 sudo apt update
-sudo apt install libcurl4-openssl-dev libbz2-dev libjpeg-dev libgmp3-dev libxslt1-dev libpng-dev libsqlite3-dev libonig-dev apache2-dev libxml2-dev libffi-dev libzip-dev libgd-dev sqlite3
+sudo apt install libcurl4-openssl-dev libbz2-dev libjpeg-dev libgmp3-dev libxslt1-dev \
+    libpng-dev libsqlite3-dev libonig-dev apache2-dev libxml2-dev libffi-dev libzip-dev \
+    libgd-dev sqlite3 libpq-dev libsodium-dev
 ```
