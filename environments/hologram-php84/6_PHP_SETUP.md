@@ -1,8 +1,8 @@
-# Apache 2 and PHP 8.4.6
+# Apache 2 and PHP 8.4.7
 
 Below we will explain the steps necessary to ensure that the Apache 2 web server uses PHP-FPM (FastCGI Process Manager) compiled from sources.
 
-## download PHP 8.4.6
+## download PHP 8.4.7
 
 ```bash
 cd ~
@@ -12,26 +12,26 @@ mkdir php && cd php
 First I can check the existence of the archive:
 
 ```bash
-wget --spider --https-only https://www.php.net/distributions/php-8.4.6.tar.xz
+wget --spider --https-only https://www.php.net/distributions/php-8.4.7.tar.xz
 ```
 
 After that I can download the archive containing the sources:
 
 ```bash
-wget --https-only https://www.php.net/distributions/php-8.4.6.tar.xz
+wget --https-only https://www.php.net/distributions/php-8.4.7.tar.xz
 ls -l
-sha256sum php-8.4.6.tar.xz
-tar -xf php-8.4.6.tar.xz
+sha256sum php-8.4.7.tar.xz
+tar -xf php-8.4.7.tar.xz
 ls -l
-cd php-8.4.6/
+cd php-8.4.7/
 ```
 
-## settings and compilation from PHP version 8.4.6 sources.
+## settings and compilation from PHP version 8.4.7 sources.
 
 ```bash
 mkdir build_session && cd build_session
 ../configure --help | grep -i "opcache"
-../configure --prefix=/opt/php/8.4.6 --enable-fpm --enable-bcmath --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug --with-ffi --with-zip
+../configure --prefix=/opt/php/8.4.7 --enable-fpm --enable-bcmath --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug --with-ffi --with-zip
 make
 make test
 sudo make install
@@ -43,24 +43,24 @@ cd ~
 ```bash
 su -
 cd ~
-find /home/developer_username/php/php-8.4.6 -iname 'php.ini*'
-cp /home/developer_username/php/php-8.4.6/php.ini-development /opt/php/8.4.6/lib/php.ini
-sed -i 's/;date.timezone =/date.timezone = "Europe\/Rome"/g' /opt/php/8.4.6/lib/php.ini
-sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /opt/php/8.4.6/lib/php.ini
-sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /opt/php/8.4.6/lib/php.ini
-grep -i "max_execution_time" /opt/php/8.4.6/lib/php.ini
-sed -i 's/max_execution_time = 30/max_execution_time = 100/g' /opt/php/8.4.6/lib/php.ini
-grep -i "upload_max_filesize" /opt/php/8.4.6/lib/php.ini
-sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/g' /opt/php/8.4.6/lib/php.ini
-cp /opt/php/8.4.6/etc/php-fpm.conf.default /opt/php/8.4.6/etc/php-fpm.conf
-sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.4.6/etc/php-fpm.conf
+find /home/developer_username/php/php-8.4.7 -iname 'php.ini*'
+cp /home/developer_username/php/php-8.4.7/php.ini-development /opt/php/8.4.7/lib/php.ini
+sed -i 's/;date.timezone =/date.timezone = "Europe\/Rome"/g' /opt/php/8.4.7/lib/php.ini
+sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /opt/php/8.4.7/lib/php.ini
+sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /opt/php/8.4.7/lib/php.ini
+grep -i "max_execution_time" /opt/php/8.4.7/lib/php.ini
+sed -i 's/max_execution_time = 30/max_execution_time = 100/g' /opt/php/8.4.7/lib/php.ini
+grep -i "upload_max_filesize" /opt/php/8.4.7/lib/php.ini
+sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/g' /opt/php/8.4.7/lib/php.ini
+cp /opt/php/8.4.7/etc/php-fpm.conf.default /opt/php/8.4.7/etc/php-fpm.conf
+sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.4.7/etc/php-fpm.conf
 ```
 
 Optionally I prefer to set the language option `short_open_tag` to `On`:
 
 ```bash
-grep -i "short_open_tag = Off" /opt/php/8.4.6/lib/php.ini
-sed -i 's/short_open_tag = Off/short_open_tag = On/g' /opt/php/8.4.6/lib/php.ini
+grep -i "short_open_tag = Off" /opt/php/8.4.7/lib/php.ini
+sed -i 's/short_open_tag = Off/short_open_tag = On/g' /opt/php/8.4.7/lib/php.ini
 ```
 
 ## check of privileged and system user identifiers
@@ -72,10 +72,10 @@ cat /etc/passwd | grep 'apache'
 
 Obviously the `timezone` must be set in the most appropriate way because it depends on where the server is located.
 
-At the end of the `/opt/php/8.4.6/etc/php-fpm.conf` file
+At the end of the `/opt/php/8.4.7/etc/php-fpm.conf` file
 
 ```bash
-nano /opt/php/8.4.6/etc/php-fpm.conf
+nano /opt/php/8.4.7/etc/php-fpm.conf
 ```
 
 add the following lines:
@@ -89,15 +89,15 @@ group = apache
 But it is better to modify with sed and then check the result:
 
 ```bash
-sed -i '$auser = apache' /opt/php/8.4.6/etc/php-fpm.conf
-sed -i '$agroup = apache' /opt/php/8.4.6/etc/php-fpm.conf
-tail /opt/php/8.4.6/etc/php-fpm.conf
+sed -i '$auser = apache' /opt/php/8.4.7/etc/php-fpm.conf
+sed -i '$agroup = apache' /opt/php/8.4.7/etc/php-fpm.conf
+tail /opt/php/8.4.7/etc/php-fpm.conf
 ```
 
 Now copy `www.conf`:
 
 ```bash
-cp /opt/php/8.4.6/etc/php-fpm.d/www.conf.default /opt/php/8.4.6/etc/php-fpm.d/www.conf
+cp /opt/php/8.4.7/etc/php-fpm.d/www.conf.default /opt/php/8.4.7/etc/php-fpm.d/www.conf
 ls -al /usr/lib/systemd/system/ | grep -i "php-fpm.service"
 ```
 
@@ -109,13 +109,13 @@ nano /usr/lib/systemd/system/php-fpm.service
 
 ```text
 [Unit]
-Description=PHP 8.4.6 FastCGI Process Manager
+Description=PHP 8.4.7 FastCGI Process Manager
 After=network.target
 
 [Service]
 Type=simple
-PIDFile=/opt/php/8.4.6/var/run/php-fpm.pid
-ExecStart=/opt/php/8.4.6/sbin/php-fpm --nodaemonize --fpm-config /opt/php/8.4.6/etc/php-fpm.conf
+PIDFile=/opt/php/8.4.7/var/run/php-fpm.pid
+ExecStart=/opt/php/8.4.7/sbin/php-fpm --nodaemonize --fpm-config /opt/php/8.4.7/etc/php-fpm.conf
 ExecReload=/bin/kill -USR2 $MAINPID
 
 [Install]
@@ -125,14 +125,14 @@ WantedBy=multi-user.target
 Or better yet, if the file just needs modifications:
 
 ```bash
-sed -i 's/8.4.5/8.4.6/g' /usr/lib/systemd/system/php-fpm.service
+sed -i 's/8.4.6/8.4.7/g' /usr/lib/systemd/system/php-fpm.service
 ```
 
 Enable Zend OPcache:
 
 ```bash
-grep -i "zend_extension" /opt/php/8.4.6/lib/php.ini
-sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.4.6/lib/php.ini
+grep -i "zend_extension" /opt/php/8.4.7/lib/php.ini
+sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.4.7/lib/php.ini
 ```
 
 ## now I try to start the newly created service:
@@ -165,7 +165,7 @@ During the next step, I have to be very careful.
 I change the module's listening mode from socket TCP to socket UNIX:
 
 ```bash
-nano /opt/php/8.4.6/etc/php-fpm.d/www.conf
+nano /opt/php/8.4.7/etc/php-fpm.d/www.conf
 ```
 
 ```text
@@ -179,9 +179,9 @@ listen = 127.0.0.1:9000
 Similar to what was done before, it is better to modify with `sed` and then check the result:
 
 ```bash
-sed -i 's/^user = nobody/user = apache/g' /opt/php/8.4.6/etc/php-fpm.d/www.conf
-sed -i 's/^group = nobody/group = apache/g' /opt/php/8.4.6/etc/php-fpm.d/www.conf
-grep -i "listen = 127.0.0.1:9000" /opt/php/8.4.6/etc/php-fpm.d/www.conf
+sed -i 's/^user = nobody/user = apache/g' /opt/php/8.4.7/etc/php-fpm.d/www.conf
+sed -i 's/^group = nobody/group = apache/g' /opt/php/8.4.7/etc/php-fpm.d/www.conf
+grep -i "listen = 127.0.0.1:9000" /opt/php/8.4.7/etc/php-fpm.d/www.conf
 ```
 
 ## match FPM with Apache
@@ -289,7 +289,7 @@ systemctl restart httpd
 systemctl restart php-fpm
 systemctl status httpd --no-pager
 systemctl status php-fpm --no-pager
-tail -f /opt/php/8.4.6/var/log/php-fpm.log
+tail -f /opt/php/8.4.7/var/log/php-fpm.log
 tail -f /var/log/httpd/error_log
 exit
 ```
