@@ -25,6 +25,7 @@ dnf install yum-utils
 Add an existing user to administrators group:
 
 ```bash
+id developer_username
 usermod --append --groups wheel developer_username
 ```
 

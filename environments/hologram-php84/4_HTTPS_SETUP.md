@@ -14,6 +14,8 @@ systemctl status httpd
 systemctl enable httpd
 systemctl start httpd
 systemctl status httpd --no-pager
+id developer_username
+usermod --append --groups apache developer_username
 ```
 
 ### parameter for generate keys:
