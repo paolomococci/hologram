@@ -36,6 +36,14 @@ npm -v
 node -v
 ```
 
+### Install TypeScript, Angular and MathJax
+
+```bash
+npm i -g typescript
+npm i -g @angular/cli
+npm i -g mathjax @types/mathjax
+```
+
 ## update
 
 Later, when I need to update to the latest release:
