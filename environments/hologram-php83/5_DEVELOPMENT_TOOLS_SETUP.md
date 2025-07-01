@@ -32,6 +32,7 @@ And if I want to compile PHP from source, if not previously installed, I will ne
 * libffi-dev
 * libzip-dev
 * libgd-dev
+* libedit-dev
 
 Additionally, it would be a good idea to make sure you have the following useful tools installed:
 

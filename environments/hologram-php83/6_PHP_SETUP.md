@@ -31,7 +31,7 @@ cd php-8.3.22/
 ```bash
 mkdir build_session && cd build_session
 ../configure --help | grep -i "opcache"
-../configure --prefix=/opt/php/8.3.22 --enable-fpm --enable-bcmath --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug --with-ffi --with-zip --enable-pcntl
+../configure --prefix=/opt/php/8.3.22 --enable-fpm --enable-bcmath --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --with-pgsql=/usr/pgsql-17/bin --with-pdo-pgsql=/usr/pgsql-17/bin --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug --with-ffi --with-zip --enable-pcntl --with-libxml --enable-soap --enable-exif --with-readline --with-libedit
 make
 make test
 sudo make install
@@ -44,13 +44,16 @@ find ~/php/php-8.3.22 -iname 'php.ini*'
 sudo cp ~/php/php-8.3.22/php.ini-development /opt/php/8.3.22/lib/php.ini
 sudo sed -i 's/;date.timezone =/date.timezone = "Europe\/Rome"/g' /opt/php/8.3.22/lib/php.ini
 sudo sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /opt/php/8.3.22/lib/php.ini
-sudo sed -i 's/memory_limit = 128M/memory_limit = 256M/g' /opt/php/8.3.22/lib/php.ini
-grep -i "max_execution_time" /opt/php/8.3.22/lib/php.ini
-sudo sed -i 's/max_execution_time = 30/max_execution_time = 100/g' /opt/php/8.3.22/lib/php.ini
-grep -i "upload_max_filesize" /opt/php/8.3.22/lib/php.ini
-sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/g' /opt/php/8.3.22/lib/php.ini
-sudo cp /opt/php/8.3.22/etc/php-fpm.conf.default /opt/php/8.3.22/etc/php-fpm.conf
-sudo sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.3.22/etc/php-fpm.conf
+sudo sed -i 's/memory_limit = 128M/memory_limit = 512M/g' /opt/php/8.3.22/lib/php.ini
+sudo sed -i 's/max_execution_time = 30/max_execution_time = 600/g' /opt/php/8.3.22/lib/php.ini
+sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 256M/g' /opt/php/8.3.22/lib/php.ini
+sudo sed -i 's/short_open_tag = Off/short_open_tag = On/g' /opt/php/8.3.22/lib/php.ini
+sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.3.22/lib/php.ini
+sudo sed -i 's/;max_input_vars = 1000/max_input_vars = 10000/g' /opt/php/8.3.22/lib/php.ini
+sudo sed -i 's/post_max_size = 8M/post_max_size = 256M/g' /opt/php/8.3.22/lib/php.ini
+sudo sed -i 's/session.gc_divisor = 1000/session.gc_divisor = 100/g' /opt/php/8.3.22/lib/php.ini
+sudo sed -i 's/session.gc_maxlifetime = 1440/session.gc_maxlifetime = 14400/g' /opt/php/8.3.22/lib/php.ini
+sudo sed -i '$asession.hash_function = 0' /opt/php/8.3.22/lib/php.ini
 ```
 
 Optionally I prefer to set the language option `short_open_tag` to `On`:
