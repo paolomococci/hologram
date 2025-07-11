@@ -51,7 +51,7 @@ php -i | grep extension_dir
 
 Once I have found the above directory, I need to copy the file `imagick/modules/imagick.so` into it.
 
-Finally I need to add the following line to the settings file `/opt/php/8.2.28/lib/php.ini`:
+Finally I need to add the following line to the settings file `/opt/php/8.2.29/lib/php.ini`:
 
 ```ini
 extension="imagick.so"
@@ -60,5 +60,5 @@ extension="imagick.so"
 Of course I could open the above `ini` file with a text editor, or I can use the following command:
 
 ```bash
-sed -i '$aextension="imagick.so"' /opt/php/8.2.28/lib/php.ini
+sed -i '$aextension="imagick.so"' /opt/php/8.2.29/lib/php.ini
 ```
