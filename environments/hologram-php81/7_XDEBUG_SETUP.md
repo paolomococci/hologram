@@ -25,10 +25,10 @@ First, however, it is necessary to make PHP also usable from the command line.
 ## make PHP accessible globally not just from Apache
 
 ```bash
-ln --symbolic --verbose /opt/php/8.1.32/bin/php /usr/bin/php
-ln --symbolic --verbose /opt/php/8.1.32/bin/phar.phar /usr/bin/phar
-ln --symbolic --verbose /opt/php/8.1.32/bin/phpize /usr/bin/phpize
-ln --symbolic --verbose /opt/php/8.1.32/bin/php-config /usr/bin/php-config
+ln --symbolic --verbose /opt/php/8.1.33/bin/php /usr/bin/php
+ln --symbolic --verbose /opt/php/8.1.33/bin/phar.phar /usr/bin/phar
+ln --symbolic --verbose /opt/php/8.1.33/bin/phpize /usr/bin/phpize
+ln --symbolic --verbose /opt/php/8.1.33/bin/php-config /usr/bin/php-config
 ```
 
 Update `locate` cache:
@@ -76,14 +76,14 @@ php --ini
 sudo -s
 updatedb
 locate xdebug.ini
-rnano /opt/php/8.1.32/lib/php.ini
+rnano /opt/php/8.1.33/lib/php.ini
 ```
 
 First it is a good idea to view the contents of the file without risking causing damage.
-And now I edit `/opt/php/8.1.32/lib/php.ini` configuration file
+And now I edit `/opt/php/8.1.33/lib/php.ini` configuration file
 
 ```bash
-sudo nano /opt/php/8.1.32/lib/php.ini
+sudo nano /opt/php/8.1.33/lib/php.ini
 ```
 
 I add this section:
