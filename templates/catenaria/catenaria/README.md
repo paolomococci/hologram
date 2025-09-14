@@ -8,4 +8,4 @@ Mobile first:
 
 and browser view:
 
-![welcome on browser](./docs/screenshots/catenaria-php84.local_wolcome_viewport.png)
+![welcome on browser](./docs/screenshots/catenaria-php84.local_welcome_viewport.png)
