@@ -7,6 +7,14 @@ The procedures themselves may change or there may be more convenient ones.
 Therefore, it is always necessary to refer to the official documentation hosted on the sites of the programming languages, servers and tools mentioned from time to time.
 Thank you.
 
+## `tasks` developed thanks to React Native and displayed in the format mobile device
+
+![task list on mobile device](./examples/tasks/rn/tasks/screenshots/tasks_list_mobile_view.png "Task list on mobile device")
+
+![task new on mobile device](./examples/tasks/rn/tasks/screenshots/tasks_new_mobile_view.png "New task on mobile device")
+
+![task edit on mobile device](./examples/tasks/rn/tasks/screenshots/tasks_edit_mobile_view.png "Edit task on mobile device")
+
 ## `tasks` developed thanks to Flutter and displayed in the format mobile device
 
 ![task list on mobile device](./examples/tasks/flutter/tasks/screenshots/mobile/tasks_mobile_device_task_list_page.png "Task list on mobile device")
