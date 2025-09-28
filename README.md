@@ -9,11 +9,11 @@ Thank you.
 
 ## `tasks` developed thanks to React Native and displayed in the format mobile device
 
-![task list on mobile device](./examples/tasks/rn/tasks/screenshots/tasks_list_mobile_view.png "Task list on mobile device")
+![task list on mobile device](./examples/tasks/react-native/tasks/screenshots/tasks_list_mobile_view.png "Task list on mobile device")
 
-![task new on mobile device](./examples/tasks/rn/tasks/screenshots/tasks_new_mobile_view.png "New task on mobile device")
+![task new on mobile device](./examples/tasks/react-native/tasks/screenshots/tasks_new_mobile_view.png "New task on mobile device")
 
-![task edit on mobile device](./examples/tasks/rn/tasks/screenshots/tasks_edit_mobile_view.png "Edit task on mobile device")
+![task edit on mobile device](./examples/tasks/react-native/tasks/screenshots/tasks_edit_mobile_view.png "Edit task on mobile device")
 
 ## `tasks` developed thanks to Flutter and displayed in the format mobile device
 
