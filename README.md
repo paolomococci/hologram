@@ -7,6 +7,14 @@ The procedures themselves may change or there may be more convenient ones.
 Therefore, it is always necessary to refer to the official documentation hosted on the sites of the programming languages, servers and tools mentioned from time to time.
 Thank you.
 
+## `Tasks` developed using the open source Qt6 framework
+
+![task list](./examples/tasks/Qt6/Tasks/screenshots/Task_list.png "Task list on desktop device")
+
+![task new](./examples/tasks/Qt6/Tasks/screenshots/Task_new.png "New task on desktop device")
+
+![task edit](./examples/tasks/Qt6/Tasks/screenshots/Task_edit.png "Edit task on desktop device")
+
 ## `tasks` developed thanks to React Native and displayed in the format mobile device
 
 ![task list on mobile device](./examples/tasks/react-native/tasks/screenshots/tasks_list_mobile_view.png "Task list on mobile device")

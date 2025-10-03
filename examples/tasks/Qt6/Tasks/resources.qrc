@@ -1,0 +1,26 @@
+<RCC>
+  <qresource prefix="/">
+    <!-- QML root -->
+    <file>src/main.qml</file>
+
+    <!-- Pages -->
+    <file>src/pages/TaskListPage.qml</file>
+    <file>src/pages/NewTaskPage.qml</file>
+    <file>src/pages/EditTaskPage.qml</file>
+
+    <!-- Widgets -->
+    <file>src/widgets/ScaffoldWithAppBar.qml</file>
+    <file>src/widgets/TaskTile.qml</file>
+  </qresource>
+
+  <!-- Images -->
+  <qresource prefix="/images">
+    <file>assets/logo.svg</file>
+    <file>assets/icon.svg</file>
+  </qresource>
+
+  <!-- Style -->
+  <qresource prefix="/ui">
+    <file>assets/style.qss</file>
+  </qresource>
+</RCC>
