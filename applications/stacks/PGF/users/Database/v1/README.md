@@ -76,6 +76,8 @@ podman container ls --all --size
 podman exec --interactive --tty --privileged pgf-users-db-cntr-1-0 /bin/bash
 ```
 
+**It is worth clarifying that when creating the container I used the `--pull=never` flag because I already had the image on the host used during development.**
+
 ### open a shell shell in the container
 
 Examples of commands that can be typed in the container shell to verify the proper functioning of the service:
