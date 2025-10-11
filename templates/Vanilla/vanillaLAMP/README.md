@@ -80,7 +80,7 @@ chcon --recursive --type=container_file_t ./html/
 ls -ldZ ./html/
 ```
 
-**Be careful, if you don't adapt the X directory for use with containers the site will not work.**
+**Be careful, if you don't adapt the `html` directory for use with containers the site will not work.**
 
 ## image build
 
