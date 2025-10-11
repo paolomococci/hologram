@@ -67,7 +67,7 @@ RUN ln --symbolic --verbose /opt/php/8.4.13/bin/php /usr/bin/php && \
     ln --symbolic --verbose /opt/php/8.4.13/sbin/php-fpm /usr/bin/php-fpm
 
 ################################################################
-## 1.8 configure and compile Xdebug 3.4.5
+## 1.5 configure and compile Xdebug 3.4.5
 ################################################################
 RUN tar -xzf xdebug-3.4.5.tgz && \
     cd xdebug-3.4.5 && \
@@ -76,28 +76,18 @@ RUN tar -xzf xdebug-3.4.5.tgz && \
     make -j$(nproc) && make install
 
 ################################################################
-## 1.9 compile Node 22.20.0 from source
-################################################################
-RUN tar -xzf node-v22.20.0.tar.gz && \
-    cd node-v22.20.0 && \
-    chmod 755 ./configure && \
-    ./configure --verbose && \
-    make -j$(nproc) && \
-    make install
-
-################################################################
-## 1.10 install Composer (pre‑compiled)
+## 1.6 install Composer (pre‑compiled)
 ################################################################
 COPY bin/composer /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
 
 ################################################################
-## 1.11 copy php.ini file
+## 1.7 copy php.ini file
 ################################################################
 RUN cp /tmp/sources/php-8.4.13/php.ini-development /opt/php/8.4.13/lib/php.ini
 
 ################################################################
-## 1.12 cleanup build‑time deps
+## 1.8 cleanup build‑time deps
 ################################################################
 RUN apt-get purge -y build-essential autoconf libtool bison re2c pkg-config && \
     apt-get autoremove -y && \
@@ -189,7 +179,7 @@ RUN mkdir -p /etc/ssl/self_signed_certs && chmod 0755 /etc/ssl/self_signed_certs
 ## 2.7 copy self signed certificate
 ################################################################
 COPY ./conf/self-signed-certificates/ /etc/ssl/self_signed_certs
-RUN chmod 600 /etc/ssl/self_signed_certs/landing* && \
+RUN chmod 600 /etc/ssl/self_signed_certs/vanilla* && \
     chmod 700 /etc/ssl/self_signed_certs/echo_passphrase.sh
 
 ################################################################
@@ -225,48 +215,30 @@ RUN a2enmod proxy_fcgi ssl rewrite headers && a2enconf php-fpm
 RUN a2ensite default-ssl.conf
 
 ################################################################
-## 2.14 copy Node artifacts
-################################################################
-COPY --from=builder /usr/local/bin/node /usr/local/bin/node
-COPY --from=builder /usr/local/lib /usr/local/lib
-RUN ln -s /usr/local/lib/node_modules/corepack/dist/corepack.js /usr/local/bin/corepack && \
-    ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm && \
-    ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
-
-################################################################
-## 2.15  copy Composer
+## 2.14  copy Composer
 ################################################################
 COPY --from=builder /usr/local/bin/composer /usr/local/bin/composer
 
 ################################################################
-## 2.16 expand Node.js ecosystem
-################################################################
-## Install only if necessary.
-## So as not to unnecessarily weigh down the image
-# RUN npm i -g typescript
-# RUN npm i -g @angular/cli@latest
-# RUN npm i -g ember-cli
-
-################################################################
-## 2.17 volume & ports
+## 2.15 volume & ports
 ################################################################
 VOLUME ["/var/www/html"]
 EXPOSE 80 22 443 9003
 
 ################################################################
-## 2.18 scripts
+## 2.16 scripts
 ################################################################
 COPY scripts /usr/local/bin
 RUN chmod +x /usr/local/bin/setup.sh /usr/local/bin/start.sh
 
 ################################################################
-## 2.19 set root password from environment var
+## 2.17 set root password from environment var
 ################################################################
 ARG ROOT_PASSWORD
 ENV ROOT_PASSWORD=${ROOT_PASSWORD}
 
 ################################################################
-## 2.20 entry point
+## 2.18 entry point
 ################################################################
 # tini forwards signals, start.sh is the foreground process
 ENTRYPOINT ["tini","--"]
