@@ -11,7 +11,16 @@ For further documentation, please refer to the website of the working group and 
 
 In this example I try to customize an image named `lamp-vanilla-img:1.0`
 
-*This demo provides all the tools to develop an application from within, but does not use an external database. It simply stores the data in a SQLite file.*
+### sources
+
+*First of all, a directory with the sources must be prepared which will then be copied into the image thanks to the dockerfile and subsequently compiled.*
+
+It will therefore be necessary to obtain the following sources:
+
+* php-8.4.13.tar.xz
+* xdebug-3.4.5.tgz
+
+Then place them in the sources directory.
 
 ## create an example of container
 
