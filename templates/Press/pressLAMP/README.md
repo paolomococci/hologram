@@ -122,6 +122,13 @@ Here are all the instructions you need to customize an image and get the contain
 podman container ls --all
 podman run --volume $(pwd)/html:/var/www/html --detach --name lamp-press-cntr-1-0 --publish 8022:22 --publish 8080:80 --publish 8443:443 --publish 9003:9003 --pull=never lamp-press-img:1.0
 podman container ls --all --size
+podman exec --interactive --tty --privileged lamp-press-cntr-1-0 bash
+```
+
+Or, to interact directly with the container, you can also use a command similar to the following:
+
+```shell
+podman exec --interactive --tty --privileged lamp-press-cntr-1-0 sh
 ```
 
 ### login via OpenSSH from another host

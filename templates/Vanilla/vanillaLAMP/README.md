@@ -126,7 +126,7 @@ podman container ls --all --size
 podman exec --interactive --tty --privileged lamp-vanilla-cntr-1-0 bash
 ```
 
-Or you can also use a command similar to the following:
+Or, to interact directly with the container, you can also use a command similar to the following:
 
 ```shell
 podman exec --interactive --tty --privileged lamp-vanilla-cntr-1-0 sh
