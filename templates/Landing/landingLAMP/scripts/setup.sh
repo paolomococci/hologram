@@ -6,10 +6,20 @@ if [[ -n "${XDEBUG_CLIENT_HOST:-}" ]]; then
         /opt/php/8.4.13/lib/php.ini
 fi
 
+# create if not exists '/var/run/sshd' directory
+if [ ! -d /var/run/sshd ]; then
+    mkdir -p /var/run/sshd
+    chmod 755 /var/run/sshd/
+fi
+
 # setup OpenSSH
-mkdir /var/run/sshd
-chmod 755 /var/run/sshd/
-echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+if ! grep -qxF 'PermitRootLogin yes' /etc/ssh/sshd_config; then
+    if grep -qi '^PermitRootLogin' /etc/ssh/sshd_config; then
+        sed -ri 's/^[#[:space:]]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+    else
+        echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
+    fi
+fi
 
 # set root password: `pwgen -s 16 1` or `pwgen -s 20 1`
 if [[ -n "${ROOT_PASSWORD:-}" ]]; then
