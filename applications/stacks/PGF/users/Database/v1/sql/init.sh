@@ -8,53 +8,159 @@ EOSQL
 
 # opens a new connection directly to users_db
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname=users_db <<'EOSQL'
+
+-- create extension pgcrypto
+create extension if not exists pgcrypto;
+
+-- create a schema named as users_sc
 create schema if not exists users_sc;
 
 -- creates the users_sc.users table
 create table if not exists users_sc.users (
-    id integer generated always as identity primary key,
-    name text not null,
-    email text unique,
-    role text not null default 'guest',
+    id uuid primary key default gen_random_uuid(),
+    name varchar(64) not null,
+    email varchar(64) not null unique,
+    password_hash text not null,
+    role varchar(64) not null default 'guest',
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()
 );
 
+-- function that updates the value assigned to updated_at
+create or replace function users_sc.update_updated_at_column()
+returns trigger as $$
+begin
+    new.updated_at = now();
+    return new;
+end;
+$$ language plpgsql;
+
+-- create a trigger, the trigger name can be left without a schema
+create trigger set_updated_at
+before update on users_sc.users
+for each row
+-- schema qualification mandatory here
+execute function users_sc.update_updated_at_column();
+
+-- helper for idempotent creating users and bcrypt with configurable cost
+create or replace function users_sc.create_user(
+    p_name varchar,
+    p_email varchar,
+    p_password text,
+    p_role varchar default 'guest',
+    p_cost integer default 14
+) returns void language plpgsql as $$
+begin
+    insert into users_sc.users (name, email, password_hash, role)
+    values (p_name, p_email, crypt(p_password, gen_salt('bf', p_cost)), p_role)
+    on conflict (email) do nothing;
+end;
+$$;
+
+-- function that extracts the cost/work factor from a bcrypt hash
+create or replace function users_sc.bcrypt_cost_from_hash(p_hash text)
+returns integer language sql immutable as $$
+    select (regexp_matches(p_hash, '\$2[aby]?\$(\d{2})\$'))[1]::int
+$$;
+
+-- function that verifies credentials, to call during the login flow, for example: users_sc.verify_and_maybe_rehash(email, password)
+-- If the password is correct, it returns id;
+-- furthermore, if the cost of the stored hash is less than the target p_target_cost, it recalculates the hash with the new cost and updates the record (re-hash on login).
+create or replace function users_sc.verify_and_maybe_rehash(
+    p_email varchar,
+    p_password text,
+    p_target_cost integer default 14
+) returns integer language plpgsql as $$
+declare
+    v_id integer;
+    v_hash text;
+    v_cost integer;
+    v_new_hash text;
+begin
+    select id, password_hash into v_id, v_hash
+    from users_sc.users
+    where email = p_email;
+
+    if v_id is null then
+        return null;
+    end if;
+
+    -- verify password, crypt with stored hash
+    if v_hash = crypt(p_password, v_hash) then
+        -- correct password: check current cost
+        begin
+            v_cost := users_sc.bcrypt_cost_from_hash(v_hash);
+        exception when others then
+            -- if parsing fails, force the hash king
+            v_cost := null;
+        end;
+
+        if v_cost is null or v_cost < p_target_cost then
+            -- calculate hash with new salt and cost
+            v_new_hash := crypt(p_password, gen_salt('bf', p_target_cost));
+            UPDATE users_sc.users
+            SET password_hash = v_new_hash,
+                    updated_at = now()
+            where id = v_id;
+        end if;
+
+        return v_id;
+    else
+        return null;
+    end if;
+end;
+$$;
+
 -- populates the users_sc.users table with test data
-insert into users_sc.users (name, email, role) values
-    ('Oliver', 'oliver@example.local', 'operator'),
-    ('Dorothy', 'dorothy@example.local', 'guest'),
-    ('Charlotte', 'charlotte@example.local', 'guest'),
-    ('Harry', 'harry@example.local', 'guest'),
-    ('Amelia', 'amelia@example.local', 'admin'),
-    ('Jack', 'jack@example.local', 'user'),
-    ('Olivia', 'olivia@example.local', 'guest'),
-    ('George', 'george@example.local', 'operator'),
-    ('Isla', 'isla@example.local', 'user'),
-    ('Noah', 'noah@example.local', 'user'),
-    ('Mia', 'mia@example.local', 'guest'),
-    ('Leo', 'leo@example.local', 'guest'),
-    ('Sophia', 'sophia@example.local', 'operator'),
-    ('Emily', 'emily@example.local', 'admin'),
-    ('Henry', 'henry@example.local', 'guest'),
-    ('Sophie', 'sophie@example.local', 'operator'),
-    ('Freddie', 'freddie@example.local', 'guest'),
-    ('Lily', 'lily@example.local', 'operator'),
-    ('Thomas', 'thomas@example.local', 'guest'),
-    ('Grace', 'grace@example.local', 'guest'),
-    ('William', 'william@example.local', 'guest'),
-    ('James', 'james@example.local', 'user'),
-    ('Ava', 'ava@example.local', 'guest'),
-    ('Samuel', 'samuel@example.local', 'admin'),
-    ('Ella', 'ella@example.local', 'user'),
-    ('Benjamin', 'benjamin@example.local', 'operator'),
-    ('Abigail', 'abigail@example.local', 'guest'),
-    ('John', 'john@example.local', 'guest'),
-    ('Joshua', 'joshua@example.local', 'admin'),
-    ('Chloe', 'chloe@example.local', 'operator'),
-    ('Joseph', 'joseph@example.local', 'user'),
-    ('Zoe', 'zoe@example.local', 'guest'),
-    ('Daniel', 'daniel@example.local', 'user'),
-    ('Hannah', 'hannah@example.local', 'guest')
+
+-- group insertion method
+with vals(name, email, password_hash, role) as (
+        values
+        ('Oliver', 'oliver@example.local', 'OliverPa55w0r4', 'operator'),
+        ('Dorothy', 'dorothy@example.local', 'DorothyPa55w0r4', 'guest'),
+        ('Charlotte', 'charlotte@example.local', 'CharlottePa55w0r4', 'guest'),
+        ('Harry', 'harry@example.local', 'HarryPa55w0r4', 'guest'),
+        ('Amelia', 'amelia@example.local', 'AmeliaPa55w0r4', 'admin'),
+        ('Jack', 'jack@example.local', 'JackPa55w0r4', 'user'),
+        ('Olivia', 'olivia@example.local', 'OliviaPa55w0r4', 'guest'),
+        ('George', 'george@example.local', 'GeorgePa55w0r4', 'operator'),
+        ('Isla', 'isla@example.local', 'IslaPa55w0r4', 'user'),
+        ('Noah', 'noah@example.local', 'NoahPa55w0r4', 'user'),
+        ('Mia', 'mia@example.local', 'MiaPa55w0r4', 'guest'),
+        ('Leo', 'leo@example.local', 'LeoPa55w0r4', 'guest'),
+        ('Sophia', 'sophia@example.local', 'SophiaPa55w0r4', 'operator'),
+        ('Emily', 'emily@example.local', 'EmilyPa55w0r4', 'admin'),
+        ('Henry', 'henry@example.local', 'HenryPa55w0r4', 'guest'),
+        ('Sophie', 'sophie@example.local', 'SophiePa55w0r4', 'operator'),
+        ('Freddie', 'freddie@example.local', 'FreddiePa55w0r4', 'guest'),
+        ('Lily', 'lily@example.local', 'LilyPa55w0r4', 'operator'),
+        ('Thomas', 'thomas@example.local', 'ThomasPa55w0r4', 'guest'),
+        ('Grace', 'grace@example.local', 'GracePa55w0r4', 'guest'),
+        ('William', 'william@example.local', 'WilliamPa55w0r4', 'guest'),
+        ('James', 'james@example.local', 'JamesPa55w0r4', 'user'),
+        ('Ava', 'ava@example.local', 'AvaPa55w0r4', 'guest'),
+        ('Samuel', 'samuel@example.local', 'SamuelPa55w0r4', 'admin'),
+        ('Ella', 'ella@example.local', 'EllaPa55w0r4', 'user'),
+        ('Benjamin', 'benjamin@example.local', 'BenjaminPa55w0r4', 'operator'),
+        ('Abigail', 'abigail@example.local', 'AbigailPa55w0r4', 'guest'),
+        ('John', 'john@example.local', 'JohnPa55w0r4', 'guest'),
+        ('Joshua', 'joshua@example.local', 'JoshuaPa55w0r4', 'admin'),
+        ('Chloe', 'chloe@example.local', 'ChloePa55w0r4', 'operator'),
+        ('Joseph', 'joseph@example.local', 'JosephPa55w0r4', 'user'),
+        ('Zoe', 'zoe@example.local', 'ZoePa55w0r4', 'guest'),
+        ('Daniel', 'daniel@example.local', 'DanielPa55w0r4', 'user'),
+        ('Hannah', 'hannah@example.local', 'HannahPa55w0r4', 'guest'),
+        ('Lea', 'lea@example.local', 'LeaPa55w0r4', 'operator')
+) select users_sc.create_user(name, email, password_hash, role) from vals;
+
+-- simple method using repeated select batches
+select users_sc.create_user('Michael', 'michael@example.local', 'MichaelPa55w0r4', 'guest');
+select users_sc.create_user('Mikey', 'mikey@example.local', 'MikeyPa55w0r4', 'admin');
+
+-- direct entry method
+insert into users_sc.users (name, email, password_hash, role) values 
+    ('Jake', 'jake@example.local', crypt('JakePa55w0r4', gen_salt('bf',14)), 'admin'),
+    ('Liam', 'liam@example.local', crypt('LiamPa55w0r4', gen_salt('bf',14)), 'guest'),
+    ('Damian', 'damian@example.local', crypt('DamianPa55w0r4', gen_salt('bf',14)), 'guest')
 on conflict (email) do nothing;
 EOSQL
