@@ -30,6 +30,8 @@ podman run --detach --name my-hello-cntr-1-0 --publish 8080:8080 --pull=never my
 
 ### container operation checks from a host on the local network
 
+**Remember to write the actual IP address instead of the placeholder `192.168.XXX.XXX`**
+
 Thanks to `nmap`:
 
 ```shell
@@ -45,9 +47,10 @@ nc -vz -w 3 192.168.XXX.XXX 8080 | grep succeeded
 Using `curl`:
 
 ```shell
-curl http://192.168.XXX.XXX:8080/
+curl --head http://192.168.XXX.XXX:8080/
+curl --verbose http://192.168.XXX.XXX:8080/
 ```
 
 ## conclusions
 
-In practice, from an initial image of around 200 MB you move to an intermediate image of just over 300 MB and then conclude the build process with only 5.5 MB of image and not even 2.5 MB at runtime for the container derived from it.
+In practice, from an initial image of around _200 MB_ you move to an intermediate image of just over _300 MB_ and then conclude the build process with only _5.5 MB_ of image and not even _2.5 MB_ at runtime for the container derived from it.
