@@ -17,7 +17,7 @@ In this example I try to customize an image named `lamp-vanilla-img:1.0`
 
 It will therefore be necessary to obtain the following sources:
 
-* php-8.4.13.tar.xz
+* php-8.4.14.tar.xz
 * xdebug-3.4.5.tgz
 
 Then place them in the sources directory.

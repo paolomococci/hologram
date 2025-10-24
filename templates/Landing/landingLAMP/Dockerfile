@@ -26,12 +26,12 @@ COPY sources/ /tmp/sources
 WORKDIR /tmp/sources
 
 ################################################################
-## 1.3 configure and compile PHP 8.4.13
+## 1.3 configure and compile PHP 8.4.14
 ################################################################
-RUN tar -xf php-8.4.13.tar.xz && \
-    cd php-8.4.13 && \
+RUN tar -xf php-8.4.14.tar.xz && \
+    cd php-8.4.14 && \
     ./configure \
-    --prefix=/opt/php/8.4.13 \
+    --prefix=/opt/php/8.4.14 \
     --enable-fpm \
     --enable-bcmath \
     --enable-ftp \
@@ -60,11 +60,11 @@ RUN tar -xf php-8.4.13.tar.xz && \
 ################################################################
 ## 1.4 make symbolic links to php
 ################################################################
-RUN ln --symbolic --verbose /opt/php/8.4.13/bin/php /usr/bin/php && \
-    ln --symbolic --verbose /opt/php/8.4.13/bin/phar.phar /usr/bin/phar && \
-    ln --symbolic --verbose /opt/php/8.4.13/bin/phpize /usr/bin/phpize && \
-    ln --symbolic --verbose /opt/php/8.4.13/bin/php-config /usr/bin/php-config && \
-    ln --symbolic --verbose /opt/php/8.4.13/sbin/php-fpm /usr/bin/php-fpm
+RUN ln --symbolic --verbose /opt/php/8.4.14/bin/php /usr/bin/php && \
+    ln --symbolic --verbose /opt/php/8.4.14/bin/phar.phar /usr/bin/phar && \
+    ln --symbolic --verbose /opt/php/8.4.14/bin/phpize /usr/bin/phpize && \
+    ln --symbolic --verbose /opt/php/8.4.14/bin/php-config /usr/bin/php-config && \
+    ln --symbolic --verbose /opt/php/8.4.14/sbin/php-fpm /usr/bin/php-fpm
 
 ################################################################
 ## 1.8 configure and compile Xdebug 3.4.5
@@ -94,7 +94,7 @@ RUN chmod +x /usr/local/bin/composer
 ################################################################
 ## 1.11 copy php.ini file
 ################################################################
-RUN cp /tmp/sources/php-8.4.13/php.ini-development /opt/php/8.4.13/lib/php.ini
+RUN cp /tmp/sources/php-8.4.14/php.ini-development /opt/php/8.4.14/lib/php.ini
 
 ################################################################
 ## 1.12 cleanup build‑time deps
@@ -129,56 +129,56 @@ RUN ssh-keygen -A
 ## 2.1 setup of PHP artifacts
 ################################################################
 COPY --from=builder /opt/php /opt/php
-RUN ln -s /opt/php/8.4.13/bin/php /usr/bin/php && \
-    ln -s /opt/php/8.4.13/bin/phar.phar /usr/bin/phar && \
-    ln -s /opt/php/8.4.13/bin/phpize /usr/bin/phpize && \
-    ln -s /opt/php/8.4.13/bin/php-config /usr/bin/php-config && \
-    ln -s /opt/php/8.4.13/sbin/php-fpm /usr/bin/php-fpm
+RUN ln -s /opt/php/8.4.14/bin/php /usr/bin/php && \
+    ln -s /opt/php/8.4.14/bin/phar.phar /usr/bin/phar && \
+    ln -s /opt/php/8.4.14/bin/phpize /usr/bin/phpize && \
+    ln -s /opt/php/8.4.14/bin/php-config /usr/bin/php-config && \
+    ln -s /opt/php/8.4.14/sbin/php-fpm /usr/bin/php-fpm
 
 ################################################################
-## 2.2 configure /opt/php/8.4.13/lib/configure php.ini
+## 2.2 configure /opt/php/8.4.14/lib/configure php.ini
 ################################################################
-RUN sed -i 's/;date.timezone =/date.timezone = "Europe\/Rome"/' /opt/php/8.4.13/lib/php.ini && \
-    sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/' /opt/php/8.4.13/lib/php.ini && \
-    sed -i 's/memory_limit = 128M/memory_limit = 256M/' /opt/php/8.4.13/lib/php.ini && \
-    sed -i 's/max_execution_time = 30/max_execution_time = 100/' /opt/php/8.4.13/lib/php.ini && \
-    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/' /opt/php/8.4.13/lib/php.ini && \
-    sed -i 's/short_open_tag = Off/short_open_tag = On/' /opt/php/8.4.13/lib/php.ini && \
-    sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.4.13/lib/php.ini
+RUN sed -i 's/;date.timezone =/date.timezone = "Europe\/Rome"/' /opt/php/8.4.14/lib/php.ini && \
+    sed -i 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/' /opt/php/8.4.14/lib/php.ini && \
+    sed -i 's/memory_limit = 128M/memory_limit = 256M/' /opt/php/8.4.14/lib/php.ini && \
+    sed -i 's/max_execution_time = 30/max_execution_time = 100/' /opt/php/8.4.14/lib/php.ini && \
+    sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 8M/' /opt/php/8.4.14/lib/php.ini && \
+    sed -i 's/short_open_tag = Off/short_open_tag = On/' /opt/php/8.4.14/lib/php.ini && \
+    sed -i 's/;zend_extension=opcache/zend_extension=opcache.so/g' /opt/php/8.4.14/lib/php.ini
 
 ################################################################
-## 2.3 configure /opt/php/8.4.13/etc/php-fpm.d/www.conf
+## 2.3 configure /opt/php/8.4.14/etc/php-fpm.d/www.conf
 ################################################################
-RUN cp /opt/php/8.4.13/etc/php-fpm.d/www.conf.default /opt/php/8.4.13/etc/php-fpm.d/www.conf && \
-    sed -i 's/^user = nobody/;user = nobody/g' /opt/php/8.4.13/etc/php-fpm.d/www.conf && \
-    sed -i 's/^group = nobody/;group = nobody/g' /opt/php/8.4.13/etc/php-fpm.d/www.conf && \
-    sed -i 's/^listen = 127.0.0.1:9000/;listen = 127.0.0.1:9000/g' /opt/php/8.4.13/etc/php-fpm.d/www.conf && \
-    sed -i '$a; UNIX socket' /opt/php/8.4.13/etc/php-fpm.d/www.conf && \
-    sed -i '$alisten = /run/php-fpm.sock' /opt/php/8.4.13/etc/php-fpm.d/www.conf && \
-    sed -i '$alisten.owner = www-data' /opt/php/8.4.13/etc/php-fpm.d/www.conf && \
-    sed -i '$alisten.group = www-data' /opt/php/8.4.13/etc/php-fpm.d/www.conf
+RUN cp /opt/php/8.4.14/etc/php-fpm.d/www.conf.default /opt/php/8.4.14/etc/php-fpm.d/www.conf && \
+    sed -i 's/^user = nobody/;user = nobody/g' /opt/php/8.4.14/etc/php-fpm.d/www.conf && \
+    sed -i 's/^group = nobody/;group = nobody/g' /opt/php/8.4.14/etc/php-fpm.d/www.conf && \
+    sed -i 's/^listen = 127.0.0.1:9000/;listen = 127.0.0.1:9000/g' /opt/php/8.4.14/etc/php-fpm.d/www.conf && \
+    sed -i '$a; UNIX socket' /opt/php/8.4.14/etc/php-fpm.d/www.conf && \
+    sed -i '$alisten = /run/php-fpm.sock' /opt/php/8.4.14/etc/php-fpm.d/www.conf && \
+    sed -i '$alisten.owner = www-data' /opt/php/8.4.14/etc/php-fpm.d/www.conf && \
+    sed -i '$alisten.group = www-data' /opt/php/8.4.14/etc/php-fpm.d/www.conf
 
 ################################################################
-## 2.4 configure /opt/php/8.4.13/etc/php-fpm.conf
+## 2.4 configure /opt/php/8.4.14/etc/php-fpm.conf
 ################################################################
-RUN cp /opt/php/8.4.13/etc/php-fpm.conf.default /opt/php/8.4.13/etc/php-fpm.conf && \
-    sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.4.13/etc/php-fpm.conf && \
-    sed -i '$auser = www-data' /opt/php/8.4.13/etc/php-fpm.conf && \
-    sed -i '$agroup = www-data' /opt/php/8.4.13/etc/php-fpm.conf
+RUN cp /opt/php/8.4.14/etc/php-fpm.conf.default /opt/php/8.4.14/etc/php-fpm.conf && \
+    sed -i 's/;pid = run\/php-fpm.pid/pid = run\/php-fpm.pid/g' /opt/php/8.4.14/etc/php-fpm.conf && \
+    sed -i '$auser = www-data' /opt/php/8.4.14/etc/php-fpm.conf && \
+    sed -i '$agroup = www-data' /opt/php/8.4.14/etc/php-fpm.conf
 
 ################################################################
-## 2.5 configure Xdebug on /opt/php/8.4.13/lib/php.ini
+## 2.5 configure Xdebug on /opt/php/8.4.14/lib/php.ini
 ################################################################
-RUN echo 'zend_extension=xdebug' >> /opt/php/8.4.13/lib/php.ini && \
-    echo 'xdebug.mode=develop,debug,trace,coverage' >> /opt/php/8.4.13/lib/php.ini && \
-    echo 'xdebug.cli_color=1' >> /opt/php/8.4.13/lib/php.ini && \
-    echo 'xdebug.start_with_request=trigger' >> /opt/php/8.4.13/lib/php.ini && \
-    echo 'xdebug.discover_client_host=1' >> /opt/php/8.4.13/lib/php.ini && \
-    echo 'xdebug.remote_enable=1' >> /opt/php/8.4.13/lib/php.ini && \
-    echo "xdebug.client_host=${XDEBUG_CLIENT_HOST:-127.0.0.1}" >> /opt/php/8.4.13/lib/php.ini && \
-    echo 'xdebug.client_port=9003' >> /opt/php/8.4.13/lib/php.ini && \
-    echo 'xdebug.connect_timeout_ms=2000' >> /opt/php/8.4.13/lib/php.ini && \
-    echo 'xdebug.idekey=VSCODE' >> /opt/php/8.4.13/lib/php.ini
+RUN echo 'zend_extension=xdebug' >> /opt/php/8.4.14/lib/php.ini && \
+    echo 'xdebug.mode=develop,debug,trace,coverage' >> /opt/php/8.4.14/lib/php.ini && \
+    echo 'xdebug.cli_color=1' >> /opt/php/8.4.14/lib/php.ini && \
+    echo 'xdebug.start_with_request=trigger' >> /opt/php/8.4.14/lib/php.ini && \
+    echo 'xdebug.discover_client_host=1' >> /opt/php/8.4.14/lib/php.ini && \
+    echo 'xdebug.remote_enable=1' >> /opt/php/8.4.14/lib/php.ini && \
+    echo "xdebug.client_host=${XDEBUG_CLIENT_HOST:-127.0.0.1}" >> /opt/php/8.4.14/lib/php.ini && \
+    echo 'xdebug.client_port=9003' >> /opt/php/8.4.14/lib/php.ini && \
+    echo 'xdebug.connect_timeout_ms=2000' >> /opt/php/8.4.14/lib/php.ini && \
+    echo 'xdebug.idekey=VSCODE' >> /opt/php/8.4.14/lib/php.ini
 
 ################################################################
 ## 2.6 set Apache configuration

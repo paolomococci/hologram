@@ -37,10 +37,10 @@ COPY sources/ /tmp/sources
 WORKDIR /tmp/sources
 
 ################################################################
-## 1.3 Configure and compile PHP 8.4.13
+## 1.3 Configure and compile PHP 8.4.14
 ################################################################
-RUN tar -xf php-8.4.13.tar.xz && \
-    cd php-8.4.13 && \
+RUN tar -xf php-8.4.14.tar.xz && \
+    cd php-8.4.14 && \
     ./configure \
     --enable-fpm \
     --enable-bcmath \
@@ -110,7 +110,7 @@ RUN apk add --no-cache \
 COPY --from=builder /usr/local/sbin/php-fpm /usr/local/sbin/php-fpm
 COPY --from=builder /usr/local/lib/php /usr/local/lib/php
 COPY --from=builder /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
-COPY --from=builder /tmp/sources/php-8.4.13/php.ini-development /usr/local/etc/php/php.ini
+COPY --from=builder /tmp/sources/php-8.4.14/php.ini-development /usr/local/etc/php/php.ini
 COPY --from=builder /usr/local/etc/php-fpm.conf.default /usr/local/etc/php-fpm.conf
 COPY --from=builder /usr/local/etc/php-fpm.d/www.conf.default /usr/local/etc/php-fpm.d/www.conf
 

@@ -12,7 +12,7 @@ _First of all, a directory with the sources must be prepared which will then be 
 
 It will therefore be necessary to obtain the following sources:
 
-- php-8.4.13.tar.xz
+- php-8.4.14.tar.xz
 
 Then place them in the sources directory.
 

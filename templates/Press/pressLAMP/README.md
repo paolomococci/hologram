@@ -14,7 +14,7 @@ _First of all, a directory with the sources must be prepared which will then be 
 
 It will therefore be necessary to obtain the following sources:
 
-- php-8.4.13.tar.xz
+- php-8.4.14.tar.xz
 - xdebug-3.4.5.tgz
 - ImageMagick-7.1.2-5
 - Imagick
@@ -186,13 +186,13 @@ composer --version
 1. First I can verify that imagick.so exists and is readable:
 
 ```shell
-ls -l /opt/php/8.4.13/lib/php/extensions/debug-zts-20240924/imagick.so
+ls -l /opt/php/8.4.14/lib/php/extensions/debug-zts-20240924/imagick.so
 ```
 
 2. Then I check if there are any missing dependencies:
 
 ```shell
-ldd /opt/php/8.4.13/lib/php/extensions/debug-zts-20240924/imagick.so | grep "not found"
+ldd /opt/php/8.4.14/lib/php/extensions/debug-zts-20240924/imagick.so | grep "not found"
 ```
 
 3. If I'm sure all dependencies are installed, but for some reason they are not found by the loader, I can update the dynamic linker cache, after placing the .so files in a standard directory, with the following command:

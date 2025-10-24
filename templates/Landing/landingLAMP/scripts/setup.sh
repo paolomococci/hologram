@@ -3,7 +3,7 @@
 # Xdebug client host
 if [[ -n "${XDEBUG_CLIENT_HOST:-}" ]]; then
     sed -i "s/^xdebug.client_host=.*/xdebug.client_host=${XDEBUG_CLIENT_HOST}/" \
-        /opt/php/8.4.13/lib/php.ini
+        /opt/php/8.4.14/lib/php.ini
 fi
 
 # create if not exists '/var/run/sshd' directory
