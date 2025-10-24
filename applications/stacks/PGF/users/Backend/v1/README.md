@@ -5,8 +5,8 @@ Backend developed in Go programming language, to then be containerized for maxim
 ## create an example of container
 
 ```shell
-ls -al ~/Projects/fullstack-project/pgf/UsersPGF/v1/users/Backend/v3/
-cd ~/Projects/fullstack-project/pgf/UsersPGF/v1/users/Backend/v3/
+ls -al ~/applications/stacks/PGF/users/Backend/v1/
+cd ~/applications/stacks/PGF/users/Backend/v1/
 ```
 
 ## compiling the `go.sum` file
@@ -21,10 +21,10 @@ go mod tidy
 Once the example web application is built I can issue the following command:
 
 ```shell
-cd ~/Projects/fullstack-project/pgf/UsersPGF/v1/users/Backend/v3/
+cd ~/applications/stacks/PGF/users/Backend/v1/
 podman image ls | grep "pgf-users-be-img"
 cat Dockerfile
-podman build --tag pgf-users-be-img:3.0 .
+podman build --tag pgf-users-be-img:1.0 .
 ```
 
 ### create the container
@@ -33,7 +33,7 @@ Here are all the instructions you need to get the container working:
 
 ```shell
 podman container ls --all --size | grep "pgf-users-be-cntr"
-podman run --detach --name pgf-users-be-cntr-3-0 --publish 8080:8080 --pull=never pgf-users-be-img:3.0
+podman run --detach --name pgf-users-be-cntr-1-0 --publish 8080:8080 --pull=never pgf-users-be-img:1.0
 ```
 
 ### container operation checks from a host on the local network
@@ -65,7 +65,7 @@ curl --verbose http://192.168.XXX.XXX:8080/
 1. Create the pod (map RESTful API port 8080 on the host):
 
 ```shell
-cd ~/Projects/fullstack-project/pgf/UsersPGF/v1/users/Backend/v3/
+cd ~/applications/stacks/PGF/users/Backend/v1/
 podman pod create --name pgf-users-pod-1 --publish 8080:8080
 ```
 
@@ -87,15 +87,15 @@ podman logs -f pgf-users-db-cntr
 4. Build the API image (assuming the Dockerfile is in the current directory):
 
 ```shell
-ls -al ~/Projects/fullstack-project/pgf/UsersPGF/v1/users/Backend/v3/
-cd ~/Projects/fullstack-project/pgf/UsersPGF/v1/users/Backend/v3/
-podman build --tag pgf-users-be-img:3.0 .
+ls -al ~/applications/stacks/PGF/users/Backend/v1/
+cd ~/applications/stacks/PGF/users/Backend/v1/
+podman build --tag pgf-users-be-img:1.0 .
 ```
 
 5. Start the API in the pod:
 
 ```shell
-podman run --detach --pod pgf-users-pod-1 --name pgf-users-be-cntr --pull=never pgf-users-be-img:3.0
+podman run --detach --pod pgf-users-pod-1 --name pgf-users-be-cntr --pull=never pgf-users-be-img:1.0
 ```
 
 Note: Containers in the pod share the same loopback network, so the RESTful API can use 127.0.0.1:5432 to connect to Postgres within the same pod.
