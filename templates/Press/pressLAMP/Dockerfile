@@ -72,10 +72,10 @@ RUN ln --symbolic --verbose /opt/php/8.4.14/bin/php /usr/bin/php && \
     ln --symbolic --verbose /opt/php/8.4.14/sbin/php-fpm /usr/bin/php-fpm
 
 ################################################################
-## 1.5 configure and compile Xdebug 3.4.5
+## 1.5 configure and compile Xdebug 3.4.6
 ################################################################
-RUN tar -xzf xdebug-3.4.5.tgz && \
-    cd xdebug-3.4.5 && \
+RUN tar -xzf xdebug-3.4.6.tgz && \
+    cd xdebug-3.4.6 && \
     phpize && \
     ./configure --prefix=/opt/php/xdebug --enable-xdebug && \
     make -j$(nproc) && make install
