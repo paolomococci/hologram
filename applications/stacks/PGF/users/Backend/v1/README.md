@@ -107,10 +107,10 @@ podman ps --pod
 podman logs -f pgf-users-be-cntr
 ```
 
-7. Optional debugging: Enter the RESTful API container shell to test the connection (installing psql client if necessary):
+7. Optional debugging from the development host:
 
 ```shell
-podman exec -it pgf-users-be-cntr sh
+nc -vz -w 3 192.168.122.221 8080 | grep succeeded
 ```
 
 ---
