@@ -110,7 +110,7 @@ podman logs -f pgf-users-be-cntr
 7. Optional debugging from the development host:
 
 ```shell
-nc -vz -w 3 192.168.122.221 8080 | grep succeeded
+nc -vz -w 3 192.168.XXX.XXX 8080 | grep succeeded
 ```
 
 ---

@@ -66,7 +66,7 @@ ssh root@192.168.1.XXX -p 8021
     "name": "app-fe-cntr-1-0",
     "username": "root",
     "password": "some_password",
-    "host": "192.168.122.221",
+    "host": "192.168.XXX.XXX",
     "port": 8021,
     "remotePath": "/var/www/html",
     "connectTimeout": 20000,
