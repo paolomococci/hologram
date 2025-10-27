@@ -1,0 +1,19 @@
+# Remember to write the actual IP address instead of the placeholder `192.168.XXX.XXX`
+@GUESTS-API_HostAddress = http://192.168.XXX.XXX:8080/
+
+GET {{GUESTS-API_HostAddress}}guests
+Accept: application/json
+
+###
+# guest with email: oliver@example.local
+
+GET {{GUESTS-API_HostAddress}}guests/oliver@example.local
+Accept: application/json
+
+###
+# guest with email:amelia@example.local
+
+GET {{GUESTS-API_HostAddress}}guests/amelia@example.local
+Accept: application/json
+
+###

@@ -1,0 +1,11 @@
+.vscode/
+node_modules/
+# virtual environment, Python environment
+venv/
+dist/
+build/
+data/
+.env
+*.pyc
+.DS_Store
+*.log

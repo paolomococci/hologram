@@ -7,6 +7,12 @@ The procedures themselves may change or there may be more convenient ones.
 Therefore, it is always necessary to refer to the official documentation hosted on the sites of the programming languages, servers and tools mentioned from time to time.
 Thank you.
 
+## `guests` complete PGF, (PostgreSQL-Go-Flutter) stack example
+
+![](./applications/stacks/PGF/guests/screenshots/guest_list_mobile.png)
+
+![](./applications/stacks/PGF/guests/screenshots/guest_details_mobile.png)
+
 ## `Tasks` developed using the open source Qt6 framework
 
 ![task list](./examples/tasks/Qt6/Tasks/screenshots/Task_list.png "Task list on desktop device")
