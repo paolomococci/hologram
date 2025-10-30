@@ -10,6 +10,8 @@ git branch -m main
 git status
 git add .
 git commit -m "initializing the local repository"
+git log
+git tag -a v0.0.0 -m "starting version of the microservice"
 git checkout -b staging
 git checkout -b draft
 git merge --no-ff main -m "merge main into draft"
@@ -17,6 +19,8 @@ git checkout staging
 git merge --no-ff draft -m "merge draft into staging"
 git checkout main
 git merge --no-ff staging -m "merge staging into main"
+git log
+git tag -a v1.0.0 -m "first usable version of this microservice"
 ```
 
 ## `lamp-upcoming-cntr` is an example of use in development sessions
