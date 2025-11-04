@@ -104,6 +104,15 @@ podman container ls --all --size | grep "lamp-bfa-cntr"
 podman exec --interactive --tty --privileged lamp-bfa-cntr sh
 ```
 
+Start, view logs, stop and delete a container from the command line:
+
+```shell
+podman start lamp-bfa-cntr
+podman logs --follow=true --color lamp-bfa-cntr
+podman stop lamp-bfa-cntr
+podman rm lamp-bfa-cntr
+```
+
 ### container operation checks from a host on the local network
 
 Thanks to `nmap`:
