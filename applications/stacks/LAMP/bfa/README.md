@@ -113,6 +113,38 @@ podman stop lamp-bfa-cntr
 podman rm lamp-bfa-cntr
 ```
 
+Integration into a pre-existing pod:
+
+```shell
+podman pod start dsa-data-pod
+podman run --detach --pod dsa-data-pod --name wp-dsa-bfa --pull="never" lamp-bfa-img:1.0
+```
+
+Test operation from inside the pod:
+
+```shell
+podman exec -it wp-dsa-app bash
+```
+
+Installation of the command necessary to test the functioning of the API:
+
+```shell
+apk update
+apk add fcgi
+```
+
+To then run the actual test of the API that implements the Bellman-Ford Algorithm:
+
+```shell
+BODY='{"nodes":["A","B","C","D"],"edges":[["A","B",1],["B","C",2],["A","C",4],["C","D",-3]],"source":"A"}'
+export SCRIPT_NAME=/app/index.php
+export SCRIPT_FILENAME=/app/index.php
+export REQUEST_METHOD=POST
+export CONTENT_TYPE='application/json'
+export CONTENT_LENGTH=$(printf '%s' "$BODY" | wc -c)
+printf '%s' "$BODY" | cgi-fcgi -bind -connect wp-dsa-bfa:49152
+```
+
 ### container operation checks from a host on the local network
 
 Thanks to `nmap`:
