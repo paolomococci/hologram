@@ -112,6 +112,17 @@ USE wordpress;
 
 ### example of technical intervention from the perspective of the `wordpress` container 
 
+_Note: If the owner of the directory containing your WordPress files has changed, you may not be able to make changes with the code editor._
+
+Acceptable solution in development environment, (commands to send to the development host):
+
+```shell
+cd html/
+sudo chown --recursive $(id -u):$(id -g) wordpress
+find wordpress -type d -exec chmod 755 {} \;
+find wordpress -type f -exec chmod 644 {} \;
+```
+
 By issuing commands from inside the container.
 
 ```shell
