@@ -58,6 +58,7 @@ git branch --list | wc -l
 git branch --list
 git checkout main
 git merge --no-ff draft -m "merge draft into main"
+git reset --hard v0.0.0
 ```
 
 ## `lamp-bfa-cntr` is an example of use in development sessions
