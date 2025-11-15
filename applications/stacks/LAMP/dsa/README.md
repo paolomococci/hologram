@@ -12,6 +12,7 @@ git add .
 git commit -m "initializing the local repository"
 git log
 git tag -a v0.0.0 -m "starting version of the microservice"
+git reset --hard v0.0.0
 ```
 
 ## `lamp-dsa-cntr` is an example of use in development sessions
