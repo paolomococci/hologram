@@ -7,6 +7,10 @@ The procedures themselves may change or there may be more convenient ones.
 Therefore, it is always necessary to refer to the official documentation hosted on the sites of the programming languages, servers and tools mentioned from time to time.
 Thank you.
 
+## `playground` LAMP stack development environment
+
+![](./applications/stacks/LAMP/playground/screenshots/playground_landing_mobile.png)
+
 ## `guests` complete PGF, (PostgreSQL-Go-Flutter) stack example
 
 ![](./applications/stacks/PGF/guests/screenshots/guest_list_mobile.png)
