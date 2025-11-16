@@ -346,6 +346,29 @@ podman stats --no-stream
 
 ---
 
+## development
+
+I edit the `package.json` file by adding the following line inside the scripts section:
+
+```json
+        "build:watch": "vite build --watch"
+```
+
+I enter the development container:
+
+```shell
+podman exec -it --privileged lamp-playground-app bash
+```
+
+I position myself in the root directory of the project and start the watch mode:
+
+```shell
+cd /var/www/html/playground/
+npm run build:watch
+```
+
+---
+
 ## remove everything:
 
 ```bash
