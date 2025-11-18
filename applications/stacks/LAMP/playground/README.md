@@ -346,7 +346,7 @@ podman stats --no-stream
 
 ---
 
-## development
+## rebuild at every change
 
 I edit the `package.json` file by adding the following line inside the scripts section:
 
@@ -376,4 +376,60 @@ podman pod stop lamp-playground-pod
 podman pod rm lamp-playground-pod
 sudo rm -Rf data/
 sudo rm -Rf html/
+```
+
+## environment configuration
+
+I need to edit the `.env` file located in the root of the project
+
+```env
+APP_NAME=playground
+
+DB_CONNECTION=sqlite
+
+MARIA_DB_CONNECTION=mariadb
+# I need to set the IP address of the pod hosting the database server that I found with the `ip addr` command run inside the `lamp-playground-db` container
+MARIA_DB_HOST=XXX.XXX.XXX.XXX # Remember to replace the placeholder with your IP address of interest
+MARIA_DB_PORT=3306
+MARIA_DB_DATABASE=playground_db
+MARIA_DB_USERNAME=playground_admin
+MARIA_DB_PASSWORD=qwerty123
+```
+
+I need to edit the `config/database.php` file in the `mariadb` section:
+
+```php
+
+        'mariadb' => [
+            'driver' => 'mariadb',
+            'url' => env('DB_URL'),
+            'host' => env('MARIA_DB_HOST', '127.0.0.1'),
+            'port' => env('MARIA_DB_PORT', '3306'),
+            'database' => env('MARIA_DB_DATABASE', 'laravel'),
+            'username' => env('MARIA_DB_USERNAME', 'root'),
+            'password' => env('MARIA_DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => env('DB_CHARSET', 'utf8mb4'),
+            'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+```
+
+Only at this point can I proceed to check the connectivity of the configured databases:
+
+```shell
+php artisan tinker
+```
+
+then I type the following commands:
+
+```shell
+DB::connection('sqlite')->getPdo();
+DB::connection('mariadb')->getPdo();
 ```
