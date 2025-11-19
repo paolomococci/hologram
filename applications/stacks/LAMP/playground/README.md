@@ -451,3 +451,36 @@ php artisan db:table users
 php artisan db:table cache
 php artisan db:table jobs
 ```
+
+## some methods for making queries from the tinker shell:
+
+```shell
+php artisan tinker
+```
+
+Some queries on table `users`:
+
+```shell
+dump(collect(DB::select('SELECT * FROM users'))->all());
+print_r(collect(DB::select('SELECT * FROM users'))->all());
+DB::table('users')->limit(10)->get()->toArray();
+```
+
+Query that returns a JSON object:
+
+```shell
+echo json_encode(array_map(fn($r)=>(array)$r, DB::select('SELECT * FROM users')), JSON_PRETTY_PRINT);
+```
+
+Query on table `cache`:
+
+```shell
+DB::table('cache')->limit(10)->get()->toArray();
+```
+
+Query on table `jobs`:
+
+```shell
+DB::table('jobs')->limit(10)->get()->toArray();
+quit
+```
