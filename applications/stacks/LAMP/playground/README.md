@@ -442,3 +442,12 @@ DB::connection('sqlite')->getPdo();
 DB::connection('mariadb')->getPdo();
 quit
 ```
+
+Display information about the specified database table:
+
+```shell
+php artisan db:table --help
+php artisan db:table users
+php artisan db:table cache
+php artisan db:table jobs
+```
