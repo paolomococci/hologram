@@ -421,6 +421,14 @@ I need to edit the `config/database.php` file in the `mariadb` section:
         ],
 ```
 
+Checking connections on the specified database:
+
+```shell
+php artisan db:monitor --help
+php artisan db:monitor --databases=sqlite
+php artisan db:monitor --databases=mariadb
+```
+
 Only at this point can I proceed to check the connectivity of the configured databases:
 
 ```shell
@@ -432,4 +440,5 @@ then I type the following commands:
 ```shell
 DB::connection('sqlite')->getPdo();
 DB::connection('mariadb')->getPdo();
+quit
 ```
