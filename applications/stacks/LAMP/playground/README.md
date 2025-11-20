@@ -2,11 +2,11 @@
 
 ## summary
 
-- **Definition:** A **`playground`** can refer to an environment (often lightweight and interactive) for experimenting with code, libraries, technologies, or APIs without complex setup.  
-- **Practical use:** It is used to test snippets, try new frameworks, explore library behavior, or quickly validate ideas.  
-- **Prototyping:** It can be considered a development environment for prototyping ideas—typically for proofs of concept, demos, or quick experiments, not for production.  
-- **Common features:** instant feedback, isolation, easy reset, REPL or web interface, pre-configured examples, shareable results.  
-- **Examples:** online editors (CodePen, JSFiddle), API sandboxes, interactive notebooks (Jupyter), integrated environments for ML or graphics.  
+- **Definition:** A **`playground`** can refer to an environment (often lightweight and interactive) for experimenting with code, libraries, technologies, or APIs without complex setup.
+- **Practical use:** It is used to test snippets, try new frameworks, explore library behavior, or quickly validate ideas.
+- **Prototyping:** It can be considered a development environment for prototyping ideas—typically for proofs of concept, demos, or quick experiments, not for production.
+- **Common features:** instant feedback, isolation, easy reset, REPL or web interface, pre-configured examples, shareable results.
+- **Examples:** online editors (CodePen, JSFiddle), API sandboxes, interactive notebooks (Jupyter), integrated environments for ML or graphics.
 
 The **`playground`** is an appropriate term for a development environment intended for testing and prototyping ideas.
 
@@ -18,7 +18,7 @@ The **`playground`** is an appropriate term for a development environment intend
 
 ## local repository
 
-__Commands to be typed on the development host.__
+**Commands to be typed on the development host.**
 
 Create a `.gitignore` file:
 
@@ -80,7 +80,7 @@ git reset --hard v0.0.0
 
 ## setting
 
-__Commands to type in the server environment.__
+**Commands to type in the server environment.**
 
 Now I positioning myself in the directory where I will collect the development environment:
 
@@ -160,7 +160,7 @@ podman logs lamp-playground-app
 podman ps --format "{{.Names}} {{.Ports}}"
 ```
 
-### example of technical intervention from the perspective of the `mariadb` container 
+### example of technical intervention from the perspective of the `mariadb` container
 
 ```shell
 podman exec -it lamp-playground-db sh
@@ -181,7 +181,7 @@ exit
 
 ## scaffolding
 
-__Commands to type in the container environment.__
+**Commands to type in the container environment.**
 
 To access the container:
 
@@ -243,6 +243,7 @@ cd playground/
 ```
 
 Causes:
+
 - host and container UID/GID mismatch;
 - difficulty maintaining consistent permissions;
 - limitations of virtualization systems.
