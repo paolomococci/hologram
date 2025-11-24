@@ -120,7 +120,7 @@ php artisan migrate:reset
 ### drop all tables and re-run all migrations
 
 ```shell
-php artisan migrate:fresh --pretend
+php artisan migrate:fresh --help
 php artisan migrate:fresh
 ```
 
