@@ -128,7 +128,6 @@ php artisan migrate:fresh
 
 ```shell
 php artisan db:seed --help
-php artisan db:seed --pretend
 php artisan db:seed
 ```
 
