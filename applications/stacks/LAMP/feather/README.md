@@ -2,6 +2,8 @@
 
 Feather-light app developed with ease for demonstration purposes.
 
+![](./screenshots/feather_mobile.png)
+
 **Commands to be typed on the development host.**
 
 Create a `.gitignore` file:
