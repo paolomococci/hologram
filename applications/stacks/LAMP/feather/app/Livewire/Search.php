@@ -36,6 +36,35 @@ class Search extends Component
      * @var string The placeholder text shown inside the <input>.
      */
     public string $placeholder = 'Search tasks…';
+    /**
+     * Rules used by Livewire when validating `searchText`.
+     */
+    protected array $rules = [
+        'searchText' => [
+            'required',
+            'string',
+            'min:3',
+            'max:30',
+            /**
+             * Regex:
+             * prevents the insertion of numbers, unwanted punctuation, and special characters;
+             * ensures that text fields contain only letters from any language, spaces, hyphens, apostrophes, and periods;
+             * reduces the risk of XSS or injection by limiting the characters that can reach the backend or database.
+             */
+            'regex:/^[\pL\s\-\'\.]+$/u',
+        ],
+    ];
+
+    /**
+     * Trigger validation every time the user types (debounced).
+     * This method is automatically called by Livewire when a
+     * property marked with `wire:model` changes.
+     */
+    public function updatedSearchText(string $value): void
+    {
+        // Only validate the field that changed
+        $this->validateOnly('searchText');
+    }
 
     /**
      * erase
@@ -66,12 +95,29 @@ class Search extends Component
      */
     public function render()
     {
-        // Build the results collection based on the current query,
-        // We perform a case‑insensitive LIKE search on the `tag` column
-        // and the results are ordered by creation date (newest first).
-        $results = Task::where('tag', 'LIKE', "%{$this->searchText}%")
-            ->orderBy('created_at', 'desc')
-            ->get();
+        /**
+         * We only perform a database query if the user has typed more than
+         * two characters; this prevents unnecessary queries for very short
+         * or empty input.
+         * The query searches the `tag` column using a case‑insensitive
+         * LIKE operator (`%{$this->searchText}%`).  This means any record
+         * that contains the search text anywhere in its tag will be
+         * returned.
+         * Results are sorted by `created_at` in descending order so that
+         * the newest tasks appear first.
+         */
+        if (strlen($this->searchText) > 2) {
+            $results = Task::where('tag', 'LIKE', "%{$this->searchText}%")
+                ->orderBy('created_at', 'desc')
+                ->get();
+        } else {
+            /**
+             * If the search string is 2 characters or fewer, we skip the
+             * database query and simply return an empty collection.  This
+             * keeps the UI clean (no results displayed) and reduces load.
+             */
+            return view('livewire.search', ['results' => collect()]);
+        }
 
         // Render the Blade view and pass the `$results` variable.
         return view('livewire.search', compact('results'));
