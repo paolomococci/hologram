@@ -73,9 +73,15 @@ php artisan db:show --database=sqlite
 ```shell
 php artisan db:table --help
 php artisan db:table tasks --database=sqlite
-``
+```
 
-`Using `tinker` I could perform a query like this:
+### Using `tinker`
+
+```shell
+php artisan tinker
+```
+
+I could perform a query like this:
 
 ```shell
 echo json_encode(array_map(fn($r)=>(array)$r, DB::select('SELECT * FROM tasks')), JSON_PRETTY_PRINT);
