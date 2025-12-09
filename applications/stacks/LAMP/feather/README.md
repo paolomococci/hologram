@@ -7,7 +7,7 @@ Feather-light app developed with ease for demonstration purposes.
 This is a containerized LAMP stack application developed thanks to Laravel, Livewire 3, AlpineJS and Tailwind.
 A web app oriented towards mobile, or rather, mobile first.
 It can be described starting from its four main routes.
-The route called "home" presents a logo at the top, towards the center a search field that is sensitive to input with to the right an icon to delete its content.
+The route called "home" has a placeholder similar to a logo at the top, a little further down the search field sensitive to text entry with an icon on the right to delete its contents.
 The search results are shown immediately below the text field and are navigable.
 On the left-hand side there is a FAB button that is activated in a similar way to an interactive menu when it is hovered over by the cursor.
 In the home route the active functions are the creation of a new task and a toggle to filter the search for tasks to be done or those that have already been completed.
