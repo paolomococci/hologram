@@ -1,3 +1,4 @@
+{{-- resources/views/livewire/search-results.blade.php --}}
 {{-- The child component that displays the list of matching tasks --}}
 <div class="mt-2 p-2 border rounded-md bg-stone-700 border-green-600">
 
@@ -8,6 +9,9 @@
             {{-- Creates a clickable link using AlpineJS (wire:key ensures proper Livewire state management) --}}
             <a
                 {{-- Livewire directive for navigation without page refresh on hover --}}
+                {{-- The pre-fetch with wire:navigate.hover is a Livewire feature that
+                    preloads data or the remote component when the user hovers over a link,
+                    providing a more responsive experience. --}}
                 wire:navigate.hover
                 {{-- Standard HTML href attribute pointing to the task detail page --}}
                 href="/tasks/{{ $result->id }}"

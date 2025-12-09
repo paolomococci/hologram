@@ -2,7 +2,32 @@
 
 Feather-light app developed with ease for demonstration purposes.
 
-![](./screenshots/feather_mobile.png)
+---
+
+This is a containerized LAMP stack application developed thanks to Laravel, Livewire 3, AlpineJS and Tailwind.
+A web app oriented towards mobile, or rather, mobile first.
+It can be described starting from its four main routes.
+The route called "home" presents a logo at the top, towards the center a search field that is sensitive to input with to the right an icon to delete its content.
+The search results are shown immediately below the text field and are navigable.
+On the left-hand side there is a FAB button that is activated in a similar way to an interactive menu when it is hovered over by the cursor.
+In the home route the active functions are the creation of a new task and a toggle to filter the search for tasks to be done or those that have already been completed.
+
+![done](./screenshots/feather_home_done.png)
+
+![todo](./screenshots/feather_home_todo.png)
+
+Then there is the route defined "show-task" that shows the active logo to return to the home, the content of the task with two buttons to scroll to the previous or the next.
+Below the FAB there is the option to create a new task, to edit the task shown in the center, even if it is not the one initially searched for; there is the option to set it as done or as to be done depending on the value of a task property itself and finally there is the option to delete it.
+
+![show](./screenshots/feather_show-task.png)
+
+The application is completed by the last two routes, namely "create-task" and "edit-task" whose names are self-explanatory and do not present the FAB in the left-hand side, but only the form dedicated to them and the logo at the top to return to the home.
+
+![create new](./screenshots/feather_create-task.png)
+
+![edit a task that is already present](./screenshots/feather_edit-task.png)
+
+---
 
 **Commands to be typed on the development host.**
 
@@ -126,9 +151,9 @@ cd feather/
 
 Causes:
 
-- host and container UID/GID mismatch;
-- difficulty maintaining consistent permissions;
-- limitations of virtualization systems.
+-   host and container UID/GID mismatch;
+-   difficulty maintaining consistent permissions;
+-   limitations of virtualization systems.
 
 ### reconfiguring the document root
 
@@ -278,4 +303,12 @@ Query on table `jobs`:
 ```shell
 DB::table('jobs')->limit(10)->get()->toArray();
 quit
+```
+
+## editing screenshots from the shell
+
+An example of how to resize a screenshot using an ImageMagick command:
+
+```shell
+convert feather_show-task.png -resize 40% feather_show-task.out.png
 ```

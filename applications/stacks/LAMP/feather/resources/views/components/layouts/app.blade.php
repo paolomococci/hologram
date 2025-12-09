@@ -16,22 +16,26 @@
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <title>{{ $title ?? 'Somethings' }}</title>
+    <title>{{ env('APP_NAME') ?? 'Laravel' }}</title>
 </head>
 
 <body
-    class="bg-stone-300 dark:bg-stone-900 text-stone-500 dark:text-stone-300 flex p-4 sm:p-6 lg:p-8 items-center justify-center min-h-screen">
+    class="flex justify-center items-center p-4 min-h-screen bg-stone-300 dark:bg-stone-900 text-stone-500 dark:text-stone-300 sm:p-6 lg:p-8">
 
     {{-- header --}}
     <livewire:header>
 
         {{-- main --}}
-        <div class="w-full flex items-center justify-center">
+        <div class="flex justify-center items-center w-full">
             <main
-                class="flex w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-4xl flex-col-reverse lg:flex-row gap-4 sm:gap-6 lg:gap-8">
+                class="flex flex-col-reverse gap-4 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-4xl lg:flex-row sm:gap-6 lg:gap-8">
                 {{ $slot }}
             </main>
         </div>
 </body>
+
+<footer>
+    <livewire:bottom-tool-bar>
+</footer>
 
 </html>

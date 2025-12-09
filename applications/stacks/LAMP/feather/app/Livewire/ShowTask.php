@@ -1,6 +1,7 @@
 <?php
 namespace App\Livewire;
 
+use App\Livewire\FabEdit;
 use App\Models\Task;
 use Livewire\Component;
 
@@ -10,8 +11,9 @@ use Livewire\Component;
 class ShowTask extends Component
 {
     /**
+     * @var Task task
+     *
      * That is currently being displayed.
-     * @var Task the task
      */
     public Task $task;
 
@@ -39,6 +41,10 @@ class ShowTask extends Component
         // Cache the smallest and largest task IDs for later use.
         $this->minId = Task::min('id');
         $this->maxId = Task::max('id');
+        // Send the show-task-event directly to the FabEdit class.
+        $this->dispatch('show-task-event', id: $this->task->id, isEditable: true)->to(FabEdit::class);
+        // Event emitted for all listening components.
+        $this->dispatch('task-id-event', id: $this->task->id);
     }
 
     /**
@@ -57,6 +63,10 @@ class ShowTask extends Component
         // If a predecessor exists, update the component's task.
         if ($prevTask) {
             $this->task = $prevTask;
+            // Send the show-task-event directly to the FabEdit class.
+            $this->dispatch('show-task-event', id: $this->task->id, isEditable: true)->to(FabEdit::class);
+            // Event emitted for all listening components.
+            $this->dispatch('task-id-event', id: $this->task->id);
         }
     }
 
@@ -76,6 +86,10 @@ class ShowTask extends Component
         // If a successor exists, update the component's task.
         if ($nextTask) {
             $this->task = $nextTask;
+            // Send the show-task-event directly to the FabEdit class.
+            $this->dispatch('show-task-event', id: $this->task->id, isEditable: true)->to(FabEdit::class);
+            // Event emitted for all listening components.
+            $this->dispatch('task-id-event', id: $this->task->id);
         }
     }
 
