@@ -2,7 +2,7 @@
 
 A screenshot that gives an idea of ​​the finished application:
 
-![example of query](../environments/hologram-php84/screenshots/Recode_query_SelectFromEmployeesWhereRadiologist.png)
+![example of query](../../environments/hologram-php84/screenshots/Recode_query_SelectFromEmployeesWhereRadiologist.png)
 
 ## first scaffold
 
