@@ -123,9 +123,9 @@ tail -n 5 /var/log/httpd/hologram-php85_error_log
 If you receive reports about file permission issues, you can proceed with the following commands:
 
 ```shell
-sudo chmod -R 755 /var/www/html/hologram-php85/public/
-sudo chmod -R 644 /var/www/html/hologram-php85/public/*.php
-restorecon -Rv /var/www/html/hologram-php85/
-systemctl restart httpd
+sudo chmod -R 755 /var/www/html/opificium/public/
+sudo chmod -R 644 /var/www/html/opificium/public/*.php
+sudo restorecon -Rv /var/www/html/opificium/
+sudo systemctl restart httpd
 systemctl status httpd --no-pager
 ```

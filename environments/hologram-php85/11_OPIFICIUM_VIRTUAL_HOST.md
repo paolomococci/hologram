@@ -97,7 +97,7 @@ If you receive reports about file permission issues, you can proceed with the fo
 ```shell
 sudo chmod -R 755 /var/www/html/opificium/public/
 sudo chmod -R 644 /var/www/html/opificium/public/*.php
-restorecon -Rv /var/www/html/opificium/
-systemctl restart httpd
+sudo restorecon -Rv /var/www/html/opificium/
+sudo systemctl restart httpd
 systemctl status httpd --no-pager
 ```
