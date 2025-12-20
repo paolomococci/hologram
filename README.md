@@ -9,7 +9,7 @@ Thank you.
 
 ## `feather` LAMP demo application
 
-![](./applications/stacks/LAMP/feather/screenshots/feather_mobile.png)
+![](./applications/stacks/LAMP/feather/screenshots/feather_show-task.png)
 
 ## `playground` LAMP stack development environment
 
