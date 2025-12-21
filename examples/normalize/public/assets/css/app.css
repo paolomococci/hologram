@@ -1,0 +1,25 @@
+/* ------------- Global styles ------------- */
+html,
+body {
+  height: 100%; /* Make the <html> and <body> stretch to the full viewport height */
+  margin: 0; /* Remove the default browser margin around the page */
+}
+
+/* ------------- Centering box ------------- */
+.box {
+  display: flex; /* Enable Flexbox layout */
+  align-items: center; /* Vertically center child elements */
+  justify-content: center; /* Horizontally center child elements */
+  height: 100vh; /* Make the container full viewport height (100% of viewport height) */
+}
+
+/* ------------- Card component ------------- */
+.card {
+  margin-top: 20px; /* Add a top margin of 20px (applies only to the top) */
+  margin: 1rem; /* Override previous margin: apply 1rem on all sides */
+  padding: 2rem; /* Inner spacing of 2rem on all sides */
+  border: 1px solid #ddd; /* Light gray border */
+  background: #fafafa; /* Very light gray background */
+  border-radius: 1rem; /* Rounded corners with 1rem radius */
+  color: #666; /* Darker gray text color for readability */
+}

@@ -1,0 +1,90 @@
+# development of `normalize` vanilla web application
+
+### parameter for generate keys:
+
+Here is just an example of the parameters to keep on hand:
+
+```text
+[national_acronym]
+[state]
+[city]
+normalize.local
+normalize.local
+normalize.local
+[webmaster@localhost]
+```
+
+It is obvious that the first three parameters must be appropriately valued.
+
+Therefore I can proceed with the generation of the self-signed certificate without the passphrase thanks to the `-nodes` flag:
+
+```shell
+ls -al /etc/ssl/
+sudo openssl req -new -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/normalize.key -out /etc/ssl/certs/normalize.crt
+sudo ls -al /etc/ssl/private/
+sudo ls -al /etc/ssl/certs/
+```
+
+### file `/etc/httpd/conf.d/normalize.local.conf`
+
+```shell
+sudo nano /etc/httpd/conf.d/normalize.local.conf
+```
+
+```xml
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        ServerName normalize.local
+        ServerAlias www.normalize.local
+        DocumentRoot /var/www/html/normalize/public
+        Redirect permanent "/" "https://normalize.local/"
+</VirtualHost>
+
+<VirtualHost *:443>
+        ServerAdmin webmaster@localhost
+        ServerName normalize.local
+        ServerAlias www.normalize.local
+        DocumentRoot /var/www/html/normalize/public
+
+        <Directory /var/www/html/normalize/public>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Require all granted
+                DirectoryIndex index.php
+        </Directory>
+
+        SSLEngine on
+
+        SSLCertificateFile /etc/ssl/certs/normalize.crt
+        SSLCertificateKeyFile /etc/ssl/private/normalize.key
+
+        ErrorLog /var/log/httpd/normalize_error_log
+
+        <FilesMatch "\.(cgi|shtml|phtml|php)$">
+                SSLOptions +StdEnvVars
+        </FilesMatch>
+</VirtualHost>
+```
+
+### application scaffolding
+
+With developer user credentials:
+
+```shell
+sudo apachectl configtest
+sudo mkdir --parents --verbose /var/www/html/normalize/public
+sudo cp --verbose /var/www/html/info.php /var/www/html/normalize/public/index.php
+sudo chown --recursive --verbose paolo:apache /var/www/html/normalize/
+sudo chmod --recursive --verbose 755 /var/www/html/normalize/public/
+sudo chmod --recursive --verbose 644 /var/www/html/normalize/public/*.php
+sudo restorecon -Rv /var/www/html/normalize/
+sudo systemctl reload httpd
+systemctl status httpd --no-pager
+sudo apachectl configtest
+```
+
+If I encounter any problems I can investigate with the following command:
+
+```shell
+sudo tail -n 5 /var/log/httpd/normalize_error_log
+```
