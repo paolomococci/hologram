@@ -1,4 +1,4 @@
 <?php
-    declare (strict_types = 1);
+declare (strict_types = 1);
 
-    require_once("../src/App/App.php");
+require dirname(__DIR__) . "/src/App/App.php";
