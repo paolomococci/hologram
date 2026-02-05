@@ -93,7 +93,7 @@ xdebug.mode=develop,debug,trace,coverage
 xdebug.cli_color=1
 xdebug.start_with_request=trigger
 xdebug.discover_client_host=1
-xdebug.remote_enable=1
+xdebug.mode=debug
 ; placeholder to be replaced with your IP address
 xdebug.client_host=192.168.XXX.XXX
 xdebug.client_port=9003
