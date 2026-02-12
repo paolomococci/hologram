@@ -99,3 +99,52 @@ Or, if it doesn't work, you could get help from the `cat` command:
 ```shell
 cat /full_directory_path/README.md | ollama run llm_name
 ```
+
+---
+
+## If the service won't start.
+
+A non-starting service may be caused by permission problems. The following shell commands offer a potential solution:
+
+```shell
+su -
+journalctl -u ollama
+chown -R ollama:ollama /usr/share/ollama
+chmod 755 /usr/share/ollama
+nano /etc/systemd/system/ollama.service
+```
+
+Setup example:
+
+```conf
+[Unit]
+Description=Ollama Service
+After=network-online.target
+
+[Service]
+Environment="OLLAMA_HOST=0.0.0.0"
+ExecStart=/usr/local/bin/ollama serve
+User=ollama
+Group=ollama
+Restart=always
+RestartSec=3
+Environment="PATH=$PATH"
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Save and restart the service, following these steps:
+
+```shell
+systemctl daemon-reload
+systemctl restart ollama
+```
+
+You should then verify its operation:
+
+```shell
+systemctl status ollama
+exit
+ollama list
+```
