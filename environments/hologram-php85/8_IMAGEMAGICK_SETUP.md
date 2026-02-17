@@ -33,14 +33,14 @@ php -i | grep extension_dir
 obtain:
 
 ```text
-extension_dir => /opt/php/8.5.2/lib/php/extensions/debug-zts-20250925 => /opt/php/8.5.2/lib/php/extensions/debug-zts-20250925
+extension_dir => /opt/php/8.5.3/lib/php/extensions/debug-zts-20250925 => /opt/php/8.5.3/lib/php/extensions/debug-zts-20250925
 ```
 
 ### configure PHP with imagick
 
 ```shell
-ls -al /opt/php/8.5.2/lib/php/extensions/debug-zts-20250925
-sudo sed -i '$aextension="imagick.so"' /opt/php/8.5.2/lib/php.ini
+ls -al /opt/php/8.5.3/lib/php/extensions/debug-zts-20250925
+sudo sed -i '$aextension="imagick.so"' /opt/php/8.5.3/lib/php.ini
 sudo systemctl restart php-fpm
 systemctl status php-fpm --no-pager
 ```
