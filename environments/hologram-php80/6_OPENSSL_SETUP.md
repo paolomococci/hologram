@@ -7,7 +7,7 @@ wget https://www.openssl.org/source/openssl-1.1.1w.tar.gz
 sha256sum openssl-1.1.1w.tar.gz
 tar -xf openssl-1.1.1w.tar.gz
 cd openssl-1.1.1w/
-mkdir build_session && cd build_session
+mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../Configure --prefix=/opt/openssl/1.1.1w --openssldir=/opt/openssl/1.1.1w -fPIC -shared linux-x86_64
 make && make test
 sudo make install

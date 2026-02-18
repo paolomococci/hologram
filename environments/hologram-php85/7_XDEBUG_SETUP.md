@@ -36,14 +36,14 @@ Be sure to replace the real link of the version you prefer.
 
 ```shell
 mkdir xdebug && cd xdebug
-wget --spider --https-only https://xdebug.org/files/xdebug-3.5.0.tgz
-wget --https-only https://xdebug.org/files/xdebug-3.5.0.tgz
-sha256sum xdebug-3.5.0.tgz
-tar -xzf xdebug-3.5.0.tgz
+wget --spider --https-only https://xdebug.org/files/xdebug-3.5.1.tgz
+wget --https-only https://xdebug.org/files/xdebug-3.5.1.tgz
+sha256sum xdebug-3.5.1.tgz
+tar -xzf xdebug-3.5.1.tgz
 ls -l
-cd xdebug-3.5.0/
+cd xdebug-3.5.1/
 phpize
-mkdir build_session_date && cd build_session_date
+mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make
@@ -53,9 +53,9 @@ sudo make install
 Instead, if it is a PHP version update:
 
 ```shell
-cd ~/xdebug/xdebug-3.5.0/
+cd ~/xdebug/xdebug-3.5.1/
 phpize
-mkdir build_session_update_n && cd build_session_update_n
+mkdir "build_session_update_$(date +%Y-%m-%d)" && cd "build_session_update_$(date +%Y-%m-%d)"
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make

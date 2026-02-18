@@ -15,7 +15,7 @@ wget --https-only https://www.python.org/ftp/python/3.11.10/Python-3.11.10.tar.x
 md5sum Python-3.11.10.tar.xz
 tar -xf Python-3.11.10.tar.xz
 cd Python-3.11.10/
-mkdir build_session_date && cd build_session_date
+mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --help
 ../configure --enable-big-digits --enable-ipv6 --enable-optimizations
 sudo make altinstall

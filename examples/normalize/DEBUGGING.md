@@ -43,7 +43,7 @@ tar -xzf xdebug-3.5.0.tgz
 ls -l
 cd xdebug-3.5.0/
 phpize
-mkdir build_session_date && cd build_session_date
+mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make
@@ -55,7 +55,7 @@ Instead, if it is a PHP version update:
 ```shell
 cd ~/xdebug/xdebug-3.5.0/
 phpize
-mkdir build_session_update_n && cd build_session_update_n
+mkdir "build_session_update_$(date +%Y-%m-%d)" && cd "build_session_update_$(date +%Y-%m-%d)"
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make

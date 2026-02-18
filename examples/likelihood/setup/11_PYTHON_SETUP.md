@@ -27,7 +27,7 @@ wget https://www.python.org/ftp/python/3.12.4/Python-3.12.4.tar.xz
 md5sum Python-3.12.4.tar.xz
 tar -xf Python-3.12.4.tar.xz
 cd Python-3.12.4/
-mkdir build_session && cd build_session
+mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --help
 ../configure --prefix=/opt/python/3.12.4 --with-openssl=/usr/bin/openssl --enable-big-digits --enable-ipv6 --enable-optimizations
 sudo make altinstall

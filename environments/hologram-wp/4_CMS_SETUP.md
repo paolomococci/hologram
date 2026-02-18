@@ -7,7 +7,7 @@ It is necessary to recompile from source PHP because WordPress require the `mysq
 ```bash
 cd ~/php/php-8.3.1/
 ./configure --help | grep "mysqli"
-mkdir build_session && cd build_session
+mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --prefix=/opt/php/8.3.1 --enable-fpm --enable-bcmath --enable-opcache --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug
 make
 make test

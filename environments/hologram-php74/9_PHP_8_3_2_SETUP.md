@@ -17,7 +17,7 @@ cd php-8.3.2/
 ## settings and compilation from PHP version 8.3.2 sources.
 
 ```bash
-mkdir build_session && cd build_session
+mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --prefix=/opt/php/8.3.2 --enable-fpm --enable-bcmath --enable-opcache --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug
 make && make test
 sudo make install

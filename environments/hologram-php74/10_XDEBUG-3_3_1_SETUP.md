@@ -20,7 +20,7 @@ sha256sum xdebug-3.3.1.tgz
 tar -xvzf xdebug-3.3.1.tgz
 cd xdebug-3.3.1/
 phpize83
-mkdir build_session && cd build_session
+mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --help
 ../configure --prefix=/opt/php/xdebug/3.3.1 --with-php-config=/opt/php/8.3.2/bin/php-config --enable-xdebug
 make
@@ -57,7 +57,7 @@ xdebug.mode=debug,trace
 xdebug.start_with_request=trigger
 xdebug.discover_client_host=1
 xdebug.mode=debug
-xdebug.client_host=192.168.1.1
+xdebug.client_host=192.168.XXX.XXX
 xdebug.client_port=9004
 xdebug.connect_timeout_ms=2000
 xdebug.idekey=VSCODE
@@ -68,6 +68,8 @@ After this line:
 ```text
 zend_extension=opcache.so
 ```
+
+Taking care to replace the 192.168.XXX.XXX placeholder with your IP address.
 
 As can be seen from the last setting I considered using vscode.
 

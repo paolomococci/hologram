@@ -17,7 +17,7 @@ tar -xf php-8.3.8.tar.xz
 
 ```bash
 ls -al
-cd php-8.3.8/ && mkdir build_session && cd build_session
+cd php-8.3.8/ && mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --help | grep -i "opcache"
 ../configure --prefix=/opt/php/8.3.8 --enable-fpm --enable-bcmath --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug --with-ffi
 make

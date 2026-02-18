@@ -11,7 +11,7 @@ sha256sum xdebug-3.3.2.tgz
 tar -xzf xdebug-3.3.2.tgz
 cd xdebug-3.3.2/
 phpize
-mkdir build_session && cd build_session
+mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make
@@ -23,7 +23,7 @@ Instead, if it is an update:
 ```bash
 cd xdebug/xdebug-3.3.2/
 phpize
-mkdir build_session_update_n && cd build_session_update_n
+mkdir "build_session_update_$(date +%Y-%m-%d)" && cd "build_session_update_$(date +%Y-%m-%d)"
 ../configure --help
 ../configure --prefix=/opt/php/xdebug --enable-xdebug
 make
@@ -61,7 +61,7 @@ xdebug.cli_color=1
 xdebug.start_with_request=trigger
 xdebug.discover_client_host=1
 xdebug.mode=debug
-xdebug.client_host=192.168.1.XXX
+xdebug.client_host=192.168.XXX.XXX
 xdebug.client_port=9003
 xdebug.connect_timeout_ms=2000
 xdebug.idekey=VSCODE
@@ -72,6 +72,8 @@ After this line:
 ```text
 zend_extension=opcache.so
 ```
+
+Taking care to replace the 192.168.XXX.XXX placeholder with your IP address.
 
 As can be seen from the last setting I considered using vscode.
 

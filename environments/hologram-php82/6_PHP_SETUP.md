@@ -29,7 +29,7 @@ cd php-8.2.30/
 ## settings and compilation from PHP version 8.2.30 sources.
 
 ```bash
-mkdir build_session && cd build_session
+mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --help | grep -i "opcache"
 ../configure --prefix=/opt/php/8.2.30 --enable-fpm --enable-bcmath --enable-ftp --with-openssl \
     --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl \

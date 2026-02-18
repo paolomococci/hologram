@@ -18,7 +18,7 @@ cd php-8.3.11/
 ## settings and compilation from PHP version 8.3.11 sources.
 
 ```bash
-mkdir build_session && cd build_session
+mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --help | grep -i "opcache"
 ../configure --prefix=/opt/php/8.3.11 --enable-fpm --enable-bcmath --enable-ftp --with-openssl --disable-cgi --enable-mbstring --with-curl --with-mysqli --with-pdo-mysql --enable-intl --with-zlib --with-bz2 --enable-gd --with-jpeg --with-gettext --with-gmp --with-xsl --enable-zts --enable-gcov --enable-debug --with-ffi --with-readline
 make
