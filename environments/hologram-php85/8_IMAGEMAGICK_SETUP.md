@@ -12,7 +12,7 @@ su -
 ```shell
 wget --spider --https-only https://imagemagick.org/archive/ImageMagick.tar.gz
 tar -xzf ImageMagick.tar.gz
-cd ImageMagick-7.1.2-13
+cd ImageMagick-7.1.2-18
 ./configure --with-modules --with-rsvg --with-gslib --with-fpx --with-flif --with-fftw --verbose
 make && make install
 ```
