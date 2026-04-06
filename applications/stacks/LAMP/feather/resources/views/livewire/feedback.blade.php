@@ -50,7 +50,7 @@
 
         <span class="block">{{ $message }}</span>
 
-        {{-- button (inline‑Alpine) --}}
+        {{-- button (inline‑Alpine) --}}
         <button type="button"
             class="absolute top-2 right-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-{{ $type }} rounded"
             aria-label="Close message" @click="show = false; clearTimeout(autoDismiss);">
