@@ -1,5 +1,24 @@
 # guests
 
+## updates
+
+How to keep the development environment up to date:
+
+```shell
+flutter help
+flutter help doctor
+flutter doctor --verbose
+```
+
+And if updates are reported, I can proceed as follows:
+
+```shell
+flutter help upgrade
+flutter upgrade --verbose --verify-only
+flutter upgrade --verbose
+flutter doctor --verbose
+```
+
 ## scaffolding
 
 Create app:
