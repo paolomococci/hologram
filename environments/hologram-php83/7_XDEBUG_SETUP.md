@@ -43,11 +43,11 @@ Be sure to replace the real link of the version you prefer.
 
 ```bash
 mkdir xdebug && cd xdebug
-wget --spider --https-only https://xdebug.org/files/xdebug-3.4.7.tgz
-wget --https-only https://xdebug.org/files/xdebug-3.4.7.tgz
-sha256sum xdebug-3.4.7.tgz
-tar -xzf xdebug-3.4.7.tgz
-cd xdebug-3.4.7/
+wget --spider --https-only https://xdebug.org/files/xdebug-3.5.1.tgz
+wget --https-only https://xdebug.org/files/xdebug-3.5.1.tgz
+sha256sum xdebug-3.5.1.tgz
+tar -xzf xdebug-3.5.1.tgz
+cd xdebug-3.5.1/
 phpize
 mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --help
@@ -59,7 +59,7 @@ sudo make install
 Instead, if it is a PHP version update:
 
 ```bash
-cd xdebug/xdebug-3.4.7/
+cd xdebug/xdebug-3.5.1/
 phpize
 mkdir "build_session_$(date +%Y-%m-%d)" && cd "build_session_$(date +%Y-%m-%d)"
 ../configure --help
