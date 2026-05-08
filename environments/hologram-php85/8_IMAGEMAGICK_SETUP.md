@@ -12,7 +12,7 @@ su -
 ```shell
 wget --spider --https-only https://imagemagick.org/archive/ImageMagick.tar.gz
 tar -xzf ImageMagick.tar.gz
-cd ImageMagick-7.1.2-18
+cd ImageMagick-7.1.2-21
 ./configure --with-modules --with-rsvg --with-gslib --with-fpx --with-flif --with-fftw --verbose
 make && make install
 ```
@@ -33,14 +33,14 @@ php -i | grep extension_dir
 obtain:
 
 ```text
-extension_dir => /opt/php/8.5.5/lib/php/extensions/debug-zts-20250925 => /opt/php/8.5.5/lib/php/extensions/debug-zts-20250925
+extension_dir => /opt/php/8.5.6/lib/php/extensions/debug-zts-20250925 => /opt/php/8.5.6/lib/php/extensions/debug-zts-20250925
 ```
 
 ### configure PHP with imagick
 
 ```shell
-ls -al /opt/php/8.5.5/lib/php/extensions/debug-zts-20250925
-sudo sed -i '$aextension="imagick.so"' /opt/php/8.5.5/lib/php.ini
+ls -al /opt/php/8.5.6/lib/php/extensions/debug-zts-20250925
+sudo sed -i '$aextension="imagick.so"' /opt/php/8.5.6/lib/php.ini
 sudo systemctl restart php-fpm
 systemctl status php-fpm --no-pager
 ```
