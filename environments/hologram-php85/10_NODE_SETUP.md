@@ -32,6 +32,7 @@ sudo make install
 To check the installation:
 
 ```shell
+su -
 npm -v
 node -v
 ```
@@ -57,4 +58,7 @@ n stable
 npm -v
 npm view npm version
 npm install -g npm@latest
+npm -v
+node -v
+exit
 ```

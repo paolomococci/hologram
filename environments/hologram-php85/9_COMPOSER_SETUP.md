@@ -29,5 +29,8 @@ If I find that I don't have an updated version of composer just issue the follow
 
 ```shell
 composer -v
+su -
 composer self-update
+exit
+composer -v
 ```
