@@ -140,66 +140,53 @@ Adding the following:
             "request": "launch",
             "port": 9003,
             "pathMappings": {
-                "/var/www/html": "${workspaceFolder}/html",
-            }
-        },
-        {
-            "name": "Launch currently open script",
-            "type": "php",
-            "request": "launch",
-            "program": "${file}",
-            "cwd": "${fileDirname}",
-            "port": 0,
-            "runtimeArgs": [
-                "-dxdebug.start_with_request=yes"
-            ],
-            "env": {
-                "XDEBUG_MODE": "debug,develop",
-                "XDEBUG_CONFIG": "client_port=${port}"
-            }
-        },
-        {
-            "name": "Launch Built-in web server",
-            "type": "php",
-            "request": "launch",
-            "runtimeArgs": [
-                "-dxdebug.mode=debug",
-                "-dxdebug.start_with_request=yes",
-                "-S",
-                "localhost:0"
-            ],
-            "program": "",
-            "cwd": "${workspaceRoot}",
-            "port": 9003,
-            "serverReadyAction": {
-                "pattern": "Development Server \\(http://localhost:([0-9]+)\\) started",
-                "uriFormat": "http://localhost:%s",
-                "action": "openExternally"
+                "/var/www/html/public": "${workspaceFolder}/public",
             }
         }
     ]
 }
 ```
 
+Alright, now you need to be careful when configuring the value of `"pathMappings"`. The first part, `"/var/www/html/public"`, has to precisely match the remote path, while the second part needs to correspond to the code that's written locally, like in example `"${workspaceFolder}/public"`.
+
 ## a simple debugging test
 
-Add file `sample.php` to the project, in directory `/var/www/html`, by typing the following content:
+Add file `debug.php` to the project, in directory `/var/www/html/public`, by typing the following content:
 
 ```php
 <?php
 
+declare(strict_types=1); // Enforce strict type checking
+
 // example of debugging an iteration that uses a constant
 
+xdebug_break();
+
 const WELCOME = "Welcome to demo iteration number ";
-$sample = "";
+$sample       = "";
 
 for ($i = 0; $i < 10; $i++) {
-    xdebug_break();
     $sample = WELCOME . $i . "!<br>";
     echo $sample;
 }
-
 ```
 
-Start debugging from `vscode` and, at the same time, point to address <https://192.168.1.81/sample.php> from the browser.
+Start debugging from `vscode` and, at the same time, point to address <https://192.168.XXX.XXX/debug.php> from the browser.
+Attention, remember to replace the placeholder `192.168.XXX.XXX` with your IP address.
+
 Have a good analysis and debugging session.
+
+### a little cunning
+
+Creating a file named `stubs/xdebug.php` in the project's root directory and adding the following content might prevent the code editor from identifying function `xdebug_break()` as unknown and type something similar to the following code:
+
+```php
+<?php
+
+declare(strict_types=1); // Enforce strict type checking
+
+if (! function_exists('xdebug_break')) {
+    function xdebug_break(): void
+    {}
+}
+```
