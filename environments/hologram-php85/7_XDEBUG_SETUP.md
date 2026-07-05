@@ -94,12 +94,14 @@ xdebug.cli_color=1
 xdebug.start_with_request=trigger
 xdebug.discover_client_host=1
 xdebug.mode=debug
-xdebug.client_host=192.168.1.1
+xdebug.client_host=192.168.XXX.XXX
 xdebug.client_port=9003
 xdebug.connect_timeout_ms=2000
 xdebug.idekey=VSCODE
 ...
 ```
+
+**Warning: in this `xdebug.client_host=192.168.XXX.XXX` line you must put the IP address of the machine from which you are developing the code to be debugged!**
 
 As can be seen from the last setting I considered using vscode.
 
