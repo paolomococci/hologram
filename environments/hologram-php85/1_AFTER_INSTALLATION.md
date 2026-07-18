@@ -77,3 +77,20 @@ man apropos
 man -k _selinux
 man httpd_selinux
 ```
+
+---
+
+## check
+
+Now I can check which ports are open from another host with the following command:
+
+```shell
+nmap -sS -Pn --open -T4 192.168.XXX.XXX
+```
+
+or, to see a specific port:
+
+```shell
+nmap -sS -Pn -T4 --open -p 3306 192.168.XXX.XXX
+```
+
