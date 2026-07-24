@@ -4,7 +4,7 @@
 
 ```bash
 npm run build
-chown --recursive developer_username:apache .
+chown --recursive $(whoami):apache .
 chmod --recursive 775 bootstrap/cache && chmod --recursive 775 storage && chmod --recursive 775 database
 php artisan route:cache && php artisan route:clear
 ```

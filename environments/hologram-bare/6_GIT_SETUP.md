@@ -5,7 +5,7 @@
 ```bash
 cd /var
 sudo mkdir repositories
-sudo chown developer_username:developer_username repositories
+sudo chown $(whoami):$(whoami) repositories
 cd repositories
 mkdir sample.git && cd sample.git
 git init --bare
@@ -22,7 +22,7 @@ git clone https://some_git_service.local/sample --bare
 ```bash
 mkdir /var/www/html/sample
 ls -al /var/www/html/
-chown developer_username:www-data /var/www/html/sample
+chown $(whoami):www-data /var/www/html/sample
 ls -al /var/repositories/sample.git/hooks/
 nano /var/repositories/sample.git/hooks/post-receive
 ```

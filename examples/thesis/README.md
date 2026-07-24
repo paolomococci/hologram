@@ -10,7 +10,7 @@ Apply the mobile first paradigm:
 cd /var/www/html/
 composer create-project laravel/laravel thesis
 cd thesis/
-sudo chown --recursive developer_username:apache .
+sudo chown --recursive $(whoami):apache .
 chmod --recursive 775 bootstrap/cache && chmod --recursive 775 storage && chmod --recursive 775 database
 ```
 
@@ -252,7 +252,7 @@ npm run build
 chmod --recursive 775 bootstrap/cache
 chmod --recursive 775 storage
 chmod --recursive 775 database
-chown --recursive developer_username:apache .
+chown --recursive $(whoami):apache .
 php artisan route:cache && php artisan route:clear && php artisan route:list
 ```
 

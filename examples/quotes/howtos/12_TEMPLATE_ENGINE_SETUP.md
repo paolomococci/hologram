@@ -59,7 +59,7 @@ php artisan make:livewire paper.delete-all-papers
 ## set file owners
 
 ```bash
-chown --recursive --verbose developer_username:www-data .
+chown --recursive --verbose $(whoami):www-data .
 ```
 
 ## edit element styles

@@ -5,5 +5,5 @@ APIs that are used by the ecosystem consisting of graphical interfaces developed
 ```bash
 cd /var/www/html/agora-project/api-agora01/
 php artisan make:controller EcosystemController
-sudo chown --recursive developer_username:apache .
+sudo chown --recursive $(whoami):apache .
 ```

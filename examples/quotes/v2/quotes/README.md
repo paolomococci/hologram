@@ -27,7 +27,7 @@ I then used a `props` to pass the identifier to another child component, which t
 ```bash
 cd /var/www/html/v2/
 composer create-project laravel/laravel:^11.0 quotes
-chown --recursive --verbose developer_username:www-data .
+chown --recursive --verbose $(whoami):www-data .
 cd quotes
 chmod --recursive 775 bootstrap/cache
 chmod --recursive 775 storage
@@ -164,7 +164,7 @@ npm install
 npm run build
 php artisan migrate:fresh
 php artisan schema:dump
-chown --recursive --verbose developer_username:www-data .
+chown --recursive --verbose $(whoami):www-data .
 ```
 
 ## install a collection of Vue composition utilities
@@ -178,7 +178,7 @@ npm i @vueuse/core
 ```bash
 cd /var/www/html/v2/quotes/
 php artisan make:model --all Sample
-chown --recursive --verbose developer_username:www-data .
+chown --recursive --verbose $(whoami):www-data .
 php artisan migrate --pretend --path=./database/migrations/2024_03_26_205553_create_samples_table.php
 php artisan migrate --path=./database/migrations/2024_03_26_205553_create_samples_table.php
 ```

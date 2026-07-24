@@ -81,5 +81,5 @@ npm run build
 Now it's time to fix the permissions:
 
 ```bash
-chown --recursive developer_username:apache .
+chown --recursive $(whoami):apache .
 ```

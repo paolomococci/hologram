@@ -11,7 +11,7 @@ cd /var/www/html/
 composer create-project laravel/laravel recode
 cd recode/
 chmod --recursive 775 bootstrap/cache && chmod --recursive 775 storage && chmod --recursive 775 database
-chown --recursive developer_username:apache .
+chown --recursive $(whoami):apache .
 ```
 
 ### parameter for generate keys:
@@ -258,7 +258,7 @@ npm run build
 chmod --recursive 775 bootstrap/cache
 chmod --recursive 775 storage
 chmod --recursive 775 database
-chown --recursive developer_username:apache .
+chown --recursive $(whoami):apache .
 php artisan route:cache && php artisan route:clear && php artisan route:list
 ```
 

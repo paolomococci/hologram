@@ -56,7 +56,7 @@ sudo usermod -a -G www-data developer_username
 sudo reboot
 groups
 cd /var/www/
-sudo chown --recursive --verbose developer_username:www-data html
+sudo chown --recursive --verbose $(whoami):www-data html
 sudo systemctl status apache2 -l --no-pager
 sudo systemctl list-units
 ```

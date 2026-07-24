@@ -215,7 +215,7 @@ php artisan make:model --pivot --migration Contributor
 php artisan make:model --migration --controller Paper
 php artisan make:controller AuthorController --model=Author
 php artisan make:controller ArticleController --model=Article
-chown --recursive --verbose developer_username:www-data .
+chown --recursive --verbose $(whoami):www-data .
 php artisan route:list
 ```
 

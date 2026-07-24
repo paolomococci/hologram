@@ -115,7 +115,7 @@ mkdir files
 chmod 777 files
 touch settings.php
 chmod 666 settings.php
-chown --recursive developer_username:www-data .
+chown --recursive $(whoami):www-data .
 ```
 
 Now I can point the browser to IP address `https://192.168.1.XXX` and then follow the guided settings.

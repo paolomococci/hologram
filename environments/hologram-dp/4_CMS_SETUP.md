@@ -77,7 +77,7 @@ curl -sSL https://www.drupal.org/download-latest/tar.gz | tar -xz --strip-compon
 cd ~
 cp --recursive ./drupal/ /var/www/html/drupal
 cd /var/www/html/drupal/
-chown --recursive developer_username:www-data .
+chown --recursive $(whoami):www-data .
 chmod --recursive 755 .
 cd sites/default/
 mkdir files

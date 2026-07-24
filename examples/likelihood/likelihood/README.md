@@ -126,7 +126,7 @@ At this point I can issue the following commands:
 
 ```sh
 npm run build
-chown --recursive developer_username:www-data .
+chown --recursive $(whoami):www-data .
 sudo sed -i 's:DocumentRoot /var/www/html:DocumentRoot /var/www/html/likelihood/deployment:g' /etc/apache2/sites-available/default-ssl.conf
 sudo sed -i 's:<Directory /var/www/html>:<Directory /var/www/html/likelihood/deployment>:g' /etc/apache2/sites-available/default-ssl.conf
 sudo sed -i 's:DocumentRoot /var/www/html:DocumentRoot /var/www/html/likelihood/deployment:g' /etc/apache2/sites-available/000-default.conf
@@ -149,7 +149,7 @@ npm outdated
 npm update
 license-checker --csv > license_checker_report.csv
 npm run build
-chown --recursive developer_username:www-data .
+chown --recursive $(whoami):www-data .
 ```
 
 but if, for example, I wanted to update only a specific package it would be better to use the following command:

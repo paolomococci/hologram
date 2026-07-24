@@ -27,7 +27,7 @@ and then continue with the scaffolding of the application:
 ```bash
 cd /var/www/html/v3/
 composer create-project laravel/laravel:^11.0 quotes
-chown --recursive --verbose developer_username:www-data .
+chown --recursive --verbose $(whoami):www-data .
 cd quotes
 chmod --recursive 775 bootstrap/cache
 chmod --recursive 775 storage
@@ -174,7 +174,7 @@ php artisan make:model --all Author
 php artisan make:model --all Article
 php artisan make:model --pivot --migration Merit
 php artisan make:model --all Paper
-chown --recursive --verbose developer_username:www-data .
+chown --recursive --verbose $(whoami):www-data .
 ```
 
 Appropriately modify the files relating to the models and the files relating to the migrations, including the reference to the correct database.
@@ -201,7 +201,7 @@ Remember to comment out the default setting to SQLite and set the correct defaul
 
 ```bash
 php artisan migrate --pretend
-sudo chown --recursive --verbose developer_username:www-data .
+sudo chown --recursive --verbose $(whoami):www-data .
 php artisan migrate
 ```
 
@@ -307,7 +307,7 @@ npm run build
 When I ran into an authorization error it was helpful to repeat the following commands:
 
 ```bash
-chown --recursive --verbose developer_username:www-data .
+chown --recursive --verbose $(whoami):www-data .
 chmod --recursive 775 bootstrap/cache
 chmod --recursive 775 storage
 chmod --recursive 775 database

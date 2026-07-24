@@ -78,7 +78,7 @@ wget https://wordpress.org/latest.zip
 unzip latest.zip
 mv wordpress/ /var/www/html/
 cd /var/www/html/
-chown --recursive developer_username:www-data .
+chown --recursive $(whoami):www-data .
 ```
 
 Now I need to point the browser to the following address:

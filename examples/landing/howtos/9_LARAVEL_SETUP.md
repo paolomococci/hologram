@@ -9,7 +9,7 @@ cd /var/www/html/
 composer create-project laravel/laravel landing
 cd landing
 composer require doctrine/dbal
-chown --recursive --verbose developer_username:www-data .
+chown --recursive --verbose $(whoami):www-data .
 chmod -R 777 bootstrap/cache
 chmod -R 777 storage
 ```
@@ -201,7 +201,7 @@ php artisan jetstream:install livewire --teams --dark
 npm install
 php artisan migrate --pretend
 php artisan migrate
-chown --recursive --verbose developer_username:www-data .
+chown --recursive --verbose $(whoami):www-data .
 npm run build
 ```
 

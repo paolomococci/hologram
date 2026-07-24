@@ -9,7 +9,7 @@ Type the following commands:
 
 ```bash
 cd /var/www/
-sudo chown --recursive developer_username:www-data html/
+sudo chown --recursive $(whoami):www-data html/
 cd html/
 nano index.php
 ```

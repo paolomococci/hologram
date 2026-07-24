@@ -146,7 +146,7 @@ export const HIDDEN_LAYERS = [5, 100, 5]
 
 ```sh
 npm run build
-chown --recursive developer_username:www-data .
+chown --recursive $(whoami):www-data .
 ```
 
 ## check for updates
@@ -161,7 +161,7 @@ npm outdated
 npm update
 license-checker --csv > license_checker_report.csv
 npm run build
-chown --recursive developer_username:www-data .
+chown --recursive $(whoami):www-data .
 ```
 
 but if, for example, I only wanted to update a specific package, it would be better to use the following command:
