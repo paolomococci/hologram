@@ -446,12 +446,17 @@ Edit:
 </VirtualHost>
 ```
 
-And type:
+Now you can verify the correctness of the configurations and restart the web server:
 
 ```shell
 sudo apachectl configtest
 sudo systemctl restart httpd
 systemctl status httpd --no-pager
+```
+
+optionally you can also type:
+
+```shell
 sudo systemctl restart php-fpm
 systemctl status php-fpm --no-pager
 ```
