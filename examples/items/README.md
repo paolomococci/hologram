@@ -559,13 +559,12 @@ ALTER USER IF EXISTS 'developer_username'@'localhost' IDENTIFIED BY PASSWORD 'ne
 
 Configuration of the database required for the application created with the Symfony framework in the appropriate .env files:
 
-```env
-DATABASE_URL="mysql://developer_username:db_password@127.0.0.1:3306/items_db?serverVersion=mariadb-10.5&charset=utf8mb4"
-```
-
 ```shell
 php bin/console dbal:run-sql "SELECT VERSION() AS server_version;"
-php bin/console dbal:run-sql "SELECT user, host, Grant_priv, Super_priv FROM mysql.user WHERE user='developer_username';"
+```
+
+```env
+DATABASE_URL="mysql://developer_username:db_password@127.0.0.1:3306/items_db?serverVersion=mariadb-10.5.29&charset=utf8mb4"
 ```
 
 ---
