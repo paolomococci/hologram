@@ -204,7 +204,11 @@ Edit settings.json like this:
 {
   "cSpell.language": "en",
   "files.associations": {
-    "*.css": "tailwindcss"
+    "*.css": "tailwindcss",
+    "*.twig": "twig"
+  },
+  "emmet.includeLanguages": {
+    "twig": "html"
   },
   "tailwindCSS.includeLanguages": {
     "html": "html",
