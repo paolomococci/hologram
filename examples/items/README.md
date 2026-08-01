@@ -26,8 +26,7 @@ The instructions below walk you through:
 ```shell
 cd /var/www/html/
 sudo mkdir items.local
-cd items.local/
-chown --recursive $(whoami):apache .
+cd items.local/ && sudo chown --recursive $(whoami):apache .
 ```
 
 ---
