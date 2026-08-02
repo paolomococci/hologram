@@ -251,8 +251,18 @@ Therefore I can proceed with the generation of the self-signed certificate witho
 ```shell
 su -
 ls -al /etc/ssl/
+```
+
+If a `private` directory doesn't exist, I proceed as follows:
+
+```shell
 mkdir /etc/ssl/private
 chmod 700 /etc/ssl/private/
+```
+
+Otherwise, I focus on generating a fake certificate for development purposes:
+
+```shell
 openssl req -new -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/items.local.key -out /etc/ssl/certs/items.local.crt
 ls -al /etc/ssl/private/
 ls -al /etc/ssl/certs/
@@ -304,6 +314,8 @@ nano /etc/httpd/conf.d/items.local.conf
 **create the index page**
 
 ```shell
+exit
+mkdir public
 nano /var/www/html/items.local/public/index.php
 ```
 
@@ -315,7 +327,7 @@ nano /var/www/html/items.local/public/index.php
 
 ```shell
 apachectl configtest
-systemctl reload httpd
+sudo systemctl reload httpd
 systemctl status httpd --no-pager
 ```
 
