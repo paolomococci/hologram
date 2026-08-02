@@ -33,10 +33,10 @@ sudo make install
 ## install ImageMagick from source
 
 ```shell
-wget --spider --https-only https://github.com/ImageMagick/ImageMagick/releases/download/7.1.2-26/ImageMagick-7.1.2-26.7z
-wget --https-only https://github.com/ImageMagick/ImageMagick/releases/download/7.1.2-26/ImageMagick-7.1.2-26.7z
-7z x ImageMagick-7.1.2-26.7z
-cd ImageMagick-7.1.2-26/
+wget --spider --https-only https://github.com/ImageMagick/ImageMagick/releases/download/7.1.2-29/ImageMagick-7.1.2-29.7z
+wget --https-only https://github.com/ImageMagick/ImageMagick/releases/download/7.1.2-29/ImageMagick-7.1.2-29.7z
+7z x ImageMagick-7.1.2-29.7z
+cd ImageMagick-7.1.2-29/
 ./configure --with-modules --with-rsvg --with-gslib --with-fpx --with-flif --with-fftw --verbose
 nproc --all
 make -j$(nproc)
@@ -46,8 +46,8 @@ sudo make install
 ## install ImageMagick from repository
 
 ```shell
-git clone --depth 1 --branch main https://github.com/ImageMagick/ImageMagick.git ImageMagick-7.1.2-26
-cd ImageMagick-7.1.2-26/
+git clone --depth 1 --branch main https://github.com/ImageMagick/ImageMagick.git ImageMagick-7.1.2-29
+cd ImageMagick-7.1.2-29/
 ./configure --with-modules --with-rsvg --with-gslib --with-fpx --with-flif --with-fftw --verbose
 nproc --all
 make -j$(nproc)
