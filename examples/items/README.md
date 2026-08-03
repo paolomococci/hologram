@@ -355,14 +355,24 @@ I'll try to summarize the use of the `wget` command:
 ```shell
 wget --spider https://get.symfony.com/cli/installer
 wget https://get.symfony.com/cli/installer -O - | bash
+```
+
+Now, to adhere to modern conventions and respect the `XDG` hierarchical standard it will be necessary to continue as follows:
+
+```shell
+ls -l ~/.config/ | grep symfony-cli
+mv ~/.symfony5/ ~/.config/symfony-cli/
+ls -al ~/.config/symfony-cli/ | grep bin
 nano ~/.bashrc
 ```
 
 Add this line to `~/.bashrc` file:
 
 ```txt
-export PATH="$HOME/.symfony5/bin:$PATH"
+export PATH=$HOME/.config/symfony-cli/bin:$PATH
 ```
+
+In this case, you can also omit the double quotes since there are no special characters in the path.
 
 And now type:
 
