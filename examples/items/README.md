@@ -542,6 +542,8 @@ mariadb --host=192.168.XXX.XXX --user=$(whoami) --password
 Now, from the SQL command line I can type:
 
 ```sql
+SELECT VERSION() AS server_version;
+SHOW DATABASES LIKE;
 CREATE DATABASE IF NOT EXISTS `items_db` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
 -- With `utf8mb4_general_ci` for applications that require accurate sorting.
 ```
@@ -625,10 +627,6 @@ ALTER USER IF EXISTS 'developer_username'@'localhost' IDENTIFIED BY PASSWORD 'ne
 ### configuration of the database
 
 Configuration of the database required for the application created with the Symfony framework in the appropriate .env files:
-
-```shell
-php bin/console dbal:run-sql "SELECT VERSION() AS server_version;"
-```
 
 ```env
 DATABASE_URL="mysql://developer_username:db_password@127.0.0.1:3306/items_db?serverVersion=mariadb-10.5.29&charset=utf8mb4"
