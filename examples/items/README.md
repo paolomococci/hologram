@@ -434,7 +434,7 @@ php bin/console cache:clear --verbose
 Assign the files to the appropriate owners:
 
 ```shell
-chown --recursive $(whoami):apache .
+sudo chown --recursive $(whoami):apache .
 ls -al
 ```
 
