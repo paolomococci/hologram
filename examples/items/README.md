@@ -48,11 +48,22 @@ Edit `.gitignore` file:
 .vscode/
 .notes/
 .tests/
-vendor/
+assets/
+bin/
+public/assets/
 stores/
 stubs/
+var/
+vendor/
+.editorconfig
+compose.override.yaml
+compose.yaml
+composer.lock
+importmap.php
+phpunit.dist.xml
+symfony.lock
 *.pdf
-*.env
+*.env*
 *.log
 *.cache
 ```
@@ -401,14 +412,43 @@ best suited to building a microservice, console application, or web API.
 
 ### setup of web application
 
+Moving forward, we need to generate real files containing all the assets usually managed by Symfony and place them under the `public/assets` path.
+This is necessary to replicate a true deployment scenario:
+
 ```shell
 ls -l
 cd items_webapp/
-php bin/console asset-map:compile
-php bin/console cache:clear
-sudo chown --recursive $(whoami):apache .
-sudo find var/ -type d -exec chmod 775 {} +
-sudo find var/ -type f -exec chmod 664 {} +
+php bin/console --help asset-map:compile
+ls -al public/
+php bin/console asset-map:compile --verbose
+ls -al public/assets/
+```
+
+After this, clear the cache to prevent any potential issues with the application loading the new assets:
+
+```shell
+php bin/console --help cache:clear
+php bin/console cache:clear --verbose
+```
+
+Assign the files to the appropriate owners:
+
+```shell
+chown --recursive $(whoami):apache .
+ls -al
+```
+
+Establish the proper access rights:
+
+```shell
+find var/ -type d -exec chmod 775 {} +
+find var/ -type f -exec chmod 664 {} +
+ls -al
+```
+
+Also, it's important to check that the Apache `mod_rewrite` module is enabled and operating properly:
+
+```shell
 httpd -M | grep rewrite
 ```
 
