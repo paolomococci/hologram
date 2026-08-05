@@ -534,8 +534,10 @@ Command to connect to the development database:
 
 ```shell
 mariadb --help
-mariadb --host=10.183.89.34 --user=$(whoami) --password
+mariadb --host=192.168.XXX.XXX --user=$(whoami) --password
 ```
+
+**Remembering to replace the placeholder `192.168.XXX.XXX` with your IP address.**
 
 Now, from the SQL command line I can type:
 
