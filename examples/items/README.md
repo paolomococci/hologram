@@ -641,3 +641,68 @@ To ensure that paths are formatted correctly or meet specific criteria:
 ```shell
 php bin/console debug:router
 ```
+
+## `10` CRUD implementation
+
+Now I will proceed to create an entity and the CRUD that concerns it:
+
+### create entity
+
+```shell
+php bin/console help make:entity
+php bin/console make:entity Item --verbose
+```
+
+Now all the fields that will form the record track of the new entity must be inserted.
+
+Change the table name by adding the following annotation to the entity class `Item`:
+
+```php
+#[ORM\Table(name: 'items')]
+```
+
+```shell
+php bin/console help make:migration
+php bin/console make:migration --formatted --verbose
+php bin/console doctrine:migrations:migrate -vv --dry-run
+php bin/console doctrine:migrations:migrate -vv
+```
+
+### after migration
+
+For example, from client you can connect to `MariaDB` with the following command:
+
+```shell
+mariadb --user=developer_username --password --host=192.168.XXX.XXX
+```
+
+to then verify the changes made by the migration:
+
+```sql
+SHOW DATABASES;
+SHOW TABLES FROM items_db;
+DESCRIBE items_db.items;
+SELECT id, name, description FROM items_db.items;
+quit
+```
+
+### make CRUD
+
+```shell
+php bin/console help make:crud
+php bin/console make:crud Item --verbose
+```
+
+### tool to automatically fix PHP code style
+
+```shell
+composer require --dev friendsofphp/php-cs-fixer
+```
+
+So I can try to correct the style of the PHP code:
+
+```shell
+ls -l ./vendor/bin/php-cs-fixer
+./vendor/bin/php-cs-fixer check ./src
+./vendor/bin/php-cs-fixer fix ./src
+```
