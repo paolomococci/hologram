@@ -673,7 +673,7 @@ php bin/console doctrine:migrations:migrate -vv
 For example, from client you can connect to `MariaDB` with the following command:
 
 ```shell
-mariadb --user=developer_username --password --host=192.168.XXX.XXX
+mariadb --host=192.168.XXX.XXX --user=$(whoami) --password
 ```
 
 to then verify the changes made by the migration:
