@@ -69,6 +69,7 @@ extension_dir => /opt/php/8.5.11/lib/php/extensions/debug-zts-20250925 => /opt/p
 ```shell
 ls -al /opt/php/8.5.11/lib/php/extensions/debug-zts-20250925
 sudo sed -i '$aextension="imagick.so"' /opt/php/8.5.11/lib/php.ini
+tail /opt/php/8.5.11/lib/php.ini
 sudo systemctl restart php-fpm
 systemctl status php-fpm --no-pager
 ```
