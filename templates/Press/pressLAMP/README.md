@@ -164,7 +164,7 @@ exit
 Note, after repeated testing, you may need to use the following command:
 
 ```shell
-ssh-keygen -f "/home/developer_name/.ssh/known_hosts" -R "[192.168.XXX.XXX]:8022"
+ssh-keygen -f "/home/$(logname)/.ssh/known_hosts" -R "[192.168.XXX.XXX]:8022"
 ```
 
 so as to avoid the following warning: "REMOTE HOST IDENTIFICATION HAS CHANGED!".
