@@ -18,25 +18,13 @@ exit
 mkdir ImageMagick && cd ImageMagick
 ```
 
-## install ImageMagick from archive
-
-```shell
-wget --spider --https-only https://imagemagick.org/archive/ImageMagick.tar.gz
-wget --https-only https://imagemagick.org/archive/ImageMagick.tar.gz
-tar -xzf ImageMagick.tar.gz
-cd ImageMagick-7.1.2-25
-./configure --with-modules --with-rsvg --with-gslib --with-fpx --with-flif --with-fftw --verbose
-make -j$(nproc)
-sudo make install
-```
-
 ## install ImageMagick from source
 
 ```shell
-wget --spider --https-only https://github.com/ImageMagick/ImageMagick/releases/download/7.1.2-29/ImageMagick-7.1.2-29.7z
-wget --https-only https://github.com/ImageMagick/ImageMagick/releases/download/7.1.2-29/ImageMagick-7.1.2-29.7z
-7z x ImageMagick-7.1.2-29.7z
-cd ImageMagick-7.1.2-29/
+wget --spider --https-only https://github.com/ImageMagick/ImageMagick/releases/download/7.1.2-31/ImageMagick-7.1.2-31.7z
+wget --https-only https://github.com/ImageMagick/ImageMagick/releases/download/7.1.2-31/ImageMagick-7.1.2-31.7z
+7z x ImageMagick-7.1.2-31.7z
+cd ImageMagick-7.1.2-31/
 ./configure --with-modules --with-rsvg --with-gslib --with-fpx --with-flif --with-fftw --verbose
 nproc --all
 make -j$(nproc)
@@ -46,8 +34,8 @@ sudo make install
 ## install ImageMagick from repository
 
 ```shell
-git clone --depth 1 --branch main https://github.com/ImageMagick/ImageMagick.git ImageMagick-7.1.2-29
-cd ImageMagick-7.1.2-29/
+git clone --depth 1 --branch main https://github.com/ImageMagick/ImageMagick.git ImageMagick-7.1.2-31
+cd ImageMagick-7.1.2-31/
 ./configure --with-modules --with-rsvg --with-gslib --with-fpx --with-flif --with-fftw --verbose
 nproc --all
 make -j$(nproc)
