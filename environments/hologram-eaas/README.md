@@ -1,7 +1,7 @@
 # hologram-eaas (Environment as a Service)
 
 Looking ahead, I am preparing a set of procedures to build the backbone of a local multi-node Eaas, (Environment as a Service), example.
-A type of Eaas in `on premise` configuration thanks to a virtual server with GNU/Linux AlmaLinux 9.4 installed.
+A type of Eaas in `on premise` configuration thanks to a virtual server with GNU/Linux AlmaLinux 9.9 installed.
 A great alternative is also Rocky Linux.
 
 ## adapt to SELinux

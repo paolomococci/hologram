@@ -1,6 +1,6 @@
 # hologram-php85
 
-Here are the procedures for obtaining a LAMP server stack with version 8.5 of PHP thanks to the distribution AlmaLinux 9.7.
+Here are the procedures for obtaining a LAMP server stack with version 8.5 of PHP thanks to the distribution AlmaLinux 9.9.
 
 The following command was used to reduce the size of the following screenshot:
 
