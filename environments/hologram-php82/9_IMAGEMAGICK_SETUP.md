@@ -23,7 +23,7 @@ ls -l
 sha256sum ImageMagick.tar.gz
 tar -xzf ImageMagick.tar.gz
 ls -l
-cd ImageMagick-7.1.1-47
+cd ImageMagick-7.1.2-36
 ./configure --with-modules --with-rsvg --with-gslib --with-fpx --with-flif --with-fftw
 make
 make check
