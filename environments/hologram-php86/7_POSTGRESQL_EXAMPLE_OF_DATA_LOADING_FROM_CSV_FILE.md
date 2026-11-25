@@ -1,0 +1,135 @@
+# example of data loading from a CSV file
+
+Given the following CSV file users_tab.csv:
+
+```csv
+id,first_name; nickname, last_name, email; city; country
+1;John;null; Doe;john.doe@example.local, New York; USA
+;2;Jennifer ;null;Doe;jennifer.doe@example.local;Forlì;Italy 
+```
+
+Shell commands used to prepare the CSV file:
+
+```shell
+iconv -f latin1 -t utf-8 ~/users_tab.csv > ~/prepared_users_tab.csv
+sed -i -e 's/;/,/g' ~/prepared_users_tab.csv
+sed -i -e 's/^,//g' ~/prepared_users_tab.csv
+sed -i -e 's/,[[:blank:]]/,/g' ~/prepared_users_tab.csv
+sed -i -e 's/[[:blank:]],/,/g' ~/prepared_users_tab.csv
+```
+
+The result should be similar to the following:
+
+```csv
+id,first_name,last_name,nickname,email,city,country
+1,John,,Doe,john.doe@example.local,New York,USA
+2,Jennifer,,Doe,jennifer.doe@example.local,Forlì,Italy
+```
+
+## database `subscribers_db` schema `sports_news_sc`
+
+I used the following shell command:
+
+```shell
+ssh username@192.168.1.XXX
+su - postgres
+dropuser --help
+dropuser --if-exists developer_username
+createuser --help
+createuser --createdb --pwprompt developer_username
+dropdb --help
+dropdb --if-exists developer_username
+dropdb --if-exists developer_username_db
+dropdb --if-exists subscribers_db
+createdb --help
+createdb --owner=developer_username developer_username
+createdb --owner=developer_username developer_username_db
+createdb --owner=developer_username subscribers_db
+```
+
+And type, from developer host:
+
+```shell
+psql --host=192.168.1.XXX --username=developer_username
+```
+
+Create appropriately the table or tables that will receive the data:
+
+```sql
+\conninfo
+\encoding
+\connect subscribers_db
+drop schema if exists sports_news_sc cascade;
+create schema if not exists sports_news_sc;
+create table sports_news_sc.subscribers (
+    subscriber_id bigserial,
+    first_name varchar(16),
+    nickname varchar(16),
+    last_name varchar(16),
+    email varchar(48),
+    city varchar(88),
+    country varchar(48),
+    constraint pk_subscriber
+        primary key (subscriber_id)
+);
+select * from sports_news_sc.subscribers;
+\dS+ sports_news_sc.subscribers
+\q
+```
+
+It is important to remember to check with a text editor for any potential inconsistencies and blank lines, which must be corrected and deleted:
+
+```shell
+nano ~/prepared_users_tab.csv
+```
+
+I can connect directly to the database of interest at login time:
+
+```shell
+psql --host=192.168.1.XXX --username=developer_username --dbname=subscribers_db
+```
+
+```sql
+\copy sports_news_sc.subscribers from '~/prepared_users_tab.csv' with(format csv, header true, delimiter ',');
+select * from sports_news_sc.subscribers;
+```
+
+obtaining:
+
+```text
+ subscriber_id | first_name | nickname | last_name |           email            |   city   | country 
+---------------+------------+----------+-----------+----------------------------+----------+---------
+             1 | John       |          | Doe       | john.doe@example.local     | New York | USA
+             2 | Jennifer   |          | Doe       | jennifer.doe@example.local | Forlì    | Italy
+(2 rows)
+```
+
+Now check is null values of nicknames:
+
+```sql
+select nickname is null as "nickname is null" from sports_news_sc.subscribers;
+```
+
+to then obtain:
+
+```text
+ nickname is null 
+------------------
+ t
+ t
+(2 rows)
+```
+
+Finally I close the connection to the database:
+
+```sql
+\q
+```
+
+## duplicate a table from another schema
+
+```sql
+drop schema if exists opinion_makers_sc cascade;
+create schema if not exists opinion_makers_sc;
+create table opinion_makers_sc.subscribers as table sports_news_sc.subscribers;
+```
