@@ -4,23 +4,23 @@ Following are the steps I took to install `node` and `npm` from source code, aft
 
 ```shell
 cd ~ && mkdir nodejs && cd nodejs
-wget --spider --https-only https://nodejs.org/dist/v24.11.1/node-v24.11.1.tar.xz
-wget --https-only https://nodejs.org/dist/v24.11.1/node-v24.11.1.tar.xz
-curl --head https://nodejs.org/dist/v24.11.1/SHASUMS256.txt
-curl -O https://nodejs.org/dist/v24.11.1/SHASUMS256.txt
+wget --spider --https-only https://nodejs.org/dist/v26.13.1/node-v26.13.1.tar.xz
+wget --https-only https://nodejs.org/dist/v26.13.1/node-v26.13.1.tar.xz
+curl --head https://nodejs.org/dist/v26.13.1/SHASUMS256.txt
+curl -O https://nodejs.org/dist/v26.13.1/SHASUMS256.txt
 ```
 
 I can do the same check in a single command line:
 
 ```shell
-grep $(sha256sum node-v24.11.1.tar.xz) SHASUMS256.txt
+grep $(sha256sum node-v26.13.1.tar.xz) SHASUMS256.txt
 ```
 
 and then continue:
 
 ```shell
-tar -xf node-v24.11.1.tar.xz
-cd node-v24.11.1/
+tar -xf node-v26.13.1.tar.xz
+cd node-v26.13.1/
 ./configure --help
 ./configure --verbose
 make
