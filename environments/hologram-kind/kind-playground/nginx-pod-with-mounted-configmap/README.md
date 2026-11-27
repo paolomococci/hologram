@@ -50,7 +50,7 @@ kubectl get configmap mounted-configmap -o yaml > mounted-configmap-dump.yaml
 
 ## mounts the ConfigMap object
 
-Mounts the ConfigMap values ​​on the Pod as if they were files whose content is the setting previously defined as key-value.
+Mounts the ConfigMap values on the Pod as if they were files whose content is the setting previously defined as key-value.
 
 ```bash
 ls -l ./nginx-pod-with-mounted-configmap.yaml

@@ -17,7 +17,7 @@ class Toggle extends Component
     /**
      * Current mode of the toggle.
      *
-     * @var bool  false → “show unfinished”, true → “show finished”.
+     * @var bool  false -> “show unfinished”, true -> “show finished”.
      */
     public bool $isOn = false; // default to false
 
@@ -25,7 +25,7 @@ class Toggle extends Component
      * mount
      *
      * When this component mounts, it dispatch the initial state so that
-     * the Search component can sync its filter (and vice‑versa).
+     * the Search component can sync its filter (and vice-versa).
      *
      * @return void
      */
@@ -66,7 +66,7 @@ class Toggle extends Component
     }
 
     /**
-     * User clicked the button → flip the flag and inform the Search
+     * User clicked the button -> flip the flag and inform the Search
      * component that the filter has changed.
      */
     public function toggle(): void

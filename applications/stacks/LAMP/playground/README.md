@@ -4,7 +4,7 @@
 
 - **Definition:** A **`playground`** can refer to an environment (often lightweight and interactive) for experimenting with code, libraries, technologies, or APIs without complex setup.
 - **Practical use:** It is used to test snippets, try new frameworks, explore library behavior, or quickly validate ideas.
-- **Prototyping:** It can be considered a development environment for prototyping ideas—typically for proofs of concept, demos, or quick experiments, not for production.
+- **Prototyping:** It can be considered a development environment for prototyping ideas-typically for proofs of concept, demos, or quick experiments, not for production.
 - **Common features:** instant feedback, isolation, easy reset, REPL or web interface, pre-configured examples, shareable results.
 - **Examples:** online editors (CodePen, JSFiddle), API sandboxes, interactive notebooks (Jupyter), integrated environments for ML or graphics.
 

@@ -50,9 +50,9 @@ function uploadDataField() {
     fileReader.onload = (event) => {
       // ref tuples
       tuples.value = parseCsvDataField(event.target.result)
-      // to check that the values ​​fall within a certain range
+      // to check that the values fall within a certain range
       if (toCheckWithinRange(tuples.value)) {
-        // here's what to do if the range of tuple values ​​is correct
+        // here's what to do if the range of tuple values is correct
         console.log(`Data field name is: ${tuplesName}`)
         uploadMessages.resultMessage = `Data field name is: ${tuplesName}`
         tuplesData.name = tuplesName
@@ -109,7 +109,7 @@ function prepareTrainingDataFieldObject(tuples) {
   return trainingDataField
 }
 
-/** check that the values ​​fall within a certain range */
+/** check that the values fall within a certain range */
 function toCheckWithinRange(tuples) {
   let checkResult = true
   let value = 0

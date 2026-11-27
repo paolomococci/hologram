@@ -16,7 +16,7 @@
                 <div class="w-10 h-10">
                     <div x-show="! card.cleared">
                         <button :style="'background: ' + (card.toggled ? card.color : '#999')"
-                            class="p-1 m-1 w-full h-10 rounded-md" x-on:click="toggleCard(card)">  </button>
+                            class="p-1 m-1 w-full h-10 rounded-md" x-on:click="toggleCard(card)"> </button>
                     </div>
                 </div>
             </template>

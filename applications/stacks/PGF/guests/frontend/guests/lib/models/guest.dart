@@ -49,7 +49,7 @@ class Guest {
     return jsonList.map((json) => Guest.fromJson(json)).toList();
   }
 
-  /// Pretty‑printed JSON (for debugging, if needed)
+  /// Pretty-printed JSON (for debugging, if needed)
   @override
   String toString() => jsonEncode(toJson());
 

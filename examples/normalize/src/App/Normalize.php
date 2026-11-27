@@ -31,10 +31,10 @@ class Normalize
      * 1. Converts literal escape sequences (\\n, \\r, \\t, \\f, \\v,
      *    \\xNN, …) into their real character equivalents or removes them.
      * 2. Finally removes any remaining control/whitespace characters that
-     *    survived the first pass (CR, LF, TAB, form‑feed, vertical‑tab).
+     *    survived the first pass (CR, LF, TAB, form-feed, vertical-tab).
      *
      * @param string $temp The input string that may contain escape sequences.
-     * @return string      The cleaned‑up string.  Returns an empty string on error.
+     * @return string      The cleaned-up string.  Returns an empty string on error.
      */
     public static function sanitizeStringEscapes(string $temp): string
     {
@@ -42,19 +42,19 @@ class Normalize
         // characters (or an empty string if we want to drop them)
         $temp = preg_replace(
             [
-                '/\\\\n/',                              // literal \n => new‑line
-                '/\\\\r/',                              // literal \r => carriage‑return
+                '/\\\\n/',                              // literal \n => new-line
+                '/\\\\r/',                              // literal \r => carriage-return
                 '/\\\\t/',                              // literal \t => tab
-                '/\\\\f/',                              // literal \f => form‑feed
-                '/\\\\v/',                              // literal \v => vertical‑tab
+                '/\\\\f/',                              // literal \f => form-feed
+                '/\\\\v/',                              // literal \v => vertical-tab
                 '/\\\\x[0-9A-Fa-f]{2,}|[\r\n\t\f\v]+/', // \xNN (hex) or any real whitespace
             ],
             [
-                "",     // keep \n as a real line‑break
-                "\n",   // keep \r as a real carriage‑return
+                "",     // keep \n as a real line-break
+                "\n",   // keep \r as a real carriage-return
                 "\t",   // keep \t as a real tab
-                "\f",   // keep \f as a real form‑feed
-                "\v",   // keep \v as a real vertical‑tab
+                "\f",   // keep \f as a real form-feed
+                "\v",   // keep \v as a real vertical-tab
                 ""      // drop any remaining literal \xNN or any real whitespace
             ],
             $temp

@@ -10,7 +10,7 @@ use App\Interfaces\SolidFloatMathInterface;
  * SolidFloatMath
  *
  * Provides basic arithmetic operations (add, subtract, multiply, divide)
- * that operate strictly on floating‑point numbers.
+ * that operate strictly on floating-point numbers.
  */
 class SolidFloatMath extends SolidAbstractMath implements SolidFloatMathInterface
 {
@@ -31,7 +31,7 @@ class SolidFloatMath extends SolidAbstractMath implements SolidFloatMathInterfac
     }
 
     /**
-     * Add two floating‑point numbers.
+     * Add two floating-point numbers.
      *
      * @param  float $a  The first operand.
      * @param  float $b  The second operand.
@@ -44,7 +44,7 @@ class SolidFloatMath extends SolidAbstractMath implements SolidFloatMathInterfac
     }
 
     /**
-     * Subtract one floating‑point number from another.
+     * Subtract one floating-point number from another.
      *
      * @param  float $a  The minuend.
      * @param  float $b  The subtrahend.
@@ -57,7 +57,7 @@ class SolidFloatMath extends SolidAbstractMath implements SolidFloatMathInterfac
     }
 
     /**
-     * Multiply two floating‑point numbers.
+     * Multiply two floating-point numbers.
      *
      * @param  float $a  The first factor.
      * @param  float $b  The second factor.
@@ -70,7 +70,7 @@ class SolidFloatMath extends SolidAbstractMath implements SolidFloatMathInterfac
     }
 
     /**
-     * Divide one floating‑point number by another.
+     * Divide one floating-point number by another.
      *
      * @param  float $a  The dividend.
      * @param  float $b  The divisor.

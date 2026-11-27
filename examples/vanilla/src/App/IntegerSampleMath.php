@@ -58,7 +58,7 @@ final class IntegerSampleMath implements IntegerMathInterface
      * @param  int $b
      * @return int
      *
-     * Performs integer division.  Uses intdiv for PHP 8+.
+     * Performs integer division. Uses intdiv for PHP 8+.
      * Throws DivisionByZeroError if $b is 0 to avoid runtime errors.
      */
     public static function divide(int $a, int $b): int

@@ -49,8 +49,8 @@ class Search extends Component
      * Listen to the `toggle-filter` event fired by the Toggle component.
      *
      * Whenever the Toggle component dispatch this event we update the
-     * internal filter flag so that the query automatically re‑runs
-     * and the view re‑renders with the appropriate task set.
+     * internal filter flag so that the query automatically re-runs
+     * and the view re-renders with the appropriate task set.
      *
      * @On registers this method as an event handler.
      *
@@ -94,7 +94,7 @@ class Search extends Component
     public function render()
     {
         // We only perform a database query if the user has typed > 2 characters.
-        // Otherwise we return an empty collection – the UI stays clean.
+        // Otherwise we return an empty collection - the UI stays clean.
         if (strlen($this->searchText) > 2) {
             $results = Task::where('tag', 'LIKE', "%{$this->searchText}%")
                 ->where('is_done', $this->isDoneFilter) // <-- filter by Toggle

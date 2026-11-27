@@ -4,7 +4,7 @@
 #include <QString>
 
 /*
- * Task represents a single to‑do item.  It exposes properties that
+ * Task represents a single to-do item.  It exposes properties that
  * QML can bind to: title, description, urgency, and completion status.
  */
 class Task : public QObject {

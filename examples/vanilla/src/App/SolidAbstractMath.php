@@ -10,7 +10,7 @@ use DivisionByZeroError;
  * SolidAbstractMath
  *
  * Abstract base that supplies shared helper methods for concrete
- * math providers.  Currently it only contains the zero‑division guard.
+ * math providers. Currently it only contains the zero-division guard.
  */
 abstract class SolidAbstractMath
 {

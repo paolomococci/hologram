@@ -1,6 +1,6 @@
 # development of `recode` web application
 
-A screenshot that gives an idea of ​​the finished application:
+A screenshot that gives an idea of the finished application:
 
 ![example of query](../../environments/hologram-php84/screenshots/Recode_query_SelectFromEmployeesWhereRadiologist.png)
 

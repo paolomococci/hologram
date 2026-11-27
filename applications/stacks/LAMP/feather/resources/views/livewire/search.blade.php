@@ -1,5 +1,5 @@
 {{-- resources/views/livewire/search.blade.php --}}
-{{-- search.blade.php – main search form and results handling --}}
+{{-- search.blade.php - main search form and results handling --}}
 @php
     // Remember that before you can use $headerBagConsoleLog, it needs to be converted into an array.
     $headerBagConsoleLog = request()->headers;

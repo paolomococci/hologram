@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.15
 /*
 * NewTaskPage lets the user create a new Task. The form fields
 * are local and only commit the data when the “Save” button is
-* pressed – at that point the new task is added to the model.
+* pressed - at that point the new task is added to the model.
 */
 Page {
     id: page
@@ -31,7 +31,7 @@ Page {
             }
             RowLayout {
                 spacing: 8
-                // Save button – pushes the new task onto the model
+                // Save button - pushes the new task onto the model
                 Button {
                     text: "Save"
                     // Grab the current values from the UI
@@ -53,7 +53,7 @@ Page {
                     }
                 }
             }
-            // Cancel button – simply goes back
+            // Cancel button - simply goes back
             Button {
                 text: "Cancel"
                 onClicked: {

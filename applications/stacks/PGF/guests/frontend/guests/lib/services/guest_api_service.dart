@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import '../models/guest.dart';
 
 /// Service that wraps all HTTP calls to the guest API.
-/// The base URL is hard‑coded here, but you could expose it via
+/// The base URL is hard-coded here, but you could expose it via
 /// an environment variable or a `Config` class if you wish.
 class GuestApiService {
   // Replace with the actual host where the API is running.
@@ -27,7 +27,7 @@ class GuestApiService {
   }
 
   /// Fetches a single guest identified by the email address.
-  /// The email is URL‑encoded to avoid any malformed requests.
+  /// The email is URL-encoded to avoid any malformed requests.
   Future<Guest> fetchGuestByEmail(String email) async {
     final encodedEmail = Uri.encodeFull(email);
     final uri = Uri.parse('$_baseUrl/guests/$encodedEmail');

@@ -14,7 +14,7 @@ Page {
             title: "Edit Task"
 
             // ------------------------------------------------------------------
-            // UI layout – a simple scaffold for the edit form
+            // UI layout - a simple scaffold for the edit form
             // ------------------------------------------------------------------
             ColumnLayout {
                 anchors.fill: parent
@@ -57,7 +57,7 @@ Page {
                         }
                     }
                 }
-                // Cancel button – simply goes back without changes
+                // Cancel button - simply goes back without changes
                 Button {
                     text: "Cancel"
                     onClicked: {

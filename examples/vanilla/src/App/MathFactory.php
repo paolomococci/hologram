@@ -12,7 +12,7 @@ use App\Interfaces\IntegerMathInterface;    // Interface that IntegerSampleMath 
 /**
  * MathFactory
  *
- * A simple service‑factory that returns concrete math implementations.
+ * A simple service-factory that returns concrete math implementations.
  * Each method is static and returns an object that implements the corresponding interface.
  */
 class MathFactory

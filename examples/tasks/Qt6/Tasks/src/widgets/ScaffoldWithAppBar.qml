@@ -3,8 +3,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 /*
- * ScaffoldWithAppBar provides a very basic “app scaffold” – a
- * top‑level toolbar and a transparent background that can be reused
+ * ScaffoldWithAppBar provides a very basic “app scaffold” - a
+ * top-level toolbar and a transparent background that can be reused
  * by other pages.
  */
 Item {

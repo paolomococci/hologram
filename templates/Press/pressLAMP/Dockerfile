@@ -1,5 +1,5 @@
 ################################################################
-## 1.0 Build step – install deps & compile
+## 1.0 Build step - install deps & compile
 ################################################################
 FROM debian:bookworm-slim AS builder
 ARG DEBIAN_FRONTEND=noninteractive
@@ -8,7 +8,7 @@ ARG XDEBUG_CLIENT_HOST=127.0.0.1
 ENV TZ=Etc/UTC
 
 ################################################################
-## 1.1 install build‑time deps
+## 1.1 install build-time deps
 ################################################################
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -96,7 +96,7 @@ RUN cd /tmp/sources/imagick/ && \
     phpize && ./configure && make -j$(nproc) && make install
 
 ################################################################
-## 1.8 install Composer (pre‑compiled)
+## 1.8 install Composer (pre-compiled)
 ################################################################
 COPY bin/composer /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
@@ -107,14 +107,14 @@ RUN chmod +x /usr/local/bin/composer
 RUN cp /tmp/sources/php-8.4.14/php.ini-development /opt/php/8.4.14/lib/php.ini
 
 ################################################################
-## 1.10 cleanup build‑time deps
+## 1.10 cleanup build-time deps
 ################################################################
 RUN apt-get purge -y build-essential autoconf libtool bison re2c pkg-config && \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /tmp/*
 
 ################################################################
-## 2.0 Runtime step – minimal image
+## 2.0 Runtime step - minimal image
 ################################################################
 FROM debian:bookworm-slim
 ARG DEBIAN_FRONTEND=noninteractive

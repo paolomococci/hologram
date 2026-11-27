@@ -5,9 +5,9 @@ import Tasks 1.0
 
 /*
 * TaskListPage shows all existing tasks in a ListView. It includes:
-* • A floating “+” button that pushes NewTaskPage.
-* • A dialog to confirm deletion.
-* • A delegate that uses TaskTile for each row.
+* - A floating “+” button that pushes NewTaskPage.
+* - A dialog to confirm deletion.
+* - A delegate that uses TaskTile for each row.
 */
 Page {
     id: page
@@ -85,10 +85,10 @@ Page {
                                         MouseArea {
                                             anchors.fill: parent
                                             onClicked: function(mouseEvent) {
-                                            // Ferma la propagazione dell'evento del task
+                                            // Prevent task event propagation.
                                             mouseEvent.accepted = true
 
-                                            // Chiedi conferma prima di eliminare
+                                            // Ask for confirmation before deleting.
                                             confirmDeleteDialog.taskIndex = index
                                             confirmDeleteDialog.open()
                                         }
@@ -128,7 +128,7 @@ Page {
             spacing: 8
 
             ListView {
-                // ... (codice precedente invariato)
+                // TODO
             }
 
             Item {
@@ -138,7 +138,7 @@ Page {
         }
 
         // ------------------------------------------------------------------
-        // Floating Action Button (FAB) – material design like
+        // Floating Action Button (FAB) - material design like
         // ------------------------------------------------------------------
         Button {
             id: fab

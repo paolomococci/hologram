@@ -1,5 +1,5 @@
 ###########################
-## first stage – Build    #
+## first stage - Build    #
 ###########################
 FROM golang:1.25.3-alpine AS builder
 
@@ -26,7 +26,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build \
     ./...
 
 ###########################
-## second stage – Runtime #
+## second stage - Runtime #
 ###########################
 FROM scratch
 

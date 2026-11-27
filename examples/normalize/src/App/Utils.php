@@ -8,7 +8,7 @@ use Throwable;
 /**
  * App\Utils
  * 
- * Utility class providing a flexible string‑processing pipeline.
+ * Utility class providing a flexible string-processing pipeline.
  *
  * The pipeline() method accepts a string $value, an array of callables
  * that each receive the current string and return a new string.
@@ -74,7 +74,7 @@ class Utils
                             // In strict mode the fallback must return a string.
                             throw new RuntimeException('onError did not return a recovery string.');
                         }
-                        // Non‑strict mode: force cast.
+                        // Non-strict mode: force cast.
                         $value = (string) $value;
                     }
                     // Skip to the next callable.
@@ -91,19 +91,19 @@ class Utils
             // After successful execution, validate the returned value.
             if (! is_string($result)) {
                 if ($opts['cast']) {
-                    // Automatic casting in non‑strict mode.
+                    // Automatic casting in non-strict mode.
                     $value = (string) $result;
                     continue;
                 }
                 if ($opts['strict']) {
-                    // In strict mode a non‑string return is an error.
+                    // In strict mode a non-string return is an error.
                     throw new RuntimeException(sprintf(
                         'Callable at position %d returned type %s instead of string.',
                         $index,
                         gettype($result)
                     ));
                 }
-                // Non‑strict mode - force cast and continue.
+                // Non-strict mode - force cast and continue.
                 $value = (string) $result;
                 continue;
             }

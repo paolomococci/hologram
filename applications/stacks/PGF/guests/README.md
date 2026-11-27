@@ -94,7 +94,7 @@ git init
 git branch -m main
 ```
 
-Creating an `.gitignore` ​​file:
+Creating an `.gitignore` file:
 
 ```shell
 cat > .gitignore <<'EOF'

@@ -28,7 +28,7 @@ kubectl config view
 
 ## create and delete Opaque type of secret from literal in imperatively mode
 
-Small tip, the values ​​reported in the `declarative-secret-opaque-type.yaml` file must be treated similarly in the following way:
+Small tip, the values reported in the `declarative-secret-opaque-type.yaml` file must be treated similarly in the following way:
 
 ```bash
 echo 'value to be treated' | base64
@@ -74,7 +74,7 @@ kubectl get secret mounted-secret -o yaml > mounted-secret-dump.yaml
 
 ## mounts the `Secret` object
 
-Mounts the Secret values ​​on the Pod as if they were files whose content is the setting previously defined as key-value.
+Mounts the Secret values on the Pod as if they were files whose content is the setting previously defined as key-value.
 
 ```bash
 ls -l ./nginx-pod-with-mounted-secret.yaml

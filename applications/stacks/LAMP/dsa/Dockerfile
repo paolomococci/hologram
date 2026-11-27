@@ -1,11 +1,11 @@
 ################################################################
-## Stage 1 – Build
+## Stage 1 - Build
 ################################################################
 # Use Alpine Linux to reduce image size
 FROM alpine:3.22.2 AS builder
 
 ################################################################
-## 1.1 Build‑time dependencies
+## 1.1 Build-time dependencies
 ################################################################
 RUN apk add --no-cache \
     build-base \

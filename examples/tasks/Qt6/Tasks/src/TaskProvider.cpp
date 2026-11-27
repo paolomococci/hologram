@@ -2,7 +2,7 @@
 
 TaskProvider::TaskProvider(QObject *parent)
     : QObject(parent), m_model(new TaskModel(this)) {
-  // Pre‑populate the model with a few example tasks
+  // Pre-populate the model with a few example tasks
   m_model->addTask("Example of task number one",
                    "A brief description of the first task.", false, false);
   m_model->addTask("Example of task number two",

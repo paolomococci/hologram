@@ -43,7 +43,7 @@ class IconHelper
 
         // ------------------------------------------------------------------
         // Normalize the <svg> element:
-        // 1. Remove existing class, role, aria‑*, on* handlers, and aria‑hidden
+        // 1. Remove existing class, role, aria-*, on* handlers, and aria-hidden
         // 2. Inject the desired class, ARIA attributes, and optional <title>
         // ------------------------------------------------------------------
         $svg = preg_replace_callback(
@@ -53,7 +53,7 @@ class IconHelper
                 // Trim any leading/trailing whitespace from the captured attributes
                 $attrs = trim($m[1]);
 
-                // Strip out any class, role, aria‑*, on* handlers, and aria‑hidden attributes
+                // Strip out any class, role, aria-*, on* handlers, and aria-hidden attributes
                 $attrs = preg_replace('/\s*\b(class|role|aria-[a-z-]+)=["\'][^"\']*["\']\s*/i', ' ', $attrs);
                 $attrs = preg_replace('#\s*on\w+=(["\']).*?\1#is', ' ', $attrs);
                 $attrs = preg_replace('/\s*(aria-hidden)=["\'][^"\']*["\']\s*/i', ' ', $attrs);
@@ -69,7 +69,7 @@ class IconHelper
                 // Add a <title> element if one was provided
                 $titleTag = $title ? '<title>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</title>' : '';
 
-                // Re‑add any remaining original attributes (if any)
+                // Re-add any remaining original attributes (if any)
                 $attrs = $attrs ? ' ' . trim($attrs) : '';
 
                 // Return the new opening <svg> tag with the cleaned and injected attributes

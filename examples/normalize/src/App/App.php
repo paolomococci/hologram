@@ -15,8 +15,8 @@
     use App\Normalize;
 
     /**
-     * Register a very simple PSR‑0/PSR‑4 style autoloader.  Whenever a class is referenced
-     * that hasn't been loaded yet, PHP will call this closure with the fully‑qualified
+     * Register a very simple PSR-0/PSR-4 style autoloader.  Whenever a class is referenced
+     * that hasn't been loaded yet, PHP will call this closure with the fully-qualified
      * class name (e.g. App\Normalize).  The closure converts namespace separators
      * to directory separators and includes the corresponding PHP file.
      *
@@ -38,14 +38,14 @@
      *
      * $strTrash contains a deliberately chaotic string:
      * - Leading/trailing spaces
-     * - Mixed Latin & non‑Latin characters
+     * - Mixed Latin & non-Latin characters
      * - Various punctuation marks
-     * - Invisible/zero‑width characters
+     * - Invisible/zero-width characters
      * - Multiple consecutive spaces
      *
      * I want to clean it up so that it can be safely output in HTML.
      *
-     * PHP 8.5 introduced the **pipe operator (|>)** which allows us to
+     * PHP 8.5 introduced the **pipe operator (|>)** which allows us to
      * pipe the value from left to right through a series of callbacks.
      *
      * Each stage receives the result of the previous stage, does something,
@@ -91,7 +91,7 @@
 <body>
     <main class="box">
         <!-- Output the normalized string inside an h3 element. -->
-        <!-- Because $strTrash already contains HTML‑entity‑encoded characters, it is safe to echo it directly. -->
+        <!-- Because $strTrash already contains HTML-entity-encoded characters, it is safe to echo it directly. -->
         <h3 class="card"><?php echo $strTrash?></h3>
     </main>
 </body>

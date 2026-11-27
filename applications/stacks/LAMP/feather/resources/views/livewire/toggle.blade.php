@@ -1,5 +1,5 @@
 {{-- resources/views/livewire/toggle.blade.php --}}
-{{-- toggle.blade.php – Button that shows a different glyph depending on the current state --}}
+{{-- toggle.blade.php - Button that shows a different glyph depending on the current state --}}
 <div @if (!$isVisible) hidden @endif>
     <button wire:click="toggle"
         class="p-2 m-2 lg:p-3 lg:m-3 bg-stone-500 rounded-full hover:bg-stone-300 focus:outline-none focus:ring-2 focus:ring-stone-400">
